@@ -1523,7 +1523,7 @@ body.profile-payment-page .site-footer {
 .pp-modal__meta {
   margin: 0 0 8px 0;
   font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 1;
   color: #797A7B;
@@ -1597,6 +1597,79 @@ body.profile-payment-page .site-footer {
     transform: rotate(360deg);
   }
 }
+.pp-loading-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+.pp-loading-modal[aria-hidden=false] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.pp-loading-modal__dialog {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  min-width: 320px;
+}
+
+.pp-loading-modal__logos {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pp-loading-modal__logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  flex-shrink: 0;
+}
+.pp-loading-modal__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pp-loading-modal__progress {
+  width: 56px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #E5E7EB 0px, #E5E7EB 6px, transparent 6px, transparent 8px, #E5E7EB 8px, #E5E7EB 14px, transparent 14px, transparent 16px, #3F78FF 16px, #3F78FF 22px, transparent 22px, transparent 24px, #3F78FF 24px, #3F78FF 30px, transparent 30px, transparent 32px, #3F78FF 32px, #3F78FF 38px, transparent 38px, transparent 40px, #E5E7EB 40px, #E5E7EB 46px, transparent 46px, transparent 48px);
+  background-size: 48px 8px;
+  background-repeat: no-repeat;
+  background-position: 4px 0;
+}
+
+.pp-loading-modal__message {
+  margin: 0;
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
 /* Auto-mirrored from src/css/overrides.css when running `npm run dev:with-css-edit` */
 
 /*# sourceMappingURL=main.css.map */
