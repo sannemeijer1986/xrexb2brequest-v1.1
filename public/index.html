@@ -90,7 +90,7 @@
                     <div class="payment-methods-card__section">
                         <span class="payment-methods-card__section-label">Stablecoin payments</span>
                         <div class="payment-methods-card__list">
-                            <div class="wallet-entry">
+                            <div class="wallet-entry" id="walletEntry" role="button" tabindex="0" aria-label="Open verify email">
                                 <div class="wallet-entry__icon">
                                     <img src="assets/Icon_pp_wallet.svg" alt="" width="24" height="24" />
                                 </div>
@@ -98,13 +98,13 @@
                                     <div class="wallet-entry__title">Wallet account</div>
                                     <div class="wallet-entry__detail">abc1234@gmail.com</div>
                                 </div>
-                                <button type="button" class="wallet-entry__menu" aria-label="More options">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                        <circle cx="10" cy="5" r="1.5" fill="#797A7B"/>
-                                        <circle cx="10" cy="10" r="1.5" fill="#797A7B"/>
-                                        <circle cx="10" cy="15" r="1.5" fill="#797A7B"/>
-                                    </svg>
+                                <button type="button" class="wallet-entry__menu" id="walletMoreBtn" aria-label="More options" aria-haspopup="menu" aria-expanded="false">
+                                    <img src="assets/icon_pp_more.svg" alt="" width="24" height="24" />
                                 </button>
+                                <div class="wallet-entry__dropdown" id="walletMoreMenu" role="menu" aria-hidden="true">
+                                    <a href="#" role="menuitem">View your self-custody wallet</a>
+                                    <a href="#" role="menuitem">How it works</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -112,6 +112,35 @@
             </div>
         </div>
     </main>
+
+    <div class="pp-modal" id="verifyEmailModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="verifyEmailTitle">
+        <div class="pp-modal__dialog">
+            <div class="pp-modal__header">
+                <h2 id="verifyEmailTitle">Log in to your wallet</h2>
+                <button type="button" id="verifyEmailClose" aria-label="Close">×</button>
+            </div>
+            <div class="pp-modal__body">
+                <p class="pp-modal__lead">
+                    Verify your email to continue. Enter the verification code sent by Fireblocks Dynamic to
+                    <span>abc1234@gmail.com</span>
+                </p>
+
+                <div class="pp-modal__brand">dynamic <small>by Fireblocks</small></div>
+
+                <label class="pp-modal__label" for="verifyCodeInput">Verification code</label>
+                <input id="verifyCodeInput" type="text" placeholder="Enter code from your email" />
+                <p class="pp-modal__meta">Didn’t receive the code? Resend in 200s</p>
+                <p class="pp-modal__submeta">If it’s missing, check your spam or junk folder</p>
+            </div>
+            <div class="pp-modal__footer">
+                <button type="button" class="pp-modal__btn" id="verifyEmailOkay">Cancel</button>
+            </div>
+            <div class="pp-modal__loading" id="verifyEmailLoading" aria-hidden="true">
+                <div class="pp-modal__spinner" aria-hidden="true"></div>
+                <p>Loading...</p>
+            </div>
+        </div>
+    </div>
 
     <footer class="site-footer">
         <div class="footer__inner">
@@ -123,6 +152,115 @@
             </div>
         </div>
     </footer>
+    <script>
+        (function () {
+            const walletEntry = document.getElementById("walletEntry");
+            const moreBtn = document.getElementById("walletMoreBtn");
+            const moreMenu = document.getElementById("walletMoreMenu");
+            const modal = document.getElementById("verifyEmailModal");
+            const closeBtn = document.getElementById("verifyEmailClose");
+            const okayBtn = document.getElementById("verifyEmailOkay");
+            const verifyInput = document.getElementById("verifyCodeInput");
+            const loadingEl = document.getElementById("verifyEmailLoading");
+            let verifyFlowRunning = false;
+
+            if (!walletEntry || !moreBtn || !moreMenu || !modal) return;
+
+            function openModal() {
+                modal.setAttribute("aria-hidden", "false");
+            }
+
+            function closeModal() {
+                modal.setAttribute("aria-hidden", "true");
+                if (loadingEl) loadingEl.setAttribute("aria-hidden", "true");
+                verifyFlowRunning = false;
+            }
+
+            function openMenu() {
+                moreMenu.classList.add("is-open");
+                moreMenu.setAttribute("aria-hidden", "false");
+                moreBtn.setAttribute("aria-expanded", "true");
+            }
+
+            function closeMenu() {
+                moreMenu.classList.remove("is-open");
+                moreMenu.setAttribute("aria-hidden", "true");
+                moreBtn.setAttribute("aria-expanded", "false");
+            }
+
+            function toggleMenu() {
+                if (moreMenu.classList.contains("is-open")) closeMenu();
+                else openMenu();
+            }
+
+            walletEntry.addEventListener("click", openModal);
+            walletEntry.addEventListener("keydown", function (e) {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    openModal();
+                }
+            });
+
+            moreBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                toggleMenu();
+            });
+
+            moreBtn.addEventListener("mouseenter", function () {
+                walletEntry.classList.add("is-menu-hover");
+            });
+            moreBtn.addEventListener("mouseleave", function () {
+                walletEntry.classList.remove("is-menu-hover");
+            });
+
+            moreMenu.addEventListener("click", function (e) {
+                e.stopPropagation();
+            });
+            moreMenu.addEventListener("mouseenter", function () {
+                walletEntry.classList.add("is-menu-hover");
+            });
+            moreMenu.addEventListener("mouseleave", function () {
+                walletEntry.classList.remove("is-menu-hover");
+            });
+
+            moreMenu.querySelectorAll("a").forEach(function (item) {
+                item.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    closeMenu();
+                });
+            });
+
+            document.addEventListener("click", function () {
+                closeMenu();
+            });
+
+            modal.addEventListener("click", function (e) {
+                if (e.target === modal) closeModal();
+            });
+
+            function runVerifyInputFlow() {
+                if (!verifyInput || !loadingEl || verifyFlowRunning) return;
+                verifyFlowRunning = true;
+                verifyInput.value = "123456";
+
+                setTimeout(function () {
+                    loadingEl.setAttribute("aria-hidden", "false");
+                    setTimeout(function () {
+                        loadingEl.setAttribute("aria-hidden", "true");
+                        verifyFlowRunning = false;
+                    }, 900);
+                }, 500);
+            }
+
+            if (verifyInput) {
+                verifyInput.addEventListener("focus", runVerifyInputFlow);
+            }
+
+            if (closeBtn) closeBtn.addEventListener("click", closeModal);
+            if (okayBtn) okayBtn.addEventListener("click", closeModal);
+        })();
+    </script>
 </body>
 
 </html>
