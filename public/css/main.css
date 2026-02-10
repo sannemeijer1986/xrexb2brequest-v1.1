@@ -1,1 +1,1410 @@
-*,*::before,*::after{box-sizing:border-box}html,body{height:100%}body,h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}ul[role=list],ol[role=list]{list-style:none}img,picture{max-width:100%;display:block}input,button,textarea,select{font:inherit}button{cursor:pointer}:root{color-scheme:light only}body{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;color:#0f172a;background:#f8f8f8;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh;min-width:360px;display:flex;flex-direction:column}.container{width:100%;max-width:760px;padding-inline:16px;margin-inline:auto;padding:20px}@media(min-width: 1280px){.container{padding:64px 40px 40px;max-width:1280px}}.muted{color:#797a7b}a{color:#1d4ed8;text-decoration:none}a:hover{text-decoration:underline}.visually-hidden{position:absolute !important;clip:rect(1px, 1px, 1px, 1px);padding:0 !important;border:0 !important;height:1px !important;width:1px !important;overflow:hidden;white-space:nowrap}main.page{flex:1 0 auto;padding:0px;margin-top:64px}.show-mobile-only{display:none}@media(max-width: 1279px){.show-mobile-only{display:block}}.show-desktop-only{display:none}@media(min-width: 1280px){.show-desktop-only{display:block}}.show-desktop-only{display:none}@media(min-width: 1280px){.show-desktop-only{display:block}}html{overflow-y:scroll}.site-header{min-width:360px;position:fixed;top:0;left:0;right:0;z-index:50;background:#f8f8f8;border-bottom:1px solid #eee;will-change:transform,top;transform:translateZ(0)}@media(max-width: 1279px){body.transactions-active .site-header{border-bottom:none}}.site-header .header__content{display:flex;gap:16px;align-items:center;height:64px;width:100%;max-width:768px;margin:0 auto;padding:0 20px}.site-header .brand{display:inline-flex;align-items:center}.site-header .brand__img{height:16px}.site-header .header__spacer{flex:1 1 auto}.site-header .header__actions{display:flex;align-items:center;gap:16px}@media(min-width: 960px){.site-header .header__actions{gap:32px}}.site-header .header__actions .header__request-btn{display:none}.site-header .circle-icon{width:32px;height:32px;border-radius:9999px;display:flex;align-items:center;justify-content:center;background:#f3f4f6;color:#1f2937}.site-header .account-chip{display:inline-flex;align-items:center;gap:8px;height:32px;text-decoration:none;color:inherit}.site-header .chip-avatar{width:32px;height:32px;border-radius:9999px;background:#dbeafe;display:grid;place-items:center}.site-header .chip-avatar img{width:100%;height:100%;border-radius:9999px;display:block}.site-header .chip-name{font-weight:600;display:none}.site-header .account-chip .chevron{display:none;width:20px;height:20px;margin-top:3px}@media(min-width: 1280px){.site-header .header__content{max-width:1440px;padding:0 40px;height:70px}.site-header .brand__img{height:23px}.site-header .chip-name{display:inline}.site-header .account-chip .chevron{display:inline}}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:32px;padding:0 16px;background:#ebf2ff;border:none;border-radius:9999px;cursor:pointer;text-decoration:none;position:relative;font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:700;font-size:14px;color:#3f78ff;transition:opacity .15s ease}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn img,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn img,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn img{width:20px;height:20px;flex-shrink:0}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-btn__text,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-btn__text,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-btn__text{white-space:nowrap}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-btn__badge,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-btn__badge,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-btn__badge{display:none}@media(max-width: 1279px){html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn{width:32px;height:32px;padding:0;gap:0}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-btn__text,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-btn__text,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-btn__text{display:none}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-btn__badge,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-btn__badge,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-btn__badge{display:flex;align-items:center;justify-content:center;position:absolute;top:-2px;right:-2px;width:12px;height:12px;background:#dd483c;border-radius:50%;font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:600;font-size:8px;color:#fff;line-height:1}}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;width:360px;gap:24px;display:none;flex-direction:column;align-items:flex-start;max-width:calc(100vw - 32px);background:#f8f8f8;border:1px solid #eee;border-radius:8px;box-shadow:2px 4px 8px rgba(0,0,0,.15);z-index:100;overflow:hidden;padding:20px}@media(min-width: 1280px){html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown.is-open,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown.is-open,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown.is-open{display:flex}}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__banner,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__banner,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__banner{padding:8px;background:rgba(77,136,255,.15);border-bottom:none;display:flex;align-items:flex-start;gap:4px;font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;text-align:left;font-size:14px;font-weight:600;color:#4d88ff;border-radius:8px}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__banner .header__request-dropdown__banner-icon,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__banner .header__request-dropdown__banner-icon,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__banner .header__request-dropdown__banner-icon{width:16px;height:16px;flex-shrink:0;margin-top:2px;background:url("../assets/icon_info_blue.svg") no-repeat center;background-size:16px 16px}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__content,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__content,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__content{display:flex;flex-direction:column;gap:16px;width:100%;align-items:flex-start}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__title,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__title,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__title{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:600;font-size:14px;color:#2d2f2f;margin:0;line-height:1}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__list,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__list,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__list{list-style:none;margin:0;padding:0;display:flex;width:100%;flex:1;flex-direction:column;gap:4px;min-height:108px}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item{display:flex;flex-direction:column;gap:4px;padding:16px;background:#fff;border:1px solid #eee;border-radius:8px;cursor:pointer;width:100%;align-items:flex-start;justify-content:flex-end;min-height:108px}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-row,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-row,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-row{display:flex;align-items:center;gap:4px;width:100%}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-icon,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-icon,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-icon{width:16px;height:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#eee;border-radius:16px}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-icon img,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-icon img,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-icon img{width:10px;height:10px;display:block}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-content,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-content,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-content{flex:1;min-width:0;display:flex;align-items:flex-start;flex-direction:column;gap:4px}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-name,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-name,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-name{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:600;font-size:12px;color:#2d2f2f;margin:0;line-height:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-status,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-status,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-status{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:600;font-size:14px;color:#73a2f5;margin:0;line-height:1}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-amount,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-amount,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-amount{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:700;font-size:18px;color:#2d2f2f;margin:3px 0;line-height:1}html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-date,html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-date,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-date{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:400;font-size:12px;color:#797a7b;margin:0;margin-top:auto;line-height:1;align-self:flex-start}html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item{height:140px;min-height:140px}html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-amount,html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-amount{display:block !important}@media(max-width: 1279px){.header__request-modal.modal.modal--dialog .modal__body.header__request-modal__body{align-items:flex-start;justify-content:flex-start;text-align:left;padding:0}.header__request-modal .modal__dialog{width:100%;max-width:100%;height:100%;max-height:100vh;margin:0;border-radius:0}.header__request-modal .modal__content{height:100%;border-radius:0;display:flex;flex-direction:column;background:#f8f8f8}.header__request-modal .header__request-modal__header{display:flex;align-items:flex-end;gap:8px;padding:10px 20px;border-bottom:1px solid #eee;background:#f8f8f8;height:88px;min-height:88px}.header__request-modal .header__request-modal__header .modal__close{width:24px;height:24px;padding:0;border:none;background:rgba(0,0,0,0);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center}.header__request-modal .header__request-modal__header .modal__close img{width:24px;height:24px}.header__request-modal .header__request-modal__title{font-family:"Sora",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:700;font-size:18px;color:#0f172a;margin:0;flex:1;text-align:center;line-height:1}.header__request-modal .header__request-modal__body{flex:1;overflow-y:auto;padding:0;display:flex;flex-direction:column;align-items:flex-start}.header__request-modal .header__request-modal__body .header__request-dropdown__banner{margin:24px 20px 0;margin-bottom:16px;padding:8px}.header__request-modal .header__request-modal__body .header__request-dropdown__content{padding:0 20px;gap:16px}.header__request-modal .header__request-modal__body .header__request-dropdown__content:first-of-type{padding-top:24px}.header__request-modal .header__request-modal__body .header__request-dropdown__content:not(:last-child){padding-bottom:24px}.header__request-modal .header__request-modal__body .header__request-dropdown__content:last-child{padding-bottom:24px}.header__request-modal .header__request-modal__body .header__request-dropdown__title{margin-bottom:0}.header__request-modal .header__request-modal__body .header__request-dropdown__list{gap:16px;margin-top:16px}.header__request-modal .header__request-modal__body .header__request-dropdown__item{min-height:108px;height:auto}html[data-prototype-state=state-4] .header__request-modal .header__request-modal__body .header__request-dropdown__item,html[data-prototype-state=state-5] .header__request-modal .header__request-modal__body .header__request-dropdown__item{min-height:140px;height:140px}.header__request-modal .header__request-modal__body .header__request-dropdown__banner{background:rgba(77,136,255,.15);display:flex;align-items:flex-start;gap:8px;font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;text-align:left;font-size:14px;font-weight:600;color:#4d88ff;border-radius:8px;margin-top:24px;margin-bottom:32px}.header__request-modal .header__request-modal__body .header__request-dropdown__banner .header__request-dropdown__banner-icon{width:16px;height:16px;flex-shrink:0;margin-top:2px;background:url("../assets/icon_info_blue.svg") no-repeat center;background-size:16px 16px}.header__request-modal .header__request-modal__body .header__request-dropdown__content{display:flex;flex-direction:column;width:100%;align-items:flex-start}.header__request-modal .header__request-modal__body .header__request-dropdown__title{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:600;font-size:14px;color:#2d2f2f;margin:0;line-height:1}.header__request-modal .header__request-modal__body .header__request-dropdown__list{list-style:none;margin:0;padding:0;display:flex;width:100%;flex-direction:column}.header__request-modal .header__request-modal__body .header__request-dropdown__item{display:flex;flex-direction:column;gap:4px;padding:16px;background:#fff;border:1px solid #eee;border-radius:8px;width:100%;align-items:flex-start;justify-content:flex-end}.header__request-modal .header__request-modal__body .header__request-dropdown__item-row{display:flex;align-items:center;gap:4px;width:100%}.header__request-modal .header__request-modal__body .header__request-dropdown__item-icon{width:16px;height:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#eee;border-radius:16px}.header__request-modal .header__request-modal__body .header__request-dropdown__item-icon img{width:10px;height:10px;display:block}.header__request-modal .header__request-modal__body .header__request-dropdown__item-content{flex:1;min-width:0;display:flex;align-items:flex-start;flex-direction:column;gap:4px}.header__request-modal .header__request-modal__body .header__request-dropdown__item-name{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:600;font-size:12px;color:#2d2f2f;margin:0;line-height:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.header__request-modal .header__request-modal__body .header__request-dropdown__item-amount{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:700;font-size:18px;color:#2d2f2f;margin:0;line-height:1}.header__request-modal .header__request-modal__body .header__request-dropdown__item-status{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:600;font-size:14px;color:#73a2f5;margin:0;line-height:1}.header__request-modal .header__request-modal__body .header__request-dropdown__item-date{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:400;font-size:12px;color:#797a7b;margin:0;margin-top:auto;line-height:1;align-self:flex-start}.header__request-modal .header__request-dropdown{display:none !important}}.build-badge{position:fixed;opacity:.5;left:16px;bottom:48px;z-index:1201;min-height:40px;height:auto;background:rgba(17,24,39,.5);color:#fff;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:12px;padding:6px 12px 6px 8px;border-radius:10px;display:flex;align-items:center;flex-wrap:wrap;gap:8px;pointer-events:auto}.build-badge a{color:#fff !important;text-decoration:underline}.build-badge a:first-child{margin-left:8px}.build-badge span{opacity:.7}.build-badge__state{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.2);border-radius:999px;padding:4px 8px;line-height:1.2}.build-badge__state-label{font-size:11px;font-weight:400;color:#fff}.build-badge__state-btn{background:#fff;color:#111827;border:0;border-radius:20px;width:16px;height:16px;font-weight:700;font-size:12px;display:inline-flex;align-items:center;justify-content:center;padding:0 0 2px 0;cursor:pointer}.build-badge__state-btn:disabled{opacity:.4;cursor:not-allowed}.build-badge__state-value{font-weight:700;font-size:13px}.build-badge__state-name{font-size:11px;font-weight:400;color:#fff;white-space:nowrap}.page{padding-block:28px 40px;background:#f8f8f8}.page .page__header{margin-bottom:32px;gap:6px}@media(min-width: 1280px){.page .page__header{gap:16px;margin-bottom:24px}}.page .page__header .page__title{margin:0;cursor:pointer;font-size:14px;font-weight:700;color:#336aff;font-family:"Sora",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}@media(min-width: 1280px){.page .page__header .page__title{font-size:32px;color:#0f172a}}.page .page__header .crumb{width:16px;height:16px}.page .page__header .crumb img{width:16px;height:16px;display:block}@media(min-width: 1280px){.page .page__header .crumb{width:32px;height:32px}.page .page__header .crumb img{width:32px;height:32px}}.page .page__header .page__subtitle{color:#797a7b}@media(min-width: 1280px){.page .page__header{margin-bottom:48px}}.grid{display:grid;grid-template-columns:1fr;gap:72px;align-items:start}@media(min-width: 1280px){.grid{grid-template-columns:minmax(0, 1fr) 430px}}.grid__col--primary{min-width:0}.grid__col--sidebar{position:sticky;top:124px}@media(min-width: 1280px){.grid--home{align-items:stretch}}.card{background:#fff;border:1px solid #eee;border-radius:16px;padding:18px}.card+.card{margin-top:16px}.page--addbank .input-group input{border-radius:8px !important}.page--addbank .card+.card{margin-top:0px}.card__title{font-size:16px;font-weight:600;margin:0 0 16px}@media(min-width: 1280px){.card__title{font-size:16px;font-weight:600}}.card__title--within{font-size:18px !important;font-weight:600;margin:0 0 16px}@media(min-width: 1280px){.card__title--within{font-size:22px !important;font-weight:600}}.modal--addbusiness .alert,.modal--accountdeclaration .alert,.modal--addbankdetails .alert{margin-bottom:24px}.modal--addbusiness .form__row--selects,.modal--addbankdetails .form__row--selects,.modal--accountdeclaration .form__row--selects{gap:32px}.page--addbank .alert--info--content{text-align:left}.grid--home .grid__col--sidebar{top:84px}.site-footer{background:#fff;border-top:none;padding:16px 16px 72px 16px;display:flex;align-items:center}@media(max-width: 1279px){.site-footer{background:#fff}}@media(min-width: 1280px){.site-footer{padding:16px 16px}}.site-footer .footer__inner{width:100%;max-width:768px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;padding:0}@media(min-width: 1280px){.site-footer .footer__inner{height:40px}}.site-footer .footer__copy{color:#0f172a;font-size:12px;font-weight:500;width:100%;text-align:center}.site-footer .footer__links{display:flex;width:100%;justify-content:center;gap:0}.site-footer .footer__links a{color:#797a7b;font-size:12px;font-weight:300;text-decoration:none}.site-footer .footer__links a+a{margin-left:32px;position:relative}.site-footer .footer__links a+a:before{content:"|";color:#797a7b;position:relative;left:-16px}.site-footer .footer__links{order:1}.site-footer .footer__copy{order:2}@media(min-width: 1280px){.site-footer{padding:0;height:40px}.site-footer .footer__inner{max-width:1440px;padding:0 40px;justify-content:space-between;flex-wrap:nowrap}.site-footer .footer__links{width:auto;justify-content:flex-end;order:0}.site-footer .footer__copy{width:auto;text-align:left;order:0}}.page--profile-payment{padding-top:64px;padding-bottom:40px;background:#f8f8f8}@media(min-width: 1280px){.page--profile-payment{padding-top:70px;padding-bottom:48px}}.profile-payment__container{max-width:1200px;margin-inline:auto;padding:24px 20px}@media(min-width: 1280px){.profile-payment__container{padding:40px 40px}}.profile-payment__header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:32px}@media(min-width: 1280px){.profile-payment__header{margin-bottom:40px}}.profile-payment__title{margin:0;font-family:"Sora",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:700;font-size:24px;color:#0f172a;line-height:1.2}@media(min-width: 1280px){.profile-payment__title{font-size:32px}}.profile-payment__back{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:700;font-size:14px;color:#336aff;text-decoration:none}.profile-payment__back:hover{text-decoration:underline}@media(min-width: 1280px){.profile-payment__back{font-size:16px}}.profile-payment__grid{display:grid;grid-template-columns:1fr;gap:24px;align-items:start}@media(min-width: 1280px){.profile-payment__grid{grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);gap:32px}}.profile-card{background:#fff;border:1px solid #eee;border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;text-align:center}@media(min-width: 1280px){.profile-card{padding:40px 32px}}.profile-card__icon{width:80px;height:80px;border-radius:50%;background:#ebf2ff;border:1px solid rgba(51,106,255,.2);display:flex;align-items:center;justify-content:center;margin-bottom:16px}.profile-card__icon img{width:32px;height:32px}@media(min-width: 1280px){.profile-card__icon{width:96px;height:96px}.profile-card__icon img{width:40px;height:40px}}.profile-card__label{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:600;font-size:12px;color:#797a7b;margin-bottom:4px}@media(min-width: 1280px){.profile-card__label{font-size:14px}}.profile-card__name{margin:0 0 24px;font-family:"Sora",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:700;font-size:20px;color:#0f172a;line-height:1.3}@media(min-width: 1280px){.profile-card__name{font-size:24px;margin-bottom:32px}}.profile-card__fields{width:100%;margin:0;display:flex;flex-direction:column;gap:16px;text-align:left}@media(min-width: 1280px){.profile-card__fields{gap:20px}}.profile-card__field dt,.profile-card__field dd{margin:0;font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-size:14px;line-height:1.4}@media(min-width: 1280px){.profile-card__field dt,.profile-card__field dd{font-size:16px}}.profile-card__field dt{font-weight:600;color:#797a7b;margin-bottom:4px}.profile-card__field dd{font-weight:500;color:#0f172a}.payment-methods-card{background:#fff;border:1px solid #eee;border-radius:16px;padding:24px}@media(min-width: 1280px){.payment-methods-card{padding:32px}}.payment-methods-card__header{display:flex;align-items:center;gap:12px;margin-bottom:20px}@media(min-width: 1280px){.payment-methods-card__header{margin-bottom:24px}}.payment-methods-card__icon{width:40px;height:40px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center}.payment-methods-card__icon img{width:20px;height:20px}.payment-methods-card__title{margin:0;font-family:"Sora",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:700;font-size:18px;color:#0f172a;line-height:1.2}@media(min-width: 1280px){.payment-methods-card__title{font-size:20px}}.payment-methods-card__section{display:flex;flex-direction:column;gap:12px}.payment-methods-card__section-label{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:600;font-size:12px;color:#797a7b}@media(min-width: 1280px){.payment-methods-card__section-label{font-size:14px}}.payment-methods-card__list{display:flex;flex-direction:column;gap:12px}.wallet-entry{display:flex;align-items:center;gap:16px;padding:16px;background:#fff;border:1px solid #eee;border-radius:8px;box-shadow:0 1px 2px rgba(0,0,0,.06)}@media(min-width: 1280px){.wallet-entry{padding:20px}}.wallet-entry__icon{width:40px;height:40px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;flex-shrink:0}.wallet-entry__icon img{width:24px;height:24px}.wallet-entry__content{flex:1;min-width:0}.wallet-entry__title{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:700;font-size:16px;color:#0f172a;margin:0 0 4px}@media(min-width: 1280px){.wallet-entry__title{font-size:18px}}.wallet-entry__detail{font-family:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,"Helvetica Neue",Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;font-weight:500;font-size:14px;color:#797a7b}@media(min-width: 1280px){.wallet-entry__detail{font-size:16px}}.wallet-entry__menu{width:32px;height:32px;padding:0;border:none;background:rgba(0,0,0,0);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:6px}.wallet-entry__menu:hover{background:#f1f5f9}.wallet-entry__menu svg{display:block}
+/* CSS Reset (modern minimal) */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+ul[role=list], ol[role=list] {
+  list-style: none;
+}
+
+img, picture {
+  max-width: 100%;
+  display: block;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Base */
+:root {
+  color-scheme: light only;
+}
+
+body {
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  color: #0f172a;
+  background: #F8F8F8;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  min-width: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 760px;
+  padding-inline: 16px;
+  margin-inline: auto;
+  padding: 20px;
+}
+@media (min-width: 1280px) {
+  .container {
+    padding: 64px 40px 40px;
+    max-width: 1280px;
+  }
+}
+
+.muted {
+  color: #797A7B;
+}
+
+a {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Utilities */
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Ensure footer sits at bottom */
+main.page {
+  flex: 1 0 auto;
+  padding: 0px;
+  margin-top: 64px;
+}
+
+.show-mobile-only {
+  display: none;
+}
+
+@media (max-width: 1279px) {
+  .show-mobile-only {
+    display: block;
+  }
+}
+.show-desktop-only {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .show-desktop-only {
+    display: block;
+  }
+}
+.show-desktop-only {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .show-desktop-only {
+    display: block;
+  }
+}
+html {
+  overflow-y: scroll;
+}
+
+.site-header {
+  min-width: 360px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: #F8F8F8;
+  border-bottom: 1px solid #eeeeee;
+  will-change: transform, top;
+  transform: translateZ(0);
+}
+@media (max-width: 1279px) {
+  body.transactions-active .site-header {
+    border-bottom: none;
+  }
+}
+.site-header .header__content {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  height: 64px;
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.site-header .brand {
+  display: inline-flex;
+  align-items: center;
+}
+.site-header .brand__img {
+  height: 16px;
+}
+.site-header .header__spacer {
+  flex: 1 1 auto;
+}
+.site-header .header__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+@media (min-width: 960px) {
+  .site-header .header__actions {
+    gap: 32px;
+  }
+}
+.site-header .header__actions .header__request-btn {
+  display: none;
+}
+.site-header .circle-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  color: #1f2937;
+}
+.site-header .account-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  text-decoration: none;
+  color: inherit;
+}
+.site-header .chip-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background: #dbeafe;
+  display: grid;
+  place-items: center;
+}
+.site-header .chip-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  display: block;
+}
+.site-header .chip-name {
+  font-weight: 600;
+  display: none;
+}
+.site-header .account-chip .chevron {
+  display: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+}
+@media (min-width: 1280px) {
+  .site-header .header__content {
+    max-width: 1440px;
+    padding: 0 40px;
+    height: 70px;
+  }
+  .site-header .brand__img {
+    height: 23px;
+  }
+  .site-header .chip-name {
+    display: inline;
+  }
+  .site-header .account-chip .chevron {
+    display: inline;
+  }
+}
+
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 16px;
+  background: #EBF2FF;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #3F78FF;
+  transition: opacity 0.15s ease;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn img,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn img,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-btn__text,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-btn__text,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-btn__text {
+  white-space: nowrap;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-btn__badge,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-btn__badge,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-btn__badge {
+  display: none;
+}
+@media (max-width: 1279px) {
+  html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn,
+  html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn,
+  html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    gap: 0;
+  }
+  html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-btn__text,
+  html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-btn__text,
+  html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-btn__text {
+    display: none;
+  }
+  html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-btn__badge,
+  html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-btn__badge,
+  html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-btn__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 12px;
+    height: 12px;
+    background: #DD483C;
+    border-radius: 50%;
+    font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 600;
+    font-size: 8px;
+    color: #ffffff;
+    line-height: 1;
+  }
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 360px;
+  gap: 24px;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: calc(100vw - 32px);
+  background: #f8f8f8;
+  border: 1px solid #eeeeee;
+  border-radius: 8px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  overflow: hidden;
+  padding: 20px;
+}
+@media (min-width: 1280px) {
+  html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown.is-open,
+  html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown.is-open,
+  html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown.is-open {
+    display: flex;
+  }
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__banner,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__banner,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__banner {
+  padding: 8px;
+  background: rgba(77, 136, 255, 0.15);
+  border-bottom: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4d88ff;
+  border-radius: 8px;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__banner .header__request-dropdown__banner-icon,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__banner .header__request-dropdown__banner-icon,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__banner .header__request-dropdown__banner-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  background: url("../assets/icon_info_blue.svg") no-repeat center;
+  background-size: 16px 16px;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__content,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__content,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  align-items: flex-start;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__title,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__title,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__title {
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #2d2f2f;
+  margin: 0;
+  line-height: 1;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__list,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__list,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 108px;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-end;
+  min-height: 108px;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-row,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-row,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-icon,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-icon,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #EEEEEE;
+  border-radius: 16px;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-icon img,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-icon img,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-icon img {
+  width: 10px;
+  height: 10px;
+  display: block;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-content,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-content,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 4px;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-name,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-name,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-name {
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: #2d2f2f;
+  margin: 0;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-status,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-status,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-status {
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #73a2f5;
+  margin: 0;
+  line-height: 1;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-amount,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-amount,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-amount {
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #2d2f2f;
+  margin: 3px 0;
+  line-height: 1;
+}
+html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn .header__request-dropdown__item-date,
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-date,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-date {
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #797a7b;
+  margin: 0;
+  margin-top: auto;
+  line-height: 1;
+  align-self: flex-start;
+}
+
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item {
+  height: 140px;
+  min-height: 140px;
+}
+
+html[data-prototype-state=state-4] .site-header .header__actions .header__request-btn .header__request-dropdown__item-amount,
+html[data-prototype-state=state-5] .site-header .header__actions .header__request-btn .header__request-dropdown__item-amount {
+  display: block !important;
+}
+
+@media (max-width: 1279px) {
+  .header__request-modal.modal.modal--dialog .modal__body.header__request-modal__body {
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 0;
+  }
+  .header__request-modal .modal__dialog {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    margin: 0;
+    border-radius: 0;
+  }
+  .header__request-modal .modal__content {
+    height: 100%;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    background: #F8F8F8;
+  }
+  .header__request-modal .header__request-modal__header {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #EEEEEE;
+    background: #F8F8F8;
+    height: 88px;
+    min-height: 88px;
+  }
+  .header__request-modal .header__request-modal__header .modal__close {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header__request-modal .header__request-modal__header .modal__close img {
+    width: 24px;
+    height: 24px;
+  }
+  .header__request-modal .header__request-modal__title {
+    font-family: "Sora", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #0f172a;
+    margin: 0;
+    flex: 1;
+    text-align: center;
+    line-height: 1;
+  }
+  .header__request-modal .header__request-modal__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__banner {
+    margin: 24px 20px 0;
+    margin-bottom: 16px;
+    padding: 8px;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__content {
+    padding: 0 20px;
+    gap: 16px;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__content:first-of-type {
+    padding-top: 24px;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__content:not(:last-child) {
+    padding-bottom: 24px;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__content:last-child {
+    padding-bottom: 24px;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__title {
+    margin-bottom: 0;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__list {
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__item {
+    min-height: 108px;
+    height: auto;
+  }
+  html[data-prototype-state=state-4] .header__request-modal .header__request-modal__body .header__request-dropdown__item, html[data-prototype-state=state-5] .header__request-modal .header__request-modal__body .header__request-dropdown__item {
+    min-height: 140px;
+    height: 140px;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__banner {
+    background: rgba(77, 136, 255, 0.15);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4d88ff;
+    border-radius: 8px;
+    margin-top: 24px;
+    margin-bottom: 32px;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__banner .header__request-dropdown__banner-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    background: url("../assets/icon_info_blue.svg") no-repeat center;
+    background-size: 16px 16px;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__title {
+    font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2d2f2f;
+    margin: 0;
+    line-height: 1;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__item-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__item-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #EEEEEE;
+    border-radius: 16px;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__item-icon img {
+    width: 10px;
+    height: 10px;
+    display: block;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__item-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__item-name {
+    font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #2d2f2f;
+    margin: 0;
+    line-height: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__item-amount {
+    font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #2d2f2f;
+    margin: 0;
+    line-height: 1;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__item-status {
+    font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #73a2f5;
+    margin: 0;
+    line-height: 1;
+  }
+  .header__request-modal .header__request-modal__body .header__request-dropdown__item-date {
+    font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: #797a7b;
+    margin: 0;
+    margin-top: auto;
+    line-height: 1;
+    align-self: flex-start;
+  }
+  .header__request-modal .header__request-dropdown {
+    display: none !important;
+  }
+}
+/* Floating build badge */
+.build-badge {
+  position: fixed;
+  opacity: 0.5;
+  left: 16px;
+  bottom: 48px;
+  z-index: 1201;
+  min-height: 40px;
+  height: auto;
+  background: rgba(17, 24, 39, 0.5);
+  color: #ffffff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  padding: 6px 12px 6px 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  pointer-events: auto;
+}
+.build-badge a {
+  color: #fff !important;
+  text-decoration: underline;
+}
+.build-badge a:first-child {
+  margin-left: 8px;
+}
+.build-badge span {
+  opacity: 0.7;
+}
+
+.build-badge__state {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+  padding: 4px 8px;
+  line-height: 1.2;
+}
+
+.build-badge__state-label {
+  font-size: 11px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.build-badge__state-btn {
+  background: #ffffff;
+  color: #111827;
+  border: 0;
+  border-radius: 20px;
+  width: 16px;
+  height: 16px;
+  font-weight: 700;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 2px 0;
+  cursor: pointer;
+}
+
+.build-badge__state-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.build-badge__state-value {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.build-badge__state-name {
+  font-size: 11px;
+  font-weight: 400;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.page {
+  padding-block: 28px 40px;
+  background: #F8F8F8;
+}
+.page .page__header {
+  margin-bottom: 32px;
+  gap: 6px;
+}
+@media (min-width: 1280px) {
+  .page .page__header {
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+}
+.page .page__header .page__title {
+  margin: 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  color: #336AFF;
+  font-family: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+@media (min-width: 1280px) {
+  .page .page__header .page__title {
+    font-size: 32px;
+    color: #0f172a;
+  }
+}
+.page .page__header .crumb {
+  width: 16px;
+  height: 16px;
+}
+.page .page__header .crumb img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+@media (min-width: 1280px) {
+  .page .page__header .crumb {
+    width: 32px;
+    height: 32px;
+  }
+  .page .page__header .crumb img {
+    width: 32px;
+    height: 32px;
+  }
+}
+.page .page__header .page__subtitle {
+  color: #797A7B;
+}
+@media (min-width: 1280px) {
+  .page .page__header {
+    margin-bottom: 48px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 72px;
+  align-items: start;
+}
+
+@media (min-width: 1280px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) 430px;
+  }
+}
+
+.grid__col--primary {
+  min-width: 0;
+}
+
+.grid__col--sidebar {
+  position: sticky;
+  top: 124px;
+}
+
+@media (min-width: 1280px) {
+  .grid--home {
+    align-items: stretch;
+  }
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 16px;
+  padding: 18px;
+}
+.card + .card {
+  margin-top: 16px;
+}
+
+.page--addbank .input-group input {
+  border-radius: 8px !important;
+}
+
+.page--addbank .card + .card {
+  margin-top: 0px;
+}
+
+.card__title { /* when used outside a .card as a section label */
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+@media (min-width: 1280px) {
+  .card__title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+.card__title--within {
+  font-size: 18px !important;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+@media (min-width: 1280px) {
+  .card__title--within {
+    font-size: 22px !important;
+    font-weight: 600;
+  }
+}
+
+.modal--addbusiness .alert, .modal--accountdeclaration .alert, .modal--addbankdetails .alert {
+  margin-bottom: 24px;
+}
+
+.modal--addbusiness .form__row--selects,
+.modal--addbankdetails .form__row--selects,
+.modal--accountdeclaration .form__row--selects {
+  gap: 32px;
+}
+
+.page--addbank .alert--info--content {
+  text-align: left;
+}
+
+.grid--home .grid__col--sidebar {
+  top: 84px;
+}
+
+/* Footer (match xrextgbot proportions) */
+.site-footer {
+  background: #ffffff;
+  border-top: none;
+  padding: 16px 16px 72px 16px;
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 1279px) {
+  .site-footer {
+    background: #ffffff;
+  }
+}
+@media (min-width: 1280px) {
+  .site-footer {
+    padding: 16px 16px;
+  }
+}
+.site-footer .footer__inner {
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 0;
+}
+@media (min-width: 1280px) {
+  .site-footer .footer__inner {
+    height: 40px;
+  }
+}
+.site-footer .footer__copy {
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+}
+.site-footer .footer__links {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 0;
+}
+.site-footer .footer__links a {
+  color: #797a7b;
+  font-size: 12px;
+  font-weight: 300;
+  text-decoration: none;
+}
+.site-footer .footer__links a + a {
+  margin-left: 32px;
+  position: relative;
+}
+.site-footer .footer__links a + a:before {
+  content: "|";
+  color: #797A7B;
+  position: relative;
+  left: -16px;
+}
+.site-footer {
+  /* Mobile order: links first, copy second (to match xrextgbot) */
+}
+.site-footer .footer__links {
+  order: 1;
+}
+.site-footer .footer__copy {
+  order: 2;
+}
+@media (min-width: 1280px) {
+  .site-footer {
+    padding: 0;
+    height: 40px;
+  }
+  .site-footer .footer__inner {
+    max-width: 1440px;
+    padding: 0 40px;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .site-footer .footer__links {
+    width: auto;
+    justify-content: flex-end;
+    order: 0;
+  }
+  .site-footer .footer__copy {
+    width: auto;
+    text-align: left;
+    order: 0;
+  }
+}
+
+.page--profile-payment {
+  padding-top: 64px;
+  padding-bottom: 40px;
+  background: #F8F8F8;
+}
+@media (min-width: 1280px) {
+  .page--profile-payment {
+    padding-top: 70px;
+    padding-bottom: 48px;
+  }
+}
+
+.profile-payment__container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 40px 20px 40px 20px;
+}
+@media (min-width: 1280px) {
+  .profile-payment__container {
+    padding: 80px 40px 80px 40px;
+  }
+}
+
+.profile-payment__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+@media (min-width: 1280px) {
+  .profile-payment__header {
+    margin-bottom: 48px;
+  }
+}
+
+.profile-payment__title {
+  margin: 0;
+  font-family: "Sora", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  color: #0f172a;
+  line-height: 1.2;
+}
+@media (min-width: 1280px) {
+  .profile-payment__title {
+    font-size: 40px;
+  }
+}
+
+.profile-payment__back {
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #336AFF;
+  text-decoration: none;
+}
+.profile-payment__back:hover {
+  text-decoration: underline;
+}
+@media (min-width: 1280px) {
+  .profile-payment__back {
+    font-size: 16px;
+  }
+}
+
+.profile-payment__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
+}
+@media (min-width: 1280px) {
+  .profile-payment__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 32px;
+  }
+}
+
+.profile-card {
+  background: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 16px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+@media (min-width: 1280px) {
+  .profile-card {
+    padding: 40px 32px;
+  }
+}
+
+.profile-card__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #EBF2FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.profile-card__icon img {
+  width: 32px;
+  height: 32px;
+}
+@media (min-width: 1280px) {
+  .profile-card__icon {
+    width: 96px;
+    height: 96px;
+  }
+  .profile-card__icon img {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+.profile-card__label {
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #797A7B;
+  margin-bottom: 4px;
+}
+@media (min-width: 1280px) {
+  .profile-card__label {
+    font-size: 16px;
+  }
+}
+
+.profile-card__name {
+  margin: 0 0 24px;
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #0f172a;
+  line-height: 1.3;
+}
+@media (min-width: 1280px) {
+  .profile-card__name {
+    font-size: 22px;
+    margin-bottom: 32px;
+  }
+}
+
+.profile-card__fields {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  text-align: left;
+  background: #F8F8F8;
+  border-radius: 8px;
+  padding: 20px 24px;
+}
+@media (min-width: 1280px) {
+  .profile-card__fields {
+    padding: 32px 28px;
+    gap: 0;
+  }
+}
+
+.profile-card__field {
+  padding: 16px 0;
+}
+.profile-card__field:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.profile-card__field:first-child {
+  padding-top: 0;
+}
+.profile-card__field dt, .profile-card__field dd {
+  margin: 0;
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+.profile-card__field dt {
+  font-weight: 600;
+  color: #797A7B;
+  margin-bottom: 4px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+@media (min-width: 1280px) {
+  .profile-card__field dt {
+    font-size: 14px;
+  }
+}
+.profile-card__field dd {
+  font-weight: 500;
+  color: #0f172a;
+  font-size: 16px;
+  line-height: 1.4;
+}
+@media (min-width: 1280px) {
+  .profile-card__field dd {
+    font-size: 16px;
+  }
+}
+
+.payment-methods-card {
+  background: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 16px;
+  padding: 24px;
+}
+@media (min-width: 1280px) {
+  .payment-methods-card {
+    padding: 32px;
+  }
+}
+
+.payment-methods-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (min-width: 1280px) {
+  .payment-methods-card__header {
+    margin-bottom: 24px;
+  }
+}
+
+.payment-methods-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.payment-methods-card__icon img {
+  width: 32px;
+  height: 32px;
+}
+
+.payment-methods-card__title {
+  margin: 0;
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #0f172a;
+  line-height: 1.2;
+}
+@media (min-width: 1280px) {
+  .payment-methods-card__title {
+    font-size: 20px;
+  }
+}
+
+.payment-methods-card__section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-methods-card__section-label {
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: #797A7B;
+}
+@media (min-width: 1280px) {
+  .payment-methods-card__section-label {
+    font-size: 14px;
+  }
+}
+
+.payment-methods-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wallet-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  min-height: 56px;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+@media (min-width: 1280px) {
+  .wallet-entry {
+    padding: 14px 20px;
+    min-height: 64px;
+  }
+}
+
+.wallet-entry__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #EBF2FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.wallet-entry__icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.wallet-entry__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.wallet-entry__title {
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #0f172a;
+  margin: 0 0 4px;
+}
+@media (min-width: 1280px) {
+  .wallet-entry__title {
+    font-size: 18px;
+  }
+}
+
+.wallet-entry__detail {
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #797A7B;
+}
+@media (min-width: 1280px) {
+  .wallet-entry__detail {
+    font-size: 16px;
+  }
+}
+
+.wallet-entry__menu {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+.wallet-entry__menu:hover {
+  background: #f1f5f9;
+}
+.wallet-entry__menu svg {
+  display: block;
+}
+
+/* Auto-mirrored from src/css/overrides.css when running `npm run dev:with-css-edit` */
+
+/*# sourceMappingURL=main.css.map */
