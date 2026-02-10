@@ -821,6 +821,7 @@ html[data-prototype-state="state-5"] .site-header .header__actions .header__requ
   bottom: 0;
   position: absolute;
   width: 100vw;
+  
 
   @media (max-width: ($bp-desktop - 1px)) {
     background: #ffffff;
@@ -839,10 +840,7 @@ html[data-prototype-state="state-5"] .site-header .header__actions .header__requ
     gap: 12px;
     flex-wrap: wrap;
     padding: 0;
-
-    @media (min-width: $bp-desktop) {
-      height: 40px;
-    }
+    height: 40px;
   }
   .footer__copy {
     color: $text-primary;

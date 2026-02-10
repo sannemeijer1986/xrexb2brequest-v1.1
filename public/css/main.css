@@ -980,11 +980,7 @@ html[data-prototype-state=state-5] .site-header .header__actions .header__reques
   gap: 12px;
   flex-wrap: wrap;
   padding: 0;
-}
-@media (min-width: 1280px) {
-  .site-footer .footer__inner {
-    height: 40px;
-  }
+  height: 40px;
 }
 .site-footer .footer__copy {
   color: #0f172a;
@@ -1050,12 +1046,14 @@ html {
   overflow-x: hidden;
 }
 
-body {
-  width: 1280px;
+body.profile-payment-page {
   min-width: 1280px;
   margin-left: auto;
   margin-right: auto;
   overflow-x: visible;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .site-header {
@@ -1078,6 +1076,17 @@ body {
   padding-top: 70px;
   padding-bottom: 48px;
   background: #F8F8F8;
+  flex: 1 0 auto;
+}
+
+body.profile-payment-page .site-footer {
+  position: static;
+  left: auto;
+  bottom: auto;
+  width: 100%;
+  min-width: 1280px;
+  max-width: none;
+  margin-top: auto;
 }
 
 .profile-payment__container {
@@ -1281,10 +1290,6 @@ body {
   cursor: pointer;
 }
 
-.wallet-entry:hover {
-  background: #EBF2FF;
-}
-
 .wallet-entry.is-menu-hover {
   background: #ffffff;
 }
@@ -1338,7 +1343,7 @@ body {
   border-radius: 999px;
 }
 .wallet-entry__menu:hover {
-  background: #f1f5f9;
+  background: #F5F9FF;
 }
 
 .wallet-entry__menu img {
@@ -1351,14 +1356,16 @@ body {
   position: absolute;
   right: 20px;
   top: calc(100% - 6px);
-  min-width: 250px;
-  background: #ffffff;
-  border: 1px solid #eeeeee;
+  width: 333px;
+  max-width: calc(100vw - 40px);
+  background: #FFFFFF;
+  border: 1px solid #EEEEEE;
   border-radius: 8px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-  padding: 8px 0;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
+  padding: 0;
   z-index: 40;
   display: none;
+  overflow: hidden;
 }
 
 .wallet-entry__dropdown.is-open {
@@ -1366,17 +1373,24 @@ body {
 }
 
 .wallet-entry__dropdown a {
-  display: block;
-  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  min-height: 63px;
+  padding: 16px;
   font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
+  line-height: 1;
   color: #0f172a;
   text-decoration: none;
 }
 
+.wallet-entry__dropdown a:not(:last-child) {
+  border-bottom: 1px solid #EEEEEE;
+}
+
 .wallet-entry__dropdown a:hover {
-  background: #EBF2FF;
+  background: #F5F9FF;
 }
 
 .pp-modal {
