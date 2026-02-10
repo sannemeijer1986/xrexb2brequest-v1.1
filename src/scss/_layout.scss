@@ -819,6 +819,7 @@ html[data-prototype-state="state-5"] .site-header .header__actions .header__requ
   padding: 16px 16px 72px 16px;
   display: flex;
   align-items: center;
+  width: 100vw;
 
   @media (max-width: ($bp-desktop - 1px)) {
     background: #ffffff;

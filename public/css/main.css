@@ -957,6 +957,7 @@ html[data-prototype-state=state-5] .site-header .header__actions .header__reques
   padding: 16px 16px 72px 16px;
   display: flex;
   align-items: center;
+  width: 100vw;
 }
 @media (max-width: 1279px) {
   .site-footer {
@@ -1346,6 +1347,10 @@ html[data-prototype-state=state-5] .site-header .header__actions .header__reques
  * - Keeps body width fixed to desktop
  * - Easy to re-enable RWD later: remove `profile-desktop-lock` from <body>
  */
+html.profile-desktop-lock-root {
+  overflow-x: hidden;
+}
+
 body.profile-desktop-lock {
   width: 1280px;
   min-width: 1280px;
@@ -1450,9 +1455,12 @@ body.profile-desktop-lock .wallet-entry__detail {
 body.profile-desktop-lock .site-footer {
   min-width: 1280px;
   width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  max-width: none;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  margin-left: 0;
+  margin-right: 0;
   padding: 0;
   height: 40px;
 }
