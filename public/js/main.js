@@ -3237,7 +3237,12 @@ if (document.readyState === 'loading') {
 
 // Modal helpers (reused lightweight pattern)
 (function initModalLogic() {
-  const getOpenModalCount = () => document.querySelectorAll('.modal[aria-hidden="false"]').length;
+  // Include .modal and .pp-modal (and any [role="dialog"]) so all overlay modals lock background
+  const getOpenModalCount = () =>
+    document.querySelectorAll('.modal[aria-hidden="false"], .pp-modal[aria-hidden="false"], [role="dialog"][aria-hidden="false"]').length;
+
+  const isModalEl = (el) =>
+    el && (el.classList.contains('modal') || el.classList.contains('pp-modal') || el.getAttribute('role') === 'dialog');
 
   const lockBackgroundScroll = () => {
     if (document.body.classList.contains('modal-locked')) return;
@@ -3247,7 +3252,9 @@ if (document.readyState === 'loading') {
       document.body.dataset.prevWidth = document.body.style.width || '';
       document.body.dataset.prevLeft = document.body.style.left || '';
       document.body.dataset.prevRight = document.body.style.right || '';
+      document.documentElement.dataset.prevOverflow = document.documentElement.style.overflow || '';
       document.body.dataset.scrollY = String(y);
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
       document.body.style.left = '0';
@@ -3262,6 +3269,7 @@ if (document.readyState === 'loading') {
     try {
       const y = parseInt(document.body.dataset.scrollY || '0', 10) || 0;
       document.body.classList.remove('modal-locked');
+      document.documentElement.style.overflow = document.documentElement.dataset.prevOverflow || '';
       document.body.style.position = document.body.dataset.prevPosition || '';
       document.body.style.width = document.body.dataset.prevWidth || '';
       document.body.style.left = document.body.dataset.prevLeft || '';
@@ -3272,6 +3280,7 @@ if (document.readyState === 'loading') {
       delete document.body.dataset.prevWidth;
       delete document.body.dataset.prevLeft;
       delete document.body.dataset.prevRight;
+      delete document.documentElement.dataset.prevOverflow;
       window.scrollTo(0, y);
     } catch (_) { }
   };
@@ -3309,16 +3318,14 @@ if (document.readyState === 'loading') {
   window.__closeModal = close;
   window.__syncModalState = syncModalState;
 
-  // Keep modal/body state in sync when legacy code toggles aria-hidden directly.
+  // Keep modal/body state in sync when legacy code toggles aria-hidden directly (any .modal, .pp-modal, or role="dialog").
   try {
     const observer = new MutationObserver((mutations) => {
       for (const mutation of mutations) {
         if (
           mutation.type === 'attributes'
           && mutation.attributeName === 'aria-hidden'
-          && mutation.target
-          && mutation.target.classList
-          && mutation.target.classList.contains('modal')
+          && isModalEl(mutation.target)
         ) {
           syncModalState();
           break;

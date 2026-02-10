@@ -167,14 +167,39 @@
 
             if (!walletEntry || !moreBtn || !moreMenu || !modal) return;
 
+            function lockBackgroundScroll() {
+                var y = window.scrollY || window.pageYOffset || 0;
+                document.documentElement.style.overflow = "hidden";
+                document.body.dataset.scrollY = String(y);
+                document.body.style.position = "fixed";
+                document.body.style.width = "100%";
+                document.body.style.left = "0";
+                document.body.style.right = "0";
+                document.body.style.top = "-" + y + "px";
+            }
+
+            function unlockBackgroundScroll() {
+                var y = parseInt(document.body.dataset.scrollY || "0", 10) || 0;
+                document.documentElement.style.overflow = "";
+                document.body.style.position = "";
+                document.body.style.width = "";
+                document.body.style.left = "";
+                document.body.style.right = "";
+                document.body.style.top = "";
+                delete document.body.dataset.scrollY;
+                window.scrollTo(0, y);
+            }
+
             function openModal() {
                 modal.setAttribute("aria-hidden", "false");
+                lockBackgroundScroll();
             }
 
             function closeModal() {
                 modal.setAttribute("aria-hidden", "true");
                 if (loadingEl) loadingEl.setAttribute("aria-hidden", "true");
                 verifyFlowRunning = false;
+                unlockBackgroundScroll();
             }
 
             function openMenu() {
