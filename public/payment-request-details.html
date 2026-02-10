@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <script src="auth/auth-gate.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XREX Pay - Payment details</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css?v=20251108" />
+  <link rel="icon" href="assets/favicons/xrex-favicon-16x16.png" sizes="16x16" type="image/png" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header__content">
+      <a class="brand" href="index.html">
+        <img class="brand__img" src="assets/logo_xrexpay.svg" alt="XREX Pay" />
+      </a>
+      <div class="header__spacer"></div>
+      <div class="header__actions">
+        <button type="button" class="header__request-btn" aria-label="Active requests (1)" id="headerRequestBtn">
+          <img src="assets/icon_requestpayment_blue.svg" alt="" width="20" height="20" />
+          <span class="header__request-btn__text">Active requests (1)</span>
+          <span class="header__request-btn__badge">1</span>
+          <div class="header__request-dropdown" id="headerRequestDropdown">
+            <div class="header__request-dropdown__banner">
+              <span class="header__request-dropdown__banner-icon" aria-hidden="true"></span>
+              <span>Some items need your attention. Select a request to view details or share its link.</span>
+            </div>
+            <div class="header__request-dropdown__content">
+              <h3 class="header__request-dropdown__title">Customer invitation requests</h3>
+              <ul class="header__request-dropdown__list">
+                <li class="header__request-dropdown__item">
+                  <div class="header__request-dropdown__item-row">
+                    <div class="header__request-dropdown__item-icon">
+                      <img src="assets/outline_office_new.svg" alt="" width="16" height="16" />
+                    </div>
+                    <div class="header__request-dropdown__item-content">
+                      <p class="header__request-dropdown__item-name">To NovaQuill Ltd</p>
+                    </div>
+                  </div>
+                  <p class="header__request-dropdown__item-amount" style="display: none;">-</p>
+                  <p class="header__request-dropdown__item-status">Awaiting response</p>
+                  <p class="header__request-dropdown__item-date">00/00/0000, 00:00:00</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </button>
+        <a class="circle-icon" href="https://intercom.help/xrex-sg/en/" target="_blank" rel="noopener noreferrer"
+          title="Support">
+          <img src="assets/icon_support.svg" alt="support" width="20" height="20" />
+        </a>
+        <a class="account-chip" id="accountChipLink" href="settings.html">
+          <span class="chip-avatar"><img src="assets/logo_agp.svg" alt="AGP" /></span>
+          <span class="chip-name">AGP Technology</span>
+          <img class="chevron" src="assets/icon_chevron_right.svg" alt="more" width="20" height="20" />
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page page--payment-request-detail">
+    <div class="container">
+      <section class="page__header page__header--crumb">
+        <a class="crumb" href="index.html" aria-label="Back">
+          <picture>
+            <source media="(min-width: 1280px)" srcset="assets/icon_header_back.svg" />
+            <img src="assets/icon_header_back_mobile.svg" width="32" height="32" alt="" />
+          </picture>
+        </a>
+        <h1 class="page__title">Payment request details</h1>
+      </section>
+
+      <section class="pr-detail">
+        <div class="pr-detail__layout">
+          <div class="pr-detail__primary">
+            <div class="pr-detail__main">
+              <div class="pr-card pr-card--summary">
+                <div class="pr-summary__top">
+                  <div>
+                    <div class="pr-label">Payment amount</div>
+                    <div class="pr-amount-row">
+                      <div id="prAmount" class="pr-amount">--</div>
+                      <span id="prStatusBadge" class="pr-status pr-status--awaiting">Awaiting payment</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pr-rows">
+                  <div class="pr-row">
+                    <div class="pr-row__label">Service fee (you / customer)</div>
+                    <div id="prServiceFee" class="pr-row__value">-- / --</div>
+                  </div>
+
+                  <div class="pr-row">
+                    <div id="prCustomerPaysLabel" class="pr-row__label">Total payable by customer</div>
+                    <div id="prCustomerPaysTotal" class="pr-row__value">--</div>
+                  </div>
+
+                  <div class="pr-row" id="prTotalToReceiveRow">
+                    <div class="pr-row__label">Amount to receive</div>
+                    <div id="prTotalToReceive" class="pr-row__value">--</div>
+                  </div>
+
+                  <div class="pr-row pr-row--received">
+                    <div class="pr-row__label" id="prReceivedLabel">Amount received</div>
+                    <div class="pr-received">
+                      <div class="pr-received__values">
+                        <div>
+                          <span id="prReceivedMain" class="pr-received__main">--</span>
+                          <span class="pr-received__sub">/ </span>
+                          <span id="prReceivedTotal" class="pr-received__sub">--</span>
+                          <span id="prReceivedPct" class="pr-received__sub"> (--)</span>
+                        </div>
+                      </div>
+                      <div class="pr-progress" aria-hidden="true">
+                        <div id="prProgressFill" class="pr-progress__fill"></div>
+                      </div>
+                      <a id="prPaymentActivityLink" href="#" class="pr-link pr-payment-activity-link" hidden>View
+                        payment activity (1)</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pr-detail__secondary">
+              <div class="pr-card pr-card--summary">
+                <div class="pr-rows">
+                  <div class="pr-row">
+                    <div class="pr-row__label">Customer (payer)</div>
+                    <div class="pr-row__value pr-customer">
+                      <div class="pr-customer__left">
+                        <span class="pr-customer__avatar" aria-hidden="true">
+                          <img src="assets/outline_office_new.svg" alt="" width="16" height="16" />
+                        </span>
+                        <div class="pr-customer__stack">
+                          <div id="prCustomerName" class="pr-customer__name">- -</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pr-row">
+                    <div class="pr-row__label">Contact email address</div>
+                    <div class="pr-row__value pr-copy-row">
+                      <span id="prCustomerEmail">- -</span>
+                      <button type="button" class="pr-copy-btn" id="prCopyEmail" aria-label="Copy customer email">
+                        <img src="assets/icon_copy.svg" alt="" width="16" height="16" />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="pr-row">
+                    <div class="pr-row__label">Order ID</div>
+                    <div class="pr-row__value pr-copy-row">
+                      <span id="prPaymentId">- -</span>
+                      <button type="button" class="pr-copy-btn" id="prCopyPaymentId" aria-label="Copy order ID">
+                        <img src="assets/icon_copy.svg" alt="" width="16" height="16" />
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="pr-row">
+                    <div class="pr-row__label">Created</div>
+                    <div id="prSubmissionDate" class="pr-row__value">- -</div>
+                  </div>
+
+                  <div class="pr-row">
+                    <div class="pr-row__label">Payment request expires on</div>
+                    <div id="prExpiresAfter" class="pr-row__value">1 week</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="pr-detail__aside">
+            <div class="pr-card pr-card--paylynk" id="prPaylynkCard">
+              <div class="pr-card__title">Customer PayLynk</div>
+              <div class="pr-paylynk__wrapper" id="prPaylynkWrapper" role="button" tabindex="0"
+                aria-label="Copy PayLynk">
+                <div class="pr-paylynk__content">
+                  <span id="prPaylynkLink" class="pr-paylynk__text">xrexpay.io/PayLynk?type=1234567</span>
+                </div>
+                <button type="button" class="pr-paylynk__copy-btn" id="prPaylynkCopyBtn" aria-label="Copy PayLynk">
+                  <img src="assets/icon_copy_white.svg" alt="" width="16" height="16" />
+                  <span>Copy</span>
+                </button>
+              </div>
+              <div id="prPaylynkHintDesktop" class="pr-paylynk__hint" hidden>
+                <span class="pr-paylynk__hint-icon" aria-hidden="true"></span>
+                <span>Share this PayLynk with <span id="prPaylynkCustomerName">NovaQuill Ltd</span></span>
+              </div>
+            </div>
+
+            <div class="pr-card pr-card--meta">
+              <dl class="pr-meta">
+                <div class="pr-meta__item">
+                  <dt>Nature of payment</dt>
+                  <dd id="prNature">- -</dd>
+                </div>
+                <div class="pr-meta__item">
+                  <dt>Purpose of payment</dt>
+                  <dd id="prPurpose">- -</dd>
+                </div>
+                <div class="pr-meta__item">
+                  <dt>Proforma invoice (PI)</dt>
+                  <dd><a id="prInvoiceLink" href="#" class="pr-link">Invoice23.pdf</a></dd>
+                </div>
+                <div class="pr-meta__item">
+                  <dt>Proforma invoice number</dt>
+                  <dd id="prInvoiceNumber">- -</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="pr-card pr-card--receipt" id="prReceiptCard" hidden>
+              <div id="prReceiptTitle" class="pr-card__title">Submission receipts</div>
+              <a id="prReceiptDownload" href="#" class="pr-link pr-link--download" target="_blank">View receipts</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="pr-404" id="pr404" hidden>
+        <div class="pr-404__card">
+          <img class="pr-404__img" src="assets/404.jpg" alt="" />
+          <h2 class="pr-404__title">Page not found</h2>
+          <p class="pr-404__desc">We can’t seem to find the page you’re looking for.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Mobile sticky footer -->
+    <div class="pr-sticky" id="prSticky" aria-hidden="true">
+      <div class="pr-sticky__inner">
+        <div class="pr-card pr-card--paylynk pr-sticky__card">
+          <div class="pr-card__title">Customer PayLynk</div>
+          <div class="pr-paylynk__wrapper" id="prPaylynkWrapperMobile" role="button" tabindex="0"
+            aria-label="Copy PayLynk">
+            <div class="pr-paylynk__content">
+              <span id="prPaylynkLinkMobile" class="pr-paylynk__text">xrexpay.io/PayLynk?type=1234567</span>
+            </div>
+            <button type="button" class="pr-paylynk__copy-btn" id="prPaylynkCopyBtnMobile" aria-label="Copy PayLynk">
+              <img src="assets/icon_copy_white.svg" alt="" width="16" height="16" />
+              <span>Copy</span>
+            </button>
+          </div>
+          <div id="prPaylynkHintMobile" class="pr-paylynk__hint" hidden>
+            <span class="pr-paylynk__hint-icon" aria-hidden="true"></span>
+            <span>Provide this PayLynk to <span id="prPaylynkCustomerNameMobile">NovaQuill Ltd</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer__inner">
+      <div class="footer__copy">© XREX Pay Limited 2025</div>
+      <div class="footer__links">
+        <a href="https://intercom.help/xrex-sg/en/" target="_blank" rel="noopener noreferrer">Support</a>
+        <a href="https://info.xrex.sg/doc" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+        <a href="https://info.xrex.sg/doc" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: Payment activity -->
+  <div id="prPaymentActivityModal" class="modal modal--large" role="dialog" aria-modal="true" aria-hidden="true"
+    aria-labelledby="prPaymentActivityModalTitle">
+    <div class="modal-wrapper">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="prPaymentActivityModalTitle">Payment activity (1)</h2>
+          <button class="modal-close" data-modal-close aria-label="Close modal">
+            <img src="assets/icon_close.svg" width="24" height="24" alt="close" />
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="pa">
+            <div class="pa-table" aria-label="Payment activity list">
+              <div class="pa-head" aria-hidden="true">
+                <div class="pa-col pa-col--customer"></div>
+                <div class="pa-col pa-col--amount">Amount received</div>
+                <div class="pa-col pa-col--status">Status</div>
+                <div class="pa-col pa-col--date">Released on</div>
+                <div class="pa-col pa-col--receipt" style="text-align: right;">Receipt</div>
+              </div>
+              <div id="prPaymentActivityList" class="pa-body"></div>
+            </div>
+
+            <!-- <div class="pa-pagination" aria-hidden="true">
+                <button type="button" class="pa-page-btn" disabled aria-label="Previous page">
+                  <img src="assets/icon_chevron_down.svg" width="16" height="16" alt="" class="pa-page-icon pa-page-icon--prev" />
+                </button>
+                <button type="button" class="pa-page-num">1</button>
+                <button type="button" class="pa-page-num is-active">2</button>
+                <span class="pa-page-ellipsis">…</span>
+                <button type="button" class="pa-page-num">9</button>
+                <button type="button" class="pa-page-num">10</button>
+                <button type="button" class="pa-page-btn" disabled aria-label="Next page">
+                  <img src="assets/icon_chevron_down.svg" width="16" height="16" alt="" class="pa-page-icon" />
+                </button>
+              </div> -->
+          </div>
+        </div>
+        <div class="modal-footer pa-footer">
+          <button type="button" class="btn btn--secondary btn--md pa-close" data-modal-close>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Transaction receipts -->
+  <div id="prReceiptsModal" class="modal modal--receipts" role="dialog" aria-modal="true" aria-hidden="true"
+    aria-labelledby="prReceiptsModalTitle">
+    <div class="modal-wrapper">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="prReceiptsModalTitle">Receipts (1)</h2>
+          <button class="modal-close" data-modal-close aria-label="Close modal">
+            <img src="assets/icon_close.svg" width="24" height="24" alt="close" />
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="prReceiptsList" class="tr-list" aria-label="Transaction receipts list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script defer src="js/main.js?v=20251108"></script>
+  <script>
+    (function () {
+      var lastState = null;
+      var storedExpiresOn = '';
+
+      function maybeShowProcessingSnackbar(nextState) {
+        // Disabled for now (state 5: Partially paid)
+        // Intentionally left as a no-op to avoid wiring changes elsewhere.
+        return;
+      }
+
+      function readReceiptData() {
+        try {
+          var raw = window.sessionStorage ? window.sessionStorage.getItem('receiptData') : null;
+          return raw ? (JSON.parse(raw) || {}) : {};
+        } catch (_) {
+          return {};
+        }
+      }
+
+      function parseAmount(s) {
+        var str = (s || '').toString();
+        var num = Number(str.replace(/[^\d.]/g, ''));
+        return isNaN(num) ? 0 : num;
+      }
+
+      function normalizePartyName(name) {
+        try {
+          return (name || '')
+            .toString()
+            .trim()
+            .replace(/^(to|from)\s+/i, '')
+            .trim();
+        } catch (_) {
+          return '';
+        }
+      }
+
+      function formatUsd(n) {
+        try {
+          return Number(n || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USD';
+        } catch (_) {
+          return '0.00 USD';
+        }
+      }
+
+      function formatDateTime(dateStr) {
+        // Expect "DD/MM/YYYY, HH:MM:SS" from receiptData; otherwise fall back to now.
+        var s = (dateStr || '').trim();
+        if (s) return s;
+        try {
+          return new Date().toLocaleString('en-GB', { hour12: false });
+        } catch (_) {
+          return '';
+        }
+      }
+
+      function parseDateTime(dateStr) {
+        // Parse "DD/MM/YYYY, HH:MM:SS" (en-GB) into a Date (local time).
+        try {
+          var s = (dateStr || '').trim();
+          if (!s) return null;
+          var parts = s.split(', ');
+          if (parts.length !== 2) return null;
+          var d = parts[0].split('/');
+          var t = parts[1].split(':');
+          if (d.length !== 3 || t.length !== 3) return null;
+          var day = parseInt(d[0], 10);
+          var month = parseInt(d[1], 10) - 1;
+          var year = parseInt(d[2], 10);
+          var hh = parseInt(t[0], 10);
+          var mm = parseInt(t[1], 10);
+          var ss = parseInt(t[2], 10);
+          var dt = new Date(year, month, day, hh, mm, ss);
+          return isNaN(dt.getTime()) ? null : dt;
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function renderReceiptsModal(receiptsCount) {
+        var modal = document.getElementById('prReceiptsModal');
+        var title = document.getElementById('prReceiptsModalTitle');
+        var list = document.getElementById('prReceiptsList');
+        if (!modal || !title || !list) return;
+
+        var count = Math.max(0, Number(receiptsCount || 0));
+        title.textContent = 'Receipts (' + count + ')';
+
+        if (!count) {
+          list.innerHTML = '';
+          return;
+        }
+
+        function formatYYYYMMDD(dt) {
+          try {
+            var d = dt || new Date();
+            var yyyy = String(d.getFullYear());
+            var mm = String(d.getMonth() + 1).padStart(2, '0');
+            var dd = String(d.getDate()).padStart(2, '0');
+            return yyyy + mm + dd;
+          } catch (_) {
+            return '';
+          }
+        }
+
+        var orderId = '';
+        try {
+          orderId = ((document.getElementById('prPaymentId') || {}).textContent || '').trim();
+        } catch (_) {
+          orderId = '';
+        }
+        if (!orderId || orderId === '- -') orderId = '[Order ID]';
+        var yyyymmdd = formatYYYYMMDD(new Date()) || '[YYYYMMDD]';
+
+        var items = [];
+        for (var i = 0; i < count; i++) {
+          var receiptTypeLabel = '[ Receipt type ]';
+          var fileName = 'XREX_Payment_[Receipt type]_' + orderId + '_' + yyyymmdd + '.pdf';
+          items.push(
+            '<div class="tr-item">' +
+            '<span class="tr-icon" aria-hidden="true">' +
+            '<img src="assets/icon_document.svg" width="16" height="16" alt="" />' +
+            '</span>' +
+            '<div class="tr-content">' +
+            '<div class="tr-name">' + receiptTypeLabel + '</div>' +
+            '<div class="tr-subtitle" style="color:#797A7B;font-size:14px;font-weight:600;line-height:1.4;">' + fileName + '</div>' +
+            '<a href="#" class="tr-download tr-download--mobile" data-not-in-prototype="1">Download</a>' +
+            '</div>' +
+            '<button type="button" class="tr-download-btn" data-not-in-prototype="1">Download</button>' +
+            '</div>'
+          );
+        }
+        list.innerHTML = items.join('');
+
+        // Wire download actions to snackbar
+        try {
+          list.querySelectorAll('[data-not-in-prototype="1"]').forEach(function (el) {
+            el.addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              try {
+                if (typeof window.showSnackbar === 'function') {
+                  window.showSnackbar('Not in prototype', 2000, 'error');
+                }
+              } catch (_) { }
+            });
+          });
+        } catch (_) { }
+      }
+
+      function splitAmountEvenly(total, parts) {
+        var n = Number(total || 0);
+        var p = Math.max(1, Number(parts || 1));
+        var cents = Math.round(n * 100);
+        var base = Math.floor(cents / p);
+        var rem = cents - base * p;
+        var out = [];
+        for (var i = 0; i < p; i++) {
+          var c = base + (i < rem ? 1 : 0);
+          out.push(c / 100);
+        }
+        return out;
+      }
+
+      function renderPaymentActivity(state, activityCount, receivedAmount, totalAmount, dateTimeStr) {
+        var list = document.getElementById('prPaymentActivityList');
+        if (!list) return;
+
+        var payerName = (document.getElementById('prCustomerName') || {}).textContent || '';
+        payerName = normalizePartyName(payerName) || 'NovaQuill Ltd';
+
+        var count = Math.max(0, Number(activityCount || 0));
+        if (!count) {
+          list.innerHTML = '';
+          return;
+        }
+
+        var dateTxt = formatDateTime(dateTimeStr);
+        var baseDateObj = parseDateTime(dateTxt);
+        var amounts;
+        if (state >= 6) {
+          // State 6+: reflect the prior partial receipt + the remainder (matches state 5 partial amount)
+          // For current prototype: state 5 represents 25% received, state 6 represents 100% received.
+          // So for 2 activities: [25% of total, 75% of total]
+          if (count === 2) {
+            var totalCents = Math.round(Number(totalAmount || 0) * 100);
+            var firstCents = Math.round(totalCents * 0.25);
+            var secondCents = totalCents - firstCents;
+            amounts = [firstCents / 100, secondCents / 100];
+          } else {
+            amounts = splitAmountEvenly(totalAmount, count);
+          }
+        } else {
+          amounts = [Number(receivedAmount || 0)];
+        }
+
+        var rows = [];
+        for (var i = 0; i < count; i++) {
+          var amt = amounts[i] !== undefined ? amounts[i] : 0;
+          var status = 'Paid';
+          var statusClass = 'is-paid';
+          // If we ever support "returned" entries later, this is where it would go.
+          var downloadHref = 'payment-receipt.html';
+
+          // For state 6+ with 2 rows: make the larger (second) amount look like it arrived later
+          var rowDateTxt = dateTxt || '';
+          if (state >= 6 && count === 2 && baseDateObj) {
+            var d2 = new Date(baseDateObj.getTime());
+            if (i === 1) d2.setMinutes(d2.getMinutes() + 5);
+            rowDateTxt = d2.toLocaleString('en-GB', { hour12: false });
+          }
+
+          rows.push(
+            '<div class="pa-row">' +
+            '<div class="pa-cell pa-customer">' +
+            '<span class="pa-icon" aria-hidden="true">' +
+            '<img src="assets/icon_requestpayment_blue.svg" width="16" height="16" alt="" />' +
+            '</span>' +
+            '<div class="pa-customer-block">' +
+            '<div class="pa-customer-name">' + payerName + '</div>' +
+            '<span class="pa-status ' + statusClass + ' pa-mobile-only">' + status + '</span>' +
+            '</div>' +
+            '</div>' +
+            '<div class="pa-cell pa-amount">' +
+            '<div class="pa-amount-text">' + formatUsd(amt) + '</div>' +
+            '<div class="pa-amount-meta pa-mobile-only">' +
+            '<span class="pa-date-text">' + (rowDateTxt || '') + '</span>' +
+            '<a class="pa-download" href="' + downloadHref + '" target="_blank" rel="noopener noreferrer" data-not-in-prototype="1">Download receipt</a>' +
+            '</div>' +
+            '</div>' +
+            '<div class="pa-cell pa-status pa-desktop-only"><span class="pa-status ' + statusClass + '">' + status + '</span></div>' +
+            '<div class="pa-cell pa-date pa-desktop-only"><span class="pa-date-text">' + (rowDateTxt || '') + '</span></div>' +
+            '<div class="pa-cell pa-receipt pa-desktop-only"><a class="pa-download" href="' + downloadHref + '" target="_blank" rel="noopener noreferrer" data-not-in-prototype="1">Download</a></div>' +
+            '</div>'
+          );
+        }
+        list.innerHTML = rows.join('');
+
+        // Wire "Download" to snackbar (Not in prototype)
+        try {
+          list.querySelectorAll('a.pa-download[data-not-in-prototype="1"]').forEach(function (a) {
+            a.addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              try {
+                if (typeof window.showSnackbar === 'function') {
+                  window.showSnackbar('Not in prototype', 2000, 'error');
+                }
+              } catch (_) { }
+            });
+          });
+        } catch (_) { }
+      }
+
+      function setText(id, value, fallback) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = (value !== undefined && value !== null && value !== '') ? value : (fallback !== undefined ? fallback : '- -');
+      }
+
+      function addWeekToDate(dateStr) {
+        // Parse date string in format "DD/MM/YYYY, HH:MM:SS"
+        // Example: "05/01/2026, 11:02:17"
+        try {
+          if (!dateStr || dateStr === '- -' || dateStr === '--') return '- -';
+          var parts = dateStr.split(', ');
+          if (parts.length !== 2) return '- -';
+          var datePart = parts[0].trim();
+          var timePart = parts[1].trim();
+          var dateParts = datePart.split('/');
+          if (dateParts.length !== 3) return '- -';
+          var day = parseInt(dateParts[0], 10);
+          var month = parseInt(dateParts[1], 10) - 1; // JavaScript months are 0-based
+          var year = parseInt(dateParts[2], 10);
+          var timeParts = timePart.split(':');
+          if (timeParts.length !== 3) return '- -';
+          var hours = parseInt(timeParts[0], 10);
+          var minutes = parseInt(timeParts[1], 10);
+          var seconds = parseInt(timeParts[2], 10);
+          var date = new Date(year, month, day, hours, minutes, seconds);
+          // Add 7 days
+          date.setDate(date.getDate() + 7);
+          // Format back to "DD/MM/YYYY, HH:MM:SS"
+          var dayStr = String(date.getDate()).padStart(2, '0');
+          var monthStr = String(date.getMonth() + 1).padStart(2, '0');
+          var yearStr = String(date.getFullYear());
+          var hoursStr = String(date.getHours()).padStart(2, '0');
+          var minutesStr = String(date.getMinutes()).padStart(2, '0');
+          var secondsStr = String(date.getSeconds()).padStart(2, '0');
+          return dayStr + '/' + monthStr + '/' + yearStr + ', ' + hoursStr + ':' + minutesStr + ':' + secondsStr;
+        } catch (_) {
+          return '- -';
+        }
+      }
+
+      function copyText(text, message) {
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text || '');
+          }
+        } catch (_) { }
+        try {
+          if (typeof window.showSnackbar === 'function' && message) {
+            window.showSnackbar(message, 2000);
+          }
+        } catch (_) { }
+      }
+
+      function applyState(state) {
+        var pageRoot = document.querySelector('.page--payment-request-detail');
+        var isNotFound = state <= 3;
+        if (pageRoot) {
+          pageRoot.classList.toggle('is-processing', state === 5);
+          pageRoot.classList.toggle('is-not-found', isNotFound);
+        }
+
+        // State 3 and below: show 404 only (keep navbar/footer)
+        var notFoundEl = document.getElementById('pr404');
+        var headerCrumb = document.querySelector('.page__header--crumb');
+        var detail = document.querySelector('.pr-detail');
+        var sticky = document.getElementById('prSticky');
+        if (notFoundEl) notFoundEl.hidden = !isNotFound;
+        if (headerCrumb) headerCrumb.hidden = isNotFound;
+        if (detail) detail.hidden = isNotFound;
+        if (sticky) {
+          sticky.style.display = isNotFound ? 'none' : '';
+          sticky.setAttribute('aria-hidden', isNotFound ? 'true' : 'false');
+        }
+        if (isNotFound) return;
+
+        var badge = document.getElementById('prStatusBadge');
+        var totalRow = document.getElementById('prTotalToReceiveRow');
+        var receipt = document.getElementById('prReceiptCard');
+        var receiptTitle = document.getElementById('prReceiptTitle');
+        var receiptLink = document.getElementById('prReceiptDownload');
+        var hintDesktop = document.getElementById('prPaylynkHintDesktop');
+        var hintMobile = document.getElementById('prPaylynkHintMobile');
+        var headerRequestBtn = document.getElementById('headerRequestBtn');
+        var headerRequestText = headerRequestBtn ? headerRequestBtn.querySelector('.header__request-btn__text') : null;
+        var expiresAfterEl = document.getElementById('prExpiresAfter');
+        var activityLink = document.getElementById('prPaymentActivityLink');
+        var activityModalTitle = document.getElementById('prPaymentActivityModalTitle');
+        var receivedLabel = document.getElementById('prReceivedLabel');
+
+        if (badge) {
+          badge.classList.remove('pr-status--awaiting', 'pr-status--processing', 'pr-status--paid');
+          if (state >= 6) {
+            badge.classList.add('pr-status--paid');
+            badge.textContent = 'Completed';
+          } else if (state >= 5) {
+            badge.classList.add('pr-status--processing');
+            badge.textContent = 'Partially paid';
+          } else {
+            badge.classList.add('pr-status--awaiting');
+            badge.textContent = 'Awaiting payment';
+          }
+        }
+
+        // "Amount to receive" is hidden when state is 6+ (Completed)
+        if (totalRow) totalRow.style.display = (state >= 6) ? 'none' : '';
+
+        // Receipt card is available from state 5+
+        if (receipt) {
+          if (state >= 5) {
+            receipt.hidden = false;
+            if (receiptTitle) receiptTitle.textContent = (state >= 5) ? 'Receipts' : 'Submission receipts';
+          } else {
+            receipt.hidden = true;
+          }
+        }
+
+        // Receipt link label/count (reused later for modal)
+        if (receiptLink) {
+          // Requirement: state 4 => (1), state 5 => (1), state 6+ => (2)
+          var receiptsCount = (state >= 6) ? 2 : 1;
+          receiptLink.textContent = 'View receipts (' + receiptsCount + ')';
+          receiptLink.dataset.receiptsCount = String(receiptsCount);
+          // Keep the receipts modal in sync with state
+          try { renderReceiptsModal(receiptsCount); } catch (_) { }
+        }
+
+        // PayLynk hint shown in state 4 (Awaiting payment) and state 5 (Partially paid); hidden in state 6+
+        var showHint = (state === 4 || state === 5) && state < 6;
+        if (hintDesktop) hintDesktop.hidden = !showHint;
+        if (hintMobile) hintMobile.hidden = !showHint;
+
+        // Header "active request(s)" button:
+        // keep visible in state 5, keep hidden in state 6+ (as it is today).
+        if (headerRequestBtn) {
+          if (state >= 6) {
+            headerRequestBtn.hidden = true;
+            // Reset any inline overrides
+            headerRequestBtn.style.display = '';
+            if (headerRequestText) headerRequestText.style.display = '';
+          } else {
+            // Use the same appearance/behavior as state 4 (CSS-driven)
+            headerRequestBtn.hidden = false;
+            headerRequestBtn.style.display = '';
+            if (headerRequestText) {
+              headerRequestText.style.display = '';
+              headerRequestText.textContent = 'Active requests (1)';
+            }
+            try { headerRequestBtn.setAttribute('aria-label', 'Active requests (1)'); } catch (_) { }
+          }
+        }
+
+        // Activity link: visible from state 5+ and increments at state 6
+        var activityCount = (state >= 6) ? 2 : 1;
+        if (activityLink) {
+          activityLink.hidden = state < 5;
+          activityLink.textContent = 'View payment activity (' + activityCount + ')';
+        }
+        if (activityModalTitle) {
+          activityModalTitle.textContent = 'Payment activity (' + activityCount + ')';
+        }
+        if (receivedLabel) {
+          // State 5 no longer shows "(processing)"
+          receivedLabel.textContent = 'Amount received';
+        }
+
+        // Payment request expiration date: show "- -" if state is 6 or above
+        if (expiresAfterEl) {
+          if (state >= 6) {
+            expiresAfterEl.textContent = '- -';
+          } else {
+            // Prefer the stored "expires on" captured during request creation (request-payment page)
+            // Fallback to deriving from submission date for older flows
+            if (storedExpiresOn && storedExpiresOn.trim()) {
+              expiresAfterEl.textContent = storedExpiresOn.trim();
+            } else {
+              var submissionDateEl = document.getElementById('prSubmissionDate');
+              var submissionDate = submissionDateEl ? submissionDateEl.textContent.trim() : '';
+              var expirationDate = addWeekToDate(submissionDate);
+              expiresAfterEl.textContent = expirationDate;
+            }
+          }
+        }
+
+        // Update "Total customer pays" label to "Total customer paid" when state is 6 or above
+        var customerPaysLabel = document.getElementById('prCustomerPaysLabel');
+        if (customerPaysLabel) {
+          customerPaysLabel.textContent = (state >= 6) ? 'Total paid by customer' : 'Total payable by customer';
+        }
+
+        // Simulate received progress
+        var totalStr = (document.getElementById('prReceivedTotal') || {}).textContent || '';
+        var total = parseAmount(totalStr);
+        var pct = (state >= 6) ? 1 : (state >= 5) ? 0.25 : 0;
+        var received = total * pct;
+        // Compute displayed percent from values (guards against mismatches/rounding)
+        var pctFromValue = total > 0 ? (received / total) : 0;
+
+        setText('prReceivedMain', '+ ' + formatUsd(received).replace(' USD', ''), '+ 0.00');
+        setText('prReceivedPct', ' (' + Math.round(pctFromValue * 100) + '%)', ' (0%)');
+
+        var fill = document.getElementById('prProgressFill');
+        if (fill) {
+          fill.style.width = String(Math.round(pct * 100)) + '%';
+          // Use the same "paid" green fill for state 5 (Partially paid) and state 6 (Completed)
+          fill.classList.toggle('is-paid', state >= 5);
+          // Ensure fill color is correct even if CSS is stale/cached
+          fill.style.background = (state >= 5) ? '#3fae64' : '';
+        }
+
+        // Render payment activity list to match state counts and amounts
+        try {
+          var submissionDateTxt = (document.getElementById('prSubmissionDate') || {}).textContent || '';
+          renderPaymentActivity(state, activityCount, received, total, submissionDateTxt);
+        } catch (_) { }
+      }
+
+      // No breakpoint-specific JS overrides; rely on CSS (same behavior as state 4)
+
+      function init() {
+        var page = document.querySelector('.page--payment-request-detail');
+        if (!page) return;
+
+        var data = readReceiptData();
+        var state = 4;
+        try {
+          if (typeof window.getPrototypeState === 'function') state = window.getPrototypeState();
+        } catch (_) { }
+
+        // Populate fields (best-effort from receiptData; fall back to design placeholders)
+        var paymentAmount = data.amountPayableFmt || data.receiverGets || '100,000.00 USD';
+        var receiverGets = data.receiverGets || '100,000.00 USD';
+        var customerPaysTotal = data.toBeDeducted || data.amountPayableFmt || '101,000.00 USD';
+        var customerName = normalizePartyName(data.receiverName) || 'NovaQuill Ltd';
+        var customerEmail = data.receiverEmail || 'payments@novaquill.com';
+        var paymentId = data.paymentId || 'PYT-20251118-f2d3fa4e';
+        var submissionDate = data.dateTime || '31/08/2022, 12:00:00';
+
+        // Service fee: You / Payer (receiverShare / payerShare)
+        // Note: The data structure has the values inverted, so we need to swap them
+        // receiverShareAmt is what "You" (receiver/merchant) pays
+        // payerShareAmt is what "Payer" (customer) pays
+        var youFee = data.receiverShareAmt || '0.00 USD';
+        var payerFee = data.payerShareAmt || '1,000.00 USD';
+
+        setText('prAmount', paymentAmount, '--');
+        // Swap the values for display: You / Payer should show receiverShareAmt / payerShareAmt
+        // But the data is inverted, so swap them
+        setText('prServiceFee', (payerFee + ' / ' + youFee).trim(), '-- / --');
+        setText('prCustomerName', customerName, '- -');
+        setText('prTotalToReceive', receiverGets, '--');
+
+        // Received total + pct baseline
+        setText('prReceivedTotal', receiverGets, '--');
+
+        setText('prCustomerPaysTotal', customerPaysTotal, '--');
+        setText('prCustomerEmail', customerEmail, '- -');
+        setText('prPaymentId', paymentId, '- -');
+        setText('prSubmissionDate', submissionDate, '- -');
+
+        // Payment request expires on (captured during request creation)
+        storedExpiresOn = (data.expiresAfter || '').trim();
+        // Fallback to deriving from submission date for older flows
+        var expirationDate = storedExpiresOn || addWeekToDate(submissionDate);
+        setText('prExpiresAfter', expirationDate, '- -');
+
+        setText('prNature', data.nature || 'Pre-shipment advance', '- -');
+        setText('prPurpose', data.purpose || 'Goods purchase', '- -');
+
+        var invLink = document.getElementById('prInvoiceLink');
+        if (invLink) {
+          invLink.textContent = (data.attachedDocs || 'Invoice23.pdf');
+          invLink.setAttribute('href', '#');
+        }
+        setText('prInvoiceNumber', data.docNumber || '- -', '- -');
+
+        var activityLink = document.getElementById('prPaymentActivityLink');
+        var activityModal = document.getElementById('prPaymentActivityModal');
+        if (activityLink) {
+          activityLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (!activityModal) return;
+            if (typeof window.__openModal === 'function') {
+              window.__openModal(activityModal);
+            } else {
+              activityModal.setAttribute('aria-hidden', 'false');
+            }
+          });
+        }
+
+        // Transaction receipts modal
+        var receiptLink = document.getElementById('prReceiptDownload');
+        var receiptsModal = document.getElementById('prReceiptsModal');
+        if (receiptLink) {
+          receiptLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (!receiptsModal) return;
+            try {
+              var c = parseInt((receiptLink.dataset && receiptLink.dataset.receiptsCount) ? receiptLink.dataset.receiptsCount : '0', 10) || 0;
+              renderReceiptsModal(c);
+            } catch (_) { }
+            if (typeof window.__openModal === 'function') {
+              window.__openModal(receiptsModal);
+            } else {
+              receiptsModal.setAttribute('aria-hidden', 'false');
+            }
+          });
+        }
+
+        // PayLynk link
+        var paylynk = data.paylynk || 'xrexpay.io/PayLynk?type=1234567';
+        setText('prPaylynkLink', paylynk, paylynk);
+        setText('prPaylynkLinkMobile', paylynk, paylynk);
+        setText('prPaylynkCustomerName', customerName, customerName);
+        setText('prPaylynkCustomerNameMobile', customerName, customerName);
+
+        // Copy buttons
+        var copyEmailBtn = document.getElementById('prCopyEmail');
+        if (copyEmailBtn) copyEmailBtn.addEventListener('click', function () { copyText(customerEmail, 'Copied'); });
+
+        var copyPidBtn = document.getElementById('prCopyPaymentId');
+        if (copyPidBtn) copyPidBtn.addEventListener('click', function () { copyText(paymentId, 'Copied'); });
+
+        var copyPaylynk = function () { copyText(paylynk, 'Link copied to clipboard'); };
+
+        var paylynkWrapper = document.getElementById('prPaylynkWrapper');
+        if (paylynkWrapper) {
+          paylynkWrapper.addEventListener('click', function (e) {
+            // Don't double-trigger if clicking the copy button
+            if (e.target && e.target.closest && e.target.closest('#prPaylynkCopyBtn')) return;
+            copyPaylynk();
+          });
+          paylynkWrapper.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              copyPaylynk();
+            }
+          });
+        }
+
+        var copyPaylynkBtn = document.getElementById('prPaylynkCopyBtn');
+        if (copyPaylynkBtn) {
+          copyPaylynkBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            copyPaylynk();
+          });
+        }
+
+        var paylynkWrapperM = document.getElementById('prPaylynkWrapperMobile');
+        if (paylynkWrapperM) {
+          paylynkWrapperM.addEventListener('click', function (e) {
+            if (e.target && e.target.closest && e.target.closest('#prPaylynkCopyBtnMobile')) return;
+            copyPaylynk();
+          });
+          paylynkWrapperM.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              copyPaylynk();
+            }
+          });
+        }
+
+        var copyPaylynkBtnM = document.getElementById('prPaylynkCopyBtnMobile');
+        if (copyPaylynkBtnM) {
+          copyPaylynkBtnM.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            copyPaylynk();
+          });
+        }
+
+        // Receipt download (placeholder)
+        var receiptDl = document.getElementById('prReceiptDownload');
+        if (receiptDl) receiptDl.setAttribute('href', 'payment-receipt.html');
+
+        // Sticky footer only below desktop
+        var sticky = document.getElementById('prSticky');
+        var mq = window.matchMedia('(min-width: 1280px)');
+        var syncSticky = function () {
+          if (!sticky) return;
+          if (mq.matches) {
+            sticky.style.display = 'none';
+            sticky.setAttribute('aria-hidden', 'true');
+          } else {
+            sticky.style.display = '';
+            sticky.setAttribute('aria-hidden', 'false');
+          }
+        };
+        syncSticky();
+        try { mq.addEventListener('change', syncSticky); } catch (_) { }
+
+        maybeShowProcessingSnackbar(state);
+        applyState(state);
+        lastState = state;
+        document.addEventListener('prototypeStateChange', function () {
+          try {
+            var next = typeof window.getPrototypeState === 'function' ? window.getPrototypeState() : state;
+            maybeShowProcessingSnackbar(next);
+            applyState(next);
+            lastState = next;
+          } catch (_) { }
+        });
+
+        // Make page title clickable on mobile (below desktop breakpoint)
+        var pageTitle = document.querySelector('.page__title');
+        if (pageTitle) {
+          var isMobile = function () {
+            return window.innerWidth < 1280;
+          };
+          var handleTitleClick = function (e) {
+            if (isMobile()) {
+              e.preventDefault();
+              window.location.href = 'index.html';
+            }
+          };
+          pageTitle.addEventListener('click', handleTitleClick);
+          // Also make it keyboard accessible
+          pageTitle.setAttribute('tabindex', '0');
+          pageTitle.setAttribute('role', 'button');
+          pageTitle.setAttribute('aria-label', 'Back to homepage');
+          pageTitle.addEventListener('keydown', function (e) {
+            if (isMobile() && (e.key === 'Enter' || e.key === ' ')) {
+              e.preventDefault();
+              window.location.href = 'index.html';
+            }
+          });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+  <div class="build-badge" role="note"></div>
+</body>
+
+</html>

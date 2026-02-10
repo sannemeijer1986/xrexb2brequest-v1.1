@@ -1,0 +1,332 @@
+// Profile & Payment methods page
+.page--profile-payment {
+  padding-top: 64px;
+  padding-bottom: 40px;
+  background: $bg-page;
+
+  @media (min-width: $bp-desktop) {
+    padding-top: 70px;
+    padding-bottom: 48px;
+  }
+}
+
+.profile-payment__container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 24px 20px;
+
+  @media (min-width: $bp-desktop) {
+    padding: 40px 40px;
+  }
+}
+
+.profile-payment__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+
+  @media (min-width: $bp-desktop) {
+    margin-bottom: 40px;
+  }
+}
+
+.profile-payment__title {
+  margin: 0;
+  font-family: $font-sora;
+  font-weight: 700;
+  font-size: 24px;
+  color: $text-primary;
+  line-height: 1.2;
+
+  @media (min-width: $bp-desktop) {
+    font-size: 32px;
+  }
+}
+
+.profile-payment__back {
+  font-family: $font-family-sans;
+  font-weight: 700;
+  font-size: 14px;
+  color: #336AFF;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @media (min-width: $bp-desktop) {
+    font-size: 16px;
+  }
+}
+
+.profile-payment__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
+
+  @media (min-width: $bp-desktop) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 32px;
+  }
+}
+
+// Profile card (left)
+.profile-card {
+  @include card;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  @media (min-width: $bp-desktop) {
+    padding: 40px 32px;
+  }
+}
+
+.profile-card__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #EBF2FF;
+  border: 1px solid rgba(51, 106, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+
+  img {
+    width: 32px;
+    height: 32px;
+  }
+
+  @media (min-width: $bp-desktop) {
+    width: 96px;
+    height: 96px;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+.profile-card__label {
+  font-family: $font-family-sans;
+  font-weight: 600;
+  font-size: 12px;
+  color: $text-secondary;
+  margin-bottom: 4px;
+
+  @media (min-width: $bp-desktop) {
+    font-size: 14px;
+  }
+}
+
+.profile-card__name {
+  margin: 0 0 24px;
+  font-family: $font-sora;
+  font-weight: 700;
+  font-size: 20px;
+  color: $text-primary;
+  line-height: 1.3;
+
+  @media (min-width: $bp-desktop) {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
+}
+
+.profile-card__fields {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+
+  @media (min-width: $bp-desktop) {
+    gap: 20px;
+  }
+}
+
+.profile-card__field {
+  dt, dd {
+    margin: 0;
+    font-family: $font-family-sans;
+    font-size: 14px;
+    line-height: 1.4;
+
+    @media (min-width: $bp-desktop) {
+      font-size: 16px;
+    }
+  }
+
+  dt {
+    font-weight: 600;
+    color: $text-secondary;
+    margin-bottom: 4px;
+  }
+
+  dd {
+    font-weight: 500;
+    color: $text-primary;
+  }
+}
+
+// Payment methods card (right)
+.payment-methods-card {
+  @include card;
+  padding: 24px;
+
+  @media (min-width: $bp-desktop) {
+    padding: 32px;
+  }
+}
+
+.payment-methods-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+
+  @media (min-width: $bp-desktop) {
+    margin-bottom: 24px;
+  }
+}
+
+.payment-methods-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #EEEEEE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.payment-methods-card__title {
+  margin: 0;
+  font-family: $font-sora;
+  font-weight: 700;
+  font-size: 18px;
+  color: $text-primary;
+  line-height: 1.2;
+
+  @media (min-width: $bp-desktop) {
+    font-size: 20px;
+  }
+}
+
+.payment-methods-card__section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-methods-card__section-label {
+  font-family: $font-family-sans;
+  font-weight: 600;
+  font-size: 12px;
+  color: $text-secondary;
+
+  @media (min-width: $bp-desktop) {
+    font-size: 14px;
+  }
+}
+
+.payment-methods-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wallet-entry {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+
+  @media (min-width: $bp-desktop) {
+    padding: 20px;
+  }
+}
+
+.wallet-entry__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #EEEEEE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.wallet-entry__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.wallet-entry__title {
+  font-family: $font-family-sans;
+  font-weight: 700;
+  font-size: 16px;
+  color: $text-primary;
+  margin: 0 0 4px;
+
+  @media (min-width: $bp-desktop) {
+    font-size: 18px;
+  }
+}
+
+.wallet-entry__detail {
+  font-family: $font-family-sans;
+  font-weight: 500;
+  font-size: 14px;
+  color: $text-secondary;
+
+  @media (min-width: $bp-desktop) {
+    font-size: 16px;
+  }
+}
+
+.wallet-entry__menu {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 6px;
+
+  &:hover {
+    background: $gray-100;
+  }
+
+  svg {
+    display: block;
+  }
+}

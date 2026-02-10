@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="auth/auth-gate.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>XREX Pay - Profile & Payment methods</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="css/main.css?v=20251108" />
+    <link rel="icon" href="assets/favicons/xrex-favicon-16x16.png" sizes="16x16" type="image/png" />
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header__content">
+            <a class="brand" href="index.html" aria-label="XREX Pay">
+                <img class="brand__img" src="assets/logo_xrexpay.svg" alt="XREX Pay" />
+            </a>
+            <div class="header__spacer"></div>
+            <div class="header__actions">
+                <a class="circle-icon" href="https://intercom.help/xrex-sg/en/" target="_blank"
+                    rel="noopener noreferrer" title="Support">
+                    <img src="assets/icon_support.svg" alt="support" width="20" height="20" />
+                </a>
+                <a class="account-chip" href="profile-payment.html">
+                    <span class="chip-avatar"><img src="assets/logo_agp.svg" alt="C" /></span>
+                    <span class="chip-name">[Company legal name]</span>
+                    <img class="chevron" src="assets/icon_chevron_right.svg" alt="more" width="20" height="20" />
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="page page--profile-payment">
+        <div class="container profile-payment__container">
+            <div class="profile-payment__header">
+                <h1 class="profile-payment__title">Profile & Payment methods</h1>
+                <a href="request-payment.html" class="profile-payment__back">Back to payment request</a>
+            </div>
+
+            <div class="profile-payment__grid">
+                <!-- Profile card -->
+                <article class="profile-card">
+                    <div class="profile-card__icon">
+                        <img src="assets/outline_office_new.svg" alt="" width="32" height="32" />
+                    </div>
+                    <div class="profile-card__label">Company legal name</div>
+                    <h2 class="profile-card__name">Beta Manufacturing Co. Ltd</h2>
+                    <dl class="profile-card__fields">
+                        <div class="profile-card__field">
+                            <dt>Registration date:</dt>
+                            <dd>30/11/2025</dd>
+                        </div>
+                        <div class="profile-card__field">
+                            <dt>Registration number:</dt>
+                            <dd>202018765Z</dd>
+                        </div>
+                        <div class="profile-card__field">
+                            <dt>Country of registration:</dt>
+                            <dd>Singapore</dd>
+                        </div>
+                        <div class="profile-card__field">
+                            <dt>Registered address:</dt>
+                            <dd>6 Battery Road, Singapore 049909</dd>
+                        </div>
+                        <div class="profile-card__field">
+                            <dt>Country of operation:</dt>
+                            <dd>Singapore</dd>
+                        </div>
+                        <div class="profile-card__field">
+                            <dt>Contact email address:</dt>
+                            <dd>abc1234@gmail.com</dd>
+                        </div>
+                    </dl>
+                </article>
+
+                <!-- Payment methods card -->
+                <article class="payment-methods-card">
+                    <div class="payment-methods-card__header">
+                        <div class="payment-methods-card__icon">
+                            <img src="assets/icon_allcurrency.svg" alt="" width="20" height="20" />
+                        </div>
+                        <h2 class="payment-methods-card__title">Payment methods</h2>
+                    </div>
+                    <div class="payment-methods-card__section">
+                        <span class="payment-methods-card__section-label">Stablecoin payments</span>
+                        <div class="payment-methods-card__list">
+                            <div class="wallet-entry">
+                                <div class="wallet-entry__icon">
+                                    <img src="assets/icon_bankaccount_blue.svg" alt="" width="24" height="24" />
+                                </div>
+                                <div class="wallet-entry__content">
+                                    <div class="wallet-entry__title">Wallet account</div>
+                                    <div class="wallet-entry__detail">abc1234@gmail.com</div>
+                                </div>
+                                <button type="button" class="wallet-entry__menu" aria-label="More options">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <circle cx="10" cy="5" r="1.5" fill="#797A7B"/>
+                                        <circle cx="10" cy="10" r="1.5" fill="#797A7B"/>
+                                        <circle cx="10" cy="15" r="1.5" fill="#797A7B"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer__inner">
+            <div class="footer__copy">© XREX Pay Limited 2025</div>
+            <div class="footer__links">
+                <a href="https://intercom.help/xrex-sg/en/" target="_blank" rel="noopener noreferrer">Support</a>
+                <a href="https://info.xrex.sg/doc" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+                <a href="https://info.xrex.sg/doc" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,518 @@
+:root {
+    --text-primary: #2d2f2f;
+    --text-secondary: #797a7b;
+    --border-soft: #eeeeee;
+    --surface-secondary: #fcfcfc;
+    --surface-card-secondary: #f8f8f8;
+    --alert-warning-bg: rgba(249, 86, 43, 0.15);
+    --alert-warning-text: #ff6d47;
+    --brand-blue: #336aff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    color: var(--text-primary);
+    background: #ffffff;
+    font-family: Manrope, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+        Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.page {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 32px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.title {
+    margin: 0;
+    font-family: Sora, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: 0;
+}
+
+.card {
+    width: 100%;
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.09);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.cardTitle {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.qrStack {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.qrPanel {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.alert {
+    width: 100%;
+    border-radius: 8px;
+    background: var(--alert-warning-bg);
+    padding: 8px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.alertIcon {
+    flex: 0 0 auto;
+    color: var(--alert-warning-text);
+    margin-top: 2px;
+}
+
+.icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.icon--sm {
+    width: 18px;
+    height: 18px;
+}
+
+.icon--md {
+    width: 24px;
+    height: 24px;
+}
+
+.icon--lg {
+    width: 28px;
+    height: 28px;
+}
+
+.alertText {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--alert-warning-text);
+}
+
+.qrBlock {
+    width: 100%;
+    height: 280px;
+    border-left: 1px solid var(--border-soft);
+    border-right: 1px solid var(--border-soft);
+    border-top: 1px solid var(--border-soft);
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+    /* Ambient living background (more obvious color shifting) */
+    background:
+        radial-gradient(1600px 700px at 10% 70%, rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0) 66%),
+        radial-gradient(1500px 680px at 88% 25%, rgba(143, 184, 255, 0.65), rgba(143, 184, 255, 0) 66%),
+        radial-gradient(1400px 720px at 62% 18%, rgba(194, 218, 255, 0.55), rgba(194, 218, 255, 0) 66%),
+        radial-gradient(1300px 900px at 40% 85%, rgba(77, 136, 255, 0.20), rgba(77, 136, 255, 0) 68%),
+        linear-gradient(120deg, #FFFFFF, #F5F9FF, #C2DAFF, #8FB8FF, #F5F9FF, #FFFFFF);
+    background-repeat: no-repeat;
+    background-size: 620% 620%, 620% 620%, 620% 620%, 620% 620%, 620% 620%;
+    animation: qrGradient 8s ease-in-out infinite, qrPulse 5.5s ease-in-out infinite;
+    display: grid;
+    place-items: center;
+}
+
+.qrBlock::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.85;
+    background:
+        radial-gradient(circle at 20% 35%, rgba(255, 255, 255, 0.60), transparent 55%),
+        radial-gradient(circle at 80% 55%, rgba(194, 218, 255, 0.55), transparent 62%),
+        radial-gradient(circle at 55% 78%, rgba(143, 184, 255, 0.40), transparent 60%);
+    background-repeat: no-repeat;
+    filter: blur(18px);
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    animation: qrFloat 12s ease-in-out infinite;
+}
+
+.qrBlock::after {
+    content: "";
+    position: absolute;
+    inset: -35%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.7;
+    background:
+        radial-gradient(circle at 45% 30%, rgba(143, 184, 255, 0.45), transparent 55%),
+        radial-gradient(circle at 55% 70%, rgba(194, 218, 255, 0.45), transparent 62%),
+        radial-gradient(circle at 60% 40%, rgba(77, 136, 255, 0.22), transparent 58%);
+    background-repeat: no-repeat;
+    filter: blur(30px) saturate(1.25);
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    animation: qrFloat2 16s ease-in-out infinite;
+}
+
+.qrBackdrop {
+    position: absolute;
+    /* Use the QR container as the positioning reference so % offsets stay intuitive */
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.qrBackdropCircle {
+    position: absolute;
+    /* Responsive sizing: scales with viewport, capped to stay tasteful */
+    width: clamp(320px, 78vw, 520px);
+    height: clamp(320px, 78vw, 520px);
+    border-radius: 999px;
+    /* Offsets are relative to the QR area; keep a visible “peek” at all sizes */
+    left: -34%;
+    top: 60%;
+    /* “glass” blob: no rigid outline */
+    background:
+        radial-gradient(circle at 28% 28%, rgba(255, 255, 255, 0.40), rgba(245, 249, 255, 0.18) 48%, rgba(194, 218, 255, 0.16) 72%, rgba(255, 255, 255, 0.05));
+    box-shadow: 0 18px 70px rgba(143, 184, 255, 0.22);
+    opacity: 0.88;
+    filter: blur(0.6px);
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    animation: qrShapeDrift1 20s ease-in-out infinite;
+}
+
+.qrBackdropRect {
+    position: absolute;
+    width: clamp(340px, 82vw, 560px);
+    height: clamp(340px, 82vw, 560px);
+    right: -36%;
+    top: -32%;
+    border-radius: 999px;
+    background:
+        radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.34), rgba(245, 249, 255, 0.15) 52%, rgba(194, 218, 255, 0.14) 76%, rgba(255, 255, 255, 0.04));
+    box-shadow: 0 20px 80px rgba(143, 184, 255, 0.20);
+    opacity: 0.85;
+    filter: blur(0.6px);
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    animation: qrShapeDrift2 26s ease-in-out infinite;
+}
+
+.qrFrame {
+    position: relative;
+    z-index: 3;
+    width: 200px;
+    height: 200px;
+    display: block;
+}
+
+.qrImg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+@keyframes qrFloat {
+    0% {
+        transform: translate(-4%, -2%) scale(1);
+    }
+
+    50% {
+        transform: translate(5%, 4%) scale(1.06);
+    }
+
+    100% {
+        transform: translate(-4%, -2%) scale(1);
+    }
+}
+
+@keyframes qrFloat2 {
+    0% {
+        transform: translate(6%, -4%) scale(1);
+    }
+
+    50% {
+        transform: translate(-6%, 5%) scale(1.05);
+    }
+
+    100% {
+        transform: translate(6%, -4%) scale(1);
+    }
+}
+
+@keyframes qrGradient {
+    0% {
+        background-position: 0% 25%, 100% 75%, 15% 10%, 65% 90%, 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 75%, 0% 25%, 85% 90%, 35% 10%, 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 25%, 100% 75%, 15% 10%, 65% 90%, 0% 50%;
+    }
+}
+
+@keyframes qrPulse {
+    0% {
+        filter: saturate(1.05) contrast(1.02);
+    }
+
+    50% {
+        filter: saturate(1.35) contrast(1.10);
+    }
+
+    100% {
+        filter: saturate(1.05) contrast(1.02);
+    }
+}
+
+@keyframes qrShapeDrift1 {
+    0% {
+        transform: translate3d(-116px, 12px, 0) scale(0.99);
+    }
+
+    50% {
+        transform: translate3d(-136px, 32px, 0) scale(1.25);
+    }
+
+    100% {
+        transform: translate3d(-116px, 12px, 0) scale(0.99);
+    }
+}
+
+@keyframes qrShapeDrift2 {
+    0% {
+        transform: translate3d(86px, -214px, 0) scale(1);
+    }
+
+    50% {
+        transform: translate3d(66px, -246px, 0) scale(0.75);
+    }
+
+    100% {
+        transform: translate3d(86px, -214px, 0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .qrBlock {
+        animation: none;
+    }
+
+    .qrBlock::before {
+        animation: none;
+    }
+
+    .qrBlock::after {
+        animation: none;
+    }
+
+    .qrBackdropCircle,
+    .qrBackdropRect {
+        animation: none;
+    }
+}
+
+.addressCard {
+    width: 100%;
+    border: 1px solid var(--border-soft);
+    border-radius: 0 0 8px 8px;
+    background: var(--surface-secondary);
+    padding: 20px;
+}
+
+.addressLabel {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.addressRow {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.address {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-family: Manrope, ui-sans-serif, system-ui;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.copyBtn {
+    flex: 0 0 auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    color: var(--text-primary);
+    display: grid;
+    place-items: center;
+}
+
+.copyBtn:focus-visible {
+    outline: 2px solid rgba(51, 106, 255, 0.5);
+    outline-offset: 2px;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border-soft);
+}
+
+.how {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sectionTitle {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.howGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.infoCard {
+    background: var(--surface-card-secondary);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.infoHead {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.infoIcon {
+    width: 28px;
+    height: 28px;
+    color: var(--brand-blue);
+    display: grid;
+    place-items: center;
+}
+
+.infoTitle {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.infoText {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23px;
+    color: var(--text-primary);
+}
+
+.infoText strong {
+    font-weight: 700;
+}
+
+@media (min-width: 768px) {
+    .page {
+        padding: 70px;
+    }
+
+    .container {
+        gap: 48px;
+    }
+
+    .title {
+        font-size: 40px;
+    }
+
+    .card {
+        padding: 32px 24px;
+    }
+
+    .addressCard {
+        padding: 24px;
+    }
+
+    .address {
+        font-size: 20px;
+    }
+
+    .how {
+        gap: 24px;
+    }
+
+    .howGrid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .infoCard {
+        padding: 32px;
+    }
+}

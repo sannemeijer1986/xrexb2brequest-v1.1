@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <script src="auth/auth-gate.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XREX Pay - Customer details</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css?v=20251108" />
+  <link rel="icon" href="assets/favicons/xrex-favicon-16x16.png" sizes="16x16" type="image/png" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header__content">
+      <a class="brand" href="index.html">
+        <img class="brand__img" src="assets/logo_xrexpay.svg" alt="XREX Pay" />
+      </a>
+      <div class="header__spacer"></div>
+      <div class="header__actions">
+        <button type="button" class="header__request-btn" aria-label="Active requests (1)" id="headerRequestBtn">
+          <img src="assets/icon_requestpayment_blue.svg" alt="" width="20" height="20" />
+          <span class="header__request-btn__text">Active requests (1)</span>
+          <span class="header__request-btn__badge">1</span>
+          <div class="header__request-dropdown" id="headerRequestDropdown">
+            <div class="header__request-dropdown__banner">
+              <span class="header__request-dropdown__banner-icon" aria-hidden="true"></span>
+              <span>Some items need your attention. Select a request to view details or share its link.</span>
+            </div>
+            <div class="header__request-dropdown__content">
+              <h3 class="header__request-dropdown__title">Customer invitation requests</h3>
+              <ul class="header__request-dropdown__list">
+                <li class="header__request-dropdown__item">
+                  <div class="header__request-dropdown__item-row">
+                    <div class="header__request-dropdown__item-icon">
+                      <img src="assets/outline_office_new.svg" alt="" width="16" height="16" />
+                    </div>
+                    <div class="header__request-dropdown__item-content">
+                      <p class="header__request-dropdown__item-name">To NovaQuill Ltd</p>
+                    </div>
+                  </div>
+                  <p class="header__request-dropdown__item-amount" style="display: none;">-</p>
+                  <p class="header__request-dropdown__item-status">Awaiting response</p>
+                  <p class="header__request-dropdown__item-date">00/00/0000, 00:00:00</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </button>
+        <a class="circle-icon" href="https://intercom.help/xrex-sg/en/" target="_blank" rel="noopener noreferrer"
+          title="Support">
+          <img src="assets/icon_support.svg" alt="support" width="20" height="20" />
+        </a>
+        <a class="account-chip" id="accountChipLink" href="settings.html">
+          <span class="chip-avatar"><img src="assets/logo_agp.svg" alt="AGP" /></span>
+          <span class="chip-name">AGP Technology</span>
+          <img class="chevron" src="assets/icon_chevron_right.svg" alt="more" width="20" height="20" />
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page page--cp-detail page--customer-detail">
+    <div class="container">
+      <section class="page__header page__header--crumb">
+        <a class="crumb" href="settings.html" aria-label="Back">
+          <picture>
+            <source media="(min-width: 1280px)" srcset="assets/icon_header_back.svg" />
+            <img src="assets/icon_header_back_mobile.svg" width="32" height="32" alt="" />
+          </picture>
+        </a>
+        <h1 class="page__title">Customer details</h1>
+      </section>
+
+      <section class="cp-detail cd-detail" id="cdDetailContent">
+        <div class="cd-top-row">
+          <div class="cp-detail__card cp-detail__card--summary">
+            <div class="cp-detail__summary-head">
+              <div class="cp-detail__summary-main">
+                <div class="cp-detail__label">Customer</div>
+                <div class="cp-detail__name-row">
+                  <div class="cp-detail__name">NovaQuill Ltd</div>
+                  <div class="cp-detail__status-wrap">
+                    <span class="pr-status pr-status--awaiting" id="cdCustomerStatus">Awaiting response</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <a href="#" class="cd-edit" id="cdEditLink">Edit</a> -->
+
+              <button type="button" class="btn btn--primary btn--md cp-detail__cta cp-detail__cta--desktop"
+                id="cdRequestPaymentBtn">
+                Request payment
+              </button>
+            </div>
+
+            <dl class="cd-summary-grid">
+              <div class="cd-summary-item">
+                <dt>Contact email address</dt>
+                <dd>
+                  <button type="button" class="cd-copy-row" data-copy-target="cdCustomerEmail"
+                    aria-label="Copy contact email address">
+                    <span id="cdCustomerEmail">payments@novaquill.com</span>
+                    <img src="assets/icon_copy.svg" alt="" width="16" height="16" />
+                  </button>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="cp-detail__card cd-invite-card" id="cdInviteCard">
+            <div class="cd-invite-title">Customer invitation link</div>
+            <div class="cd-link-wrapper" id="cdInviteLinkWrapper" role="button" tabindex="0"
+              aria-label="Copy invitation link">
+              <div class="cd-link-content">
+                <span class="cd-link-text" id="cdInviteLink">xrexpay.io/invitation-business?type=1234567</span>
+              </div>
+              <button type="button" class="cd-copy-pill" id="cdInviteCopyBtn" aria-label="Copy invitation link">
+                <img src="assets/icon_copy_white.svg" alt="" width="16" height="16" />
+                <span>Copy</span>
+              </button>
+            </div>
+            <div class="cp-detail__info-banner cd-invite-hint">
+              <span class="cp-detail__info-icon" aria-hidden="true"></span>
+              <span class="cp-detail__info-text">Share this link with <span class="cd-invite-hint__name">NovaQuill
+                  Ltd</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cp-detail__card cd-info-card" id="cdInfoProvidedCard">
+          <h2 class="cp-detail__section-title">Information provided by customer</h2>
+          <dl class="cp-detail__grid cp-detail__grid--receiver">
+            <div class="cp-detail__item">
+              <dt>Company legal name</dt>
+              <dd>NovaQuill Ltd</dd>
+            </div>
+            <div class="cp-detail__item">
+              <dt>Registration date</dt>
+              <dd>30/11/2025</dd>
+            </div>
+            <div class="cp-detail__item">
+              <dt>Registration number</dt>
+              <dd>202018765Z</dd>
+            </div>
+            <div class="cp-detail__item">
+              <dt>Country of registration</dt>
+              <dd>Singapore</dd>
+            </div>
+            <div class="cp-detail__item">
+              <dt>Registered address</dt>
+              <dd>6 Battery Road, Singapore 049909</dd>
+            </div>
+            <div class="cp-detail__item">
+              <dt>Country of operation</dt>
+              <dd>Singapore</dd>
+            </div>
+            <div class="cp-detail__item cd-item--full">
+              <dt>Payment methods enabled</dt>
+              <dd>USD bank transfer, USDT payout</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="cp-detail__card cp-detail__card--meta">
+          <div class="cp-detail__meta">
+            <div class="cp-detail__meta-updated">
+              <span class="cp-detail__meta-label">Last updated</span>
+              <span class="cp-detail__meta-value">01/12/2021, 1:13:12</span>
+            </div>
+            <button type="button" class="cp-detail__delete" id="cdDeleteCustomerBtn">
+              Delete customer
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile sticky invitation link (state 2) -->
+        <div class="cd-sticky-invite" id="cdStickyInvite" aria-hidden="true">
+          <div class="cd-sticky-invite__inner">
+            <div class="cd-invite-title">Customer invitation link</div>
+            <div class="cd-link-wrapper" id="cdInviteLinkWrapperMobile" role="button" tabindex="0"
+              aria-label="Copy invitation link">
+              <div class="cd-link-content">
+                <span class="cd-link-text" id="cdInviteLinkMobile">xrexpay.io/invitation-business?type=1234567</span>
+              </div>
+              <button type="button" class="cd-copy-icon-btn" id="cdInviteCopyBtnMobile"
+                aria-label="Copy invitation link">
+                <img src="assets/icon_copy_white.svg" alt="" width="16" height="16" />
+              </button>
+            </div>
+            <div class="cp-detail__info-banner cd-invite-hint">
+              <span class="cp-detail__info-icon" aria-hidden="true"></span>
+              <span class="cp-detail__info-text">Provide this link to <span class="cd-invite-hint__name">NovaQuill
+                  Ltd</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile sticky CTA (state 3+) -->
+        <div class="cp-detail__footer-single" id="cdFooterSingle">
+          <button type="button" class="btn btn--primary btn--lg cp-detail__cta cp-detail__cta--mobile-single"
+            id="cdRequestPaymentBtnMobile">
+            Request payment
+          </button>
+        </div>
+      </section>
+
+      <section class="cd-404" id="cd404" hidden>
+        <div class="cd-404__card">
+          <img class="cd-404__img" src="assets/404.jpg" alt="" />
+          <h2 class="cd-404__title">Page not found</h2>
+          <p class="cd-404__desc">We can’t seem to find the page you’re looking for.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer__inner">
+      <div class="footer__copy">© XREX Pay Limited 2025</div>
+      <div class="footer__links">
+        <a href="https://intercom.help/xrex-sg/en/" target="_blank" rel="noopener noreferrer">Support</a>
+        <a href="https://info.xrex.sg/doc" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+        <a href="https://info.xrex.sg/doc" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="js/main.js?v=20251108"></script>
+  <script>
+    (function () {
+      function getState() {
+        try { return (typeof window.getPrototypeState === 'function') ? window.getPrototypeState() : 2; } catch (_) { return 2; }
+      }
+
+      function setStatus(state) {
+        var el = document.getElementById('cdCustomerStatus');
+        if (!el) return;
+        el.classList.remove('pr-status--awaiting', 'pr-status--paid');
+        if (state >= 3) {
+          el.textContent = 'Verified';
+          el.classList.add('pr-status--paid');
+        } else {
+          el.textContent = 'Awaiting response';
+          el.classList.add('pr-status--awaiting');
+        }
+      }
+
+      function applyState(state) {
+        var pageRoot = document.querySelector('.page--customer-detail');
+        var isInvited = state === 2;
+        var isVerified = state >= 3;
+        var isNotFound = state <= 1;
+
+        // Reuse existing cp-detail state hooks (used by global CSS)
+        if (pageRoot) {
+          pageRoot.classList.toggle('is-under-review', isInvited);
+          pageRoot.classList.toggle('is-verified', isVerified);
+          pageRoot.classList.toggle('is-not-found', isNotFound);
+        }
+
+        // Swap in 404 content for state 1 or below
+        var content = document.getElementById('cdDetailContent');
+        var notFound = document.getElementById('cd404');
+        var headerCrumb = document.querySelector('.page__header--crumb');
+        if (content) content.hidden = isNotFound;
+        if (notFound) notFound.hidden = !isNotFound;
+        if (headerCrumb) headerCrumb.hidden = isNotFound;
+
+        if (isNotFound) {
+          // Ensure sticky elements are hidden
+          var stickyInvite = document.getElementById('cdStickyInvite');
+          var ctaMobileFooter = document.getElementById('cdFooterSingle');
+          if (stickyInvite) stickyInvite.setAttribute('aria-hidden', 'true');
+          if (ctaMobileFooter) ctaMobileFooter.style.display = 'none';
+          return;
+        }
+
+        setStatus(state);
+
+        var inviteCard = document.getElementById('cdInviteCard');
+        var infoCard = document.getElementById('cdInfoProvidedCard');
+        var editLink = document.getElementById('cdEditLink');
+        var ctaDesktop = document.getElementById('cdRequestPaymentBtn');
+        var stickyInvite = document.getElementById('cdStickyInvite');
+        var ctaMobileFooter = document.getElementById('cdFooterSingle');
+
+        if (inviteCard) inviteCard.hidden = !isInvited;
+        if (infoCard) infoCard.hidden = !isVerified;
+        if (editLink) editLink.hidden = !isInvited;
+        if (ctaDesktop) ctaDesktop.hidden = !isVerified;
+
+        if (stickyInvite) stickyInvite.setAttribute('aria-hidden', isInvited ? 'false' : 'true');
+        if (ctaMobileFooter) ctaMobileFooter.style.display = isVerified ? '' : 'none';
+      }
+
+      function copyText(text, message) {
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text || '');
+        } catch (_) { }
+        try {
+          if (typeof window.showSnackbar === 'function' && message) window.showSnackbar(message, 2000);
+        } catch (_) { }
+      }
+
+      function bindCopyButtons() {
+        document.querySelectorAll('.cd-copy-row[data-copy-target]').forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var targetId = btn.getAttribute('data-copy-target');
+            var el = targetId ? document.getElementById(targetId) : null;
+            var text = el ? (el.textContent || '').trim() : '';
+            if (text) copyText(text, 'Copied to clipboard');
+          });
+        });
+
+        var link = document.getElementById('cdInviteLink');
+        var linkMobile = document.getElementById('cdInviteLinkMobile');
+        var copyBtn = document.getElementById('cdInviteCopyBtn');
+        var copyBtnMobile = document.getElementById('cdInviteCopyBtnMobile');
+        var wrapper = document.getElementById('cdInviteLinkWrapper');
+        var wrapperM = document.getElementById('cdInviteLinkWrapperMobile');
+
+        var doCopyInvite = function (isMobile) {
+          var el = isMobile ? linkMobile : link;
+          var text = el ? (el.textContent || '').trim() : '';
+          if (text) copyText(text, 'Copied to clipboard');
+        };
+
+        if (copyBtn) copyBtn.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); doCopyInvite(false); });
+        if (copyBtnMobile) copyBtnMobile.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); doCopyInvite(true); });
+
+        if (wrapper) {
+          wrapper.addEventListener('click', function (e) {
+            if (e.target && e.target.closest && e.target.closest('#cdInviteCopyBtn')) return;
+            doCopyInvite(false);
+          });
+          wrapper.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); doCopyInvite(false); }
+          });
+        }
+        if (wrapperM) {
+          wrapperM.addEventListener('click', function (e) {
+            if (e.target && e.target.closest && e.target.closest('#cdInviteCopyBtnMobile')) return;
+            doCopyInvite(true);
+          });
+          wrapperM.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); doCopyInvite(true); }
+          });
+        }
+      }
+
+      function bindCtas() {
+        var goRequest = function (e) {
+          e.preventDefault();
+          try {
+            if (window.sessionStorage) {
+              window.sessionStorage.setItem('xrexb2b.requestPaymentReturnUrl', 'customer-details');
+            }
+          } catch (_) { }
+          try { window.location.href = 'request-payment.html'; } catch (_) { }
+        };
+        var ctaDesktop = document.getElementById('cdRequestPaymentBtn');
+        var ctaMobile = document.getElementById('cdRequestPaymentBtnMobile');
+        if (ctaDesktop) ctaDesktop.addEventListener('click', goRequest);
+        if (ctaMobile) ctaMobile.addEventListener('click', goRequest);
+
+        // Edit (state 2 / under review): mirror "Delete customer" snackbar behavior
+        var edit = document.getElementById('cdEditLink');
+        if (edit) {
+          edit.addEventListener('click', function (e) {
+            e.preventDefault();
+            var pageRoot = document.querySelector('.page--customer-detail');
+            var isState2 = false;
+            try { isState2 = typeof getState === 'function' ? getState() === 2 : false; } catch (_) { isState2 = false; }
+            var isUnderReview = !!(pageRoot && pageRoot.classList && pageRoot.classList.contains('is-under-review'));
+            if (!isState2 && !isUnderReview) return;
+            if (typeof window.showSnackbar === 'function') {
+              window.showSnackbar('Not supported in prototype', 2000, 'error');
+            }
+          });
+        }
+
+        var del = document.getElementById('cdDeleteCustomerBtn');
+        if (del) {
+          del.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (typeof window.showSnackbar === 'function') {
+              window.showSnackbar('Not supported in prototype', 2000, 'error');
+            }
+          });
+        }
+      }
+
+      function init() {
+        // Set back link based on stored entrypoint (so back always returns to where user came from)
+        (function () {
+          try {
+            var crumb = document.querySelector('.page__header--crumb .crumb');
+            if (!crumb) return;
+            var fallback = 'settings.html?view=content&page=customers';
+            var target = fallback;
+            try {
+              if (window.sessionStorage) {
+                var stored = window.sessionStorage.getItem('xrexb2b.customerDetailsReturnUrl');
+                // Only allow real entrypoints
+                if (stored === 'index.html' || stored === 'settings.html?view=content&page=customers') {
+                  target = stored;
+                }
+              }
+            } catch (_) { }
+            crumb.setAttribute('href', target);
+            crumb.setAttribute('aria-label', target.indexOf('settings.html') !== -1 ? 'Back to settings' : 'Back to home');
+          } catch (_) { }
+        })();
+
+        applyState(getState());
+        bindCopyButtons();
+        bindCtas();
+        // Make page title clickable on mobile (same action as crumb)
+        (function () {
+          try {
+            var pageTitle = document.querySelector('.page__title');
+            var crumb = document.querySelector('.page__header--crumb .crumb');
+            if (!pageTitle || !crumb) return;
+            var isMobile = function () { return window.innerWidth < 1280; };
+            var goBack = function (e) {
+              if (!isMobile()) return;
+              e.preventDefault();
+              var href = crumb.getAttribute('href') || 'settings.html';
+              window.location.href = href;
+            };
+            pageTitle.setAttribute('tabindex', '0');
+            pageTitle.setAttribute('role', 'button');
+            pageTitle.setAttribute('aria-label', 'Back');
+            pageTitle.addEventListener('click', goBack);
+            pageTitle.addEventListener('keydown', function (e) {
+              if (!isMobile()) return;
+              if (e.key === 'Enter' || e.key === ' ') goBack(e);
+            });
+          } catch (_) { }
+        })();
+        document.addEventListener('prototypeStateChange', function () { applyState(getState()); });
+      }
+
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+      else init();
+    })();
+  </script>
+  <div class="build-badge" role="note"></div>
+</body>
+
+</html>

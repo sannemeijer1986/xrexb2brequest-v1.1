@@ -1,0 +1,882 @@
+// Step 3 Summary Styles
+.step3-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media (min-width: $bp-desktop) {
+    gap: 48px;
+  }
+}
+
+.step3-summary__content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media (min-width: $bp-desktop) {
+    gap: 24px;
+  }
+}
+
+// Step 3 Card (white card with border)
+.step3-card {
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 8px;
+  padding: 24px 16px;
+
+  @media (min-width: $bp-desktop) {
+    padding: 32px;
+  }
+}
+
+.step3-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.step3-card__title {
+  font-family: $font-family-sans;
+  font-weight: 700;
+  font-size: 18px;
+  color: $text-primary;
+  margin: 0;
+  flex: 1;
+
+  @media (min-width: $bp-desktop) {
+    font-size: 22px;
+  }
+}
+
+.step3-card__edit {
+  font-family: $font-family-sans;
+  font-weight: 700;
+  font-size: 14px;
+  color: #336aff;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+
+  @media (min-width: $bp-desktop) {
+    font-size: 16px;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.step3-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @media (min-width: $bp-desktop) {
+    gap: 32px;
+  }
+}
+
+// Key-value pairs
+.step3-kv {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (max-width: ($bp-desktop - 1px)) {
+    gap: 24px;
+  }
+}
+
+.step3-kv__row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+
+  @media (max-width: ($bp-desktop - 1px)) {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+}
+
+.step3-kv__label {
+  font-family: $font-family-sans;
+  font-weight: 600;
+  font-size: 14px;
+  color: $text-secondary;
+  flex: 1;
+  min-width: 0;
+
+  @media (min-width: $bp-desktop) {
+    font-size: 16px;
+  }
+}
+
+.step3-kv__value {
+  font-family: $font-family-sans;
+  font-weight: 400;
+  font-size: 16px;
+  color: $text-primary;
+  line-height: 23px;
+  flex: 1;
+  min-width: 0;
+
+  @media (min-width: $bp-desktop) {
+    font-weight: 600;
+    text-align: right;
+  }
+
+  @media (max-width: ($bp-desktop - 1px)) {
+    text-align: left;
+  }
+}
+
+// Account nickname is larger and bold
+.step3-kv__value--nickname {
+  font-weight: 700;
+  font-size: 16px;
+
+  @media (min-width: $bp-desktop) {
+    font-size: 20px;
+  }
+}
+
+// Uploaded status is blue
+.step3-kv__value--uploaded {
+  color: #73a2f5;
+  font-weight: 600;
+}
+
+// Divider
+.step3-divider {
+  height: 1px;
+  background: #eeeeee;
+  width: 100%;
+  margin: 0;
+}
+
+// Declaration title
+.step3-declaration-title {
+  font-family: $font-family-sans;
+  font-weight: 700;
+  font-size: 16px;
+  color: $text-primary;
+  margin: 0;
+}
+
+// Info alert
+.step3-alert {
+  background: rgba(77, 136, 255, 0.15);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.step3-alert__icon {
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.step3-alert__text {
+  font-family: $font-family-sans;
+  font-weight: 600;
+  font-size: 14px;
+  color: #4d88ff;
+  margin: 0;
+  line-height: 20px;
+  flex: 1;
+}
+
+// Action buttons
+.step3-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  align-items: center;
+
+  @media (max-width: ($bp-desktop - 1px)) {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+
+    .btn {
+      flex: 1;
+    }
+  }
+
+  @media (min-width: $bp-desktop) {
+    .btn {
+      width: 200px;
+      height: 52px;
+      border-radius: 12px;
+    }
+  }
+}
+
+.page--cp-submitted {
+  .container--cp-submitted {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+
+    @media (min-width: $bp-desktop) {
+      padding: 64px 40px;
+    }
+  }
+
+  .cp-submitted {
+    max-width: 480px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @media (min-width: $bp-desktop) {
+      padding: 48px;
+      gap: 24px;
+      max-width: 580px;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #eeeeee;
+    }
+  }
+
+  .cp-submitted__title {
+    margin: 0;
+    font-family: $font-sora;
+    font-weight: 700;
+    font-size: 22px;
+    color: $text-primary;
+    text-align: left;
+
+    @media (min-width: $bp-desktop) {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: left;
+    }
+  }
+
+  .cp-submitted__steps {
+    list-style: none;
+    margin: 0;
+    display: grid;
+    gap: 0;
+    padding: 0;
+    border-radius: 12px;
+  }
+
+  .cp-step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    column-gap: 16px;
+    align-items: center;
+    position: relative;
+    min-height: 72px;
+
+    @media (min-width: $bp-desktop) {
+      grid-template-columns: 60px 1fr;
+    }
+  }
+
+  .cp-step__rail {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 60px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .cp-step__track {
+    width: 2px;
+    background: #DBDBDC;
+    flex: 1 1 auto;
+    display: block;
+    min-height: 12px;
+  }
+
+  .cp-step:first-child .cp-step__rail .cp-step__track:first-child {
+    opacity: 0;
+  }
+
+  .cp-step:last-child .cp-step__rail .cp-step__track:last-child {
+    opacity: 0;
+  }
+
+  .cp-step__node-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 9999px;
+    border: 1px solid #EEEEEE;
+    display: grid;
+    place-items: center;
+    margin: 2px 0;
+    background: #ffffff;
+    flex-shrink: 0;
+
+    img {
+      width: 28px;
+      height: 28px;
+    }
+
+    @media (min-width: $bp-desktop) {
+      width: 60px;
+      height: 60px;
+
+      img {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  }
+
+  .cp-step__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cp-step__title {
+    font-family: $font-family-sans;
+    font-weight: 600;
+    font-size: 16px;
+    color: #3c4248;
+    line-height: 1.5;
+    text-align: left;
+
+    @media (min-width: $bp-desktop) {
+      font-size: 18px;
+      font-weight: 700;
+    }
+  }
+
+  .cp-step--active .cp-step__title {
+    color: #3c4248;
+  }
+
+  .cp-step--future .cp-step__title {
+    color: #9b9c9c;
+  }
+
+  .cp-step__text {
+    margin: 2px 0 0 0;
+    font-family: $font-family-sans;
+    font-weight: 400;
+    font-size: 14px;
+    color: #73a2f5;
+    line-height: 1.5;
+
+    @media (min-width: $bp-desktop) {
+      font-size: 16px;
+    }
+  }
+
+  .cp-step--future .cp-step__text {
+    color: #9b9c9c;
+    font-weight: 400;
+  }
+
+  .cp-submitted__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+
+    @media (max-width: ($bp-desktop - 1px)) {
+      flex-direction: column;
+      gap: 16px;
+
+      .btn {
+        width: 100%;
+        height: 52px;
+        font-size: 16px;
+      }
+
+      // Reorder: primary button on top
+      .btn--primary {
+        order: -1;
+      }
+
+      .btn--secondary {
+        order: 1;
+      }
+    }
+
+    @media (min-width: $bp-desktop) {
+      gap: 16px;
+
+      .btn {
+        min-width: 160px;
+        height: 40px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  // Customer submitted page specific styles
+  &.page--customer-submitted {
+    .cp-submitted__header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+
+    .cp-submitted__asset {
+      width: 68px;
+      height: 30px;
+      display: block;
+
+      @media (min-width: $bp-desktop) {
+        width: 85px;
+        height: 35px;
+      }
+    }
+
+    .cp-submitted__asset-divider {
+      width: 68px;
+      height: 1px;
+      background: $border-color;
+      margin-top: 0;
+
+      @media (min-width: $bp-desktop) {
+        width: 85px;
+      }
+    }
+
+    .cp-submitted__title {
+      @media (max-width: ($bp-desktop - 1px)) {
+        font-size: 26px;
+        font-weight: 700;
+      }
+    }
+
+    .cp-submitted__steps {
+      padding: 16px 0;
+      gap: 0;
+    }
+
+    .cp-step {
+
+      min-height: 44px;
+
+      @media (min-width: $bp-desktop) {
+        min-height: 60px;
+      }
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+
+    .cp-step__rail {
+      @media (max-width: ($bp-desktop - 1px)) {
+        width: 44px;
+      }
+    }
+
+    .cp-step__node-wrap {
+      @media (max-width: ($bp-desktop - 1px)) {
+        width: 44px;
+        height: 44px;
+
+        img {
+          width: 26px;
+          height: 26px;
+        }
+      }
+    }
+
+    .cp-step__label {
+      font-family: $font-family-sans;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 1.5;
+      margin-bottom: 0;
+
+      @media (min-width: $bp-desktop) {
+        font-size: 16px;
+      }
+
+      &--done {
+        color: #3FAE64;
+        font-weight: 700;
+      }
+
+      &--next {
+        color: #73A2F5;
+        font-weight: 700;
+      }
+    }
+
+    .cp-step--done .cp-step__label {
+      color: #3FAE64;
+    }
+
+    .cp-step__title {
+      margin-top: 0;
+      font-size: 16px;
+
+      @media (min-width: $bp-desktop) {
+        font-size: 18px;
+      }
+    }
+
+    .cp-step--active .cp-step__title {
+      font-weight: 700;
+    }
+
+    .cp-step--done .cp-step__title {
+      font-weight: 700;
+    }
+
+    .cp-submitted__divider {
+      height: 1px;
+      background: #eeeeee;
+      width: 100%;
+    }
+
+    .cp-submitted__link-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: 8px;
+
+      @media (max-width: ($bp-desktop - 1px)) {
+        padding-bottom: 24px;
+      }
+    }
+
+    .cp-submitted__link-title {
+      font-family: $font-family-sans;
+      font-weight: 700;
+      font-size: 16px;
+      color: $text-primary;
+      margin: 0;
+
+      @media (min-width: $bp-desktop) {
+        font-size: 18px;
+      }
+    }
+
+    .cp-submitted__link-wrapper {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      height: 64px;
+      width: 100%;
+      padding: 16px;
+      background: #FFFFFF;
+      border: 1px solid #DBDBDC;
+      border-radius: 8px;
+      cursor: pointer;
+
+      &:hover {
+        background: #f1f5f9;
+      }
+
+      &:active {
+        opacity: 0.8;
+      }
+    }
+
+    .cp-submitted__link-content {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .cp-submitted__link-text {
+      font-family: $font-family-sans;
+      font-weight: 600;
+      font-size: 14px;
+      color: $text-primary;
+      word-break: break-all;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      @media (min-width: $bp-desktop) {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+
+    .cp-submitted__copy-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 0 16px;
+      background: #3f78ff;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      font-family: $font-family-sans;
+      font-weight: 700;
+      font-size: 12px;
+      color: #ffffff;
+      white-space: nowrap;
+      flex-shrink: 0;
+      height: 32px;
+      transition: opacity 0.15s ease, transform 0.02s ease;
+
+      @media (min-width: $bp-desktop) {
+        min-width: 100px;
+      }
+
+      @media (max-width: ($bp-desktop - 1px)) {
+        padding: 0;
+        width: 32px;
+        min-width: 32px;
+        border-radius: 16px;
+        background: #3F78FF;
+        color: #ffffff;
+
+        span {
+          display: none;
+        }
+      }
+
+      img {
+        display: block;
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      &:active {
+        transform: translateY(1px);
+      }
+    }
+
+    .cp-submitted__link-note {
+      font-family: $font-family-sans;
+      font-weight: 600;
+      font-size: 14px;
+      color: #73a2f5;
+      text-align: left;
+      margin: 0;
+
+      @media (max-width: ($bp-desktop - 1px)) {
+        text-align: center;
+      }
+
+      &--desktop {
+        display: none;
+
+        @media (min-width: $bp-desktop) {
+          display: inline;
+        }
+      }
+
+      &--mobile {
+        display: inline;
+
+        @media (min-width: $bp-desktop) {
+          display: none;
+        }
+      }
+    }
+
+    .cp-submitted__actions {
+      @media (max-width: ($bp-desktop - 1px)) {
+        padding-top: 0;
+      }
+
+      @media (min-width: $bp-desktop) {
+        padding-top: 16px;
+        // padding-bottom: 32px;
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+// Add Customer page specific styles
+.page--addcustomer {
+
+  // Step 1 email note
+  #step1-form .form__field p {
+    font-family: $font-family-sans;
+    font-weight: 600;
+    font-size: 14px;
+    color: #73a2f5;
+    margin-top: 4px;
+    margin-bottom: 0;
+
+    &.is-error {
+      color: #DD483C;
+    }
+  }
+
+  // Step 1 & Step 2 actions (outside forms)
+  #step1-actions,
+  #step2-actions {
+    margin-top: 32px;
+    border-top: none;
+    padding-top: 0;
+
+    @media (max-width: ($bp-desktop - 1px)) {
+      flex-direction: column-reverse;
+      gap: 16px;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+
+  // Step 2 card header
+  #step2-form .step3-card__header {
+
+
+    .step3-card__title {
+      margin: 0;
+    }
+  }
+
+  // Step 2 kv gap on desktop
+  #step2-form .step3-kv {
+    @media (min-width: $bp-desktop) {
+      gap: 32px !important;
+    }
+  }
+
+  // Step 2 email wrapper
+  #step2-email-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+
+    @media (max-width: ($bp-desktop - 1px)) {
+      align-items: flex-start;
+    }
+  }
+
+  // Step 2 email value
+  #step2-email {
+    @media (max-width: ($bp-desktop - 1px)) {
+      text-align: left !important;
+    }
+  }
+
+  // Step 2 email note
+  .step2-email-note {
+    font-family: $font-family-sans;
+    font-weight: 600;
+    font-size: 14px;
+    color: #73a2f5;
+  }
+
+  // Step 2 How it works section
+  .step2-how-it-works {
+    margin-top: 32px;
+
+    &__container {
+      margin-bottom: 16px;
+    }
+
+    &__title {
+      font-family: $font-family-sans;
+      font-weight: 700;
+      font-size: 16px;
+      color: #2D2F2F;
+      margin: 0 0 16px 0;
+    }
+
+    &__card {
+      background: #FCFCFC;
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    &__item {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      min-height: 40px;
+    }
+
+    &__icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+
+      img {
+        display: block;
+      }
+    }
+
+    &__text {
+      font-family: $font-family-sans;
+      font-weight: 600;
+      font-size: 14px;
+      color: #2D2F2F;
+      margin: 0;
+      flex: 1;
+    }
+
+    &__divider {
+      height: 1px;
+      background: #EEEEEE;
+    }
+  }
+
+  // Step 2 verification text
+  #step2-verification-text {
+    font-family: $font-family-sans;
+    font-weight: 600;
+    font-size: 14px;
+    color: #73a2f5;
+    text-align: right;
+    margin: 0;
+
+    @media (max-width: ($bp-desktop - 1px)) {
+      text-align: center;
+    }
+  }
+
+  // Step 2 footer text
+  #step2-footer-text {
+    font-family: $font-family-sans;
+    font-weight: 400;
+    font-size: 12px;
+    color: #797A7B;
+    text-align: right;
+    margin: 16px 0 0 0;
+
+    @media (max-width: ($bp-desktop - 1px)) {
+      text-align: center;
+    }
+  }
+
+  // Step indicator 2 - remove bottom margin
+  #step-indicator-2 .ab-step__content {
+    margin-bottom: 0;
+  }
+}
