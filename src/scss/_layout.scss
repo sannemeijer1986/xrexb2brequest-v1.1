@@ -85,12 +85,10 @@ html { overflow-y: scroll; }
   .chip-name { font-weight: 600; display: none; }
   .account-chip .chevron { display: none; width: 20px; height: 20px; margin-top: 3px; }
 
-  @media (min-width: $bp-desktop) {
-    .header__content { max-width: $bp-wide; padding: 0 40px; height: 70px; }
-    .brand__img { height: 23px; }
-    .chip-name { display: inline; }
-    .account-chip .chevron { display: inline; }
-  }
+  .header__content { max-width: $bp-wide; padding: 0 40px; height: 70px; }
+  .brand__img { height: 23px; }
+  .chip-name { display: inline; }
+  .account-chip .chevron { display: inline; }
 }
 
 // Show request button when state is 2, 4, or 5
@@ -819,6 +817,9 @@ html[data-prototype-state="state-5"] .site-header .header__actions .header__requ
   padding: 16px 16px 72px 16px;
   display: flex;
   align-items: center;
+  left: 0;
+  bottom: 0;
+  position: absolute;
   width: 100vw;
 
   @media (max-width: ($bp-desktop - 1px)) {
@@ -876,25 +877,24 @@ html[data-prototype-state="state-5"] .site-header .header__actions .header__requ
   .footer__links { order: 1; }
   .footer__copy { order: 2; }
 
-  @media (min-width: $bp-desktop) {
-    padding: 0;
-    height: 40px;
-    .footer__inner {
-      max-width: $bp-wide;
-      padding: 0 40px;
-      justify-content: space-between;
-      flex-wrap: nowrap;
-    }
-    .footer__links {
-      width: auto;
-      justify-content: flex-end;
-      order: 0;
-    }
-    .footer__copy {
-      width: auto;
-      text-align: left;
-      order: 0;
-    }
+  padding: 0;
+  height: 40px;
+  .footer__inner {
+    max-width: 1440px;
+    min-width: 1280px;
+    padding: 0 40px;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .footer__links {
+    width: auto;
+    justify-content: flex-end;
+    order: 0;
+  }
+  .footer__copy {
+    width: auto;
+    text-align: left;
+    order: 0;
   }
 }
 

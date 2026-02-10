@@ -215,21 +215,19 @@ html {
   height: 20px;
   margin-top: 3px;
 }
-@media (min-width: 1280px) {
-  .site-header .header__content {
-    max-width: 1440px;
-    padding: 0 40px;
-    height: 70px;
-  }
-  .site-header .brand__img {
-    height: 23px;
-  }
-  .site-header .chip-name {
-    display: inline;
-  }
-  .site-header .account-chip .chevron {
-    display: inline;
-  }
+.site-header .header__content {
+  max-width: 1440px;
+  padding: 0 40px;
+  height: 70px;
+}
+.site-header .brand__img {
+  height: 23px;
+}
+.site-header .chip-name {
+  display: inline;
+}
+.site-header .account-chip .chevron {
+  display: inline;
 }
 
 html[data-prototype-state=state-2] .site-header .header__actions .header__request-btn,
@@ -957,6 +955,9 @@ html[data-prototype-state=state-5] .site-header .header__actions .header__reques
   padding: 16px 16px 72px 16px;
   display: flex;
   align-items: center;
+  left: 0;
+  bottom: 0;
+  position: absolute;
   width: 100vw;
 }
 @media (max-width: 1279px) {
@@ -1023,44 +1024,68 @@ html[data-prototype-state=state-5] .site-header .header__actions .header__reques
 .site-footer .footer__copy {
   order: 2;
 }
-@media (min-width: 1280px) {
-  .site-footer {
-    padding: 0;
-    height: 40px;
-  }
-  .site-footer .footer__inner {
-    max-width: 1440px;
-    padding: 0 40px;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-  }
-  .site-footer .footer__links {
-    width: auto;
-    justify-content: flex-end;
-    order: 0;
-  }
-  .site-footer .footer__copy {
-    width: auto;
-    text-align: left;
-    order: 0;
-  }
+.site-footer {
+  padding: 0;
+  height: 40px;
+}
+.site-footer .footer__inner {
+  max-width: 1440px;
+  min-width: 1280px;
+  padding: 0 40px;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+.site-footer .footer__links {
+  width: auto;
+  justify-content: flex-end;
+  order: 0;
+}
+.site-footer .footer__copy {
+  width: auto;
+  text-align: left;
+  order: 0;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  width: 1280px;
+  min-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: visible;
+}
+
+.site-header {
+  min-width: 1280px;
+}
+.site-header .header__content {
+  max-width: 1440px;
+}
+.site-header .brand__img {
+  height: 23px;
+}
+.site-header .chip-name {
+  display: inline;
+}
+.site-header .account-chip .chevron {
+  display: inline;
 }
 
 .page--profile-payment {
-  padding-top: 24px;
-  padding-bottom: 40px;
+  padding-top: 70px;
+  padding-bottom: 48px;
   background: #F8F8F8;
 }
 
 .profile-payment__container {
+  width: 1200px;
+  min-width: 1200px;
   max-width: 1200px;
   margin-inline: auto;
-  padding: 40px 20px 40px 20px;
-}
-@media (min-width: 1280px) {
-  .profile-payment__container {
-    padding: px 40px 80px 40px;
-  }
+  padding: 80px 40px 80px 40px;
 }
 
 .profile-payment__header {
@@ -1068,13 +1093,8 @@ html[data-prototype-state=state-5] .site-header .header__actions .header__reques
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
-}
-@media (min-width: 1280px) {
-  .profile-payment__header {
-    margin-bottom: 48px;
-  }
+  flex-wrap: nowrap;
+  margin-bottom: 48px;
 }
 
 .profile-payment__title {
@@ -1099,15 +1119,9 @@ html[data-prototype-state=state-5] .site-header .header__actions .header__reques
 
 .profile-payment__grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
   gap: 24px;
   align-items: stretch;
-}
-@media (min-width: 1280px) {
-  .profile-payment__grid {
-    grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
-    gap: 24px;
-  }
 }
 
 .profile-card,
@@ -1117,14 +1131,10 @@ html[data-prototype-state=state-5] .site-header .header__actions .header__reques
 }
 
 .profile-card {
-  width: 100%;
-  max-width: 460px;
-}
-
-.profile-card {
   background: #fff;
   border: 1px solid #eeeeee;
   border-radius: 8px;
+  width: 100%;
   padding: 40px 32px;
   display: flex;
   max-width: 460px;
@@ -1157,18 +1167,12 @@ html[data-prototype-state=state-5] .site-header .header__actions .header__reques
 }
 
 .profile-card__name {
-  margin: 0 0 24px;
+  margin: 0 0 32px;
   font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-weight: 700;
   font-size: 22px;
   color: #0f172a;
   line-height: 1.3;
-}
-@media (min-width: 1280px) {
-  .profile-card__name {
-    font-size: 22px;
-    margin-bottom: 32px;
-  }
 }
 
 .profile-card__fields {
@@ -1204,21 +1208,11 @@ html[data-prototype-state=state-5] .site-header .header__actions .header__reques
   font-size: 14px;
   line-height: 1.4;
 }
-@media (min-width: 1280px) {
-  .profile-card__field dt {
-    font-size: 14px;
-  }
-}
 .profile-card__field dd {
   font-weight: 500;
   color: #0f172a;
   font-size: 16px;
   line-height: 1.4;
-}
-@media (min-width: 1280px) {
-  .profile-card__field dd {
-    font-size: 16px;
-  }
 }
 
 .payment-methods-card {
@@ -1278,7 +1272,7 @@ html[data-prototype-state=state-5] .site-header .header__actions .header__reques
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 14px 20px;
+  padding: 14px 24px;
   min-height: 98px;
   background: #ffffff;
   border: 1px solid #eeeeee;
@@ -1339,150 +1333,6 @@ html[data-prototype-state=state-5] .site-header .header__actions .header__reques
   width: 24px;
   height: 24px;
   display: block;
-}
-
-/*
- * Desktop-lock mode (temporary):
- * - Disables mobile/tablet responsive behavior for this page
- * - Keeps body width fixed to desktop
- * - Easy to re-enable RWD later: remove `profile-desktop-lock` from <body>
- */
-html.profile-desktop-lock-root {
-  overflow-x: hidden;
-}
-
-body.profile-desktop-lock {
-  width: 1280px;
-  min-width: 1280px;
-  overflow-x: visible;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-body.profile-desktop-lock .site-header {
-  min-width: 1280px;
-}
-
-body.profile-desktop-lock .site-header .header__content {
-  max-width: 1440px;
-}
-
-body.profile-desktop-lock .site-header .brand__img {
-  height: 23px;
-}
-
-body.profile-desktop-lock .site-header .chip-name {
-  display: inline;
-}
-
-body.profile-desktop-lock .site-header .account-chip .chevron {
-  display: inline;
-}
-
-body.profile-desktop-lock .profile-payment__container {
-  width: 1200px;
-  min-width: 1200px;
-  max-width: 1200px;
-  padding: 80px 40px 80px 40px;
-}
-
-body.profile-desktop-lock .profile-payment__header {
-  flex-wrap: nowrap;
-  margin-bottom: 48px;
-}
-
-body.profile-desktop-lock .profile-payment__title {
-  font-size: 40px;
-}
-
-body.profile-desktop-lock .profile-payment__back {
-  font-size: 16px;
-}
-
-body.profile-desktop-lock .profile-payment__grid {
-  grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
-  gap: 24px;
-}
-
-/* Force desktop card sizing even when viewport is < $bp-desktop */
-body.profile-desktop-lock .profile-card {
-  padding: 40px 32px;
-}
-
-body.profile-desktop-lock .profile-card__icon {
-  width: 96px;
-  height: 96px;
-}
-
-body.profile-desktop-lock .profile-card__icon img {
-  width: 46px;
-  height: 46px;
-}
-
-body.profile-desktop-lock .profile-card__label {
-  font-size: 16px;
-}
-
-body.profile-desktop-lock .profile-card__fields {
-  padding: 32px 28px;
-}
-
-body.profile-desktop-lock .payment-methods-card {
-  padding: 32px;
-}
-
-body.profile-desktop-lock .payment-methods-card__header {
-  margin-bottom: 24px;
-}
-
-body.profile-desktop-lock .payment-methods-card__section-label {
-  font-size: 14px;
-}
-
-body.profile-desktop-lock .wallet-entry {
-  padding: 14px 20px;
-  min-height: 64px;
-}
-
-body.profile-desktop-lock .wallet-entry__title {
-  font-size: 20px;
-}
-
-body.profile-desktop-lock .wallet-entry__detail {
-  font-size: 16px;
-}
-
-body.profile-desktop-lock .site-footer {
-  min-width: 1280px;
-  width: 100vw;
-  max-width: none;
-  left: 0;
-  bottom: 0;
-  position: absolute;
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0;
-  height: 40px;
-}
-
-body.profile-desktop-lock .site-footer .footer__inner {
-  max-width: 1440px;
-  padding: 0 40px;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-  height: 40px;
-}
-
-body.profile-desktop-lock .site-footer .footer__links {
-  width: auto;
-  justify-content: flex-end;
-  order: 0;
-}
-
-body.profile-desktop-lock .site-footer .footer__copy {
-  width: auto;
-  text-align: left;
-  order: 0;
 }
 
 /* Auto-mirrored from src/css/overrides.css when running `npm run dev:with-css-edit` */
