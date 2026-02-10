@@ -296,10 +296,13 @@
                 verifyInput.readOnly = true;
 
                 setTimeout(function () {
+                    modal.setAttribute("aria-hidden", "true");
+                    if (loadingEl) loadingEl.setAttribute("aria-hidden", "true");
                     walletLoadingModal.setAttribute("aria-hidden", "false");
                     setTimeout(function () {
                         walletLoadingModal.setAttribute("aria-hidden", "true");
                         verifyFlowRunning = false;
+                        unlockBackgroundScroll();
                     }, 900);
                 }, 500);
             }
@@ -316,6 +319,14 @@
 
             if (closeBtn) closeBtn.addEventListener("click", closeModal);
             if (okayBtn) okayBtn.addEventListener("click", closeModal);
+
+            // TEMP: auto-show loading modal on page load for easier styling — remove when done
+            setTimeout(function () {
+                if (walletLoadingModal) {
+                    lockBackgroundScroll();
+                    walletLoadingModal.setAttribute("aria-hidden", "false");
+                }
+            }, 100);
         })();
     </script>
 </body>
