@@ -3237,32 +3237,62 @@ if (document.readyState === 'loading') {
 
 // Modal helpers (reused lightweight pattern)
 (function initModalLogic() {
-  const open = (el) => {
-    if (!el) return;
-    el.setAttribute('aria-hidden', 'false');
-    document.documentElement.classList.add('modal-open');
-    document.body.classList.add('modal-open');
-    // Lock scroll (iOS safe)
+  const getOpenModalCount = () => document.querySelectorAll('.modal[aria-hidden="false"]').length;
+
+  const lockBackgroundScroll = () => {
+    if (document.body.classList.contains('modal-locked')) return;
     try {
       const y = window.scrollY || window.pageYOffset || 0;
+      document.body.dataset.prevPosition = document.body.style.position || '';
+      document.body.dataset.prevWidth = document.body.style.width || '';
+      document.body.dataset.prevLeft = document.body.style.left || '';
+      document.body.dataset.prevRight = document.body.style.right || '';
       document.body.dataset.scrollY = String(y);
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.left = '0';
+      document.body.style.right = '0';
       document.body.style.top = `-${y}px`;
       document.body.classList.add('modal-locked');
     } catch (_) { }
   };
-  const close = (el) => {
-    if (!el) return;
-    el.setAttribute('aria-hidden', 'true');
-    document.documentElement.classList.remove('modal-open');
-    document.body.classList.remove('modal-open');
-    // Unlock scroll
+
+  const unlockBackgroundScroll = () => {
+    if (!document.body.classList.contains('modal-locked')) return;
     try {
       const y = parseInt(document.body.dataset.scrollY || '0', 10) || 0;
       document.body.classList.remove('modal-locked');
+      document.body.style.position = document.body.dataset.prevPosition || '';
+      document.body.style.width = document.body.dataset.prevWidth || '';
+      document.body.style.left = document.body.dataset.prevLeft || '';
+      document.body.style.right = document.body.dataset.prevRight || '';
       document.body.style.top = '';
       delete document.body.dataset.scrollY;
+      delete document.body.dataset.prevPosition;
+      delete document.body.dataset.prevWidth;
+      delete document.body.dataset.prevLeft;
+      delete document.body.dataset.prevRight;
       window.scrollTo(0, y);
     } catch (_) { }
+  };
+
+  const syncModalState = () => {
+    const hasOpenModal = getOpenModalCount() > 0;
+    document.documentElement.classList.toggle('modal-open', hasOpenModal);
+    document.body.classList.toggle('modal-open', hasOpenModal);
+    if (hasOpenModal) lockBackgroundScroll();
+    else unlockBackgroundScroll();
+  };
+
+  const open = (el) => {
+    if (!el) return;
+    el.setAttribute('aria-hidden', 'false');
+    syncModalState();
+  };
+  const close = (el) => {
+    if (!el) return;
+    el.setAttribute('aria-hidden', 'true');
+    syncModalState();
   };
 
   // Wire close buttons and overlay click
@@ -3277,6 +3307,31 @@ if (document.readyState === 'loading') {
 
   window.__openModal = open;
   window.__closeModal = close;
+  window.__syncModalState = syncModalState;
+
+  // Keep modal/body state in sync when legacy code toggles aria-hidden directly.
+  try {
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (
+          mutation.type === 'attributes'
+          && mutation.attributeName === 'aria-hidden'
+          && mutation.target
+          && mutation.target.classList
+          && mutation.target.classList.contains('modal')
+        ) {
+          syncModalState();
+          break;
+        }
+      }
+    });
+    observer.observe(document.body, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['aria-hidden']
+    });
+  } catch (_) { }
+  syncModalState();
 
   // Global snackbar helper (idempotent)
   // type: 'success' | 'error' | 'info' (default: 'success')
