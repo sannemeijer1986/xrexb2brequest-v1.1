@@ -117,7 +117,7 @@
         <div class="pp-modal__dialog">
             <div class="pp-modal__header">
                 <h2 id="verifyEmailTitle">Log in to your wallet</h2>
-                <button type="button" id="verifyEmailClose" aria-label="Close">×</button>
+                <button type="button" id="verifyEmailClose" aria-label="Close"><img src="assets/icon_pp_close.svg" width="24" height="24" alt="" /></button>
             </div>
             <div class="pp-modal__body">
                 <p class="pp-modal__lead">
@@ -125,7 +125,7 @@
                     <span>abc1234@gmail.com</span>
                 </p>
 
-                <div class="pp-modal__brand">dynamic <small>by Fireblocks</small></div>
+                <div class="pp-modal__brand"><img src="assets/logo_pp_dynamic.svg" alt="dynamic by Fireblocks" /></div>
 
                 <label class="pp-modal__label" for="verifyCodeInput">Verification code</label>
                 <input id="verifyCodeInput" type="text" placeholder="Enter code from your email" />
@@ -191,6 +191,10 @@
             }
 
             function openModal() {
+                if (verifyInput) {
+                    verifyInput.value = "";
+                    verifyInput.readOnly = false;
+                }
                 modal.setAttribute("aria-hidden", "false");
                 lockBackgroundScroll();
             }
@@ -198,7 +202,9 @@
             function closeModal() {
                 modal.setAttribute("aria-hidden", "true");
                 if (loadingEl) loadingEl.setAttribute("aria-hidden", "true");
+                if (walletLoadingModal) walletLoadingModal.setAttribute("aria-hidden", "true");
                 verifyFlowRunning = false;
+                if (verifyInput) verifyInput.readOnly = false;
                 unlockBackgroundScroll();
             }
 
