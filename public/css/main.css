@@ -1680,29 +1680,75 @@ body.profile-payment-page .site-footer {
   border-radius: 3px;
   flex-shrink: 0;
   background: #E5E7EB;
-  animation: pp-progress-slide 0.85s ease-in-out infinite;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 .pp-loading-modal__progress-bar:nth-child(1) {
-  animation-delay: 0s;
+  animation-name: pp-progress-bar-1;
 }
 .pp-loading-modal__progress-bar:nth-child(2) {
-  animation-delay: 0.075s;
+  animation-name: pp-progress-bar-2;
 }
 .pp-loading-modal__progress-bar:nth-child(3) {
-  animation-delay: 0.15s;
+  animation-name: pp-progress-bar-3;
 }
 .pp-loading-modal__progress-bar:nth-child(4) {
-  animation-delay: 0.225s;
+  animation-name: pp-progress-bar-4;
 }
 .pp-loading-modal__progress-bar:nth-child(5) {
-  animation-delay: 0.3s;
+  animation-name: pp-progress-bar-5;
 }
 
-@keyframes pp-progress-slide {
-  0%, 60% {
+@keyframes pp-progress-bar-1 {
+  0%, 11.5% {
     background: #3F78FF;
   }
-  60.01%, 100% {
+  12.5%, 74% {
+    background: #E5E7EB;
+  }
+  75%, 100% {
+    background: #3F78FF;
+  }
+}
+@keyframes pp-progress-bar-2 {
+  0%, 24% {
+    background: #3F78FF;
+  }
+  25%, 86.5% {
+    background: #E5E7EB;
+  }
+  87.5%, 100% {
+    background: #3F78FF;
+  }
+}
+@keyframes pp-progress-bar-3 {
+  0%, 36.5% {
+    background: #3F78FF;
+  }
+  37.5%, 100% {
+    background: #E5E7EB;
+  }
+}
+@keyframes pp-progress-bar-4 {
+  0%, 11.5% {
+    background: #E5E7EB;
+  }
+  12.5%, 49% {
+    background: #3F78FF;
+  }
+  50%, 100% {
+    background: #E5E7EB;
+  }
+}
+@keyframes pp-progress-bar-5 {
+  0%, 24% {
+    background: #E5E7EB;
+  }
+  25%, 61.5% {
+    background: #3F78FF;
+  }
+  62.5%, 100% {
     background: #E5E7EB;
   }
 }
