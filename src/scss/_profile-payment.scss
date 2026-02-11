@@ -612,7 +612,7 @@ body.profile-payment-page .site-footer {
 .pp-loading-modal__logos {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 
 .pp-loading-modal__logo {
@@ -648,42 +648,37 @@ body.profile-payment-page .site-footer {
   flex-shrink: 0;
 }
 
+// 5 bars: 12×8px each, 3px radius, 80px wrapper, 5px gap. 3 blue / 2 grey, sliding right.
 .pp-loading-modal__progress {
-  width: 64px;
-  height: 10px;
+  width: 80px;
+  height: 8px;
   flex-shrink: 0;
-  border-radius: 2px;
-  // 6 dashes: grey, grey, blue, blue, blue, grey (dash 6px, gap 2px)
-  background: linear-gradient(
-    90deg,
-    #E5E7EB 0px,
-    #E5E7EB 6px,
-    transparent 6px,
-    transparent 8px,
-    #E5E7EB 8px,
-    #E5E7EB 14px,
-    transparent 14px,
-    transparent 16px,
-    #3F78FF 16px,
-    #3F78FF 22px,
-    transparent 22px,
-    transparent 24px,
-    #3F78FF 24px,
-    #3F78FF 30px,
-    transparent 30px,
-    transparent 32px,
-    #3F78FF 32px,
-    #3F78FF 38px,
-    transparent 38px,
-    transparent 40px,
-    #E5E7EB 40px,
-    #E5E7EB 46px,
-    transparent 46px,
-    transparent 48px
-  );
-  background-size: 48px 10px;
-  background-repeat: no-repeat;
-  background-position: 8px 0;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.pp-loading-modal__progress-bar {
+  width: 12px;
+  height: 8px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  background: #E5E7EB;
+  animation: pp-progress-slide 0.85s ease-in-out infinite;
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{($i - 1) * 0.075}s;
+    }
+  }
+}
+
+@keyframes pp-progress-slide {
+  0%, 60% {
+    background: #3F78FF;
+  }
+  60.01%, 100% {
+    background: #E5E7EB;
+  }
 }
 
 .pp-loading-modal__message {
