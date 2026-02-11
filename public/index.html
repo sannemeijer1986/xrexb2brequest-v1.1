@@ -113,6 +113,28 @@
         </div>
     </main>
 
+    <div class="pp-modal pp-modal--get-code" id="requestOtpModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="requestOtpTitle">
+        <div class="pp-modal__dialog">
+            <div class="pp-modal__header">
+                <h2 id="requestOtpTitle">Log in to your wallet</h2>
+                <button type="button" id="requestOtpClose" aria-label="Close"><img src="assets/icon_pp_close.svg" width="24" height="24" alt="" /></button>
+            </div>
+            <div class="pp-modal__body">
+                <p class="pp-modal__lead">
+                    Verify your email to continue. Fireblocks Dynamic will send a one-time verification code to <span>abc1234@gmail.com</span>
+                </p>
+                <div class="pp-modal__get-code-row">
+                    <button type="button" class="pp-modal__btn pp-modal__btn--primary" id="getVerificationCodeBtn">Get verification code</button>
+                    <div class="pp-modal__brand"><img src="assets/logo_pp_dynamic.svg" alt="dynamic by Fireblocks" /></div>
+                </div>
+                <div class="pp-modal__get-code-divider"></div>
+            </div>
+            <div class="pp-modal__footer">
+                <button type="button" class="pp-modal__btn" id="requestOtpCancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <div class="pp-modal" id="verifyEmailModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="verifyEmailTitle">
         <div class="pp-modal__dialog">
             <div class="pp-modal__header">
@@ -121,8 +143,7 @@
             </div>
             <div class="pp-modal__body">
                 <p class="pp-modal__lead">
-                    Verify your email to continue. Enter the verification code sent by Fireblocks Dynamic to
-                    <span>abc1234@gmail.com</span>
+                    Enter the verification code sent by Fireblocks Dynamic to <span>abc1234@gmail.com</span>
                 </p>
 
                 <div class="pp-modal__brand"><img src="assets/logo_pp_dynamic.svg" alt="dynamic by Fireblocks" /></div>
@@ -174,9 +195,13 @@
             const walletEntry = document.getElementById("walletEntry");
             const moreBtn = document.getElementById("walletMoreBtn");
             const moreMenu = document.getElementById("walletMoreMenu");
+            const requestOtpModal = document.getElementById("requestOtpModal");
             const modal = document.getElementById("verifyEmailModal");
             const closeBtn = document.getElementById("verifyEmailClose");
             const okayBtn = document.getElementById("verifyEmailOkay");
+            const requestOtpClose = document.getElementById("requestOtpClose");
+            const requestOtpCancel = document.getElementById("requestOtpCancel");
+            const getVerificationCodeBtn = document.getElementById("getVerificationCodeBtn");
             const viewSelfCustodyItem = document.getElementById("walletViewSelfCustody");
             const verifyInput = document.getElementById("verifyCodeInput");
             const loadingEl = document.getElementById("verifyEmailLoading");
@@ -209,6 +234,21 @@
             }
 
             function openModal() {
+                if (requestOtpModal) {
+                    requestOtpModal.setAttribute("aria-hidden", "false");
+                    lockBackgroundScroll();
+                } else {
+                    openVerifyModal();
+                }
+            }
+
+            function closeRequestOtpModal() {
+                if (requestOtpModal) requestOtpModal.setAttribute("aria-hidden", "true");
+                unlockBackgroundScroll();
+            }
+
+            function openVerifyModal() {
+                if (requestOtpModal) requestOtpModal.setAttribute("aria-hidden", "true");
                 if (verifyInput) {
                     verifyInput.value = "";
                     verifyInput.readOnly = false;
@@ -291,6 +331,20 @@
                 closeMenu();
             });
 
+            if (requestOtpModal) {
+                requestOtpModal.addEventListener("click", function (e) {
+                    if (e.target === requestOtpModal) closeRequestOtpModal();
+                });
+            }
+            if (requestOtpClose) requestOtpClose.addEventListener("click", closeRequestOtpModal);
+            if (requestOtpCancel) requestOtpCancel.addEventListener("click", closeRequestOtpModal);
+            if (getVerificationCodeBtn) {
+                getVerificationCodeBtn.addEventListener("click", function () {
+                    if (requestOtpModal) requestOtpModal.setAttribute("aria-hidden", "true");
+                    openVerifyModal();
+                });
+            }
+
             modal.addEventListener("click", function (e) {
                 if (e.target === modal) closeModal();
             });
@@ -325,14 +379,6 @@
 
             if (closeBtn) closeBtn.addEventListener("click", closeModal);
             if (okayBtn) okayBtn.addEventListener("click", closeModal);
-
-            // TEMP: auto-show loading modal on page load for easier styling — remove when done
-            setTimeout(function () {
-                if (walletLoadingModal) {
-                    lockBackgroundScroll();
-                    walletLoadingModal.setAttribute("aria-hidden", "false");
-                }
-            }, 100);
         })();
     </script>
 </body>
