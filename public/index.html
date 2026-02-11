@@ -176,12 +176,12 @@
                 </div>
                 <div class="pp-loading-modal__logo_wrapper"><div class="pp-loading-modal__logo"><img src="assets/loading_rigth.svg" alt="dynamic by Fireblocks" /></div></div>
             </div>
-            <p class="pp-loading-modal__message">Logging in to your wallet...</p>
+            <p class="pp-loading-modal__message" id="walletLoadingMessage">Logging in to your wallet...</p>
         </div>
     </div>
 
     <div class="pp-wallet-modal" id="walletModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletModalTitle">
-        <div class="pp-wallet-modal__dialog" style="opacity: 0.5;"">
+        <div class="pp-wallet-modal__dialog">
             <div class="pp-wallet-modal__header">
                 <div class="pp-wallet-modal__header-info">
                     <img class="pp-wallet-modal__header-icon" src="assets/Icon_pp_wallet.svg" alt="" width="20" height="20" />
@@ -278,8 +278,85 @@
             const walletLoadingModal = document.getElementById("walletLoadingModal");
             const walletModal = document.getElementById("walletModal");
             const walletModalClose = document.getElementById("walletModalClose");
+            const walletLoadingMessage = document.getElementById("walletLoadingMessage");
             let verifyFlowRunning = false;
+            var ppSessionCountdownTimer = null;
+            var PP_SESSION_KEY = "ppWalletSessionExpiresAt";
+            var PP_SESSION_DURATION_MS = 5 * 60 * 1000;
 
+            function getSessionExpiresAt() {
+                try {
+                    return parseInt(sessionStorage.getItem(PP_SESSION_KEY) || "0", 10);
+                } catch (_) { return 0; }
+            }
+            function isSessionActive() {
+                var exp = getSessionExpiresAt();
+                return exp > 0 && Date.now() < exp;
+            }
+            function setSession() {
+                try {
+                    sessionStorage.setItem(PP_SESSION_KEY, String(Date.now() + PP_SESSION_DURATION_MS));
+                    startSessionTimer();
+                } catch (_) {}
+            }
+            function clearSession() {
+                try {
+                    sessionStorage.removeItem(PP_SESSION_KEY);
+                    stopSessionTimer();
+                } catch (_) {}
+            }
+            function startSessionTimer() {
+                var el = document.getElementById("ppSessionTimerTool");
+                if (!el) {
+                    el = document.createElement("div");
+                    el.id = "ppSessionTimerTool";
+                    el.setAttribute("role", "status");
+                    var row = document.createElement("div");
+                    row.className = "pp-session-timer__row";
+                    var label = document.createElement("span");
+                    label.className = "pp-session-timer__label";
+                    label.textContent = "Expires in:";
+                    var val = document.createElement("strong");
+                    val.id = "ppSessionTimerValue";
+                    row.appendChild(label);
+                    row.appendChild(val);
+                    el.appendChild(row);
+                    var killLink = document.createElement("a");
+                    killLink.href = "#";
+                    killLink.className = "pp-session-timer__kill";
+                    killLink.textContent = "Kill session";
+                    killLink.addEventListener("click", function (e) { e.preventDefault(); clearSession(); });
+                    el.appendChild(killLink);
+                    document.body.appendChild(el);
+                }
+                var valueEl = document.getElementById("ppSessionTimerValue");
+                function fmt(ms) {
+                    var sec = Math.max(0, Math.floor(ms / 1000));
+                    var m = Math.floor(sec / 60);
+                    var s = sec % 60;
+                    return m + ":" + (s < 10 ? "0" + s : s);
+                }
+                function tick() {
+                    var exp = getSessionExpiresAt();
+                    var now = Date.now();
+                    if (exp > now) {
+                        if (valueEl) valueEl.textContent = fmt(exp - now);
+                        el.style.display = "flex";
+                    } else {
+                        el.style.display = "none";
+                        clearSession();
+                        if (ppSessionCountdownTimer) { clearInterval(ppSessionCountdownTimer); ppSessionCountdownTimer = null; }
+                    }
+                }
+                if (ppSessionCountdownTimer) { clearInterval(ppSessionCountdownTimer); }
+                tick();
+                ppSessionCountdownTimer = setInterval(tick, 1000);
+            }
+            function stopSessionTimer() {
+                if (ppSessionCountdownTimer) { clearInterval(ppSessionCountdownTimer); ppSessionCountdownTimer = null; }
+                var el = document.getElementById("ppSessionTimerTool");
+                if (el) el.style.display = "none";
+            }
             if (!walletEntry || !moreBtn || !moreMenu || !modal) return;
 
             function lockBackgroundScroll() {
@@ -306,6 +383,16 @@
             }
 
             function openModal() {
+                if (isSessionActive()) {
+                    if (walletLoadingMessage) walletLoadingMessage.textContent = "Opening your wallet...";
+                    lockBackgroundScroll();
+                    walletLoadingModal.setAttribute("aria-hidden", "false");
+                    setTimeout(function () {
+                        walletLoadingModal.setAttribute("aria-hidden", "true");
+                        if (walletModal) walletModal.setAttribute("aria-hidden", "false");
+                    }, 900);
+                    return;
+                }
                 if (requestOtpModal) {
                     requestOtpModal.setAttribute("aria-hidden", "false");
                     lockBackgroundScroll();
@@ -428,10 +515,12 @@
                 verifyInput.value = "123456";
                 verifyInput.readOnly = true;
 
+                if (walletLoadingMessage) walletLoadingMessage.textContent = "Logging in to your wallet...";
                 setTimeout(function () {
                     modal.setAttribute("aria-hidden", "true");
                     if (loadingEl) loadingEl.setAttribute("aria-hidden", "true");
                     walletLoadingModal.setAttribute("aria-hidden", "false");
+                    setSession();
                     setTimeout(function () {
                         walletLoadingModal.setAttribute("aria-hidden", "true");
                         if (walletModal) walletModal.setAttribute("aria-hidden", "false");
@@ -468,6 +557,7 @@
                     link.addEventListener("click", function (e) { e.preventDefault(); });
                 });
             }
+            if (isSessionActive()) startSessionTimer();
         })();
     </script>
 </body>

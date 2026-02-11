@@ -772,8 +772,8 @@ $wallet-accent: #3B82F6;
 .pp-wallet-modal__dialog {
   position: relative;
   width: 100%;
-  max-width: 400px;
-  max-height: calc(100vh - 48px);
+  width: 640px;
+  height: 700px;
   background: $wallet-bg;
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
@@ -816,7 +816,7 @@ $wallet-accent: #3B82F6;
   font-family: $font-family-sans;
   font-size: 20px;
   font-weight: 700;
-  color: $wallet-text;
+  color: yellow;
   line-height: 1.2;
 }
 
@@ -1008,4 +1008,50 @@ $wallet-accent: #3B82F6;
   font-size: 11px;
   color: $wallet-text-muted;
   opacity: 0.8;
+}
+
+// Session timer (bottom left) – countdown + Kill session link
+#ppSessionTimerTool {
+  position: fixed;
+  left: 16px;
+  bottom: 56px;
+  z-index: 1200;
+  background: rgba(17, 24, 39, 0.8);
+  color: #fff;
+  font-family: $font-family-sans;
+  font-size: 12px;
+  width: 145px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin: 0;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pp-session-timer__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .pp-session-timer__label {
+    opacity: 0.9;
+    flex: 1;
+  }
+
+  #ppSessionTimerValue {
+    min-width: 40px;
+    text-align: right;
+  }
+}
+
+.pp-session-timer__kill {
+  color: #93C5FD !important;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 12px;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
