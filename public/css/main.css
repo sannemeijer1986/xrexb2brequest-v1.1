@@ -123,6 +123,21 @@ html {
   overflow-y: scroll;
 }
 
+.pp-wallet-debug-hotspot {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 90;
+}
+
 .site-header {
   min-width: 360px;
   position: fixed;
@@ -1799,7 +1814,7 @@ body.profile-payment-page .site-footer {
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 0px;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -1811,9 +1826,11 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__dialog {
   position: relative;
   width: 100%;
+  height: calc(100% - 48px);
   max-width: 640px;
-  min-height: 420px;
-  max-height: min(700px, 100vh - 48px);
+  min-width: 480px;
+  max-height: 780px;
+  min-height: 480px;
   background: #161A2A;
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
@@ -1823,10 +1840,14 @@ body.profile-payment-page .site-footer {
 }
 
 .pp-wallet-modal__header {
-  padding: 16px 20px 12px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   gap: 12px;
+  height: 94px;
+  min-height: 94px;
+  flex: 0 0 94px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .pp-wallet-modal__back {
@@ -1910,13 +1931,12 @@ body.profile-payment-page .site-footer {
 }
 
 .pp-wallet-modal__body {
-  padding: 0 24px 24px;
   overflow-y: auto;
   flex: 1 1 auto;
 }
 
 .pp-wallet-modal__balance {
-  margin-bottom: 24px;
+  padding: 32px;
 }
 
 .pp-wallet-modal__balance-label {
@@ -1924,6 +1944,7 @@ body.profile-payment-page .site-footer {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 16px;
   color: #7384BE;
+  font-weight: 600;
 }
 
 .pp-wallet-modal__balance-approx {
@@ -1942,17 +1963,22 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__balance-amount {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 60px;
+  font-weight: 800;
   color: #FFFFFF;
   line-height: 1;
+}
+
+.pp-wallet-modal__section {
+  padding: 32px;
+  background-color: #1B2136;
 }
 
 .pp-wallet-modal__section-title {
   margin: 0 0 12px 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 600;
   color: #7384BE;
 }
 
@@ -1963,6 +1989,7 @@ body.profile-payment-page .site-footer {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   overflow: hidden;
+  width: 100%;
 }
 
 .pp-wallet-modal__item {
@@ -1998,7 +2025,7 @@ body.profile-payment-page .site-footer {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(59, 130, 246, 0.4);
+  background: #293155;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2048,8 +2075,10 @@ body.profile-payment-page .site-footer {
 }
 
 .pp-wallet-modal__footer {
-  padding: 20px 24px 24px;
+  background: #1B2136;
+  padding: 16px 16px 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+  height: 120px;
 }
 
 .pp-wallet-modal__tabs {
@@ -2065,22 +2094,18 @@ body.profile-payment-page .site-footer {
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  color: #7384BE;
+  color: #FFFFFF;
   text-decoration: none;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 16px;
-  font-weight: 400;
-}
-.pp-wallet-modal__tab img {
-  filter: brightness(0) invert(1);
-  opacity: 0.7;
+  font-weight: 600;
 }
 .pp-wallet-modal__tab--active {
   color: #4779FF;
 }
-.pp-wallet-modal__tab--active img {
-  opacity: 1;
-  filter: brightness(0) saturate(100%) invert(40%) sepia(90%) saturate(1500%) hue-rotate(210deg);
+
+.pp-wallet-modal__tab:hover {
+  text-decoration: none !important;
 }
 
 .pp-wallet-modal__disclaimer {

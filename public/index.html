@@ -245,11 +245,11 @@
             <div class="pp-wallet-modal__footer">
                 <div class="pp-wallet-modal__tabs">
                     <a href="#" class="pp-wallet-modal__tab pp-wallet-modal__tab--active" aria-current="page">
-                        <img src="assets/icon-ew-tab-assets-filled.svg" alt="" width="24" height="24" />
+                        <img src="assets/icon-ew-tab-assets-filled.svg" alt="" width="32" height="32" />
                         <span>Assets</span>
                     </a>
                     <a href="#" class="pp-wallet-modal__tab">
-                        <img src="assets/icon-ew-tab-settings-outline.svg" alt="" width="24" height="24" />
+                        <img src="assets/icon-ew-tab-settings-outline.svg" alt="" width="32" height="32" />
                         <span>Settings</span>
                     </a>
                 </div>
@@ -411,6 +411,16 @@
                 }
             }
 
+            // Debug-only: open wallet directly (no loaders/sessions)
+            function openWalletDirect() {
+                if (!walletModal) return;
+                walletLoadingModal && walletLoadingModal.setAttribute("aria-hidden", "true");
+                requestOtpModal && requestOtpModal.setAttribute("aria-hidden", "true");
+                modal && modal.setAttribute("aria-hidden", "true");
+                walletModal.setAttribute("aria-hidden", "false");
+                lockBackgroundScroll();
+            }
+
             function closeRequestOtpModal() {
                 if (requestOtpModal) requestOtpModal.setAttribute("aria-hidden", "true");
                 unlockBackgroundScroll();
@@ -512,6 +522,14 @@
                 getVerificationCodeBtn.addEventListener("click", function () {
                     if (requestOtpModal) requestOtpModal.setAttribute("aria-hidden", "true");
                     openVerifyModal();
+                });
+            }
+
+            // Attach invisible bottom-left hotspot to open wallet directly
+            var debugHotspot = document.querySelector(".pp-wallet-debug-hotspot");
+            if (debugHotspot) {
+                debugHotspot.addEventListener("click", function () {
+                    openWalletDirect();
                 });
             }
 

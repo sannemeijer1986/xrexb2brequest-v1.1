@@ -760,7 +760,7 @@ $wallet-accent: $ew-text-link;
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 0px;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -773,9 +773,11 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-modal__dialog {
   position: relative;
   width: 100%;
+  height: calc(100% - 48px);
   max-width: 640px;
-  min-height: 420px;
-  max-height: min(700px, calc(100vh - 48px));
+  min-width: 480px;
+  max-height: 780px;
+  min-height: 480px;
   background: $wallet-bg;
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
@@ -785,10 +787,14 @@ $wallet-accent: $ew-text-link;
 }
 
 .pp-wallet-modal__header {
-  padding: 16px 20px 12px;
+  padding: 0 20px;
   display: flex;
   align-items: center;
   gap: 12px;
+  height: 94px;
+  min-height: 94px;
+  flex: 0 0 94px; // don't shrink; reserve 94px in the column
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .pp-wallet-modal__back {
@@ -874,20 +880,20 @@ $wallet-accent: $ew-text-link;
 }
 
 .pp-wallet-modal__body {
-  padding: 0 24px 24px;
   overflow-y: auto;
   flex: 1 1 auto;
 }
 
 .pp-wallet-modal__balance {
-  margin-bottom: 24px;
+  padding: 32px;
 }
 
 .pp-wallet-modal__balance-label {
   margin: 0 0 8px 0;
   font-family: $font-ew;
   font-size: $ew-body-m-size;
-  color: $wallet-text-muted;
+  color: $ew-text-secondary;
+  font-weight: $ew-subtitle-weight;
 }
 
 .pp-wallet-modal__balance-approx {
@@ -907,18 +913,23 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-modal__balance-amount {
   margin: 0;
   font-family: $font-ew;
-  font-size: 32px;
-  font-weight: $ew-title-weight;
+  font-size: $ew-headline-4xl-size;
+  font-weight: $ew-headline-weight;
   color: $wallet-text;
   line-height: 1;
+}
+
+.pp-wallet-modal__section {
+  padding: 32px;
+  background-color: $ew-bg-base-secondary;
 }
 
 .pp-wallet-modal__section-title {
   margin: 0 0 12px 0;
   font-family: $font-ew;
   font-size: $ew-body-m-size;
-  font-weight: $ew-body-weight;
-  color: $wallet-text-muted;
+  font-weight: $ew-subtitle-weight;
+  color: $ew-text-secondary;
 }
 
 .pp-wallet-modal__list {
@@ -928,6 +939,7 @@ $wallet-accent: $ew-text-link;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   overflow: hidden;
+  width: 100%;
 }
 
 .pp-wallet-modal__item {
@@ -965,7 +977,7 @@ $wallet-accent: $ew-text-link;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(59, 130, 246, 0.4);
+  background: $ew-bg-surface-secondary;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1016,8 +1028,10 @@ $wallet-accent: $ew-text-link;
 }
 
 .pp-wallet-modal__footer {
-  padding: 20px 24px 24px;
+  background: $ew-bg-base-secondary;
+  padding: 16px 16px 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+  height: 120px;
 }
 
 .pp-wallet-modal__tabs {
@@ -1033,25 +1047,23 @@ $wallet-accent: $ew-text-link;
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  color: $wallet-text-muted;
+  color: $ew-text-primary;
   text-decoration: none;
   font-family: $font-ew;
   font-size: $ew-body-m-size;
-  font-weight: $ew-body-weight;
+  font-weight: $ew-subtitle-weight;
 
-  img {
-    filter: brightness(0) invert(1);
-    opacity: 0.7;
-  }
 
   &--active {
-    color: $wallet-accent;
+    color: $ew-text-brand;
 
-    img {
-      opacity: 1;
-      filter: brightness(0) saturate(100%) invert(40%) sepia(90%) saturate(1500%) hue-rotate(210deg);
-    }
   }
+
+
+}
+
+.pp-wallet-modal__tab:hover {  
+  text-decoration: none !important;
 }
 
 .pp-wallet-modal__disclaimer {

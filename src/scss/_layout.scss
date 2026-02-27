@@ -17,6 +17,22 @@
 
 // Prevent layout shift when scrollbar appears
 html { overflow-y: scroll; }
+
+.pp-wallet-debug-hotspot {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 90;
+}
+
 .site-header {
   min-width: 360px;
   position: fixed;
