@@ -1845,6 +1845,10 @@ body.profile-payment-page .site-footer {
   opacity: 0.9;
 }
 
+.pp-wallet-modal__back--hidden {
+  visibility: hidden;
+}
+
 .pp-wallet-modal__header-info {
   display: flex;
   align-items: center;
@@ -1863,7 +1867,7 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__header-label {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   color: #7384BE;
 }
 
@@ -1890,9 +1894,6 @@ body.profile-payment-page .site-footer {
 }
 
 .pp-wallet-modal__close {
-  grid-row: 1/-1;
-  grid-column: 2;
-  align-self: start;
   border: none;
   background: transparent;
   padding: 0;
@@ -1991,6 +1992,22 @@ body.profile-payment-page .site-footer {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+.pp-wallet-modal__circle-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pp-wallet-modal__circle-icon img {
+  width: 24px;
+  height: 24px;
+  display: block;
 }
 
 .pp-wallet-modal__item-content {
