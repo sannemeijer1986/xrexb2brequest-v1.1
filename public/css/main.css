@@ -1831,7 +1831,7 @@ body.profile-payment-page .site-footer {
   min-width: 480px;
   max-height: 780px;
   min-height: 480px;
-  background: #161A2A;
+  background-color: #161A2A;
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   overflow: hidden;
@@ -1847,7 +1847,7 @@ body.profile-payment-page .site-footer {
   height: 94px;
   min-height: 94px;
   flex: 0 0 94px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid #222947;
 }
 
 .pp-wallet-modal__back {
@@ -1935,6 +1935,7 @@ body.profile-payment-page .site-footer {
   flex-direction: column;
   flex: 1 1 auto;
   min-height: 0;
+  height: 100%;
   overflow-y: auto;
   background-color: #161A2A;
 }
@@ -1946,7 +1947,7 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__balance-label {
   margin: 0 0 8px 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   color: #7384BE;
   font-weight: 600;
 }
@@ -1959,6 +1960,7 @@ body.profile-payment-page .site-footer {
   color: #4779FF;
   text-decoration: none;
   font-weight: 600;
+  font-size: 16px;
 }
 .pp-wallet-modal__refresh:hover {
   text-decoration: underline;
@@ -1976,14 +1978,13 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__section {
   padding: 32px;
   background-color: #1B2136;
-  flex: 1 1 auto;
-  min-height: 0;
+  height: 100%;
 }
 
 .pp-wallet-modal__section-title {
   margin: 0 0 12px 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #7384BE;
 }
@@ -1992,7 +1993,8 @@ body.profile-payment-page .site-footer {
   list-style: none;
   margin: 0;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #222947;
+  border-bottom: 1px solid #222947;
   border-radius: 12px;
   overflow: hidden;
   width: 100%;
@@ -2001,26 +2003,29 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   padding: 14px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid #293155;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  height: 84px;
 }
 .pp-wallet-modal__item:last-child {
   border-bottom: none;
 }
-.pp-wallet-modal__item--active {
-  background: rgba(255, 255, 255, 0.06);
+.pp-wallet-modal__item:hover {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.025) 50%, rgba(255, 255, 255, 0) 100%);
 }
 
 .pp-wallet-modal__avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(59, 130, 246, 0.4);
-  color: #FFFFFF;
+  background: #293155;
+  color: #96A9E0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2046,45 +2051,46 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__item-content {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0px;
   flex: 1 1 auto;
   min-width: 0;
 }
 
 .pp-wallet-modal__item-label {
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 600;
   color: #7384BE;
 }
 
 .pp-wallet-modal__item-name {
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   color: #FFFFFF;
 }
 
 .pp-wallet-modal__item-right {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   flex-shrink: 0;
 }
 
 .pp-wallet-modal__item-balance {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
   color: #FFFFFF;
 }
-
-.pp-wallet-modal__chevron {
-  filter: brightness(0) invert(1);
-  opacity: 0.7;
+.pp-wallet-modal__item-balance--empty {
+  color: #3A4570;
 }
 
 .pp-wallet-modal__footer {
   background: #1B2136;
   padding: 16px 16px 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid #222947;
   height: 120px;
+  min-height: 120px;
+  flex: 0 0 120px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -2101,7 +2107,7 @@ body.profile-payment-page .site-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 1px;
   color: #FFFFFF;
   text-decoration: none;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;

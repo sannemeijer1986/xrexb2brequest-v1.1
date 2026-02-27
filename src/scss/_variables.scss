@@ -5,44 +5,24 @@ $font-sora: 'Sora', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarel
 // Embedded Wallet typography (Inter-based, from MCP)
 $font-ew: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 
-// Headline / Title scales (from EW typography sheet)
-// [ EW ] Headline sizes
-$ew-headline-4xl-size: 60px; // EW-H4XL
-$ew-headline-3xl-size: 44px; // EW-H3XL
-$ew-headline-xxl-size: 28px; // EW-HXXL
-$ew-headline-xl-size: 24px;  // EW-HXL
-$ew-headline-l-size: 18px;   // EW-HL
+// EW type scale – sizes only (from EW typography sheet)
+$ew-size-4xl: 60px;
+$ew-size-3xl: 44px;
+$ew-size-xxl: 28px;
+$ew-size-xl: 24px;
+$ew-size-l: 18px;
+$ew-size-m: 16px;
+$ew-size-s: 14px;
+$ew-size-xs: 12px;
+$ew-size-xxs: 10px;
+$ew-size-caption-xs: 11px;
 
-// [ EW ] Title sizes
-$ew-title-xxl-size: 28px; // EW-TitleXXL
-$ew-title-xl-size: 24px;  // EW-TitleXL
-$ew-title-l-size: 18px;   // EW-TitleL
-$ew-title-m-size: 16px;   // EW-TitleM
-$ew-title-s-size: 14px;   // EW-TitleS
-$ew-title-xs-size: 12px;  // EW-TitleXS
-
-// [ EW ] Subtitle sizes
-$ew-subtitle-l-size: 18px; // EW-SubT-L
-$ew-subtitle-m-size: 16px; // EW-SubT-M
-$ew-subtitle-s-size: 14px; // EW-SubT-S
-$ew-subtitle-xs-size: 12px; // EW-SubT-XS
-
-// [ EW ] Body sizes
-$ew-body-l-size: 18px;   // EW-Body-L
-$ew-body-m-size: 16px;   // EW-Body-M
-$ew-body-s-size: 14px;   // EW-Body-S
-$ew-body-xs-size: 12px;  // EW-Body-XS
-$ew-body-xxs-size: 10px; // EW-Body-XXS
-
-// Shared weights by category (use these in components)
+// Shared weights by category (use these in components, independent of size)
 $ew-headline-weight: 800;
 $ew-title-weight: 700;
 $ew-subtitle-weight: 600;
 $ew-body-weight: 400;
 $ew-caption-weight: 400;
-
-// Caption size (no explicit token in sheet; keep as-is)
-$ew-caption-xs-size: 11px;
 
 // ---------------------------------------------------------------------------
 // EW color primitives (from Figma .Primitives export)
@@ -115,6 +95,12 @@ $ew-icon-placeholder: $ew-accentblue-300;    // EW-icon-placeholder
 $ew-icon-positive: $ew-assisting-positive;   // EW-icon-positive
 $ew-icon-warning: $ew-assisting-warning;     // EW-icon-warning
 $ew-icon-negative: $ew-assisting-negative;   // EW-icon-negative
+
+// Border
+$ew-border-highcon: $ew-accentblue-600;      // EW-border-highcon
+$ew-border-mediumcon: $ew-accentblue-700;    // EW-border-mediumcon
+$ew-border-lowcon: $ew-accentblue-900;       // EW-border-lowcon
+
 
 // Colors (placeholder until design tokens are provided)
 $gray-50: #f8fafc;
