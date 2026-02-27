@@ -749,9 +749,9 @@ body.profile-payment-page .site-footer {
 // Wallet account modal (dark theme, after loader)
 // Tied to EW Figma tokens from _variables.scss
 $wallet-bg: $ew-bg-base-primary;
-$wallet-text: $ew-text-primary-dark;
-$wallet-text-muted: $ew-text-secondary-dark;
-$wallet-accent: $ew-text-link-dark;
+$wallet-text: $ew-text-primary;
+$wallet-text-muted: $ew-text-secondary;
+$wallet-accent: $ew-text-link;
 
 .pp-wallet-modal {
   position: fixed;
@@ -809,7 +809,7 @@ $wallet-accent: $ew-text-link-dark;
 }
 
 .pp-wallet-modal__back--hidden {
-  visibility: hidden;
+  display: none;
 }
 
 .pp-wallet-modal__header-info {
@@ -1059,7 +1059,7 @@ $wallet-accent: $ew-text-link-dark;
   font-family: $font-ew;
   font-size: $ew-caption-xs-size;
   text-align: center;
-  color: $wallet-text-muted;
+  color: $ew-text-placeholder;
   opacity: 0.8;
 }
 

@@ -44,31 +44,77 @@ $ew-caption-weight: 400;
 // Caption size (no explicit token in sheet; keep as-is)
 $ew-caption-xs-size: 11px;
 
-// Shared weights by category (use these in components)
-$ew-headline-weight: 800;
-$ew-title-weight: 700;
-$ew-subtitle-weight: 600;
-$ew-body-weight: 400;
-$ew-caption-weight: 400;
+// ---------------------------------------------------------------------------
+// EW color primitives (from Figma .Primitives export)
+// ---------------------------------------------------------------------------
 
-// ---------------------------------------------------------------------------
-// EW Figma tokens (subset used by wallet modal)
-// Values taken from Primitives/Tokens dark mode:
-// - [ EW ] Accentblue/EW-accentblue-900   → #161A2A
-// - [ EW ] Accentblue/EW-accentblue-300   → #7384BE
-// - [ EW ] Primaryblue/EW-primaryblue-400 → #4779FF
-// - [ EW ] Neutral/EW-neutral-100         → #FFFFFF
-// ---------------------------------------------------------------------------
-$ew-accentblue-900: #161A2A;
-$ew-accentblue-300: #7384BE;
+// [ EW ] Primaryblue
+$ew-primaryblue-900: #0E1A40;
+$ew-primaryblue-800: #142766;
+$ew-primaryblue-700: #1E3A99;
+$ew-primaryblue-600: #2950C0;
+$ew-primaryblue-500: #3A6BEB;
 $ew-primaryblue-400: #4779FF;
-$ew-neutral-100: #FFFFFF;
+$ew-primaryblue-300: #6B94FF;
+$ew-primaryblue-200: #A9C4FF;
+$ew-primaryblue-100: #E3ECFF;
 
-// Derived tokens used in components (dark)
-$ew-bg-base-primary: $ew-accentblue-900;
-$ew-text-primary-dark: $ew-neutral-100;
-$ew-text-secondary-dark: $ew-accentblue-300;
-$ew-text-link-dark: $ew-primaryblue-400;
+// [ EW ] Accentblue
+$ew-accentblue-900: #161A2A;
+$ew-accentblue-800: #1B2136;
+$ew-accentblue-700: #222947;
+$ew-accentblue-600: #293155;
+$ew-accentblue-500: #3A4570;
+$ew-accentblue-400: #56659A;
+$ew-accentblue-300: #7384BE;
+$ew-accentblue-200: #96A9E0;
+$ew-accentblue-100: #C7D6FF;
+
+// [ EW ] Neutral
+$ew-neutral-900: #000000;
+$ew-neutral-100: #FFFFFF;
+$ew-neutral-200: #F5F5F7;
+$ew-neutral-300: #E6E6EA;
+$ew-neutral-400: #D4D4DA;
+$ew-neutral-500: #BFC0C8;
+$ew-neutral-600: #A7A8B3;
+$ew-neutral-700: #8E909C;
+$ew-neutral-800: #6F717C;
+
+// [ EW ] Assisting
+$ew-assisting-positive: #8ADCA5;
+$ew-assisting-warning: #E6B97A;
+$ew-assisting-negative: #DC8A8A;
+
+// ---------------------------------------------------------------------------
+// EW semantic tokens – Dark mode (from Figma Tokens export)
+// ---------------------------------------------------------------------------
+
+// Background
+$ew-bg-base-primary: $ew-accentblue-900;      // EW-bg-base-primary
+$ew-bg-base-secondary: $ew-accentblue-800;    // EW-bg-base-secondary
+$ew-bg-surface-primary: $ew-accentblue-700;   // EW-bg-surface-primary
+$ew-bg-surface-secondary: $ew-accentblue-600; // EW-bg-surface-secondary
+
+// Text
+$ew-text-primary: $ew-neutral-100;           // EW-text-primary
+$ew-text-secondary: $ew-accentblue-300;      // EW-text-secondary
+$ew-text-placeholder: $ew-accentblue-500;    // EW-text-placeholder
+$ew-text-highlight: $ew-accentblue-200;      // EW-text-highlight
+$ew-text-brand: $ew-primaryblue-400;         // EW-text-brand
+$ew-text-link: $ew-primaryblue-400;          // EW-text-link
+$ew-text-positive: $ew-assisting-positive;   // EW-text-positive
+$ew-text-warning: $ew-assisting-warning;     // EW-text-warning
+$ew-text-negative: $ew-assisting-negative;   // EW-text-negative
+
+// Icon
+$ew-icon-brand: $ew-primaryblue-400;         // EW-icon-brand
+$ew-icon-primary: $ew-neutral-100;           // EW-icon-primary
+$ew-icon-secondary: $ew-accentblue-200;      // EW-icon-secondary
+$ew-icon-placeholder: $ew-accentblue-300;    // EW-icon-placeholder
+$ew-icon-positive: $ew-assisting-positive;   // EW-icon-positive
+$ew-icon-warning: $ew-assisting-warning;     // EW-icon-warning
+$ew-icon-negative: $ew-assisting-negative;   // EW-icon-negative
 
 // Colors (placeholder until design tokens are provided)
 $gray-50: #f8fafc;
