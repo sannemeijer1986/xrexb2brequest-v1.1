@@ -522,6 +522,9 @@
                 });
             }
 
+            // TEMP: auto-open wallet on page load (same as debug hotspot)
+            openWalletDirect();
+
             modal.addEventListener("click", function (e) {
                 if (e.target === modal) closeModal();
             });
@@ -562,11 +565,6 @@
             function closeWalletModal() {
                 if (walletModal) walletModal.setAttribute("aria-hidden", "true");
                 unlockBackgroundScroll();
-            }
-            if (walletModal) {
-                walletModal.addEventListener("click", function (e) {
-                    if (e.target === walletModal) closeWalletModal();
-                });
             }
             if (walletModalClose) walletModalClose.addEventListener("click", closeWalletModal);
             if (walletModal) {
