@@ -761,7 +761,7 @@ $wallet-accent: $ew-text-link;
   align-items: center;
   justify-content: center;
   padding: 0px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 
@@ -880,8 +880,12 @@ $wallet-accent: $ew-text-link;
 }
 
 .pp-wallet-modal__body {
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  background-color: $ew-bg-base-primary;
 }
 
 .pp-wallet-modal__balance {
@@ -915,13 +919,15 @@ $wallet-accent: $ew-text-link;
   font-family: $font-ew;
   font-size: $ew-headline-4xl-size;
   font-weight: $ew-headline-weight;
-  color: $wallet-text;
+  color: $ew-text-primary;
   line-height: 1;
 }
 
 .pp-wallet-modal__section {
   padding: 32px;
   background-color: $ew-bg-base-secondary;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .pp-wallet-modal__section-title {
@@ -1032,13 +1038,15 @@ $wallet-accent: $ew-text-link;
   padding: 16px 16px 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .pp-wallet-modal__tabs {
   display: flex;
   justify-content: space-between;
   gap: 32px;
-  margin-bottom: 8px;
 }
 
 .pp-wallet-modal__tab {
