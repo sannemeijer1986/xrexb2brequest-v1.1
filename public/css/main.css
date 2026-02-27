@@ -1811,9 +1811,10 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__dialog {
   position: relative;
   width: 100%;
-  width: 640px;
-  height: 700px;
-  background: #1A1F36;
+  max-width: 640px;
+  min-height: 420px;
+  max-height: min(700px, 100vh - 48px);
+  background: #161A2A;
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   overflow: hidden;
@@ -1822,18 +1823,48 @@ body.profile-payment-page .site-footer {
 }
 
 .pp-wallet-modal__header {
-  padding: 24px 24px 16px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto;
-  gap: 4px 16px;
+  padding: 16px 20px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pp-wallet-modal__back {
+  border: none;
+  background: transparent;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.pp-wallet-modal__back img {
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
 }
 
 .pp-wallet-modal__header-info {
-  grid-column: 1;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.pp-wallet-modal__header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.pp-wallet-modal__header-label {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #7384BE;
 }
 
 .pp-wallet-modal__header-icon {
@@ -1844,18 +1875,17 @@ body.profile-payment-page .site-footer {
 }
 
 .pp-wallet-modal__email {
-  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 14px;
-  color: #9CA3AF;
+  color: #7384BE;
 }
 
 .pp-wallet-modal__title {
-  grid-column: 1;
   margin: 0;
-  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 20px;
   font-weight: 700;
-  color: yellow;
+  color: #FFFFFF;
   line-height: 1.2;
 }
 
@@ -1890,9 +1920,9 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-modal__balance-label {
   margin: 0 0 8px 0;
-  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 14px;
-  color: #9CA3AF;
+  color: #7384BE;
 }
 
 .pp-wallet-modal__balance-approx {
@@ -1900,7 +1930,7 @@ body.profile-payment-page .site-footer {
 }
 
 .pp-wallet-modal__refresh {
-  color: #3B82F6;
+  color: #4779FF;
   text-decoration: none;
   font-weight: 600;
 }
@@ -1910,19 +1940,19 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-modal__balance-amount {
   margin: 0;
-  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 32px;
   font-weight: 700;
-  color: #ffffff;
+  color: #FFFFFF;
   line-height: 1;
 }
 
 .pp-wallet-modal__section-title {
   margin: 0 0 12px 0;
-  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 14px;
   font-weight: 500;
-  color: #9CA3AF;
+  color: #7384BE;
 }
 
 .pp-wallet-modal__list {
@@ -1953,10 +1983,10 @@ body.profile-payment-page .site-footer {
   height: 40px;
   border-radius: 50%;
   background: rgba(59, 130, 246, 0.4);
-  color: #ffffff;
-  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  color: #FFFFFF;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1973,13 +2003,13 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-modal__item-label {
   font-size: 12px;
-  color: #9CA3AF;
+  color: #7384BE;
 }
 
 .pp-wallet-modal__item-name {
   font-size: 15px;
   font-weight: 600;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .pp-wallet-modal__item-right {
@@ -1992,7 +2022,7 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__item-balance {
   font-size: 14px;
   font-weight: 500;
-  color: #ffffff;
+  color: #FFFFFF;
 }
 
 .pp-wallet-modal__chevron {
@@ -2007,19 +2037,21 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-modal__tabs {
   display: flex;
-  gap: 24px;
-  margin-bottom: 12px;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 8px;
 }
 
 .pp-wallet-modal__tab {
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  color: #9CA3AF;
+  color: #7384BE;
   text-decoration: none;
-  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 12px;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 14px;
   font-weight: 500;
 }
 .pp-wallet-modal__tab img {
@@ -2027,7 +2059,7 @@ body.profile-payment-page .site-footer {
   opacity: 0.7;
 }
 .pp-wallet-modal__tab--active {
-  color: #3B82F6;
+  color: #4779FF;
 }
 .pp-wallet-modal__tab--active img {
   opacity: 1;
@@ -2036,9 +2068,10 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-modal__disclaimer {
   margin: 0;
-  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 11px;
-  color: #9CA3AF;
+  text-align: center;
+  color: #7384BE;
   opacity: 0.8;
 }
 

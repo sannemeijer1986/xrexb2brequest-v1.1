@@ -2,6 +2,48 @@ $font-family-sans: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu
 $font-manrope: $font-family-sans;
 $font-sora: 'Sora', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 
+// Embedded Wallet typography (Inter-based, from MCP)
+$font-ew: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+
+// Headline / Title scales (subset used in wallet UI)
+$ew-headline-4xl-size: 60px; // Inter / Extrabold
+$ew-headline-4xl-weight: 800;
+
+$ew-title-xl-size: 28px; // Inter / Bold
+$ew-title-xl-weight: 700;
+
+$ew-title-m-size: 20px; // wallet header title
+$ew-title-m-weight: 700;
+
+// Body / labels
+$ew-body-m-size: 14px;
+$ew-body-m-weight: 500;
+
+$ew-body-s-size: 12px;
+$ew-body-s-weight: 500;
+
+$ew-caption-xs-size: 11px;
+$ew-caption-xs-weight: 400;
+
+// ---------------------------------------------------------------------------
+// EW Figma tokens (subset used by wallet modal)
+// Values taken from Primitives/Tokens dark mode:
+// - [ EW ] Accentblue/EW-accentblue-900   → #161A2A
+// - [ EW ] Accentblue/EW-accentblue-300   → #7384BE
+// - [ EW ] Primaryblue/EW-primaryblue-400 → #4779FF
+// - [ EW ] Neutral/EW-neutral-100         → #FFFFFF
+// ---------------------------------------------------------------------------
+$ew-accentblue-900: #161A2A;
+$ew-accentblue-300: #7384BE;
+$ew-primaryblue-400: #4779FF;
+$ew-neutral-100: #FFFFFF;
+
+// Derived tokens used in components (dark)
+$ew-bg-base-primary: $ew-accentblue-900;
+$ew-text-primary-dark: $ew-neutral-100;
+$ew-text-secondary-dark: $ew-accentblue-300;
+$ew-text-link-dark: $ew-primaryblue-400;
+
 // Colors (placeholder until design tokens are provided)
 $gray-50: #f8fafc;
 $gray-100: #f1f5f9;

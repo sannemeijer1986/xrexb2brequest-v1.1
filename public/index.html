@@ -183,11 +183,16 @@
     <div class="pp-wallet-modal" id="walletModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletModalTitle">
         <div class="pp-wallet-modal__dialog">
             <div class="pp-wallet-modal__header">
+                <button type="button" class="pp-wallet-modal__back" id="walletModalBack" aria-label="Back">
+                    <img src="assets/icon_header_back.svg" width="24" height="24" alt="" />
+                </button>
                 <div class="pp-wallet-modal__header-info">
-                    <img class="pp-wallet-modal__header-icon" src="assets/Icon_pp_wallet.svg" alt="" width="20" height="20" />
-                    <span class="pp-wallet-modal__email">abc1234@gmail.com</span>
+                    <span class="pp-wallet-modal__avatar">AT</span>
+                    <div class="pp-wallet-modal__header-text">
+                        <span class="pp-wallet-modal__header-label">Beneficiary</span>
+                        <h2 id="walletModalTitle" class="pp-wallet-modal__title">AGP Technology</h2>
+                    </div>
                 </div>
-                <h2 id="walletModalTitle" class="pp-wallet-modal__title">UNDER CONSTRUCTION</h2>
                 <button type="button" class="pp-wallet-modal__close" id="walletModalClose" aria-label="Close"><img src="assets/icon_pp_close.svg" width="24" height="24" alt="" /></button>
             </div>
             <div class="pp-wallet-modal__body">
@@ -237,11 +242,11 @@
             <div class="pp-wallet-modal__footer">
                 <div class="pp-wallet-modal__tabs">
                     <a href="#" class="pp-wallet-modal__tab pp-wallet-modal__tab--active" aria-current="page">
-                        <img src="assets/icon_tabbar_assets_active.svg" alt="" width="24" height="24" />
+                        <img src="assets/icons-tab-assets-filled.svg" alt="" width="24" height="24" />
                         <span>Assets</span>
                     </a>
                     <a href="#" class="pp-wallet-modal__tab">
-                        <img src="assets/icon_tabbar_assets_inactive.svg" alt="" width="24" height="24" />
+                        <img src="assets/icons-tab-settings-outline.svg" alt="" width="24" height="24" />
                         <span>Settings</span>
                     </a>
                 </div>

@@ -747,10 +747,11 @@ body.profile-payment-page .site-footer {
 }
 
 // Wallet account modal (dark theme, after loader)
-$wallet-bg: #1A1F36;
-$wallet-text: #ffffff;
-$wallet-text-muted: #9CA3AF;
-$wallet-accent: #3B82F6;
+// Tied to EW Figma tokens from _variables.scss
+$wallet-bg: $ew-bg-base-primary;
+$wallet-text: $ew-text-primary-dark;
+$wallet-text-muted: $ew-text-secondary-dark;
+$wallet-accent: $ew-text-link-dark;
 
 .pp-wallet-modal {
   position: fixed;
@@ -772,8 +773,9 @@ $wallet-accent: #3B82F6;
 .pp-wallet-modal__dialog {
   position: relative;
   width: 100%;
-  width: 640px;
-  height: 700px;
+  max-width: 640px;
+  min-height: 420px;
+  max-height: min(700px, calc(100vh - 48px));
   background: $wallet-bg;
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
@@ -783,18 +785,49 @@ $wallet-accent: #3B82F6;
 }
 
 .pp-wallet-modal__header {
-  padding: 24px 24px 16px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto;
-  gap: 4px 16px;
+  padding: 16px 20px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pp-wallet-modal__back {
+  border: none;
+  background: transparent;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  img {
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+  }
 }
 
 .pp-wallet-modal__header-info {
-  grid-column: 1;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.pp-wallet-modal__header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.pp-wallet-modal__header-label {
+  font-family: $font-ew;
+  font-size: $ew-body-s-size;
+  font-weight: $ew-body-s-weight;
+  color: $wallet-text-muted;
 }
 
 .pp-wallet-modal__header-icon {
@@ -805,18 +838,17 @@ $wallet-accent: #3B82F6;
 }
 
 .pp-wallet-modal__email {
-  font-family: $font-family-sans;
-  font-size: 14px;
+  font-family: $font-ew;
+  font-size: $ew-body-m-size;
   color: $wallet-text-muted;
 }
 
 .pp-wallet-modal__title {
-  grid-column: 1;
   margin: 0;
-  font-family: $font-family-sans;
-  font-size: 20px;
-  font-weight: 700;
-  color: yellow;
+  font-family: $font-ew;
+  font-size: $ew-title-m-size;
+  font-weight: $ew-title-m-weight;
+  color: $wallet-text;
   line-height: 1.2;
 }
 
@@ -852,8 +884,8 @@ $wallet-accent: #3B82F6;
 
 .pp-wallet-modal__balance-label {
   margin: 0 0 8px 0;
-  font-family: $font-family-sans;
-  font-size: 14px;
+  font-family: $font-ew;
+  font-size: $ew-body-m-size;
   color: $wallet-text-muted;
 }
 
@@ -873,18 +905,18 @@ $wallet-accent: #3B82F6;
 
 .pp-wallet-modal__balance-amount {
   margin: 0;
-  font-family: $font-family-sans;
+  font-family: $font-ew;
   font-size: 32px;
-  font-weight: 700;
+  font-weight: $ew-title-xl-weight;
   color: $wallet-text;
   line-height: 1;
 }
 
 .pp-wallet-modal__section-title {
   margin: 0 0 12px 0;
-  font-family: $font-family-sans;
-  font-size: 14px;
-  font-weight: 500;
+  font-family: $font-ew;
+  font-size: $ew-body-m-size;
+  font-weight: $ew-body-m-weight;
   color: $wallet-text-muted;
 }
 
@@ -919,9 +951,9 @@ $wallet-accent: #3B82F6;
   border-radius: 50%;
   background: rgba(59, 130, 246, 0.4);
   color: $wallet-text;
-  font-family: $font-family-sans;
-  font-size: 14px;
-  font-weight: 700;
+  font-family: $font-ew;
+  font-size: $ew-body-m-size;
+  font-weight: $ew-body-m-weight;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -972,20 +1004,22 @@ $wallet-accent: #3B82F6;
 
 .pp-wallet-modal__tabs {
   display: flex;
-  gap: 24px;
-  margin-bottom: 12px;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 8px;
 }
 
 .pp-wallet-modal__tab {
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
   color: $wallet-text-muted;
   text-decoration: none;
-  font-family: $font-family-sans;
-  font-size: 12px;
-  font-weight: 500;
+  font-family: $font-ew;
+  font-size: $ew-body-m-size;
+  font-weight: $ew-body-m-weight;
 
   img {
     filter: brightness(0) invert(1);
@@ -1004,8 +1038,9 @@ $wallet-accent: #3B82F6;
 
 .pp-wallet-modal__disclaimer {
   margin: 0;
-  font-family: $font-family-sans;
-  font-size: 11px;
+  font-family: $font-ew;
+  font-size: $ew-caption-xs-size;
+  text-align: center;
   color: $wallet-text-muted;
   opacity: 0.8;
 }
