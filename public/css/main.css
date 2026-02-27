@@ -1862,8 +1862,8 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-modal__header-label {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
   color: #7384BE;
 }
 
@@ -1876,14 +1876,14 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-modal__email {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   color: #7384BE;
 }
 
 .pp-wallet-modal__title {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   color: #FFFFFF;
   line-height: 1.2;
@@ -1921,7 +1921,7 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__balance-label {
   margin: 0 0 8px 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   color: #7384BE;
 }
 
@@ -1950,8 +1950,8 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__section-title {
   margin: 0 0 12px 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   color: #7384BE;
 }
 
@@ -1985,8 +1985,8 @@ body.profile-payment-page .site-footer {
   background: rgba(59, 130, 246, 0.4);
   color: #FFFFFF;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2051,8 +2051,8 @@ body.profile-payment-page .site-footer {
   color: #7384BE;
   text-decoration: none;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
 }
 .pp-wallet-modal__tab img {
   filter: brightness(0) invert(1);

@@ -826,7 +826,7 @@ $wallet-accent: $ew-text-link-dark;
 .pp-wallet-modal__header-label {
   font-family: $font-ew;
   font-size: $ew-body-s-size;
-  font-weight: $ew-body-s-weight;
+  font-weight: $ew-body-weight;
   color: $wallet-text-muted;
 }
 
@@ -846,8 +846,8 @@ $wallet-accent: $ew-text-link-dark;
 .pp-wallet-modal__title {
   margin: 0;
   font-family: $font-ew;
-  font-size: $ew-title-m-size;
-  font-weight: $ew-title-m-weight;
+  font-size: $ew-title-xl-size;
+  font-weight: $ew-title-weight;
   color: $wallet-text;
   line-height: 1.2;
 }
@@ -907,7 +907,7 @@ $wallet-accent: $ew-text-link-dark;
   margin: 0;
   font-family: $font-ew;
   font-size: 32px;
-  font-weight: $ew-title-xl-weight;
+  font-weight: $ew-title-weight;
   color: $wallet-text;
   line-height: 1;
 }
@@ -916,7 +916,7 @@ $wallet-accent: $ew-text-link-dark;
   margin: 0 0 12px 0;
   font-family: $font-ew;
   font-size: $ew-body-m-size;
-  font-weight: $ew-body-m-weight;
+  font-weight: $ew-body-weight;
   color: $wallet-text-muted;
 }
 
@@ -953,7 +953,7 @@ $wallet-accent: $ew-text-link-dark;
   color: $wallet-text;
   font-family: $font-ew;
   font-size: $ew-body-m-size;
-  font-weight: $ew-body-m-weight;
+  font-weight: $ew-body-weight;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1019,7 +1019,7 @@ $wallet-accent: $ew-text-link-dark;
   text-decoration: none;
   font-family: $font-ew;
   font-size: $ew-body-m-size;
-  font-weight: $ew-body-m-weight;
+  font-weight: $ew-body-weight;
 
   img {
     filter: brightness(0) invert(1);
