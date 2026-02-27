@@ -1881,7 +1881,7 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__header-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0px;
   min-width: 0;
 }
 
