@@ -212,7 +212,7 @@
                         <section class="pp-wallet-modal__section">
                             <h3 class="pp-wallet-modal__section-title">My auto-debit wallets (2)</h3>
                             <ul class="pp-wallet-modal__list">
-                                <li class="pp-wallet-modal__item pp-wallet-modal__item--active" data-beneficiary-initials="AT" data-beneficiary-name="AGP Technology">
+                                <li class="pp-wallet-modal__item pp-wallet-modal__item--active" data-beneficiary-initials="AT" data-beneficiary-name="AGP Technology" data-beneficiary-balance="$32.41 ≈" data-beneficiary-balance-empty="false">
                                     <span class="pp-wallet-modal__avatar">AT</span>
                                     <div class="pp-wallet-modal__item-content">
                                         <span class="pp-wallet-modal__item-label">Beneficiary</span>
@@ -223,7 +223,7 @@
                                         <img src="assets/icon-ew-arrow-forward.svg" alt="" width="20" height="20" class="pp-wallet-modal__chevron" />
                                     </div>
                                 </li>
-                                <li class="pp-wallet-modal__item" data-beneficiary-initials="NL" data-beneficiary-name="NovaQuill Ltd">
+                                <li class="pp-wallet-modal__item" data-beneficiary-initials="NL" data-beneficiary-name="NovaQuill Ltd" data-beneficiary-balance="$0.00" data-beneficiary-balance-empty="true">
                                     <span class="pp-wallet-modal__avatar">NL</span>
                                     <div class="pp-wallet-modal__item-content">
                                         <span class="pp-wallet-modal__item-label">Beneficiary</span>
@@ -250,7 +250,7 @@
                                         <span class="pp-wallet-modal__item-address">0x2134...1233f8</span>
                                     </div>
                                     <div class="pp-wallet-modal__item-right">
-                                        <span class="pp-wallet-modal__item-balance">$32.41 ≈</span>
+                                        <span class="pp-wallet-modal__item-balance" id="walletBeneficiaryDetailBalance">$32.41 ≈</span>
                                         <img src="assets/icon-ew-arrow-forward.svg" alt="" width="20" height="20" class="pp-wallet-modal__chevron" />
                                     </div>
                                 </li>
@@ -271,6 +271,16 @@
                     </a>
                 </div>
                 <p class="pp-wallet-modal__disclaimer">Wallet tech by Dynamic.xyz: you're viewing a custom interface.</p>
+            </div>
+        </div>
+        <div class="pp-wallet-close-confirm" id="walletCloseConfirm" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletCloseConfirmTitle">
+            <div class="pp-wallet-close-confirm__backdrop"></div>
+            <div class="pp-wallet-close-confirm__card">
+                <h3 class="pp-wallet-close-confirm__title" id="walletCloseConfirmTitle">What would you like to do?</h3>
+                <div class="pp-wallet-close-confirm__actions">
+                    <button type="button" class="pp-wallet-close-confirm__btn pp-wallet-close-confirm__btn--secondary" id="walletCloseConfirmBack">Back to wallet homepage</button>
+                    <button type="button" class="pp-wallet-close-confirm__btn pp-wallet-close-confirm__btn--primary" id="walletCloseConfirmClose">Close wallet</button>
+                </div>
             </div>
         </div>
     </div>
@@ -591,11 +601,57 @@
             if (okayBtn) okayBtn.addEventListener("click", closeModal);
 
             function closeWalletModal() {
+                closeWalletCloseConfirm();
                 showListView();
                 if (walletModal) walletModal.setAttribute("aria-hidden", "true");
                 unlockBackgroundScroll();
             }
-            if (walletModalClose) walletModalClose.addEventListener("click", closeWalletModal);
+
+            function isWalletOnHighestLevel() {
+                return !walletModal || !walletModal.classList.contains("pp-wallet-modal--beneficiary-view");
+            }
+
+            var walletCloseConfirm = document.getElementById("walletCloseConfirm");
+            var walletCloseConfirmBack = document.getElementById("walletCloseConfirmBack");
+            var walletCloseConfirmClose = document.getElementById("walletCloseConfirmClose");
+
+            function openWalletCloseConfirm() {
+                if (walletCloseConfirm) {
+                    walletCloseConfirm.setAttribute("aria-hidden", "false");
+                }
+            }
+
+            function closeWalletCloseConfirm() {
+                if (walletCloseConfirm) {
+                    walletCloseConfirm.setAttribute("aria-hidden", "true");
+                }
+            }
+
+            function onWalletCloseClick() {
+                if (isWalletOnHighestLevel()) {
+                    closeWalletModal();
+                } else {
+                    openWalletCloseConfirm();
+                }
+            }
+
+            if (walletModalClose) walletModalClose.addEventListener("click", onWalletCloseClick);
+            if (walletCloseConfirmBack) {
+                walletCloseConfirmBack.addEventListener("click", function () {
+                    closeWalletCloseConfirm();
+                    showListView();
+                });
+            }
+            if (walletCloseConfirmClose) {
+                walletCloseConfirmClose.addEventListener("click", function () {
+                    closeWalletCloseConfirm();
+                    closeWalletModal();
+                });
+            }
+            if (walletCloseConfirm) {
+                var backdrop = walletCloseConfirm.querySelector(".pp-wallet-close-confirm__backdrop");
+                if (backdrop) backdrop.addEventListener("click", closeWalletCloseConfirm);
+            }
 
             // Beneficiary detail view: show on beneficiary item click, hide on back
             var walletModalBack = document.getElementById("walletModalBack");
@@ -609,7 +665,9 @@
             var WALLET_DEFAULT_LABEL = "abc1234@gmail.com";
             var WALLET_DEFAULT_TITLE = "Wallet account";
 
-            function showBeneficiaryView(name, initials) {
+            var walletBeneficiaryDetailBalance = document.getElementById("walletBeneficiaryDetailBalance");
+
+            function showBeneficiaryView(name, initials, balance, balanceEmpty) {
                 if (!walletModal || !walletViewBeneficiary || !walletViewList) return;
                 walletModal.classList.add("pp-wallet-modal--beneficiary-view");
                 walletModalBack && walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
@@ -621,6 +679,14 @@
                 if (walletModalHeaderAvatar) walletModalHeaderAvatar.textContent = initials || "?";
                 if (walletModalHeaderLabel) walletModalHeaderLabel.textContent = "Beneficiary";
                 if (walletModalTitle) walletModalTitle.textContent = name || "";
+                if (walletBeneficiaryDetailBalance) {
+                    walletBeneficiaryDetailBalance.textContent = balance != null ? balance : "$32.41 ≈";
+                    if (balanceEmpty) {
+                        walletBeneficiaryDetailBalance.classList.add("pp-wallet-modal__item-balance--empty");
+                    } else {
+                        walletBeneficiaryDetailBalance.classList.remove("pp-wallet-modal__item-balance--empty");
+                    }
+                }
                 walletViewList.setAttribute("aria-hidden", "true");
                 walletViewBeneficiary.removeAttribute("aria-hidden");
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
@@ -655,7 +721,9 @@
                     e.preventDefault();
                     var name = item.getAttribute("data-beneficiary-name") || "";
                     var initials = item.getAttribute("data-beneficiary-initials") || "";
-                    showBeneficiaryView(name, initials);
+                    var balance = item.getAttribute("data-beneficiary-balance") || "$32.41 ≈";
+                    var balanceEmpty = item.getAttribute("data-beneficiary-balance-empty") === "true";
+                    showBeneficiaryView(name, initials, balance, balanceEmpty);
                 });
             }
             if (isSessionActive()) startSessionTimer();
