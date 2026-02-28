@@ -276,16 +276,21 @@
         <div class="pp-wallet-close-confirm" id="walletCloseConfirm" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletCloseConfirmTitle">
             <div class="pp-wallet-close-confirm__backdrop"></div>
             <div class="pp-wallet-close-confirm__card">
-                <h3 class="pp-wallet-close-confirm__title" id="walletCloseConfirmTitle">What would you like to do?</h3>
+                <div class="pp-wallet-close-confirm__header">
+                    <h3 class="pp-wallet-close-confirm__title" id="walletCloseConfirmTitle">Leave this screen?</h3>
+                    <button type="button" class="pp-wallet-close-confirm__close" id="walletCloseConfirmDismiss" aria-label="Close"><img src="assets/icon_pp_close.svg" width="24" height="24" alt="" /></button>
+                </div>
+                <p class="pp-wallet-close-confirm__body">Go back to wallet home, or close it entirely?</p>
                 <div class="pp-wallet-close-confirm__actions">
-                    <button type="button" class="pp-wallet-close-confirm__btn pp-wallet-close-confirm__btn--secondary" id="walletCloseConfirmBack">Back to wallet homepage</button>
-                    <button type="button" class="pp-wallet-close-confirm__btn pp-wallet-close-confirm__btn--primary" id="walletCloseConfirmClose">Close wallet</button>
+                    <button type="button" class="pp-wallet-close-confirm__btn pp-wallet-close-confirm__btn--secondary" id="walletCloseConfirmClose">Close wallet</button>
+                    <button type="button" class="pp-wallet-close-confirm__btn pp-wallet-close-confirm__btn--primary" id="walletCloseConfirmBack">Back to wallet home</button>
                 </div>
             </div>
         </div>
     </div>
 
     <button type="button" class="pp-wallet-debug-hotspot" aria-label="Open wallet (debug only)"></button>
+    <button type="button" class="pp-wallet-close-confirm-debug-hotspot" aria-label="Open close-confirm modal (debug only)"></button>
 
     <footer class="site-footer">
         <div class="footer__inner">
@@ -651,6 +656,17 @@
             if (walletCloseConfirm) {
                 var backdrop = walletCloseConfirm.querySelector(".pp-wallet-close-confirm__backdrop");
                 if (backdrop) backdrop.addEventListener("click", closeWalletCloseConfirm);
+                var walletCloseConfirmDismiss = document.getElementById("walletCloseConfirmDismiss");
+                if (walletCloseConfirmDismiss) walletCloseConfirmDismiss.addEventListener("click", closeWalletCloseConfirm);
+            }
+
+            // Debug: bottom-right hotspot to open wallet + close-confirm modal (for styling)
+            var closeConfirmDebugHotspot = document.querySelector(".pp-wallet-close-confirm-debug-hotspot");
+            if (closeConfirmDebugHotspot) {
+                closeConfirmDebugHotspot.addEventListener("click", function () {
+                    openWalletDirect();
+                    openWalletCloseConfirm();
+                });
             }
 
             // Beneficiary detail view: show on beneficiary item click, hide on back
