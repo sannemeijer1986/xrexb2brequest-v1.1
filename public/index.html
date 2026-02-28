@@ -623,6 +623,8 @@
                 if (walletModalTitle) walletModalTitle.textContent = name || "";
                 walletViewList.setAttribute("aria-hidden", "true");
                 walletViewBeneficiary.removeAttribute("aria-hidden");
+                walletModal.classList.add("pp-wallet-modal--header-from-right");
+                setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
             }
 
             function showListView() {
@@ -638,6 +640,8 @@
                 if (walletModalTitle) walletModalTitle.textContent = WALLET_DEFAULT_TITLE;
                 walletViewList.removeAttribute("aria-hidden");
                 walletViewBeneficiary.setAttribute("aria-hidden", "true");
+                walletModal.classList.add("pp-wallet-modal--header-from-left");
+                setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-left"); }, 250);
             }
 
             if (walletModalBack) walletModalBack.addEventListener("click", function () { showListView(); });

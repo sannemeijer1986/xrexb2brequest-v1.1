@@ -793,8 +793,46 @@ $wallet-accent: $ew-text-link;
   gap: 12px;
   height: 94px;
   min-height: 94px;
-  flex: 0 0 94px; // don't shrink; reserve 94px in the column
+  flex: 0 0 94px;
   border-bottom: 1px solid $ew-border-mediumcon;
+  background-color: $ew-bg-base-primary;
+  transition: background-color 0.25s ease;
+}
+
+// Deeper than "Wallet account" (e.g. beneficiary detail): header uses base-secondary
+.pp-wallet-modal--beneficiary-view .pp-wallet-modal__header {
+  background-color: $ew-bg-base-secondary;
+}
+
+// Header content: slide in from right (forward) or left (back) — use keyframes so the animation always runs
+@keyframes pp-wallet-header-in-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pp-wallet-header-in-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.pp-wallet-modal--header-from-right .pp-wallet-modal__header-info {
+  animation: pp-wallet-header-in-from-right 0.22s ease forwards;
+}
+
+.pp-wallet-modal--header-from-left .pp-wallet-modal__header-info {
+  animation: pp-wallet-header-in-from-left 0.22s ease forwards;
 }
 
 .pp-wallet-modal__back {
@@ -824,6 +862,7 @@ $wallet-accent: $ew-text-link;
   gap: 12px;
   flex: 1 1 auto;
   min-width: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .pp-wallet-modal__header-text {

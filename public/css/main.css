@@ -1848,6 +1848,40 @@ body.profile-payment-page .site-footer {
   min-height: 94px;
   flex: 0 0 94px;
   border-bottom: 1px solid #222947;
+  background-color: #161A2A;
+  transition: background-color 0.25s ease;
+}
+
+.pp-wallet-modal--beneficiary-view .pp-wallet-modal__header {
+  background-color: #1B2136;
+}
+
+@keyframes pp-wallet-header-in-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes pp-wallet-header-in-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.pp-wallet-modal--header-from-right .pp-wallet-modal__header-info {
+  animation: pp-wallet-header-in-from-right 0.22s ease forwards;
+}
+
+.pp-wallet-modal--header-from-left .pp-wallet-modal__header-info {
+  animation: pp-wallet-header-in-from-left 0.22s ease forwards;
 }
 
 .pp-wallet-modal__back {
@@ -1876,6 +1910,7 @@ body.profile-payment-page .site-footer {
   gap: 12px;
   flex: 1 1 auto;
   min-width: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .pp-wallet-modal__header-text {
