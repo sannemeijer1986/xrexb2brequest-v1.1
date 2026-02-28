@@ -1233,8 +1233,8 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-close-confirm__card {
   position: relative;
   width: 100%;
-  max-width: 360px;
-  background: $ew-bg-surface-primary;
+  width: 520px;
+  background: $ew-bg-base-secondary;
   border: 1px solid $ew-border-mediumcon;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
@@ -1244,9 +1244,10 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-close-confirm__header {
   display: flex;
   align-items: center;
+  height: 84px;
   justify-content: space-between;
   padding: 20px 20px 16px;
-  border-bottom: 1px solid $ew-border-mediumcon;
+  border-bottom: 1px solid $ew-border-highcon;
 }
 
 .pp-wallet-close-confirm__title {
@@ -1278,9 +1279,9 @@ $wallet-accent: $ew-text-link;
 
 .pp-wallet-close-confirm__body {
   margin: 0;
-  padding: 20px 20px 24px;
+  padding: 40px 32px;
   font-family: $font-ew;
-  font-size: $ew-size-m;
+  font-size: $ew-size-l;
   font-weight: $ew-body-weight;
   color: $ew-text-primary;
   line-height: 1.4;
@@ -1291,7 +1292,8 @@ $wallet-accent: $ew-text-link;
   flex-direction: row;
   justify-content: flex-end;
   gap: 12px;
-  padding: 0 20px 20px;
+  padding: 24px;
+  background-color: $ew-bg-surface-primary;
 }
 
 .pp-wallet-close-confirm__btn {

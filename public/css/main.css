@@ -2268,8 +2268,8 @@ body.profile-payment-page .site-footer {
 .pp-wallet-close-confirm__card {
   position: relative;
   width: 100%;
-  max-width: 360px;
-  background: #222947;
+  width: 520px;
+  background: #1B2136;
   border: 1px solid #222947;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
@@ -2279,9 +2279,10 @@ body.profile-payment-page .site-footer {
 .pp-wallet-close-confirm__header {
   display: flex;
   align-items: center;
+  height: 84px;
   justify-content: space-between;
   padding: 20px 20px 16px;
-  border-bottom: 1px solid #222947;
+  border-bottom: 1px solid #293155;
 }
 
 .pp-wallet-close-confirm__title {
@@ -2312,9 +2313,9 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-close-confirm__body {
   margin: 0;
-  padding: 20px 20px 24px;
+  padding: 40px 32px;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   color: #FFFFFF;
   line-height: 1.4;
@@ -2325,7 +2326,8 @@ body.profile-payment-page .site-footer {
   flex-direction: row;
   justify-content: flex-end;
   gap: 12px;
-  padding: 0 20px 20px;
+  padding: 24px;
+  background-color: #222947;
 }
 
 .pp-wallet-close-confirm__btn {
