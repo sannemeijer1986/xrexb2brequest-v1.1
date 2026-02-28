@@ -2008,9 +2008,9 @@ body.profile-payment-page .site-footer {
   flex-direction: column;
   min-height: 0;
   transition: transform 0.25s ease;
-  overflow-y: auto;
+  overflow-y: scroll;
   scrollbar-width: thin;
-  scrollbar-color: rgba(58, 69, 112, 0.25) transparent;
+  scrollbar-color: rgba(86, 101, 154, 0.25) transparent;
 }
 .pp-wallet-modal__view::-webkit-scrollbar {
   width: 6px;

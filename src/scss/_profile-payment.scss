@@ -946,10 +946,10 @@ $wallet-accent: $ew-text-link;
   flex-direction: column;
   min-height: 0;
   transition: transform 0.25s ease;
-  overflow-y: auto;
+  overflow-y: scroll; // Keep scrollbar visible when scrollable (avoids overlay auto-hide)
   // Subtle Apple-style scrollbar (visible, low contrast, rounded)
   scrollbar-width: thin;
-  scrollbar-color: rgba($ew-accentblue-500, 0.25) transparent;
+  scrollbar-color: rgba($ew-accentblue-400, 0.25) transparent;
 
   &::-webkit-scrollbar {
     width: 6px;
