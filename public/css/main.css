@@ -1958,7 +1958,7 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__title {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   color: #FFFFFF;
   line-height: 1.2;
@@ -2053,7 +2053,7 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__balance-amount {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 800;
   color: #FFFFFF;
   line-height: 1;
@@ -2246,6 +2246,68 @@ body.profile-payment-page .site-footer {
   opacity: 0.8;
 }
 
+.ew-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 16px;
+  height: 40px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.ew-btn__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.ew-btn--primary {
+  background: #3A6BEB;
+  color: #FFFFFF;
+}
+.ew-btn--primary:hover:not(:disabled) {
+  background: #4779FF;
+}
+.ew-btn--secondary {
+  background: #3A4570;
+  color: #FFFFFF;
+}
+.ew-btn--secondary:hover:not(:disabled) {
+  background: #56659A;
+}
+.ew-btn--disabled, .ew-btn:disabled {
+  cursor: default;
+  background: #1B2136;
+  color: rgba(255, 255, 255, 0.4);
+}
+.ew-btn--primary:disabled, .ew-btn--primary.ew-btn--disabled {
+  background: #1E3A99;
+  color: rgba(255, 255, 255, 0.5);
+}
+.ew-btn--secondary:disabled, .ew-btn--secondary.ew-btn--disabled {
+  background: #1B2136;
+  color: rgba(255, 255, 255, 0.4);
+}
+.ew-btn--sm {
+  font-size: 14px;
+  padding: 8px 16px;
+}
+.ew-btn--sm .ew-btn__icon {
+  width: 16px;
+  height: 16px;
+}
+
 .pp-wallet-close-confirm {
   position: absolute;
   inset: 0;
@@ -2262,7 +2324,7 @@ body.profile-payment-page .site-footer {
 .pp-wallet-close-confirm__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.85);
 }
 
 .pp-wallet-close-confirm__card {
@@ -2270,8 +2332,7 @@ body.profile-payment-page .site-footer {
   width: 100%;
   width: 520px;
   background: #1B2136;
-  border: 1px solid #222947;
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   overflow: hidden;
 }
@@ -2281,14 +2342,14 @@ body.profile-payment-page .site-footer {
   align-items: center;
   height: 84px;
   justify-content: space-between;
-  padding: 20px 20px 16px;
+  padding: 0px 24px;
   border-bottom: 1px solid #293155;
 }
 
 .pp-wallet-close-confirm__title {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   color: #FFFFFF;
   line-height: 1.25;
@@ -2325,34 +2386,11 @@ body.profile-payment-page .site-footer {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  gap: 12px;
-  padding: 24px;
+  align-items: center;
+  gap: 16px;
+  padding: 0px 24px;
+  height: 84px;
   background-color: #222947;
-}
-
-.pp-wallet-close-confirm__btn {
-  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 12px 20px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-.pp-wallet-close-confirm__btn--primary {
-  background: #3A6BEB;
-  color: #FFFFFF;
-}
-.pp-wallet-close-confirm__btn--primary:hover {
-  background: #4779FF;
-}
-.pp-wallet-close-confirm__btn--secondary {
-  background: #293155;
-  color: #FFFFFF;
-}
-.pp-wallet-close-confirm__btn--secondary:hover {
-  background: #3A4570;
 }
 
 #ppSessionTimerTool {

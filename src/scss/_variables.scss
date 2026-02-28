@@ -6,10 +6,11 @@ $font-sora: 'Sora', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarel
 $font-ew: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 
 // EW type scale – sizes only (from EW typography sheet)
-$ew-size-4xl: 60px;
-$ew-size-3xl: 44px;
-$ew-size-xxl: 28px;
-$ew-size-xl: 24px;
+$ew-size-5xl: 50px;
+$ew-size-4xl: 42px;
+$ew-size-3xl: 34px;
+$ew-size-xxl: 26px;
+$ew-size-xl: 22px;
 $ew-size-l: 18px;
 $ew-size-m: 16px;
 $ew-size-s: 14px;
@@ -101,6 +102,20 @@ $ew-border-highcon: $ew-accentblue-600;      // EW-border-highcon
 $ew-border-mediumcon: $ew-accentblue-700;    // EW-border-mediumcon
 $ew-border-lowcon: $ew-accentblue-900;       // EW-border-lowcon
 
+// ---------------------------------------------------------------------------
+// EW Button (semantic tokens from primitives – for .ew-btn component)
+// ---------------------------------------------------------------------------
+$ew-btn-primary-bg: $ew-primaryblue-500;
+$ew-btn-primary-bg-hover: $ew-primaryblue-400;
+$ew-btn-primary-color: $ew-neutral-100;
+$ew-btn-primary-bg-disabled: $ew-primaryblue-700;
+$ew-btn-primary-color-disabled: rgba($ew-neutral-100, 0.5);
+
+$ew-btn-secondary-bg: $ew-accentblue-500;
+$ew-btn-secondary-bg-hover: $ew-accentblue-400;
+$ew-btn-secondary-color: $ew-neutral-100;
+$ew-btn-secondary-bg-disabled: $ew-accentblue-800;
+$ew-btn-secondary-color-disabled: rgba($ew-neutral-100, 0.4);
 
 // Colors (placeholder until design tokens are provided)
 $gray-50: #f8fafc;

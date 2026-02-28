@@ -4,11 +4,12 @@
   justify-content: center;
   gap: 8px;
   border: 1px solid transparent;
-  border-radius: $radius-md;
+  border-radius: 16px;
   background: $gray-800;
   color: #fff;
   padding: 10px 14px;
   font-weight: 600;
+  height: 40px;
   transition: filter .15s ease, transform .02s ease, background-color .15s ease, border-color .15s ease;
   text-decoration: none !important;
 }

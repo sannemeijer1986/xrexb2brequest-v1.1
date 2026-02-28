@@ -997,7 +997,7 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-modal__balance-amount {
   margin: 0;
   font-family: $font-ew;
-  font-size: $ew-size-4xl;
+  font-size: $ew-size-5xl;
   font-weight: $ew-headline-weight;
   color: $ew-text-primary;
   line-height: 1;
@@ -1209,6 +1209,90 @@ $wallet-accent: $ew-text-link;
   opacity: 0.8;
 }
 
+// ---------------------------------------------------------------------------
+// Reusable EW button component (Embedded Wallet – pill-shaped, Figma variant)
+// Use: .ew-btn .ew-btn--primary | .ew-btn--secondary | .ew-btn--disabled, optional .ew-btn--sm
+// Optional icons: .ew-btn__icon before/after label
+// ---------------------------------------------------------------------------
+.ew-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: $font-ew;
+  font-size: $ew-size-s;
+  font-weight: $ew-subtitle-weight;
+  line-height: 1.25;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 16px;
+  height: 40px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  // Primary (vibrant blue)
+  &--primary {
+    background: $ew-btn-primary-bg;
+    color: $ew-btn-primary-color;
+
+    &:hover:not(:disabled) {
+      background: $ew-btn-primary-bg-hover;
+    }
+  }
+
+  // Secondary (darker surface blue)
+  &--secondary {
+    background: $ew-btn-secondary-bg;
+    color: $ew-btn-secondary-color;
+
+    &:hover:not(:disabled) {
+      background: $ew-btn-secondary-bg-hover;
+    }
+  }
+
+  // Disabled state
+  &--disabled,
+  &:disabled {
+    cursor: default;
+    background: $ew-btn-secondary-bg-disabled;
+    color: $ew-btn-secondary-color-disabled;
+  }
+
+  &--primary:disabled,
+  &--primary.ew-btn--disabled {
+    background: $ew-btn-primary-bg-disabled;
+    color: $ew-btn-primary-color-disabled;
+  }
+
+  &--secondary:disabled,
+  &--secondary.ew-btn--disabled {
+    background: $ew-btn-secondary-bg-disabled;
+    color: $ew-btn-secondary-color-disabled;
+  }
+
+  // Small size
+  &--sm {
+    font-size: $ew-size-s;
+    padding: 8px 16px;
+
+    .ew-btn__icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
 // Close confirm overlay (when X is pressed on a deeper level) — hard appear, no fade
 .pp-wallet-close-confirm {
   position: absolute;
@@ -1227,7 +1311,7 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-close-confirm__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.85);
 }
 
 .pp-wallet-close-confirm__card {
@@ -1235,8 +1319,7 @@ $wallet-accent: $ew-text-link;
   width: 100%;
   width: 520px;
   background: $ew-bg-base-secondary;
-  border: 1px solid $ew-border-mediumcon;
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   overflow: hidden;
 }
@@ -1246,7 +1329,7 @@ $wallet-accent: $ew-text-link;
   align-items: center;
   height: 84px;
   justify-content: space-between;
-  padding: 20px 20px 16px;
+  padding: 0px 24px;
   border-bottom: 1px solid $ew-border-highcon;
 }
 
@@ -1291,38 +1374,11 @@ $wallet-accent: $ew-text-link;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  gap: 12px;
-  padding: 24px;
+  align-items: center;
+  gap: 16px;
+  padding: 0px 24px;
+  height: 84px;
   background-color: $ew-bg-surface-primary;
-}
-
-.pp-wallet-close-confirm__btn {
-  font-family: $font-ew;
-  font-size: $ew-size-m;
-  font-weight: $ew-subtitle-weight;
-  padding: 12px 20px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
-
-  &--primary {
-    background: $ew-primaryblue-500;
-    color: $ew-neutral-100;
-
-    &:hover {
-      background: $ew-primaryblue-400;
-    }
-  }
-
-  &--secondary {
-    background: $ew-bg-surface-secondary;
-    color: $ew-text-primary;
-
-    &:hover {
-      background: $ew-accentblue-500;
-    }
-  }
 }
 
 // Session timer (bottom left) – countdown + Kill session link
