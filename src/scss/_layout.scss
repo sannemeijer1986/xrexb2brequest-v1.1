@@ -33,6 +33,22 @@ html { overflow-y: scroll; }
   z-index: 90;
 }
 
+// Debug: open close-confirm modal for styling (bottom-right)
+.pp-wallet-close-confirm-debug-hotspot {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 90;
+}
+
 .site-header {
   min-width: 360px;
   position: fixed;
