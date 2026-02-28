@@ -2009,6 +2009,21 @@ body.profile-payment-page .site-footer {
   min-height: 0;
   transition: transform 0.25s ease;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(58, 69, 112, 0.25) transparent;
+}
+.pp-wallet-modal__view::-webkit-scrollbar {
+  width: 6px;
+}
+.pp-wallet-modal__view::-webkit-scrollbar-track {
+  background: transparent;
+}
+.pp-wallet-modal__view::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+.pp-wallet-modal__view::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
 }
 .pp-wallet-modal__view--list {
   transform: translateX(0);

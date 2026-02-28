@@ -947,6 +947,26 @@ $wallet-accent: $ew-text-link;
   min-height: 0;
   transition: transform 0.25s ease;
   overflow-y: auto;
+  // Subtle Apple-style scrollbar (visible, low contrast, rounded)
+  scrollbar-width: thin;
+  scrollbar-color: rgba($ew-accentblue-500, 0.25) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($ew-neutral-100, 0.18);
+    border-radius: 999px;
+
+    &:hover {
+      background: rgba($ew-neutral-100, 0.28);
+    }
+  }
 
   &--list {
     transform: translateX(0);
