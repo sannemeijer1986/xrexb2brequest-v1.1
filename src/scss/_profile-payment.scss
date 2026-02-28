@@ -885,8 +885,45 @@ $wallet-accent: $ew-text-link;
   flex: 1 1 auto;
   min-height: 0;
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
   background-color: $ew-bg-base-primary;
+}
+
+.pp-wallet-modal__views {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.pp-wallet-modal__view {
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  min-height: 0;
+  transition: transform 0.25s ease;
+  overflow-y: auto;
+
+  &--list {
+    transform: translateX(0);
+  }
+
+  &--beneficiary {
+    transform: translateX(100%);
+  }
+}
+
+.pp-wallet-modal--beneficiary-view {
+  .pp-wallet-modal__view--list {
+    transform: translateX(-100%);
+  }
+
+  .pp-wallet-modal__view--beneficiary {
+    transform: translateX(0);
+  }
 }
 
 .pp-wallet-modal__balance {
@@ -989,6 +1026,18 @@ $wallet-accent: $ew-text-link;
   flex-shrink: 0;
 }
 
+.pp-wallet-modal__header-icon-wrap {
+  &--hidden {
+    display: none !important;
+  }
+}
+
+.pp-wallet-modal__header-avatar-wrap {
+  &--hidden {
+    display: none !important;
+  }
+}
+
 .pp-wallet-modal__circle-icon {
   width: 40px;
   height: 40px;
@@ -1004,6 +1053,30 @@ $wallet-accent: $ew-text-link;
     height: 24px;
     display: block;
   }
+}
+
+.pp-wallet-modal__network-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: $ew-bg-surface-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+}
+
+.pp-wallet-modal__item-address {
+  font-size: $ew-size-s;
+  font-weight: $ew-subtitle-weight;
+  color: $wallet-text-muted;
+  margin-top: 2px;
 }
 
 .pp-wallet-modal__item-content {

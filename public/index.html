@@ -183,53 +183,81 @@
     <div class="pp-wallet-modal" id="walletModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletModalTitle">
         <div class="pp-wallet-modal__dialog">
             <div class="pp-wallet-modal__header">
-                <!-- Back button is optional; hidden on this first screen -->
                 <button type="button" class="pp-wallet-modal__back pp-wallet-modal__back--hidden" id="walletModalBack" aria-label="Back">
                     <img src="assets/icon_header_back.svg" width="24" height="24" alt="" />
                 </button>
                 <div class="pp-wallet-modal__header-info">
-                    <span class="pp-wallet-modal__circle-icon">
-                        <img src="assets/icon-ew-tab-assets-filled.svg" width="24" height="24" alt="" />
+                    <span class="pp-wallet-modal__header-icon-wrap">
+                        <span class="pp-wallet-modal__circle-icon">
+                            <img src="assets/icon-ew-tab-assets-filled.svg" width="24" height="24" alt="" />
+                        </span>
+                    </span>
+                    <span class="pp-wallet-modal__header-avatar-wrap pp-wallet-modal__header-avatar-wrap--hidden" aria-hidden="true">
+                        <span class="pp-wallet-modal__avatar" id="walletModalHeaderAvatar">AT</span>
                     </span>
                     <div class="pp-wallet-modal__header-text">
-                        <span class="pp-wallet-modal__header-label">abc1234@gmail.com</span>
+                        <span class="pp-wallet-modal__header-label" id="walletModalHeaderLabel">abc1234@gmail.com</span>
                         <h2 id="walletModalTitle" class="pp-wallet-modal__title">Wallet account</h2>
                     </div>
                 </div>
                 <button type="button" class="pp-wallet-modal__close" id="walletModalClose" aria-label="Close"><img src="assets/icon_pp_close.svg" width="24" height="24" alt="" /></button>
             </div>
             <div class="pp-wallet-modal__body">
-                <div class="pp-wallet-modal__balance">
-                    <p class="pp-wallet-modal__balance-label">Total balance <span class="pp-wallet-modal__balance-approx">≈</span> <a href="#" class="pp-wallet-modal__refresh">Refresh</a></p>
-                    <p class="pp-wallet-modal__balance-amount">$32.41</p>
+                <div class="pp-wallet-modal__views">
+                    <div class="pp-wallet-modal__view pp-wallet-modal__view--list" id="walletViewList">
+                        <div class="pp-wallet-modal__balance">
+                            <p class="pp-wallet-modal__balance-label">Total balance <span class="pp-wallet-modal__balance-approx">≈</span> <a href="#" class="pp-wallet-modal__refresh">Refresh</a></p>
+                            <p class="pp-wallet-modal__balance-amount">$32.41</p>
+                        </div>
+                        <section class="pp-wallet-modal__section">
+                            <h3 class="pp-wallet-modal__section-title">My auto-debit wallets (2)</h3>
+                            <ul class="pp-wallet-modal__list">
+                                <li class="pp-wallet-modal__item pp-wallet-modal__item--active" data-beneficiary-initials="AT" data-beneficiary-name="AGP Technology">
+                                    <span class="pp-wallet-modal__avatar">AT</span>
+                                    <div class="pp-wallet-modal__item-content">
+                                        <span class="pp-wallet-modal__item-label">Beneficiary</span>
+                                        <span class="pp-wallet-modal__item-name">AGP Technology</span>
+                                    </div>
+                                    <div class="pp-wallet-modal__item-right">
+                                        <span class="pp-wallet-modal__item-balance">$32.41 ≈</span>
+                                        <img src="assets/icon-ew-arrow-forward.svg" alt="" width="20" height="20" class="pp-wallet-modal__chevron" />
+                                    </div>
+                                </li>
+                                <li class="pp-wallet-modal__item" data-beneficiary-initials="NL" data-beneficiary-name="NovaQuill Ltd">
+                                    <span class="pp-wallet-modal__avatar">NL</span>
+                                    <div class="pp-wallet-modal__item-content">
+                                        <span class="pp-wallet-modal__item-label">Beneficiary</span>
+                                        <span class="pp-wallet-modal__item-name">NovaQuill Ltd</span>
+                                    </div>
+                                    <div class="pp-wallet-modal__item-right">
+                                        <span class="pp-wallet-modal__item-balance pp-wallet-modal__item-balance--empty">$0.00</span>
+                                        <img src="assets/icon-ew-arrow-forward.svg" alt="" width="20" height="20" class="pp-wallet-modal__chevron" />
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="pp-wallet-modal__view pp-wallet-modal__view--beneficiary" id="walletViewBeneficiary" aria-hidden="true">
+                        <section class="pp-wallet-modal__section">
+                            <h3 class="pp-wallet-modal__section-title">Networks (1)</h3>
+                            <ul class="pp-wallet-modal__list pp-wallet-modal__list--networks">
+                                <li class="pp-wallet-modal__item">
+                                    <span class="pp-wallet-modal__network-icon">
+                                        <img src="assets/icon-ew-address.svg" alt="" width="24" height="24" />
+                                    </span>
+                                    <div class="pp-wallet-modal__item-content">
+                                        <span class="pp-wallet-modal__item-name">Ethereum (ERC-20)</span>
+                                        <span class="pp-wallet-modal__item-address">0x2134...1233f8</span>
+                                    </div>
+                                    <div class="pp-wallet-modal__item-right">
+                                        <span class="pp-wallet-modal__item-balance">$32.41 ≈</span>
+                                        <img src="assets/icon-ew-arrow-forward.svg" alt="" width="20" height="20" class="pp-wallet-modal__chevron" />
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>
+                    </div>
                 </div>
-                <section class="pp-wallet-modal__section">
-                    <h3 class="pp-wallet-modal__section-title">My auto-debit wallets (2)</h3>
-                    <ul class="pp-wallet-modal__list">
-                        <li class="pp-wallet-modal__item pp-wallet-modal__item--active">
-                            <span class="pp-wallet-modal__avatar">AT</span>
-                            <div class="pp-wallet-modal__item-content">
-                                <span class="pp-wallet-modal__item-label">Beneficiary</span>
-                                <span class="pp-wallet-modal__item-name">AGP Technology</span>
-                            </div>
-                            <div class="pp-wallet-modal__item-right">
-                                <span class="pp-wallet-modal__item-balance">$32.41 ≈</span>
-                                <img src="assets/icon-ew-arrow-forward.svg" alt="" width="20" height="20" class="pp-wallet-modal__chevron" />
-                            </div>
-                        </li>
-                        <li class="pp-wallet-modal__item">
-                            <span class="pp-wallet-modal__avatar">NL</span>
-                            <div class="pp-wallet-modal__item-content">
-                                <span class="pp-wallet-modal__item-label">Beneficiary</span>
-                                <span class="pp-wallet-modal__item-name">NovaQuill Ltd</span>
-                            </div>
-                            <div class="pp-wallet-modal__item-right">
-                                <span class="pp-wallet-modal__item-balance pp-wallet-modal__item-balance--empty">$0.00</span>
-                                <img src="assets/icon-ew-arrow-forward.svg" alt="" width="20" height="20" class="pp-wallet-modal__chevron" />
-                            </div>
-                        </li>
-                    </ul>
-                </section>
             </div>
             <div class="pp-wallet-modal__footer">
                 <div class="pp-wallet-modal__tabs">
@@ -563,13 +591,67 @@
             if (okayBtn) okayBtn.addEventListener("click", closeModal);
 
             function closeWalletModal() {
+                showListView();
                 if (walletModal) walletModal.setAttribute("aria-hidden", "true");
                 unlockBackgroundScroll();
             }
             if (walletModalClose) walletModalClose.addEventListener("click", closeWalletModal);
+
+            // Beneficiary detail view: show on beneficiary item click, hide on back
+            var walletModalBack = document.getElementById("walletModalBack");
+            var walletViewList = document.getElementById("walletViewList");
+            var walletViewBeneficiary = document.getElementById("walletViewBeneficiary");
+            var walletModalHeaderAvatar = document.getElementById("walletModalHeaderAvatar");
+            var walletModalHeaderLabel = document.getElementById("walletModalHeaderLabel");
+            var walletModalTitle = document.getElementById("walletModalTitle");
+            var walletHeaderIconWrap = walletModal && walletModal.querySelector(".pp-wallet-modal__header-icon-wrap");
+            var walletHeaderAvatarWrap = walletModal && walletModal.querySelector(".pp-wallet-modal__header-avatar-wrap");
+            var WALLET_DEFAULT_LABEL = "abc1234@gmail.com";
+            var WALLET_DEFAULT_TITLE = "Wallet account";
+
+            function showBeneficiaryView(name, initials) {
+                if (!walletModal || !walletViewBeneficiary || !walletViewList) return;
+                walletModal.classList.add("pp-wallet-modal--beneficiary-view");
+                walletModalBack && walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
+                if (walletHeaderIconWrap) walletHeaderIconWrap.classList.add("pp-wallet-modal__header-icon-wrap--hidden");
+                if (walletHeaderAvatarWrap) {
+                    walletHeaderAvatarWrap.classList.remove("pp-wallet-modal__header-avatar-wrap--hidden");
+                    walletHeaderAvatarWrap.removeAttribute("aria-hidden");
+                }
+                if (walletModalHeaderAvatar) walletModalHeaderAvatar.textContent = initials || "?";
+                if (walletModalHeaderLabel) walletModalHeaderLabel.textContent = "Beneficiary";
+                if (walletModalTitle) walletModalTitle.textContent = name || "";
+                walletViewList.setAttribute("aria-hidden", "true");
+                walletViewBeneficiary.removeAttribute("aria-hidden");
+            }
+
+            function showListView() {
+                if (!walletModal || !walletViewBeneficiary || !walletViewList) return;
+                walletModal.classList.remove("pp-wallet-modal--beneficiary-view");
+                walletModalBack && walletModalBack.classList.add("pp-wallet-modal__back--hidden");
+                if (walletHeaderIconWrap) walletHeaderIconWrap.classList.remove("pp-wallet-modal__header-icon-wrap--hidden");
+                if (walletHeaderAvatarWrap) {
+                    walletHeaderAvatarWrap.classList.add("pp-wallet-modal__header-avatar-wrap--hidden");
+                    walletHeaderAvatarWrap.setAttribute("aria-hidden", "true");
+                }
+                if (walletModalHeaderLabel) walletModalHeaderLabel.textContent = WALLET_DEFAULT_LABEL;
+                if (walletModalTitle) walletModalTitle.textContent = WALLET_DEFAULT_TITLE;
+                walletViewList.removeAttribute("aria-hidden");
+                walletViewBeneficiary.setAttribute("aria-hidden", "true");
+            }
+
+            if (walletModalBack) walletModalBack.addEventListener("click", function () { showListView(); });
             if (walletModal) {
                 walletModal.querySelectorAll(".pp-wallet-modal__refresh, .pp-wallet-modal__tab").forEach(function (link) {
                     link.addEventListener("click", function (e) { e.preventDefault(); });
+                });
+                walletModal.addEventListener("click", function (e) {
+                    var item = e.target && e.target.closest && e.target.closest(".pp-wallet-modal__item[data-beneficiary-name]");
+                    if (!item) return;
+                    e.preventDefault();
+                    var name = item.getAttribute("data-beneficiary-name") || "";
+                    var initials = item.getAttribute("data-beneficiary-initials") || "";
+                    showBeneficiaryView(name, initials);
                 });
             }
             if (isSessionActive()) startSessionTimer();
