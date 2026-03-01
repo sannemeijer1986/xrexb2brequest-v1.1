@@ -1214,7 +1214,7 @@ $wallet-accent: $ew-text-link;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 4px;
+  gap: 2px;
 }
 
 .pp-wallet-modal__address-label {
@@ -1230,7 +1230,8 @@ $wallet-accent: $ew-text-link;
   gap: 8px;
   border: none;
   background: transparent;
-  padding: 4px 0;
+  padding: 0;
+  margin: 0;
   cursor: pointer;
   font: inherit;
   color: inherit;
@@ -1261,7 +1262,7 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-modal__address-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
   font-family: $font-ew;
   font-size: $ew-size-xs;
   font-weight: $ew-subtitle-weight;
@@ -1342,6 +1343,7 @@ $wallet-accent: $ew-text-link;
 }
 
 .pp-wallet-modal__address-detail .pp-wallet-modal__section-title {
+  margin-top: 16px;
   margin-bottom: 12px;
 }
 
@@ -1359,23 +1361,15 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-modal__asset-icon {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: $font-ew;
-  font-size: $ew-size-l;
-  font-weight: $ew-title-weight;
   flex-shrink: 0;
 
-  &--usdt {
-    background: #26a17b;
-    color: $ew-neutral-100;
-  }
-
-  &--eth {
-    background: #627eea;
-    color: $ew-neutral-100;
+  img {
+    width: 40px;
+    height: 40px;
+    display: block;
   }
 }
 
@@ -1644,21 +1638,38 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-snackbar {
   position: absolute;
   left: 50%;
-  bottom: 140px;
-  transform: translateX(-50%) translateY(8px);
+  top: 16px;
+  transform: translateX(-50%) translateY(-8px);
   z-index: 25;
-  padding: 12px 20px;
-  border-radius: 10px;
-  background: $ew-bg-surface-primary;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 240px;
+  height: 64px;
+  padding: 0 28px 0 20px;
+  border-radius: 16px;
+  background: $ew-bg-base-primary;
   color: $ew-text-primary;
   font-family: $font-ew;
-  font-size: $ew-size-m;
+  font-size: $ew-size-l;
   font-weight: $ew-subtitle-weight;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  border: 1px solid $ew-border-mediumcon;
+  box-shadow: 4px 8px 40px rgba(0, 0, 0, 0.75);
+  border: 1px solid $ew-snackbar-border;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
+
+  &__icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  &__text {
+    text-align: left;
+    flex: 1 1 auto;
+  }
 
   &--visible {
     opacity: 1;

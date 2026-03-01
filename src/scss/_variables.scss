@@ -30,6 +30,7 @@ $ew-caption-weight: 400;
 // ---------------------------------------------------------------------------
 
 // [ EW ] Primaryblue
+$ew-primaryblue-1000: #0A122E;
 $ew-primaryblue-900: #0E1A40;
 $ew-primaryblue-800: #142766;
 $ew-primaryblue-700: #1E3A99;
@@ -41,6 +42,7 @@ $ew-primaryblue-200: #A9C4FF;
 $ew-primaryblue-100: #E3ECFF;
 
 // [ EW ] Accentblue
+$ew-accentblue-1000: #0E1426;
 $ew-accentblue-900: #161A2A;
 $ew-accentblue-800: #1B2136;
 $ew-accentblue-700: #222947;
@@ -52,7 +54,8 @@ $ew-accentblue-200: #96A9E0;
 $ew-accentblue-100: #C7D6FF;
 
 // [ EW ] Neutral
-$ew-neutral-900: #000000;
+$ew-neutral-1000: #000000;
+$ew-neutral-900: #595B64;
 $ew-neutral-100: #FFFFFF;
 $ew-neutral-200: #F5F5F7;
 $ew-neutral-300: #E6E6EA;
@@ -101,6 +104,11 @@ $ew-icon-negative: $ew-assisting-negative;   // EW-icon-negative
 $ew-border-highcon: $ew-accentblue-600;      // EW-border-highcon
 $ew-border-mediumcon: $ew-accentblue-700;    // EW-border-mediumcon
 $ew-border-lowcon: $ew-accentblue-900;       // EW-border-lowcon
+
+// Snackbar
+$ew-snackbar-bg: $ew-accentblue-1000;
+$ew-snackbar-text: $ew-neutral-100;
+$ew-snackbar-border: $ew-accentblue-800;
 
 // ---------------------------------------------------------------------------
 // EW Button (semantic tokens from primitives – for .ew-btn component)

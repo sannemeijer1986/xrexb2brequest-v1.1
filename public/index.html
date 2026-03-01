@@ -248,7 +248,7 @@
                             <ul class="pp-wallet-modal__list pp-wallet-modal__list--networks">
                                 <li class="pp-wallet-modal__item pp-wallet-modal__item--network" data-network-name="Ethereum (ERC-20)">
                                     <span class="pp-wallet-modal__network-icon">
-                                        <img src="assets/icon-ew-wallet.svg" alt="" width="24" height="24" />
+                                        <img src="assets/icon-ew-addressdetail.svg" alt="" width="24" height="24" />
                                     </span>
                                     <div class="pp-wallet-modal__item-content">
                                         <span class="pp-wallet-modal__item-name">Ethereum (ERC-20)</span>
@@ -297,7 +297,7 @@
                                 <div id="walletAddressDetailAssetsList">
                                     <ul class="pp-wallet-modal__list">
                                         <li class="pp-wallet-modal__item">
-                                            <span class="pp-wallet-modal__asset-icon pp-wallet-modal__asset-icon--usdt">T</span>
+                                            <span class="pp-wallet-modal__asset-icon"><img src="assets/icon-ew-currency-USDT.svg" alt="" width="40" height="40" /></span>
                                             <div class="pp-wallet-modal__item-content">
                                                 <span class="pp-wallet-modal__item-name">USDT</span>
                                                 <span class="pp-wallet-modal__item-label">US Tether</span>
@@ -305,7 +305,7 @@
                                             <span class="pp-wallet-modal__item-balance">32.41 USDT</span>
                                         </li>
                                         <li class="pp-wallet-modal__item">
-                                            <span class="pp-wallet-modal__asset-icon pp-wallet-modal__asset-icon--eth">Ξ</span>
+                                            <span class="pp-wallet-modal__asset-icon"><img src="assets/icon-ew-currency-ETH.svg" alt="" width="40" height="40" /></span>
                                             <div class="pp-wallet-modal__item-content">
                                                 <span class="pp-wallet-modal__item-name">ETH</span>
                                                 <span class="pp-wallet-modal__item-label">Ethereum</span>
@@ -334,7 +334,10 @@
                 <p class="pp-wallet-modal__disclaimer">Wallet tech by Dynamic.xyz: you're viewing a custom interface.</p>
             </div>
         </div>
-        <div class="pp-wallet-snackbar" id="walletSnackbar" aria-live="polite" aria-hidden="true">Copied to clipboard</div>
+        <div class="pp-wallet-snackbar" id="walletSnackbar" aria-live="polite" aria-hidden="true">
+            <img class="pp-wallet-snackbar__icon" src="assets/icon-ew-check.svg" alt="" width="32" height="32" />
+            <span class="pp-wallet-snackbar__text">Copied to clipboard</span>
+        </div>
         <div class="pp-wallet-close-confirm" id="walletCloseConfirm" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletCloseConfirmTitle">
             <div class="pp-wallet-close-confirm__backdrop"></div>
             <div class="pp-wallet-close-confirm__card">
