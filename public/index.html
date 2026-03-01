@@ -195,6 +195,11 @@
                     <span class="pp-wallet-modal__header-avatar-wrap pp-wallet-modal__header-avatar-wrap--hidden" aria-hidden="true">
                         <span class="pp-wallet-modal__avatar" id="walletModalHeaderAvatar">AT</span>
                     </span>
+                    <span class="pp-wallet-modal__header-address-detail-wrap pp-wallet-modal__header-address-detail-wrap--hidden" aria-hidden="true">
+                        <span class="pp-wallet-modal__circle-icon">
+                            <img src="assets/icon-ew-addressdetail.svg" width="24" height="24" alt="" />
+                        </span>
+                    </span>
                     <div class="pp-wallet-modal__header-text">
                         <span class="pp-wallet-modal__header-label" id="walletModalHeaderLabel">abc1234@gmail.com</span>
                         <h2 id="walletModalTitle" class="pp-wallet-modal__title">Wallet account</h2>
@@ -266,24 +271,24 @@
                                 </div>
                                 <div class="pp-wallet-modal__address-block">
                                     <span class="pp-wallet-modal__address-label">Address</span>
-                                    <div class="pp-wallet-modal__address-value-row">
+                                    <button type="button" class="pp-wallet-modal__address-value-row" aria-label="Copy address" data-copy-value="0x21341234123412341234123412341233f8">
                                         <span class="pp-wallet-modal__address-value">0x2134...1233f8</span>
-                                        <button type="button" class="pp-wallet-modal__address-copy" aria-label="Copy address"><img src="assets/icon-ew-copy.svg" alt="" width="20" height="20" /></button>
-                                    </div>
-                                    <span class="pp-wallet-modal__address-badge"><img src="assets/icon_check_on.svg" alt="" width="16" height="16" /> Auto-debit</span>
+                                        <span class="pp-wallet-modal__address-copy-icon" aria-hidden="true"><img src="assets/icon-ew-copy.svg" alt="" width="20" height="20" /></span>
+                                    </button>
+                                    <span class="pp-wallet-modal__address-badge"><img src="assets/icon-ew-check-autodebit.svg" alt="" width="18" height="18" /> Auto-debit</span>
                                 </div>
                             </div>
                             <div class="pp-wallet-modal__action-buttons">
-                                <button type="button" class="pp-wallet-modal__action-btn">
-                                    <span class="pp-wallet-modal__action-btn-icon"><img src="assets/icon-ew-withdraw.svg" alt="" width="24" height="24" /></span>
+                                <button type="button" class="pp-wallet-modal__action-btn pp-wallet-modal__action-btn--primary">
+                                    <span class="pp-wallet-modal__action-btn-icon"><img src="assets/icon-ew-withdraw.svg" alt="" width="32" height="32" /></span>
                                     <span class="pp-wallet-modal__action-btn-label">Withdraw</span>
                                 </button>
                                 <button type="button" class="pp-wallet-modal__action-btn">
-                                    <span class="pp-wallet-modal__action-btn-icon"><img src="assets/icon-ew-activity.svg" alt="" width="24" height="24" /></span>
+                                    <span class="pp-wallet-modal__action-btn-icon"><img src="assets/icon-ew-activity.svg" alt="" width="32" height="32" /></span>
                                     <span class="pp-wallet-modal__action-btn-label">On-chain activity</span>
                                 </button>
                                 <button type="button" class="pp-wallet-modal__action-btn">
-                                    <span class="pp-wallet-modal__action-btn-icon"><img src="assets/icon-ew-more.svg" alt="" width="24" height="24" /></span>
+                                    <span class="pp-wallet-modal__action-btn-icon"><img src="assets/icon-ew-more.svg" alt="" width="32" height="32" /></span>
                                     <span class="pp-wallet-modal__action-btn-label">More</span>
                                 </button>
                             </div>
@@ -329,6 +334,7 @@
                 <p class="pp-wallet-modal__disclaimer">Wallet tech by Dynamic.xyz: you're viewing a custom interface.</p>
             </div>
         </div>
+        <div class="pp-wallet-snackbar" id="walletSnackbar" aria-live="polite" aria-hidden="true">Copied to clipboard</div>
         <div class="pp-wallet-close-confirm" id="walletCloseConfirm" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletCloseConfirmTitle">
             <div class="pp-wallet-close-confirm__backdrop"></div>
             <div class="pp-wallet-close-confirm__card">
@@ -736,6 +742,7 @@
             var walletModalTitle = document.getElementById("walletModalTitle");
             var walletHeaderIconWrap = walletModal && walletModal.querySelector(".pp-wallet-modal__header-icon-wrap");
             var walletHeaderAvatarWrap = walletModal && walletModal.querySelector(".pp-wallet-modal__header-avatar-wrap");
+            var walletHeaderAddressDetailWrap = walletModal && walletModal.querySelector(".pp-wallet-modal__header-address-detail-wrap");
             var WALLET_DEFAULT_LABEL = "abc1234@gmail.com";
             var WALLET_DEFAULT_TITLE = "Wallet account";
             var currentBeneficiaryName = "";
@@ -752,6 +759,10 @@
                 if (walletModalDialog) walletModalDialog.classList.add("pp-wallet-modal__dialog--deeper");
                 walletModalBack && walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
                 if (walletHeaderIconWrap) walletHeaderIconWrap.classList.add("pp-wallet-modal__header-icon-wrap--hidden");
+                if (walletHeaderAddressDetailWrap) {
+                    walletHeaderAddressDetailWrap.classList.add("pp-wallet-modal__header-address-detail-wrap--hidden");
+                    walletHeaderAddressDetailWrap.setAttribute("aria-hidden", "true");
+                }
                 if (walletHeaderAvatarWrap) {
                     walletHeaderAvatarWrap.classList.remove("pp-wallet-modal__header-avatar-wrap--hidden");
                     walletHeaderAvatarWrap.removeAttribute("aria-hidden");
@@ -784,10 +795,13 @@
                 walletModalBack && walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
                 if (walletHeaderIconWrap) walletHeaderIconWrap.classList.add("pp-wallet-modal__header-icon-wrap--hidden");
                 if (walletHeaderAvatarWrap) {
-                    walletHeaderAvatarWrap.classList.remove("pp-wallet-modal__header-avatar-wrap--hidden");
-                    walletHeaderAvatarWrap.removeAttribute("aria-hidden");
+                    walletHeaderAvatarWrap.classList.add("pp-wallet-modal__header-avatar-wrap--hidden");
+                    walletHeaderAvatarWrap.setAttribute("aria-hidden", "true");
                 }
-                if (walletModalHeaderAvatar) walletModalHeaderAvatar.textContent = beneficiaryInitials || "?";
+                if (walletHeaderAddressDetailWrap) {
+                    walletHeaderAddressDetailWrap.classList.remove("pp-wallet-modal__header-address-detail-wrap--hidden");
+                    walletHeaderAddressDetailWrap.removeAttribute("aria-hidden");
+                }
                 if (walletModalHeaderLabel) walletModalHeaderLabel.textContent = beneficiaryName || "";
                 if (walletModalTitle) walletModalTitle.textContent = networkName || "";
                 if (walletAddressDetailBalance) {
@@ -814,12 +828,15 @@
                 if (!walletModal || !walletViewBeneficiary || !walletViewList) return;
                 walletModal.classList.remove("pp-wallet-modal--beneficiary-view");
                 walletModal.classList.remove("pp-wallet-modal--address-detail-view");
-                if (walletModalDialog) walletModalDialog.classList.remove("pp-wallet-modal__dialog--deeper");
                 walletModalBack && walletModalBack.classList.add("pp-wallet-modal__back--hidden");
                 if (walletHeaderIconWrap) walletHeaderIconWrap.classList.remove("pp-wallet-modal__header-icon-wrap--hidden");
                 if (walletHeaderAvatarWrap) {
                     walletHeaderAvatarWrap.classList.add("pp-wallet-modal__header-avatar-wrap--hidden");
                     walletHeaderAvatarWrap.setAttribute("aria-hidden", "true");
+                }
+                if (walletHeaderAddressDetailWrap) {
+                    walletHeaderAddressDetailWrap.classList.add("pp-wallet-modal__header-address-detail-wrap--hidden");
+                    walletHeaderAddressDetailWrap.setAttribute("aria-hidden", "true");
                 }
                 if (walletModalHeaderLabel) walletModalHeaderLabel.textContent = WALLET_DEFAULT_LABEL;
                 if (walletModalTitle) walletModalTitle.textContent = WALLET_DEFAULT_TITLE;
@@ -840,9 +857,27 @@
 
             if (walletModalBack) walletModalBack.addEventListener("click", onWalletBackClick);
             if (walletModal) {
-                walletModal.querySelectorAll(".pp-wallet-modal__refresh, .pp-wallet-modal__tab, .pp-wallet-modal__action-btn, .pp-wallet-modal__address-copy").forEach(function (el) {
+                walletModal.querySelectorAll(".pp-wallet-modal__refresh, .pp-wallet-modal__tab, .pp-wallet-modal__action-btn").forEach(function (el) {
                     el.addEventListener("click", function (e) { e.preventDefault(); });
                 });
+                var addressValueRow = walletModal && walletModal.querySelector(".pp-wallet-modal__address-value-row");
+                var walletSnackbar = document.getElementById("walletSnackbar");
+                if (addressValueRow && walletSnackbar) {
+                    addressValueRow.addEventListener("click", function () {
+                        var value = addressValueRow.getAttribute("data-copy-value") || (addressValueRow.querySelector(".pp-wallet-modal__address-value") && addressValueRow.querySelector(".pp-wallet-modal__address-value").textContent) || "";
+                        if (value && navigator.clipboard && navigator.clipboard.writeText) {
+                            navigator.clipboard.writeText(value).then(function () {
+                                walletSnackbar.setAttribute("aria-hidden", "false");
+                                walletSnackbar.classList.add("pp-wallet-snackbar--visible");
+                                clearTimeout(walletSnackbar._hideTimer);
+                                walletSnackbar._hideTimer = setTimeout(function () {
+                                    walletSnackbar.classList.remove("pp-wallet-snackbar--visible");
+                                    walletSnackbar.setAttribute("aria-hidden", "true");
+                                }, 2800);
+                            });
+                        }
+                    });
+                }
                 walletModal.addEventListener("click", function (e) {
                     var beneficiaryItem = e.target && e.target.closest && e.target.closest(".pp-wallet-modal__item[data-beneficiary-name]");
                     if (beneficiaryItem) {

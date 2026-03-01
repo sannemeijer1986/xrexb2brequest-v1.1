@@ -2101,7 +2101,7 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__section {
   padding: 32px;
   background-color: #1B2136;
-  height: 100%;
+  min-height: 100%;
 }
 
 .pp-wallet-modal__section-title {
@@ -2163,6 +2163,10 @@ body.profile-payment-page .site-footer {
   display: none !important;
 }
 
+.pp-wallet-modal__header-address-detail-wrap--hidden {
+  display: none !important;
+}
+
 .pp-wallet-modal__circle-icon {
   width: 40px;
   height: 40px;
@@ -2203,13 +2207,14 @@ body.profile-payment-page .site-footer {
 }
 
 .pp-wallet-modal__address-detail {
-  padding: 32px;
+  padding: 32px 32px 48px;
   background-color: #1B2136;
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  overflow-y: auto;
 }
 
 .pp-wallet-modal__balance-address-row {
@@ -2239,7 +2244,7 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-modal__address-label {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   color: #7384BE;
 }
@@ -2248,6 +2253,18 @@ body.profile-payment-page .site-footer {
   display: flex;
   align-items: center;
   gap: 8px;
+  border: none;
+  background: transparent;
+  padding: 4px 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+  transition: opacity 0.15s ease;
+}
+.pp-wallet-modal__address-value-row:hover {
+  opacity: 0.9;
 }
 
 .pp-wallet-modal__address-value {
@@ -2257,18 +2274,12 @@ body.profile-payment-page .site-footer {
   color: #FFFFFF;
 }
 
-.pp-wallet-modal__address-copy {
-  border: none;
-  background: transparent;
-  padding: 4px;
-  cursor: pointer;
+.pp-wallet-modal__address-copy-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   color: #96A9E0;
-}
-.pp-wallet-modal__address-copy:hover {
-  color: #FFFFFF;
+  flex-shrink: 0;
 }
 
 .pp-wallet-modal__address-badge {
@@ -2304,37 +2315,43 @@ body.profile-payment-page .site-footer {
   padding: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   color: #FFFFFF;
   transition: opacity 0.15s ease;
 }
-.pp-wallet-modal__action-btn:hover {
-  opacity: 0.85;
+.pp-wallet-modal__action-btn:hover .pp-wallet-modal__action-btn-icon {
+  background: #56659A;
 }
 
 .pp-wallet-modal__action-btn-icon {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #293155;
+  background: #3A4570;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 .pp-wallet-modal__action-btn-icon img {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   display: block;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
+}
+
+.pp-wallet-modal__action-btn--primary .pp-wallet-modal__action-btn-icon {
+  background: #3A6BEB;
+}
+.pp-wallet-modal__action-btn--primary:hover .pp-wallet-modal__action-btn-icon {
+  background: #4779FF;
 }
 
 .pp-wallet-modal__address-detail .pp-wallet-modal__section {
   padding: 0;
   background: transparent;
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   min-height: 0;
+  height: auto;
 }
 
 .pp-wallet-modal__address-detail .pp-wallet-modal__section-title {
@@ -2601,6 +2618,30 @@ body.profile-payment-page .site-footer {
   padding: 0px 24px;
   height: 84px;
   background-color: #222947;
+}
+
+.pp-wallet-snackbar {
+  position: absolute;
+  left: 50%;
+  bottom: 140px;
+  transform: translateX(-50%) translateY(8px);
+  z-index: 25;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: #222947;
+  color: #FFFFFF;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid #222947;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.pp-wallet-snackbar--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 #ppSessionTimerTool {
