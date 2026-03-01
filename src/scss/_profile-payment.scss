@@ -975,6 +975,10 @@ $wallet-accent: $ew-text-link;
   &--beneficiary {
     transform: translateX(100%);
   }
+
+  &--address-detail {
+    transform: translateX(200%);
+  }
 }
 
 .pp-wallet-modal--beneficiary-view {
@@ -983,6 +987,24 @@ $wallet-accent: $ew-text-link;
   }
 
   .pp-wallet-modal__view--beneficiary {
+    transform: translateX(0);
+  }
+
+  .pp-wallet-modal__view--address-detail {
+    transform: translateX(100%);
+  }
+}
+
+.pp-wallet-modal--address-detail-view {
+  .pp-wallet-modal__view--list {
+    transform: translateX(-200%);
+  }
+
+  .pp-wallet-modal__view--beneficiary {
+    transform: translateX(-100%);
+  }
+
+  .pp-wallet-modal__view--address-detail {
     transform: translateX(0);
   }
 }
@@ -1138,6 +1160,184 @@ $wallet-accent: $ew-text-link;
   font-weight: $ew-subtitle-weight;
   color: $wallet-text-muted;
   margin-top: 2px;
+}
+
+// Address detail screen (after selecting a network)
+.pp-wallet-modal__address-detail {
+  padding: 32px;
+  background-color: $ew-bg-base-secondary;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pp-wallet-modal__balance-address-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 32px;
+  justify-content: space-between;
+}
+
+.pp-wallet-modal__address-detail .pp-wallet-modal__balance-block {
+  padding: 0;
+}
+
+.pp-wallet-modal__address-detail .pp-wallet-modal__balance-block .pp-wallet-modal__balance-amount {
+  font-size: $ew-size-4xl;
+
+  &--empty {
+    color: $ew-text-placeholder;
+  }
+}
+
+.pp-wallet-modal__address-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.pp-wallet-modal__address-label {
+  font-family: $font-ew;
+  font-size: $ew-size-s;
+  font-weight: $ew-subtitle-weight;
+  color: $ew-text-secondary;
+}
+
+.pp-wallet-modal__address-value-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pp-wallet-modal__address-value {
+  font-family: $font-ew;
+  font-size: $ew-size-xl;
+  font-weight: $ew-headline-weight;
+  color: $ew-text-primary;
+}
+
+.pp-wallet-modal__address-copy {
+  border: none;
+  background: transparent;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $ew-icon-secondary;
+
+  &:hover {
+    color: $ew-icon-primary;
+  }
+}
+
+.pp-wallet-modal__address-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: $font-ew;
+  font-size: $ew-size-xs;
+  font-weight: $ew-subtitle-weight;
+  color: $ew-text-positive;
+}
+
+.pp-wallet-modal__action-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  padding: 20px 24px;
+  background: $ew-bg-surface-primary;
+  border: 1px solid $ew-border-mediumcon;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.pp-wallet-modal__action-btn {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  font-family: $font-ew;
+  font-size: $ew-size-s;
+  font-weight: $ew-subtitle-weight;
+  color: $ew-text-primary;
+  transition: opacity 0.15s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.pp-wallet-modal__action-btn-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: $ew-bg-surface-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+  }
+}
+
+.pp-wallet-modal__address-detail .pp-wallet-modal__section {
+  padding: 0;
+  background: transparent;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.pp-wallet-modal__address-detail .pp-wallet-modal__section-title {
+  margin-bottom: 12px;
+}
+
+.pp-wallet-modal__assets-empty {
+  margin: 0;
+  padding: 24px 16px;
+  font-family: $font-ew;
+  font-size: $ew-size-m;
+  font-weight: $ew-body-weight;
+  color: $ew-text-placeholder;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.pp-wallet-modal__asset-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-ew;
+  font-size: $ew-size-l;
+  font-weight: $ew-title-weight;
+  flex-shrink: 0;
+
+  &--usdt {
+    background: #26a17b;
+    color: $ew-neutral-100;
+  }
+
+  &--eth {
+    background: #627eea;
+    color: $ew-neutral-100;
+  }
 }
 
 .pp-wallet-modal__item-content {
