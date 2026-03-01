@@ -784,6 +784,16 @@ $wallet-accent: $ew-text-link;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.25s ease;
+
+  &--deeper {
+    background-color: $ew-bg-base-secondary; // #1B2136
+  }
+
+  &--deeper .pp-wallet-modal__body {
+    background-color: $ew-bg-base-secondary;
+  }
+  
 }
 
 .pp-wallet-modal__header {
@@ -1011,6 +1021,7 @@ $wallet-accent: $ew-text-link;
 
 .pp-wallet-modal__balance {
   padding: 32px;
+  background-color: $ew-bg-base-primary;
 }
 
 .pp-wallet-modal__balance-label {

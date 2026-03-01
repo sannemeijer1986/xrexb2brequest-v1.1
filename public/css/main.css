@@ -1852,6 +1852,13 @@ body.profile-payment-page .site-footer {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.25s ease;
+}
+.pp-wallet-modal__dialog--deeper {
+  background-color: #1B2136;
+}
+.pp-wallet-modal__dialog--deeper .pp-wallet-modal__body {
+  background-color: #1B2136;
 }
 
 .pp-wallet-modal__header {
@@ -2057,6 +2064,7 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-modal__balance {
   padding: 32px;
+  background-color: #161A2A;
 }
 
 .pp-wallet-modal__balance-label {

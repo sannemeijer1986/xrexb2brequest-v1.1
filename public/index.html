@@ -727,6 +727,7 @@
 
             // Beneficiary detail + Address detail views
             var walletModalBack = document.getElementById("walletModalBack");
+            var walletModalDialog = walletModal && walletModal.querySelector(".pp-wallet-modal__dialog");
             var walletViewList = document.getElementById("walletViewList");
             var walletViewBeneficiary = document.getElementById("walletViewBeneficiary");
             var walletViewAddressDetail = document.getElementById("walletViewAddressDetail");
@@ -748,6 +749,7 @@
                 currentBeneficiaryInitials = initials || "";
                 walletModal.classList.remove("pp-wallet-modal--address-detail-view");
                 walletModal.classList.add("pp-wallet-modal--beneficiary-view");
+                if (walletModalDialog) walletModalDialog.classList.add("pp-wallet-modal__dialog--deeper");
                 walletModalBack && walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
                 if (walletHeaderIconWrap) walletHeaderIconWrap.classList.add("pp-wallet-modal__header-icon-wrap--hidden");
                 if (walletHeaderAvatarWrap) {
@@ -778,6 +780,7 @@
                 if (!walletModal || !walletViewAddressDetail || !walletViewBeneficiary) return;
                 walletModal.classList.add("pp-wallet-modal--beneficiary-view");
                 walletModal.classList.add("pp-wallet-modal--address-detail-view");
+                if (walletModalDialog) walletModalDialog.classList.add("pp-wallet-modal__dialog--deeper");
                 walletModalBack && walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
                 if (walletHeaderIconWrap) walletHeaderIconWrap.classList.add("pp-wallet-modal__header-icon-wrap--hidden");
                 if (walletHeaderAvatarWrap) {
@@ -811,6 +814,7 @@
                 if (!walletModal || !walletViewBeneficiary || !walletViewList) return;
                 walletModal.classList.remove("pp-wallet-modal--beneficiary-view");
                 walletModal.classList.remove("pp-wallet-modal--address-detail-view");
+                if (walletModalDialog) walletModalDialog.classList.remove("pp-wallet-modal__dialog--deeper");
                 walletModalBack && walletModalBack.classList.add("pp-wallet-modal__back--hidden");
                 if (walletHeaderIconWrap) walletHeaderIconWrap.classList.remove("pp-wallet-modal__header-icon-wrap--hidden");
                 if (walletHeaderAvatarWrap) {
