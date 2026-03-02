@@ -1468,9 +1468,7 @@ $wallet-accent: $ew-text-link;
   border-radius: 12px;
 
   &--recipient-address {
-    align-items: flex-start;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    align-items: center;
 
     .pp-wallet-withdraw-form__input--textarea {
       resize: none;
@@ -1478,6 +1476,7 @@ $wallet-accent: $ew-text-link;
       max-height: 120px;
       overflow-y: auto;
       height: auto;
+      min-height: 72px;
       line-height: 1.4;
       vertical-align: top;
     }
@@ -1494,7 +1493,7 @@ $wallet-accent: $ew-text-link;
   font-weight: $ew-body-weight;
   color: $ew-text-primary;
   padding: 12px 0;
-  min-height: 24px;
+  min-height: 72px;
 
   &::placeholder {
     color: $ew-text-placeholder;
@@ -1547,8 +1546,8 @@ $wallet-accent: $ew-text-link;
 
   img {
     display: block;
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
   }
 
   &:hover {

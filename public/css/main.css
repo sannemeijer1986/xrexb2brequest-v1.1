@@ -2457,9 +2457,7 @@ body.profile-payment-page .site-footer {
   border-radius: 12px;
 }
 .pp-wallet-withdraw-form__input-row--recipient-address {
-  align-items: flex-start;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  align-items: center;
 }
 .pp-wallet-withdraw-form__input-row--recipient-address .pp-wallet-withdraw-form__input--textarea {
   resize: none;
@@ -2467,6 +2465,7 @@ body.profile-payment-page .site-footer {
   max-height: 120px;
   overflow-y: auto;
   height: auto;
+  min-height: 72px;
   line-height: 1.4;
   vertical-align: top;
 }
@@ -2481,7 +2480,7 @@ body.profile-payment-page .site-footer {
   font-weight: 400;
   color: #FFFFFF;
   padding: 12px 0;
-  min-height: 24px;
+  min-height: 72px;
 }
 .pp-wallet-withdraw-form__input::placeholder {
   color: #56659A;
@@ -2530,8 +2529,8 @@ body.profile-payment-page .site-footer {
 }
 .pp-wallet-withdraw-form__clear-btn img {
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 28px;
+  height: 28px;
 }
 .pp-wallet-withdraw-form__clear-btn:hover {
   opacity: 0.85;
