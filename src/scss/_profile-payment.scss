@@ -1684,10 +1684,10 @@ $wallet-accent: $ew-text-link;
 
 // Confirm withdrawal view (summary + details + alert + actions)
 .pp-wallet-withdraw-confirm {
-  padding: 24px 24px 32px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 40px;
   min-height: 0;
   flex: 1 1 auto;
 }
@@ -1695,7 +1695,7 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-withdraw-confirm__summary {
   background: $ew-bg-surface-primary;
   border-radius: 16px;
-  padding: 20px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -1709,6 +1709,7 @@ $wallet-accent: $ew-text-link;
 
 .pp-wallet-withdraw-confirm__asset-icon {
   flex-shrink: 0;
+  margin-top: 5px;
 
   img {
     width: 40px;
@@ -1722,6 +1723,7 @@ $wallet-accent: $ew-text-link;
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  margin-top: 5px;
   background: $ew-bg-surface-secondary;
   display: flex;
   align-items: center;
@@ -1737,7 +1739,7 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-withdraw-confirm__summary-content {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0px;
   min-width: 0;
   flex: 1 1 auto;
 }
@@ -1758,8 +1760,9 @@ $wallet-accent: $ew-text-link;
 
 .pp-wallet-withdraw-confirm__summary-address {
   font-family: $font-ew;
-  font-size: $ew-size-m;
-  font-weight: $ew-subtitle-weight;
+  font-size: $ew-size-l;
+  max-width: 80%;
+  font-weight: $ew-title-weight;
   color: $ew-text-primary;
   word-break: break-all;
   line-height: 1.4;
@@ -1768,8 +1771,8 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-withdraw-confirm__divider {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 8px 0;
+  justify-content: flex-start;
+  padding: 12px 4px;
   color: $ew-text-secondary;
 
   img {
@@ -1794,14 +1797,14 @@ $wallet-accent: $ew-text-link;
 
 .pp-wallet-withdraw-confirm__detail-label {
   font-family: $font-ew;
-  font-size: $ew-size-m;
+  font-size: $ew-size-l;
   font-weight: $ew-body-weight;
   color: $ew-text-secondary;
 }
 
 .pp-wallet-withdraw-confirm__detail-value {
   font-family: $font-ew;
-  font-size: $ew-size-m;
+  font-size: $ew-size-l;
   font-weight: $ew-subtitle-weight;
   color: $ew-text-primary;
   flex-shrink: 0;
@@ -1819,8 +1822,8 @@ $wallet-accent: $ew-text-link;
 
 .pp-wallet-withdraw-confirm__alert-icon {
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 }
 
 .pp-wallet-withdraw-confirm__alert-text {
