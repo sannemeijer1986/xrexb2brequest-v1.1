@@ -929,6 +929,7 @@ $wallet-accent: $ew-text-link;
 }
 
 .pp-wallet-modal__body {
+  position: relative;
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
@@ -944,6 +945,98 @@ $wallet-accent: $ew-text-link;
   min-height: 0;
   width: 100%;
   overflow: hidden;
+}
+
+// Withdraw overlay: processing spinner, then completed screen (after Confirm & withdraw)
+.pp-wallet-withdraw-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: $ew-bg-base-primary;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+
+  &[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+.pp-wallet-withdraw-overlay__processing,
+.pp-wallet-withdraw-overlay__completed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+
+  &[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+.pp-wallet-withdraw-overlay__label {
+  margin: 0;
+  font-family: $font-ew;
+  font-size: $ew-size-xl;
+  font-weight: $ew-title-weight;
+  color: $ew-text-primary;
+  line-height: 1;
+}
+
+// Processing spinner: inner circle + brand icon + rotating arc (Figma [EW-D] Processing)
+.pp-wallet-processing-spinner {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  flex-shrink: 0;
+}
+
+.pp-wallet-processing-spinner__inner {
+  position: absolute;
+  inset: 24px;
+  border-radius: 50%;
+  background: $ew-bg-surface-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+
+  img {
+    width: 32px;
+    height: 32px;
+    display: block;
+    filter: brightness(0) invert(1);
+    opacity: 0.95;
+  }
+}
+
+.pp-wallet-processing-spinner__arc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 4px solid $ew-border-mediumcon;
+  border-top-color: $ew-primaryblue-400;
+  border-right-color: $ew-primaryblue-400;
+  animation: pp-wallet-spinner-rotate 0.9s linear infinite;
+}
+
+@keyframes pp-wallet-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.pp-wallet-withdraw-overlay__completed {
+  padding: 32px;
+  min-height: 0;
 }
 
 .pp-wallet-modal__view {
@@ -1523,6 +1616,8 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-withdraw-form__actions {
   margin-top: auto;
   padding-top: 24px;
+  padding-bottom: 24px;
+  flex-shrink: 0;
   display: flex;
   justify-content: flex-end;
 }
@@ -1676,10 +1771,33 @@ $wallet-accent: $ew-text-link;
 }
 
 .pp-wallet-withdraw-form__hint--helpertext {
-  color: $ew-text-highlight;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-size: $ew-size-m;
-  color: $ew-text-highlight;
-  font-weight: $ew-subtitle-weight;
+  color: $ew-alert-content-warning;
+  font-weight: $ew-body-weight;
+
+  .pp-wallet-withdraw-form__hint-check {
+    display: none;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+
+    img {
+      display: block;
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.pp-wallet-withdraw-form__hint--address-pasted {
+  color: $ew-text-positive;
+
+  .pp-wallet-withdraw-form__hint-check {
+    display: block;
+  }
 }
 
 // Confirm withdrawal view (summary + details + alert + actions)
@@ -1815,8 +1933,8 @@ $wallet-accent: $ew-text-link;
   gap: 10px;
   align-items: flex-start;
   padding: 16px;
-  background: $ew-primaryblue-800;
-  border: 1px solid $ew-primaryblue-600;
+  background: $ew-alert-bg-warning;
+  border: 1px solid $ew-alert-border-warning;
   border-radius: 16px;
 }
 
@@ -1831,13 +1949,15 @@ $wallet-accent: $ew-text-link;
   font-family: $font-ew;
   font-size: $ew-size-m;
   font-weight: $ew-body-weight;
-  color: $ew-primaryblue-200;
+  color: $ew-alert-content-warning;
   line-height: 1.4;
 }
 
 .pp-wallet-withdraw-confirm__actions {
   margin-top: auto;
   padding-top: 24px;
+  padding-bottom: 24px;
+  flex-shrink: 0;
   display: flex;
   gap: 20px;
   justify-content: flex-end;

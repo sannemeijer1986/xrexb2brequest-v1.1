@@ -65,10 +65,47 @@ $ew-neutral-600: #A7A8B3;
 $ew-neutral-700: #8E909C;
 $ew-neutral-800: #6F717C;
 
-// [ EW ] Assisting
-$ew-assisting-positive: #8ADCA5;
-$ew-assisting-warning: #E6B97A;
-$ew-assisting-negative: #DC8A8A;
+// [ EW ] Assisting – primitives (from Figma)
+// Amber
+$ew-assisting-amber-100: #FFF8E8;
+$ew-assisting-amber-200: #FDECC8;
+$ew-assisting-amber-300: #F8DFA7;
+$ew-assisting-amber-400: #F1C77D;
+$ew-assisting-amber-500: #E6B97A;
+$ew-assisting-amber-600: #C9973E;
+$ew-assisting-amber-700: #9C742B;
+$ew-assisting-amber-800: #6E511F;
+$ew-assisting-amber-900: #3B2B0F;
+$ew-assisting-amber-1000: #191207;
+
+// Rose
+$ew-assisting-rose-100: #FFF1F1;
+$ew-assisting-rose-200: #FDE2E2;
+$ew-assisting-rose-300: #F7CACA;
+$ew-assisting-rose-400: #EEADAD;
+$ew-assisting-rose-500: #DC8A8A;
+$ew-assisting-rose-600: #C26666;
+$ew-assisting-rose-700: #A34A4A;
+$ew-assisting-rose-800: #7A3535;
+$ew-assisting-rose-900: #552424;
+$ew-assisting-rose-1000: #331414;
+
+// Mint
+$ew-assisting-mint-100: #F1FCF6;
+$ew-assisting-mint-200: #DDF7E9;
+$ew-assisting-mint-300: #C6F0D9;
+$ew-assisting-mint-400: #A8E7C2;
+$ew-assisting-mint-500: #8ADCA5;
+$ew-assisting-mint-600: #66C288;
+$ew-assisting-mint-700: #4BA36E;
+$ew-assisting-mint-800: #357A53;
+$ew-assisting-mint-900: #24563C;
+$ew-assisting-mint-1000: #133324;
+
+// Semantic aliases (map to 500 shade)
+$ew-assisting-positive: $ew-assisting-mint-500;
+$ew-assisting-warning: $ew-assisting-amber-500;
+$ew-assisting-negative: $ew-assisting-rose-500;
 
 // ---------------------------------------------------------------------------
 // EW semantic tokens – Dark mode (from Figma Tokens export)
@@ -104,6 +141,17 @@ $ew-icon-negative: $ew-assisting-negative;   // EW-icon-negative
 $ew-border-highcon: $ew-accentblue-600;      // EW-border-highcon
 $ew-border-mediumcon: $ew-accentblue-700;    // EW-border-mediumcon
 $ew-border-lowcon: $ew-accentblue-900;       // EW-border-lowcon
+
+// Alert – from [ EW ] Alert tokens (Dark): background, content, border
+$ew-alert-bg-neutral: $ew-primaryblue-800;           // EW-alert-bg-neutral
+$ew-alert-content-neutral: $ew-primaryblue-200;    // EW-alert-content-neutral
+$ew-alert-border-neutral: $ew-primaryblue-600;       // EW-alert-border-neutral
+$ew-alert-bg-warning: $ew-assisting-amber-900;       // EW-alert-bg-warning
+$ew-alert-content-warning: $ew-assisting-amber-500;  // EW-alert-content-warning
+$ew-alert-border-warning: $ew-assisting-amber-800;   // EW-alert-border-warning
+
+
+
 
 // Input (EW-input-* – from Figma Input tokens, Dark theme)
 $ew-input-bg: $ew-accentblue-700;            // EW-input-bg

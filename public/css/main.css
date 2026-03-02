@@ -2007,6 +2007,7 @@ body.profile-payment-page .site-footer {
 }
 
 .pp-wallet-modal__body {
+  position: relative;
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
@@ -2022,6 +2023,93 @@ body.profile-payment-page .site-footer {
   min-height: 0;
   width: 100%;
   overflow: hidden;
+}
+
+.pp-wallet-withdraw-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #13182A;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.pp-wallet-withdraw-overlay[aria-hidden=false] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.pp-wallet-withdraw-overlay__processing,
+.pp-wallet-withdraw-overlay__completed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+.pp-wallet-withdraw-overlay__processing[aria-hidden=true],
+.pp-wallet-withdraw-overlay__completed[aria-hidden=true] {
+  display: none;
+}
+
+.pp-wallet-withdraw-overlay__label {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+.pp-wallet-processing-spinner {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  flex-shrink: 0;
+}
+
+.pp-wallet-processing-spinner__inner {
+  position: absolute;
+  inset: 24px;
+  border-radius: 50%;
+  background: #293155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.pp-wallet-processing-spinner__inner img {
+  width: 32px;
+  height: 32px;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+
+.pp-wallet-processing-spinner__arc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 4px solid #222947;
+  border-top-color: #4779FF;
+  border-right-color: #4779FF;
+  animation: pp-wallet-spinner-rotate 0.9s linear infinite;
+}
+
+@keyframes pp-wallet-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.pp-wallet-withdraw-overlay__completed {
+  padding: 32px;
+  min-height: 0;
 }
 
 .pp-wallet-modal__view {
@@ -2508,6 +2596,8 @@ body.profile-payment-page .site-footer {
 .pp-wallet-withdraw-form__actions {
   margin-top: auto;
   padding-top: 24px;
+  padding-bottom: 24px;
+  flex-shrink: 0;
   display: flex;
   justify-content: flex-end;
 }
@@ -2650,10 +2740,30 @@ body.profile-payment-page .site-footer {
 }
 
 .pp-wallet-withdraw-form__hint--helpertext {
-  color: #A9C4FF;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-size: 16px;
-  color: #A9C4FF;
-  font-weight: 600;
+  color: #E6B97A;
+  font-weight: 400;
+}
+.pp-wallet-withdraw-form__hint--helpertext .pp-wallet-withdraw-form__hint-check {
+  display: none;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+.pp-wallet-withdraw-form__hint--helpertext .pp-wallet-withdraw-form__hint-check img {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.pp-wallet-withdraw-form__hint--address-pasted {
+  color: #8ADCA5;
+}
+.pp-wallet-withdraw-form__hint--address-pasted .pp-wallet-withdraw-form__hint-check {
+  display: block;
 }
 
 .pp-wallet-withdraw-confirm {
@@ -2785,8 +2895,8 @@ body.profile-payment-page .site-footer {
   gap: 10px;
   align-items: flex-start;
   padding: 16px;
-  background: #142766;
-  border: 1px solid #2950C0;
+  background: #3B2B0F;
+  border: 1px solid #6E511F;
   border-radius: 16px;
 }
 
@@ -2801,13 +2911,15 @@ body.profile-payment-page .site-footer {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 16px;
   font-weight: 400;
-  color: #A9C4FF;
+  color: #E6B97A;
   line-height: 1.4;
 }
 
 .pp-wallet-withdraw-confirm__actions {
   margin-top: auto;
   padding-top: 24px;
+  padding-bottom: 24px;
+  flex-shrink: 0;
   display: flex;
   gap: 20px;
   justify-content: flex-end;
