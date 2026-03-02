@@ -915,9 +915,10 @@
                     var assetItem = e.target && e.target.closest && e.target.closest(".pp-wallet-modal__item");
                     if (addressDetailView && assetItem && addressDetailView.contains(assetItem) && assetItem.querySelector(".pp-wallet-modal__asset-icon")) {
                         e.preventDefault();
+                        e.stopPropagation();
                         var nameEl = assetItem.querySelector(".pp-wallet-modal__item-name");
                         var assetName = (nameEl && nameEl.textContent) ? nameEl.textContent.trim() : "";
-                        if (assetName) setTimeout(function () { openEwDropdown(assetItem, assetName, e); }, 0);
+                        if (assetName) openEwDropdown(assetItem, assetName, e);
                     }
                 });
             }
