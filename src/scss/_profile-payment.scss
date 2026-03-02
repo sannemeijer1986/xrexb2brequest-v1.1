@@ -1277,8 +1277,8 @@ $wallet-accent: $ew-text-link;
   flex-shrink: 0;
 
   img {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     display: block;
   }
 }
@@ -1630,10 +1630,6 @@ $wallet-accent: $ew-text-link;
   font-weight: $ew-subtitle-weight;
 }
 
-.pp-wallet-withdraw-form__actions .ew-btn {
-  min-width: 180px;
-}
-
 .pp-wallet-modal__assets-empty {
   margin: 0;
   padding: 60px 16px;
@@ -1797,21 +1793,23 @@ $wallet-accent: $ew-text-link;
 
 // ---------------------------------------------------------------------------
 // Reusable EW button component (Embedded Wallet – pill-shaped, Figma variant)
-// Use: .ew-btn .ew-btn--primary | .ew-btn--secondary | .ew-btn--disabled, optional .ew-btn--sm
+// Use: .ew-btn .ew-btn--primary | .ew-btn--secondary | .ew-btn--disabled
+// Size: .ew-btn--sm (small) | .ew-btn--md (medium, default) | .ew-btn--lg (large)
 // Optional icons: .ew-btn__icon before/after label
 // ---------------------------------------------------------------------------
 .ew-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
   font-family: $font-ew;
   font-size: $ew-size-s;
   font-weight: $ew-subtitle-weight;
   line-height: 1.25;
-  padding: 12px 20px;
+  padding: 8px 16px;
   border: none;
   border-radius: 16px;
+  min-height: 40px;
   height: 40px;
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease;
@@ -1867,14 +1865,45 @@ $wallet-accent: $ew-text-link;
     color: $ew-btn-secondary-color-disabled;
   }
 
-  // Small size
+  // Small size (Figma: 32px, 12px text, gap 4)
   &--sm {
-    font-size: $ew-size-s;
-    padding: 8px 16px;
+    font-size: $ew-size-xs;
+    padding: 4px 10px;
+    min-height: 32px;
+    height: 32px;
+    gap: 4px;
+    border-radius: 16px;
 
     .ew-btn__icon {
       width: 16px;
       height: 16px;
+    }
+  }
+
+  // Medium size (default – modals; Figma: 40px, 14px text, gap 6)
+  &--md {
+    font-size: $ew-size-s;
+    padding: 8px 16px;
+    min-height: 40px;
+    height: 40px;
+    min-width: 120px;
+    gap: 6px;
+    border-radius: 16px;
+  }
+
+  // Large size (e.g. Withdraw form CTA; Figma: 48px, 16px text, gap 8)
+  &--lg {
+    font-size: $ew-size-m;
+    padding: 12px 20px;
+    min-height: 48px;
+    height: 48px;
+    min-width: 160px;
+    gap: 8px;
+    border-radius: 20px;
+
+    .ew-btn__icon {
+      width: 24px;
+      height: 24px;
     }
   }
 }
