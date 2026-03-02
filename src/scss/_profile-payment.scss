@@ -1473,7 +1473,7 @@ $wallet-accent: $ew-text-link;
   min-height: 48px;
   padding: 0 24px;
   background: $ew-input-bg;
-  border: 2px solid $ew-border-mediumcon;
+  border: 1.5px solid $ew-border-mediumcon;
   border-radius: 12px;
   transition: border-color 0.1s ease;
 
@@ -1538,7 +1538,7 @@ $wallet-accent: $ew-text-link;
   font-family: $font-ew;
   font-size: $ew-size-l;
   font-weight: $ew-subtitle-weight;
-  color: $ew-input-content-secondary;
+  color: $ew-input-content-primary;
   flex-shrink: 0;
 }
 
