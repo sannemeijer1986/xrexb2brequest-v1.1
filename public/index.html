@@ -212,19 +212,19 @@
                     <div class="pp-wallet-modal__view pp-wallet-modal__view--list" id="walletViewList">
                         <div class="pp-wallet-modal__balance">
                             <p class="pp-wallet-modal__balance-label">Total balance <span class="pp-wallet-modal__balance-approx">≈</span> <a href="#" class="pp-wallet-modal__refresh">Refresh</a></p>
-                            <p class="pp-wallet-modal__balance-amount">$32.41</p>
+                            <p class="pp-wallet-modal__balance-amount">$131.01</p>
                         </div>
                         <section class="pp-wallet-modal__section">
                             <h3 class="pp-wallet-modal__section-title">My auto-debit wallets (2)</h3>
                             <ul class="pp-wallet-modal__list">
-                                <li class="pp-wallet-modal__item pp-wallet-modal__item--active" data-beneficiary-initials="AT" data-beneficiary-name="AGP Technology" data-beneficiary-balance="$32.41 ≈" data-beneficiary-balance-empty="false">
+                                <li class="pp-wallet-modal__item pp-wallet-modal__item--active" data-beneficiary-initials="AT" data-beneficiary-name="AGP Technology" data-beneficiary-balance="$131.01 ≈" data-beneficiary-balance-empty="false">
                                     <span class="pp-wallet-modal__avatar">AT</span>
                                     <div class="pp-wallet-modal__item-content">
                                         <span class="pp-wallet-modal__item-label">Beneficiary</span>
                                         <span class="pp-wallet-modal__item-name">AGP Technology</span>
                                     </div>
                                     <div class="pp-wallet-modal__item-right">
-                                        <span class="pp-wallet-modal__item-balance">$32.41 ≈</span>
+                                        <span class="pp-wallet-modal__item-balance">$131.01 ≈</span>
                                         <img src="assets/icon-ew-arrow-forward.svg" alt="" width="20" height="20" class="pp-wallet-modal__chevron" />
                                     </div>
                                 </li>
@@ -255,7 +255,7 @@
                                         <span class="pp-wallet-modal__item-address">0x2134...1233f8</span>
                                     </div>
                                     <div class="pp-wallet-modal__item-right">
-                                        <span class="pp-wallet-modal__item-balance" id="walletBeneficiaryDetailBalance">$32.41 ≈</span>
+                                        <span class="pp-wallet-modal__item-balance" id="walletBeneficiaryDetailBalance">$131.01 ≈</span>
                                         <img src="assets/icon-ew-arrow-forward.svg" alt="" width="20" height="20" class="pp-wallet-modal__chevron" />
                                     </div>
                                 </li>
@@ -267,7 +267,7 @@
                             <div class="pp-wallet-modal__balance-address-row">
                                 <div class="pp-wallet-modal__balance-block">
                                     <p class="pp-wallet-modal__balance-label">Balance <span class="pp-wallet-modal__balance-approx">≈</span> <a href="#" class="pp-wallet-modal__refresh">Refresh</a></p>
-                                    <p class="pp-wallet-modal__balance-amount" id="walletAddressDetailBalance">$32.41</p>
+                                    <p class="pp-wallet-modal__balance-amount" id="walletAddressDetailBalance">$131.01</p>
                                 </div>
                                 <div class="pp-wallet-modal__address-block">
                                     <span class="pp-wallet-modal__address-label">Address</span>
@@ -310,7 +310,7 @@
                                                 <span class="pp-wallet-modal__item-name">ETH</span>
                                                 <span class="pp-wallet-modal__item-label">Ethereum</span>
                                             </div>
-                                            <span class="pp-wallet-modal__item-balance">0.25 ETH</span>
+                                            <span class="pp-wallet-modal__item-balance">0.05 ETH</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -825,7 +825,7 @@
                 if (walletModalTitle) walletModalTitle.textContent = networkName || "";
                 if (walletAddressDetailBalance) {
                     var isNovaQuill = (beneficiaryName || "").trim() === "NovaQuill Ltd";
-                    walletAddressDetailBalance.textContent = isNovaQuill ? "$0.00" : "$32.41";
+                    walletAddressDetailBalance.textContent = isNovaQuill ? "$0.00" : "$131.01";
                     walletAddressDetailBalance.classList.toggle("pp-wallet-modal__balance-amount--empty", isNovaQuill);
                 }
                 var assetsList = document.getElementById("walletAddressDetailAssetsList");
@@ -906,7 +906,7 @@
                         e.preventDefault();
                         var name = beneficiaryItem.getAttribute("data-beneficiary-name") || "";
                         var initials = beneficiaryItem.getAttribute("data-beneficiary-initials") || "";
-                        var balance = beneficiaryItem.getAttribute("data-beneficiary-balance") || "$32.41 ≈";
+                        var balance = beneficiaryItem.getAttribute("data-beneficiary-balance") || "$131.01 ≈";
                         var balanceEmpty = beneficiaryItem.getAttribute("data-beneficiary-balance-empty") === "true";
                         showBeneficiaryView(name, initials, balance, balanceEmpty);
                         return;
