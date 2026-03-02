@@ -355,6 +355,19 @@
                 </div>
             </div>
         </div>
+        <div class="pp-wallet-close-confirm" id="walletDisableAutodebitConfirm" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletDisableAutodebitConfirmTitle">
+            <div class="pp-wallet-close-confirm__backdrop"></div>
+            <div class="pp-wallet-close-confirm__card">
+                <div class="pp-wallet-close-confirm__header">
+                    <h3 class="pp-wallet-close-confirm__title" id="walletDisableAutodebitConfirmTitle">Disable auto-debit</h3>
+                    <button type="button" class="pp-wallet-close-confirm__close" id="walletDisableAutodebitConfirmDismiss" aria-label="Close"><img src="assets/icon_pp_close.svg" width="24" height="24" alt="" /></button>
+                </div>
+                <p class="pp-wallet-close-confirm__body">Auto-debit can only be permanently disabled by exporting the private key for this wallet address.</p>
+                <div class="pp-wallet-close-confirm__actions">
+                    <button type="button" class="ew-btn ew-btn--primary" id="walletDisableAutodebitConfirmUnderstood">Understood</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <button type="button" class="pp-wallet-debug-hotspot" aria-label="Open wallet (debug only)"></button>
@@ -987,6 +1000,21 @@
                     dropdown.setAttribute("aria-hidden", "true");
                 }
             }
+            var walletDisableAutodebitConfirm = document.getElementById("walletDisableAutodebitConfirm");
+            function openDisableAutodebitConfirm() {
+                if (walletDisableAutodebitConfirm) walletDisableAutodebitConfirm.setAttribute("aria-hidden", "false");
+            }
+            function closeDisableAutodebitConfirm() {
+                if (walletDisableAutodebitConfirm) walletDisableAutodebitConfirm.setAttribute("aria-hidden", "true");
+            }
+            if (walletDisableAutodebitConfirm) {
+                var understoodBtn = document.getElementById("walletDisableAutodebitConfirmUnderstood");
+                var dismissBtn = document.getElementById("walletDisableAutodebitConfirmDismiss");
+                var autodebitBackdrop = walletDisableAutodebitConfirm.querySelector(".pp-wallet-close-confirm__backdrop");
+                if (understoodBtn) understoodBtn.addEventListener("click", closeDisableAutodebitConfirm);
+                if (dismissBtn) dismissBtn.addEventListener("click", closeDisableAutodebitConfirm);
+                if (autodebitBackdrop) autodebitBackdrop.addEventListener("click", closeDisableAutodebitConfirm);
+            }
             document.addEventListener("click", function (e) {
                 var dropdown = document.getElementById("ppEwDropdown");
                 if (!dropdown || !dropdown.classList.contains("is-open")) return;
@@ -996,7 +1024,7 @@
                         closeEwDropdown();
                         var action = item.getAttribute("data-action");
                         if (action === "export-private-key") { /* TODO */ }
-                        if (action === "disable-auto-debit") { /* TODO */ }
+                        if (action === "disable-auto-debit") openDisableAutodebitConfirm();
                     }
                     return;
                 }
