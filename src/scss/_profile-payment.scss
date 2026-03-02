@@ -956,27 +956,8 @@ $wallet-accent: $ew-text-link;
   flex-direction: column;
   min-height: 0;
   transition: transform 0.25s ease;
-  overflow-y: scroll; // Keep scrollbar visible when scrollable (avoids overlay auto-hide)
-  // Subtle Apple-style scrollbar (visible, low contrast, rounded)
-  scrollbar-width: thin;
-  scrollbar-color: rgba($ew-accentblue-400, 0.25) transparent;
-
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba($ew-neutral-100, 0.18);
-    border-radius: 999px;
-
-    &:hover {
-      background: rgba($ew-neutral-100, 0.28);
-    }
-  }
+  overflow-y: auto; // Scroll when needed, share unified scrollbar styling
+  @extend .root-scrollbar;
 
   &--list {
     transform: translateX(0);
@@ -1227,7 +1208,8 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-modal__section {
   padding: 32px;
   background-color: $ew-bg-base-secondary;
-  min-height: 100%;
+  min-height: auto;
+  height: 100%;
 }
 
 .pp-wallet-modal__section-title {
@@ -1243,7 +1225,6 @@ $wallet-accent: $ew-text-link;
   margin: 0;
   padding: 0;
   background-color: $ew-bg-surface-primary;
-  border-bottom: 1px solid $ew-border-mediumcon;
   border-radius: 12px;
   overflow: hidden;
   width: 100%;
@@ -1254,7 +1235,6 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-modal__view--address-detail {
   .pp-wallet-modal__list {
     background-color: transparent;
-    border-bottom: 1px solid $ew-border-mediumcon;
 
 
     .pp-wallet-modal__item {
@@ -1727,18 +1707,29 @@ $wallet-accent: $ew-text-link;
   gap: 16px;
 }
 
-.pp-wallet-withdraw-confirm__asset-icon,
+.pp-wallet-withdraw-confirm__asset-icon {
+  flex-shrink: 0;
+
+  img {
+    width: 40px;
+    height: 40px;
+    display: block;
+  }
+}
+
 .pp-wallet-withdraw-confirm__address-icon {
   flex-shrink: 0;
   width: 40px;
   height: 40px;
+  border-radius: 50%;
+  background: $ew-bg-surface-secondary;
   display: flex;
   align-items: center;
   justify-content: center;
 
   img {
-    width: 40px;
-    height: 40px;
+    width: 28px;
+    height: 28px;
     display: block;
   }
 }

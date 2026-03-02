@@ -1,5 +1,24 @@
 .root-scrollbar {
-  // placeholder to avoid accidental class collision
+  // Unified subtle scrollbar styling for scrollable content (page + wallet views)
+  scrollbar-width: thin;
+  scrollbar-color: rgba($ew-neutral-100, 0.18) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($ew-neutral-100, 0.18);
+    border-radius: 999px;
+
+    &:hover {
+      background: rgba($ew-neutral-100, 0.28);
+    }
+  }
 }
 
 .show-mobile-only { display: none; }
@@ -15,8 +34,11 @@
   .show-desktop-only { display: block; }
 }
 
-// Prevent layout shift when scrollbar appears
-html { overflow-y: scroll; }
+// Prevent layout shift when scrollbar appears, and apply unified scrollbar styling
+html {
+  overflow-y: scroll;
+  @extend .root-scrollbar;
+}
 
 .pp-wallet-debug-hotspot {
   position: fixed;
