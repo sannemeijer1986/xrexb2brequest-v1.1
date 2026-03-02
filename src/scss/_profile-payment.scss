@@ -1472,9 +1472,14 @@ $wallet-accent: $ew-text-link;
   gap: 20px;
   min-height: 48px;
   padding: 0 24px;
-  background: $ew-bg-surface-primary;
-  border: 1px solid $ew-border-mediumcon;
+  background: $ew-input-bg;
+  border: 2px solid $ew-border-mediumcon;
   border-radius: 12px;
+  transition: border-color 0.1s ease;
+
+  &:focus-within {
+    border-color: $ew-input-border-active;
+  }
 
   &--recipient-address {
     align-items: center;
@@ -1516,12 +1521,12 @@ $wallet-accent: $ew-text-link;
   font-family: $font-ew;
   font-size: $ew-size-l;
   font-weight: $ew-body-weight;
-  color: $ew-text-primary;
+  color: $ew-input-content-primary;
   padding: 12px 0;
   min-height: 72px;
 
   &::placeholder {
-    color: $ew-text-placeholder;
+    color: $ew-input-content-placeholder;
   }
 
   &:focus {
@@ -1533,7 +1538,7 @@ $wallet-accent: $ew-text-link;
   font-family: $font-ew;
   font-size: $ew-size-l;
   font-weight: $ew-subtitle-weight;
-  color: $ew-text-primary;
+  color: $ew-input-content-secondary;
   flex-shrink: 0;
 }
 

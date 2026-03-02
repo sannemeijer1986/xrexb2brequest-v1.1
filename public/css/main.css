@@ -2463,8 +2463,12 @@ body.profile-payment-page .site-footer {
   min-height: 48px;
   padding: 0 24px;
   background: #222947;
-  border: 1px solid #222947;
+  border: 2px solid #222947;
   border-radius: 12px;
+  transition: border-color 0.1s ease;
+}
+.pp-wallet-withdraw-form__input-row:focus-within {
+  border-color: #96A9E0;
 }
 .pp-wallet-withdraw-form__input-row--recipient-address {
   align-items: center;
@@ -2508,7 +2512,7 @@ body.profile-payment-page .site-footer {
   min-height: 72px;
 }
 .pp-wallet-withdraw-form__input::placeholder {
-  color: #56659A;
+  color: #3A4570;
 }
 .pp-wallet-withdraw-form__input:focus {
   outline: none;
@@ -2518,7 +2522,7 @@ body.profile-payment-page .site-footer {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 18px;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #7384BE;
   flex-shrink: 0;
 }
 
