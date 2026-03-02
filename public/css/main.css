@@ -2512,7 +2512,7 @@ body.profile-payment-page .site-footer {
   min-height: 72px;
 }
 .pp-wallet-withdraw-form__input::placeholder {
-  color: #3A4570;
+  color: #56659A;
 }
 .pp-wallet-withdraw-form__input:focus {
   outline: none;
