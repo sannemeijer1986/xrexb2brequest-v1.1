@@ -2326,6 +2326,10 @@ body.profile-payment-page .site-footer {
   font-weight: 700;
   color: #FFFFFF;
   transition: opacity 0.15s ease;
+  text-decoration: none;
+}
+.pp-wallet-modal__action-btn:hover {
+  text-decoration: none;
 }
 .pp-wallet-modal__action-btn:hover .pp-wallet-modal__action-btn-icon {
   background: #56659A;
@@ -2659,6 +2663,76 @@ body.profile-payment-page .site-footer {
 .pp-wallet-snackbar--visible {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+.pp-ew-dropdown {
+  position: fixed;
+  z-index: 90;
+  min-width: 200px;
+  border-radius: 12px;
+  background-color: #222947;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  padding: 0;
+  pointer-events: none;
+  transform-origin: 0 0;
+  transform: scale(0.92);
+  opacity: 0;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), opacity 0.15s ease;
+}
+.pp-ew-dropdown.is-open {
+  pointer-events: auto;
+  transform: scale(1);
+  opacity: 1;
+}
+.pp-ew-dropdown__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.pp-ew-dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 24px 24px 20px;
+  min-width: 180px;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #FFFFFF;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  text-align: left;
+  background: none;
+  box-sizing: border-box;
+}
+.pp-ew-dropdown__item:first-child:last-child {
+  border-radius: 12px;
+}
+.pp-ew-dropdown__item:first-child:not(:last-child) {
+  border-radius: 12px 12px 0 0;
+}
+.pp-ew-dropdown__item:last-child:not(:first-child) {
+  border-radius: 0 0 12px 12px;
+}
+.pp-ew-dropdown__item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.pp-ew-dropdown__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+}
+.pp-ew-dropdown__icon img {
+  display: block;
+}
+.pp-ew-dropdown__label {
+  flex: 1 1 auto;
 }
 
 #ppSessionTimerTool {

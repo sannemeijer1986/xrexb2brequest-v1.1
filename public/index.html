@@ -283,10 +283,10 @@
                                     <span class="pp-wallet-modal__action-btn-icon"><img src="assets/icon-ew-withdraw.svg" alt="" width="32" height="32" /></span>
                                     <span class="pp-wallet-modal__action-btn-label">Withdraw</span>
                                 </button>
-                                <button type="button" class="pp-wallet-modal__action-btn">
+                                <a href="https://etherscan.io/search?f=0&q=0x21341234123412341234123412341233f8" target="_blank" rel="noopener noreferrer" class="pp-wallet-modal__action-btn">
                                     <span class="pp-wallet-modal__action-btn-icon"><img src="assets/icon-ew-activity.svg" alt="" width="32" height="32" /></span>
                                     <span class="pp-wallet-modal__action-btn-label">On-chain activity</span>
-                                </button>
+                                </a>
                                 <button type="button" class="pp-wallet-modal__action-btn">
                                     <span class="pp-wallet-modal__action-btn-icon"><img src="assets/icon-ew-more.svg" alt="" width="32" height="32" /></span>
                                     <span class="pp-wallet-modal__action-btn-label">More</span>
@@ -337,6 +337,14 @@
         <div class="pp-wallet-snackbar" id="walletSnackbar" aria-live="polite" aria-hidden="true">
             <img class="pp-wallet-snackbar__icon" src="assets/icon-ew-check.svg" alt="" width="32" height="32" />
             <span class="pp-wallet-snackbar__text">Copied to clipboard</span>
+        </div>
+        <div class="pp-ew-dropdown" id="ppEwDropdown" role="menu" aria-hidden="true" aria-label="Asset actions">
+            <ul class="pp-ew-dropdown__list">
+                <li class="pp-ew-dropdown__item" role="menuitem" data-action="withdraw">
+                    <span class="pp-ew-dropdown__icon"><img src="assets/icon-ew-withdraw.svg" alt="" width="28" height="28" /></span>
+                    <span class="pp-ew-dropdown__label">Withdraw <span id="ppEwDropdownAssetName">USDT</span></span>
+                </li>
+            </ul>
         </div>
         <div class="pp-wallet-close-confirm" id="walletCloseConfirm" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletCloseConfirmTitle">
             <div class="pp-wallet-close-confirm__backdrop"></div>
@@ -861,7 +869,10 @@
             if (walletModalBack) walletModalBack.addEventListener("click", onWalletBackClick);
             if (walletModal) {
                 walletModal.querySelectorAll(".pp-wallet-modal__refresh, .pp-wallet-modal__tab, .pp-wallet-modal__action-btn").forEach(function (el) {
-                    el.addEventListener("click", function (e) { e.preventDefault(); });
+                    el.addEventListener("click", function (e) {
+                        if (el.tagName === "A" && el.getAttribute("href") && el.getAttribute("href") !== "#") return;
+                        e.preventDefault();
+                    });
                 });
                 var addressValueRow = walletModal && walletModal.querySelector(".pp-wallet-modal__address-value-row");
                 var walletSnackbar = document.getElementById("walletSnackbar");
@@ -897,9 +908,89 @@
                         e.preventDefault();
                         var networkName = networkRow.getAttribute("data-network-name") || "";
                         showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, networkName);
+                        return;
+                    }
+                    // Asset row (USDT / ETH) on address-detail view: show dropdown near the row
+                    var addressDetailView = document.getElementById("walletViewAddressDetail");
+                    var assetItem = e.target && e.target.closest && e.target.closest(".pp-wallet-modal__item");
+                    if (addressDetailView && assetItem && addressDetailView.contains(assetItem) && assetItem.querySelector(".pp-wallet-modal__asset-icon")) {
+                        e.preventDefault();
+                        var nameEl = assetItem.querySelector(".pp-wallet-modal__item-name");
+                        var assetName = (nameEl && nameEl.textContent) ? nameEl.textContent.trim() : "";
+                        if (assetName) setTimeout(function () { openEwDropdown(assetItem, assetName, e); }, 0);
                     }
                 });
             }
+
+            // Reusable EW dropdown: show near cursor (Material-style). Optional third arg: click event for clientX/clientY.
+            function openEwDropdown(anchorElement, assetName, clickEvent) {
+                var dropdown = document.getElementById("ppEwDropdown");
+                var labelEl = dropdown && dropdown.querySelector("#ppEwDropdownAssetName");
+                if (!dropdown || !labelEl) return;
+                var wasOpen = dropdown.classList.contains("is-open");
+                var padding = 8;
+                var x = padding;
+                var y = padding;
+                if (clickEvent && typeof clickEvent.clientX === "number" && typeof clickEvent.clientY === "number") {
+                    x = clickEvent.clientX + 8;
+                    y = clickEvent.clientY + 8;
+                } else if (anchorElement) {
+                    var rect = anchorElement.getBoundingClientRect();
+                    x = rect.left;
+                    y = rect.bottom + 8;
+                }
+                if (wasOpen) {
+                    var parent = dropdown.parentNode;
+                    var clone = dropdown.cloneNode(true);
+                    clone.id = "ppEwDropdown";
+                    var cloneLabel = clone.querySelector("#ppEwDropdownAssetName");
+                    if (cloneLabel) cloneLabel.textContent = assetName;
+                    clone.style.left = x + "px";
+                    clone.style.top = y + "px";
+                    clone.classList.remove("is-open");
+                    clone.setAttribute("aria-hidden", "true");
+                    parent.replaceChild(clone, dropdown);
+                    dropdown = clone;
+                } else {
+                    labelEl.textContent = assetName;
+                    dropdown.style.left = x + "px";
+                    dropdown.style.top = y + "px";
+                }
+                function show() {
+                    var el = document.getElementById("ppEwDropdown");
+                    if (!el) return;
+                    var dropdownRect = el.getBoundingClientRect();
+                    var x2 = x;
+                    var y2 = y;
+                    if (y2 + dropdownRect.height > window.innerHeight - 16) y2 = window.innerHeight - dropdownRect.height - 16;
+                    if (y2 < 16) y2 = 16;
+                    if (x2 + dropdownRect.width > window.innerWidth - 16) x2 = window.innerWidth - dropdownRect.width - 16;
+                    if (x2 < 16) x2 = 16;
+                    el.style.left = x2 + "px";
+                    el.style.top = y2 + "px";
+                    el.classList.add("is-open");
+                    el.setAttribute("aria-hidden", "false");
+                }
+                if (wasOpen) requestAnimationFrame(function () { requestAnimationFrame(show); });
+                else show();
+            }
+            function closeEwDropdown() {
+                var dropdown = document.getElementById("ppEwDropdown");
+                if (dropdown) {
+                    dropdown.classList.remove("is-open");
+                    dropdown.setAttribute("aria-hidden", "true");
+                }
+            }
+            document.addEventListener("click", function (e) {
+                var dropdown = document.getElementById("ppEwDropdown");
+                if (!dropdown || !dropdown.classList.contains("is-open")) return;
+                if (dropdown.contains(e.target)) {
+                    var item = e.target.closest && e.target.closest(".pp-ew-dropdown__item[data-action=\"withdraw\"]");
+                    if (item) { closeEwDropdown(); }
+                    return;
+                }
+                closeEwDropdown();
+            });
             if (isSessionActive()) startSessionTimer();
         })();
     </script>

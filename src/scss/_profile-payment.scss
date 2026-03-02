@@ -1308,9 +1308,10 @@ $wallet-accent: $ew-text-link;
   font-weight: $ew-title-weight;
   color: $ew-text-primary;
   transition: opacity 0.15s ease;
-
+  text-decoration: none;
 
   &:hover {
+    text-decoration: none;
     .pp-wallet-modal__action-btn-icon {
       background: $ew-btn-secondary-bg-hover;
     }
@@ -1687,6 +1688,88 @@ $wallet-accent: $ew-text-link;
   &--visible {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+  }
+}
+
+// Reusable EW dropdown (e.g. asset actions: Withdraw USDT/ETH) – positioned near trigger
+// Open state uses .is-open class so a fresh clone can animate when reopening
+.pp-ew-dropdown {
+  position: fixed;
+  z-index: 90;
+  min-width: 200px;
+  border-radius: 12px;
+  background-color: $ew-bg-surface-primary;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  padding: 0;
+  pointer-events: none;
+  transform-origin: 0 0;
+  transform: scale(0.92);
+  opacity: 0;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), opacity 0.15s ease;
+
+  &.is-open {
+    pointer-events: auto;
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 24px 24px 20px;
+    min-width: 180px;
+    font-family: $font-ew;
+    font-size: $ew-size-l;
+    font-weight: $ew-body-weight;
+    color: $ew-text-primary;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    text-align: left;
+    background: none;
+    box-sizing: border-box;
+
+    &:first-child:last-child {
+      border-radius: 12px;
+    }
+
+    &:first-child:not(:last-child) {
+      border-radius: 12px 12px 0 0;
+    }
+
+    &:last-child:not(:first-child) {
+      border-radius: 0 0 12px 12px;
+    }
+
+    &:hover {
+      background: rgba($ew-neutral-100, 0.08);
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+
+    img {
+      display: block;
+    }
+  }
+
+  &__label {
+    flex: 1 1 auto;
   }
 }
 
