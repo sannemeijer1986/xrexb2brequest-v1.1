@@ -989,6 +989,10 @@ $wallet-accent: $ew-text-link;
   &--address-detail {
     transform: translateX(200%);
   }
+
+  &--withdraw-select {
+    transform: translateX(300%);
+  }
 }
 
 .pp-wallet-modal--beneficiary-view {
@@ -1003,9 +1007,13 @@ $wallet-accent: $ew-text-link;
   .pp-wallet-modal__view--address-detail {
     transform: translateX(100%);
   }
+
+  .pp-wallet-modal__view--withdraw-select {
+    transform: translateX(200%);
+  }
 }
 
-.pp-wallet-modal--address-detail-view {
+.pp-wallet-modal--address-detail-view:not(.pp-wallet-modal--withdraw-select-view) {
   .pp-wallet-modal__view--list {
     transform: translateX(-200%);
   }
@@ -1015,6 +1023,28 @@ $wallet-accent: $ew-text-link;
   }
 
   .pp-wallet-modal__view--address-detail {
+    transform: translateX(0);
+  }
+
+  .pp-wallet-modal__view--withdraw-select {
+    transform: translateX(100%);
+  }
+}
+
+.pp-wallet-modal--withdraw-select-view {
+  .pp-wallet-modal__view--list {
+    transform: translateX(-300%);
+  }
+
+  .pp-wallet-modal__view--beneficiary {
+    transform: translateX(-200%);
+  }
+
+  .pp-wallet-modal__view--address-detail {
+    transform: translateX(-100%);
+  }
+
+  .pp-wallet-modal__view--withdraw-select {
     transform: translateX(0);
   }
 }
@@ -1147,6 +1177,12 @@ $wallet-accent: $ew-text-link;
 }
 
 .pp-wallet-modal__header-address-detail-wrap {
+  &--hidden {
+    display: none !important;
+  }
+}
+
+.pp-wallet-modal__header-withdraw-wrap {
   &--hidden {
     display: none !important;
   }
