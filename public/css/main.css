@@ -2203,7 +2203,7 @@ body.profile-payment-page .site-footer {
   height: 40px;
   border-radius: 50%;
   background: #293155;
-  color: #96A9E0;
+  color: #A9C4FF;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 16px;
   font-weight: 600;
@@ -2294,7 +2294,7 @@ body.profile-payment-page .site-footer {
   font-size: 42px;
 }
 .pp-wallet-modal__address-detail .pp-wallet-modal__balance-block .pp-wallet-modal__balance-amount--empty {
-  color: #3A4570;
+  color: #56659A;
 }
 
 .pp-wallet-modal__address-block {
@@ -2441,9 +2441,9 @@ body.profile-payment-page .site-footer {
 .pp-wallet-withdraw-form__label {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  color: #7384BE;
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFFFFF;
 }
 
 .pp-wallet-withdraw-form__input-row {
@@ -2463,13 +2463,14 @@ body.profile-payment-page .site-footer {
   border: none;
   background: none;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   color: #FFFFFF;
   padding: 12px 0;
+  height: 72px;
 }
 .pp-wallet-withdraw-form__input::placeholder {
-  color: #3A4570;
+  color: #56659A;
 }
 .pp-wallet-withdraw-form__input:focus {
   outline: none;
@@ -2501,9 +2502,9 @@ body.profile-payment-page .site-footer {
 .pp-wallet-withdraw-form__hint {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
-  color: #3A4570;
+  color: #A9C4FF;
   line-height: 1.4;
 }
 .pp-wallet-withdraw-form__hint--row {
@@ -2528,7 +2529,7 @@ body.profile-payment-page .site-footer {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 18px;
   font-weight: 600;
-  color: #3A4570;
+  color: #56659A;
   text-align: center;
   line-height: 1.4;
 }
@@ -2580,7 +2581,7 @@ body.profile-payment-page .site-footer {
   color: #FFFFFF;
 }
 .pp-wallet-modal__item-balance--empty {
-  color: #3A4570;
+  color: #56659A;
 }
 
 .pp-wallet-modal__footer {
@@ -2628,7 +2629,7 @@ body.profile-payment-page .site-footer {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 11px;
   text-align: center;
-  color: #3A4570;
+  color: #56659A;
   opacity: 0.8;
 }
 

@@ -1452,9 +1452,9 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-withdraw-form__label {
   margin: 0;
   font-family: $font-ew;
-  font-size: $ew-size-m;
-  font-weight: $ew-subtitle-weight;
-  color: $ew-text-secondary;
+  font-size: $ew-size-l;
+  font-weight: $ew-title-weight;
+  color: $ew-text-primary;
 }
 
 .pp-wallet-withdraw-form__input-row {
@@ -1474,10 +1474,11 @@ $wallet-accent: $ew-text-link;
   border: none;
   background: none;
   font-family: $font-ew;
-  font-size: $ew-size-m;
+  font-size: $ew-size-l;
   font-weight: $ew-body-weight;
   color: $ew-text-primary;
   padding: 12px 0;
+  height: 72px;
 
   &::placeholder {
     color: $ew-text-placeholder;
@@ -1515,9 +1516,9 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-withdraw-form__hint {
   margin: 0;
   font-family: $font-ew;
-  font-size: $ew-size-s;
+  font-size: $ew-size-m;
   font-weight: $ew-body-weight;
-  color: $ew-text-placeholder;
+  color: $ew-text-highlight;
   line-height: 1.4;
 
   &--row {
