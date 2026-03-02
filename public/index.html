@@ -356,9 +356,12 @@
                         <div class="pp-wallet-withdraw-form">
                             <div class="pp-wallet-withdraw-form__field">
                                 <label class="pp-wallet-withdraw-form__label" for="walletWithdrawAddress">Recipient address</label>
-                                <div class="pp-wallet-withdraw-form__input-row">
-                                    <input type="text" id="walletWithdrawAddress" class="pp-wallet-withdraw-form__input" placeholder="Enter address" autocomplete="off" />
+                                <div class="pp-wallet-withdraw-form__input-row pp-wallet-withdraw-form__input-row--recipient-address">
+                                    <textarea id="walletWithdrawAddress" class="pp-wallet-withdraw-form__input pp-wallet-withdraw-form__input--textarea" placeholder="Enter address" autocomplete="off" rows="1"></textarea>
                                     <button type="button" class="pp-wallet-withdraw-form__action-link" id="walletWithdrawPaste">Paste</button>
+                                    <button type="button" class="pp-wallet-withdraw-form__clear-btn" id="walletWithdrawAddressClear" aria-label="Clear address" title="Clear" hidden>
+                                        <img src="assets/icon-ew-clear-blue.svg" alt="" width="20" height="20" />
+                                    </button>
                                 </div>
                                 <p class="pp-wallet-withdraw-form__hint">Make sure the recipient address is on the Ethereum (ERC-20) network</p>
                             </div>
@@ -969,7 +972,7 @@
                 var amountInput = document.getElementById("walletWithdrawAmount");
                 if (currencyEl) currencyEl.textContent = currentWithdrawAsset;
                 if (availableEl) availableEl.textContent = currentWithdrawAsset === "ETH" ? "0.05 ETH" : "32.41 USDT";
-                if (addressInput) addressInput.value = "";
+                if (addressInput) { addressInput.value = ""; resizeWithdrawAddressTextarea(); updateWithdrawAddressClearVisibility(); }
                 if (amountInput) amountInput.value = "";
                 updateWithdrawReviewButton();
                 walletModal.classList.add("pp-wallet-modal--withdraw-form-view");
@@ -1180,6 +1183,21 @@
                 reviewBtn.classList.toggle("ew-btn--disabled", !enabled);
             }
 
+            function resizeWithdrawAddressTextarea() {
+                var el = document.getElementById("walletWithdrawAddress");
+                if (!el || el.nodeName !== "TEXTAREA") return;
+                el.style.height = "auto";
+                el.style.height = Math.min(el.scrollHeight, 120) + "px";
+            }
+
+            function updateWithdrawAddressClearVisibility() {
+                var addressInput = document.getElementById("walletWithdrawAddress");
+                var clearBtn = document.getElementById("walletWithdrawAddressClear");
+                if (!addressInput || !clearBtn) return;
+                var hasValue = (addressInput.value || "").trim().length > 0;
+                if (hasValue) clearBtn.removeAttribute("hidden"); else clearBtn.setAttribute("hidden", "");
+            }
+
             (function wireWithdrawForm() {
                 var addressInput = document.getElementById("walletWithdrawAddress");
                 var amountInput = document.getElementById("walletWithdrawAmount");
@@ -1190,7 +1208,12 @@
                 if (pasteBtn && addressInput) {
                     pasteBtn.addEventListener("click", function () {
                         if (navigator.clipboard && navigator.clipboard.readText) {
-                            navigator.clipboard.readText().then(function (text) { addressInput.value = text; updateWithdrawReviewButton(); }).catch(function () {});
+                            navigator.clipboard.readText().then(function (text) {
+                                addressInput.value = text;
+                                resizeWithdrawAddressTextarea();
+                                updateWithdrawAddressClearVisibility();
+                                updateWithdrawReviewButton();
+                            }).catch(function () {});
                         }
                     });
                 }
@@ -1202,7 +1225,22 @@
                         updateWithdrawReviewButton();
                     });
                 }
-                if (addressInput) addressInput.addEventListener("input", updateWithdrawReviewButton);
+                if (addressInput) {
+                    addressInput.addEventListener("input", function () {
+                        resizeWithdrawAddressTextarea();
+                        updateWithdrawAddressClearVisibility();
+                        updateWithdrawReviewButton();
+                    });
+                }
+                var clearBtn = document.getElementById("walletWithdrawAddressClear");
+                if (clearBtn && addressInput) {
+                    clearBtn.addEventListener("click", function () {
+                        addressInput.value = "";
+                        resizeWithdrawAddressTextarea();
+                        updateWithdrawAddressClearVisibility();
+                        updateWithdrawReviewButton();
+                    });
+                }
                 if (amountInput) amountInput.addEventListener("input", updateWithdrawReviewButton);
                 if (reviewBtn) reviewBtn.addEventListener("click", function () { if (!this.disabled) { /* TODO: next step */ } });
             })();

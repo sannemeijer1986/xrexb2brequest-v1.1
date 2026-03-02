@@ -2456,6 +2456,20 @@ body.profile-payment-page .site-footer {
   border: 1px solid #222947;
   border-radius: 12px;
 }
+.pp-wallet-withdraw-form__input-row--recipient-address {
+  align-items: flex-start;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.pp-wallet-withdraw-form__input-row--recipient-address .pp-wallet-withdraw-form__input--textarea {
+  resize: none;
+  min-height: 24px;
+  max-height: 120px;
+  overflow-y: auto;
+  height: auto;
+  line-height: 1.4;
+  vertical-align: top;
+}
 
 .pp-wallet-withdraw-form__input {
   flex: 1 1 auto;
@@ -2467,7 +2481,7 @@ body.profile-payment-page .site-footer {
   font-weight: 400;
   color: #FFFFFF;
   padding: 12px 0;
-  height: 72px;
+  min-height: 24px;
 }
 .pp-wallet-withdraw-form__input::placeholder {
   color: #56659A;
@@ -2488,7 +2502,7 @@ body.profile-payment-page .site-footer {
   border: none;
   background: none;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #4779FF;
   cursor: pointer;
@@ -2497,6 +2511,30 @@ body.profile-payment-page .site-footer {
 }
 .pp-wallet-withdraw-form__action-link:hover {
   text-decoration: underline;
+}
+
+.pp-wallet-withdraw-form__clear-btn {
+  display: none;
+  padding: 4px;
+  margin: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 0;
+}
+.pp-wallet-withdraw-form__clear-btn:not([hidden]) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.pp-wallet-withdraw-form__clear-btn img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+.pp-wallet-withdraw-form__clear-btn:hover {
+  opacity: 0.85;
 }
 
 .pp-wallet-withdraw-form__hint {
