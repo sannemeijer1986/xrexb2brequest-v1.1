@@ -2113,6 +2113,22 @@ body.profile-payment-page .site-footer {
   transform: translateX(0);
 }
 
+.pp-wallet-modal--withdraw-form-view.pp-wallet-modal--withdraw-form-view-direct .pp-wallet-modal__view--list {
+  transform: translateX(-300%);
+}
+.pp-wallet-modal--withdraw-form-view.pp-wallet-modal--withdraw-form-view-direct .pp-wallet-modal__view--beneficiary {
+  transform: translateX(-200%);
+}
+.pp-wallet-modal--withdraw-form-view.pp-wallet-modal--withdraw-form-view-direct .pp-wallet-modal__view--address-detail {
+  transform: translateX(-100%);
+}
+.pp-wallet-modal--withdraw-form-view.pp-wallet-modal--withdraw-form-view-direct .pp-wallet-modal__view--withdraw-select {
+  transform: translateX(100%);
+}
+.pp-wallet-modal--withdraw-form-view.pp-wallet-modal--withdraw-form-view-direct .pp-wallet-modal__view--withdraw-form {
+  transform: translateX(0);
+}
+
 .pp-wallet-modal__balance {
   padding: 32px;
   background-color: #161A2A;

@@ -841,6 +841,7 @@
             var currentBeneficiaryInitials = "";
             var currentNetworkName = "";
             var currentWithdrawAsset = "USDT";
+            var currentWithdrawEntryPoint = "select-asset";
 
             var walletBeneficiaryDetailBalance = document.getElementById("walletBeneficiaryDetailBalance");
 
@@ -852,6 +853,7 @@
                 walletModal.classList.remove("pp-wallet-modal--address-detail-view");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-select-view");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-form-view");
+                walletModal.classList.remove("pp-wallet-modal--withdraw-form-view-direct");
                 walletModal.classList.add("pp-wallet-modal--beneficiary-view");
                 if (walletModalDialog) walletModalDialog.classList.add("pp-wallet-modal__dialog--deeper");
                 walletModalBack && walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
@@ -916,6 +918,7 @@
                 walletModal.classList.add("pp-wallet-modal--address-detail-view");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-select-view");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-form-view");
+                walletModal.classList.remove("pp-wallet-modal--withdraw-form-view-direct");
                 if (walletModalDialog) walletModalDialog.classList.add("pp-wallet-modal__dialog--deeper");
                 walletModalBack && walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
                 if (walletHeaderIconWrap) walletHeaderIconWrap.classList.add("pp-wallet-modal__header-icon-wrap--hidden");
@@ -967,9 +970,10 @@
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
             }
 
-            function showWithdrawFormView(assetName) {
-                if (!walletModal || !walletViewWithdrawForm || !walletViewWithdrawSelect) return;
+            function showWithdrawFormView(assetName, entryPoint) {
+                if (!walletModal || !walletViewWithdrawForm) return;
                 currentWithdrawAsset = (assetName || "USDT").trim();
+                currentWithdrawEntryPoint = entryPoint === "address-detail" ? "address-detail" : "select-asset";
                 var currencyEl = document.getElementById("walletWithdrawCurrency");
                 var availableEl = document.getElementById("walletWithdrawAvailable");
                 var addressInput = document.getElementById("walletWithdrawAddress");
@@ -979,10 +983,14 @@
                 if (addressInput) { addressInput.value = ""; resizeWithdrawAddressTextarea(); updateWithdrawAddressClearVisibility(); }
                 if (amountInput) amountInput.value = "";
                 updateWithdrawReviewButton();
+                walletModal.classList.remove("pp-wallet-modal--withdraw-form-view-direct");
+                if (currentWithdrawEntryPoint === "address-detail") {
+                    walletModal.classList.add("pp-wallet-modal--withdraw-form-view-direct");
+                }
                 walletModal.classList.add("pp-wallet-modal--withdraw-form-view");
                 if (walletModalHeaderLabel) walletModalHeaderLabel.textContent = "Withdraw";
                 if (walletModalTitle) walletModalTitle.textContent = "Withdraw " + currentWithdrawAsset;
-                walletViewWithdrawSelect.setAttribute("aria-hidden", "true");
+                if (walletViewWithdrawSelect) walletViewWithdrawSelect.setAttribute("aria-hidden", "true");
                 walletViewWithdrawForm.removeAttribute("aria-hidden");
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
@@ -992,7 +1000,9 @@
                 if (!walletModal || !walletViewWithdrawSelect || !walletViewAddressDetail) return;
                 walletModal.classList.remove("pp-wallet-modal--footer-fade-in");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-form-view");
+                walletModal.classList.remove("pp-wallet-modal--withdraw-form-view-direct");
                 walletModal.classList.add("pp-wallet-modal--withdraw-select-view");
+                currentWithdrawEntryPoint = "select-asset";
                 if (walletHeaderIconWrap) walletHeaderIconWrap.classList.add("pp-wallet-modal__header-icon-wrap--hidden");
                 if (walletHeaderAvatarWrap) {
                     walletHeaderAvatarWrap.classList.add("pp-wallet-modal__header-avatar-wrap--hidden");
@@ -1022,6 +1032,7 @@
                 walletModal.classList.remove("pp-wallet-modal--address-detail-view");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-select-view");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-form-view");
+                walletModal.classList.remove("pp-wallet-modal--withdraw-form-view-direct");
                 walletModalBack && walletModalBack.classList.add("pp-wallet-modal__back--hidden");
                 if (walletHeaderIconWrap) walletHeaderIconWrap.classList.remove("pp-wallet-modal__header-icon-wrap--hidden");
                 if (walletHeaderAvatarWrap) {
@@ -1050,11 +1061,16 @@
 
             function onWalletBackClick() {
                 if (walletModal && walletModal.classList.contains("pp-wallet-modal--withdraw-form-view")) {
-                    walletModal.classList.remove("pp-wallet-modal--withdraw-form-view");
-                    walletViewWithdrawForm.setAttribute("aria-hidden", "true");
-                    walletViewWithdrawSelect.removeAttribute("aria-hidden");
-                    walletModal.classList.add("pp-wallet-modal--header-from-left");
-                    setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-left"); }, 250);
+                    if (currentWithdrawEntryPoint === "address-detail") {
+                        showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, currentNetworkName || "Ethereum (ERC-20)");
+                    } else {
+                        walletModal.classList.remove("pp-wallet-modal--withdraw-form-view");
+                        walletModal.classList.remove("pp-wallet-modal--withdraw-form-view-direct");
+                        walletViewWithdrawForm.setAttribute("aria-hidden", "true");
+                        if (walletViewWithdrawSelect) walletViewWithdrawSelect.removeAttribute("aria-hidden");
+                        walletModal.classList.add("pp-wallet-modal--header-from-left");
+                        setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-left"); }, 250);
+                    }
                     return;
                 }
                 if (walletModal && walletModal.classList.contains("pp-wallet-modal--withdraw-select-view")) {
@@ -1170,7 +1186,7 @@
                         e.preventDefault();
                         var nameEl = assetSelectItem.querySelector(".pp-wallet-modal__item-name");
                         var assetName = (nameEl && nameEl.textContent) ? nameEl.textContent.trim() : "";
-                        if (assetName) showWithdrawFormView(assetName);
+                        if (assetName) showWithdrawFormView(assetName, "select-asset");
                     }
                 });
             }
@@ -1348,6 +1364,12 @@
                         var action = item.getAttribute("data-action");
                         if (action === "export-private-key") { /* TODO */ }
                         if (action === "disable-auto-debit") openDisableAutodebitConfirm();
+                        if (action === "withdraw") {
+                            var labelEl = item.querySelector(".pp-ew-dropdown__label");
+                            var labelText = (labelEl && labelEl.textContent) ? labelEl.textContent.trim() : "";
+                            var assetName = labelText.replace(/^Withdraw\s+/i, "").trim();
+                            if (assetName) showWithdrawFormView(assetName, "address-detail");
+                        }
                     }
                     return;
                 }
