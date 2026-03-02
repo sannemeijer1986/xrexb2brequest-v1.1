@@ -2468,6 +2468,8 @@ body.profile-payment-page .site-footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
+  transition: opacity 0.18s ease, height 0s linear, min-height 0s linear, padding 0s linear, flex-basis 0s linear, border-top-width 0s linear;
 }
 
 .pp-wallet-modal__tabs {
@@ -2505,6 +2507,31 @@ body.profile-payment-page .site-footer {
   opacity: 0.8;
 }
 
+.pp-wallet-modal--withdraw-select-view .pp-wallet-modal__footer {
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  min-height: 0;
+  padding: 0;
+  flex: 0 0 0;
+  border-top-width: 0;
+  overflow: hidden;
+  transition: opacity 0.18s ease, height 0s linear 0.18s, min-height 0s linear 0.18s, padding 0s linear 0.18s, flex-basis 0s linear 0.18s, border-top-width 0s linear 0.18s;
+}
+
+.pp-wallet-modal--footer-fade-in .pp-wallet-modal__tabs,
+.pp-wallet-modal--footer-fade-in .pp-wallet-modal__disclaimer {
+  animation: pp-wallet-footer-fade-in 0.18s ease;
+}
+
+@keyframes pp-wallet-footer-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .ew-btn {
   display: inline-flex;
   align-items: center;

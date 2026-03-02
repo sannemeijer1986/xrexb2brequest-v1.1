@@ -810,6 +810,7 @@
                 if (!walletModal || !walletViewBeneficiary || !walletViewList) return;
                 currentBeneficiaryName = name || "";
                 currentBeneficiaryInitials = initials || "";
+                var wasWithdrawFlow = walletModal.classList.contains("pp-wallet-modal--withdraw-select-view");
                 walletModal.classList.remove("pp-wallet-modal--address-detail-view");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-select-view");
                 walletModal.classList.add("pp-wallet-modal--beneficiary-view");
@@ -843,15 +844,28 @@
                 walletViewBeneficiary.removeAttribute("aria-hidden");
                 if (walletViewAddressDetail) walletViewAddressDetail.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawSelect) walletViewWithdrawSelect.setAttribute("aria-hidden", "true");
+                if (wasWithdrawFlow) triggerWalletFooterFadeIn();
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
             }
 
             var walletAddressDetailBalance = document.getElementById("walletAddressDetailBalance");
 
+            function triggerWalletFooterFadeIn() {
+                if (!walletModal) return;
+                walletModal.classList.remove("pp-wallet-modal--footer-fade-in");
+                void walletModal.offsetHeight;
+                walletModal.classList.add("pp-wallet-modal--footer-fade-in");
+                clearTimeout(walletModal._footerFadeInTimer);
+                walletModal._footerFadeInTimer = setTimeout(function () {
+                    walletModal.classList.remove("pp-wallet-modal--footer-fade-in");
+                }, 220);
+            }
+
             function showAddressDetailView(beneficiaryName, beneficiaryInitials, networkName) {
                 if (!walletModal || !walletViewAddressDetail || !walletViewBeneficiary) return;
                 currentNetworkName = networkName || "";
+                var wasWithdrawFlow = walletModal.classList.contains("pp-wallet-modal--withdraw-select-view");
                 walletModal.classList.add("pp-wallet-modal--beneficiary-view");
                 walletModal.classList.add("pp-wallet-modal--address-detail-view");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-select-view");
@@ -889,12 +903,14 @@
                 walletViewBeneficiary.setAttribute("aria-hidden", "true");
                 walletViewAddressDetail.removeAttribute("aria-hidden");
                 if (walletViewWithdrawSelect) walletViewWithdrawSelect.setAttribute("aria-hidden", "true");
+                if (wasWithdrawFlow) triggerWalletFooterFadeIn();
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
             }
 
             function showWithdrawSelectView() {
                 if (!walletModal || !walletViewWithdrawSelect || !walletViewAddressDetail) return;
+                walletModal.classList.remove("pp-wallet-modal--footer-fade-in");
                 walletModal.classList.add("pp-wallet-modal--withdraw-select-view");
                 if (walletHeaderIconWrap) walletHeaderIconWrap.classList.add("pp-wallet-modal__header-icon-wrap--hidden");
                 if (walletHeaderAvatarWrap) {
@@ -919,6 +935,7 @@
 
             function showListView() {
                 if (!walletModal || !walletViewBeneficiary || !walletViewList) return;
+                var wasWithdrawFlow = walletModal.classList.contains("pp-wallet-modal--withdraw-select-view");
                 walletModal.classList.remove("pp-wallet-modal--beneficiary-view");
                 walletModal.classList.remove("pp-wallet-modal--address-detail-view");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-select-view");
@@ -942,6 +959,7 @@
                 walletViewBeneficiary.setAttribute("aria-hidden", "true");
                 if (walletViewAddressDetail) walletViewAddressDetail.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawSelect) walletViewWithdrawSelect.setAttribute("aria-hidden", "true");
+                if (wasWithdrawFlow) triggerWalletFooterFadeIn();
                 walletModal.classList.add("pp-wallet-modal--header-from-left");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-left"); }, 250);
             }
