@@ -2430,7 +2430,7 @@ body.profile-payment-page .site-footer {
   padding: 24px 24px 32px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 48px;
   flex: 1 1 auto;
   min-height: 0;
 }
@@ -2445,7 +2445,7 @@ body.profile-payment-page .site-footer {
 .pp-wallet-withdraw-form__field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 }
 
 .pp-wallet-withdraw-form__label {
@@ -2459,9 +2459,9 @@ body.profile-payment-page .site-footer {
 .pp-wallet-withdraw-form__input-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
   min-height: 48px;
-  padding: 0 16px;
+  padding: 0 24px;
   background: #222947;
   border: 1px solid #222947;
   border-radius: 12px;
@@ -2478,14 +2478,21 @@ body.profile-payment-page .site-footer {
   line-height: 1.4;
   vertical-align: top;
   /* Center first line in min-height: one line ≈ 18px * 1.4 = 25.2px; (72 - 25.2) / 2 ≈ 23px */
-  padding-top: 23px;
-  padding-bottom: 23px;
+  padding-top: 24px;
+  padding-bottom: 24px;
   /* Hide scrollbar, keep scroll behaviour */
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 .pp-wallet-withdraw-form__input-row--recipient-address .pp-wallet-withdraw-form__input--textarea::-webkit-scrollbar {
   display: none;
+}
+
+.pp-wallet-withdraw-form__row-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
 }
 
 .pp-wallet-withdraw-form__input {
@@ -2509,9 +2516,9 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-withdraw-form__currency {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: #7384BE;
+  font-size: 18px;
+  font-weight: 600;
+  color: #FFFFFF;
   flex-shrink: 0;
 }
 
@@ -2557,15 +2564,22 @@ body.profile-payment-page .site-footer {
 .pp-wallet-withdraw-form__hint {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
-  color: #A9C4FF;
+  color: #7384BE;
   line-height: 1.4;
 }
 .pp-wallet-withdraw-form__hint--row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.pp-wallet-withdraw-form__hint--helpertext {
+  color: #A9C4FF;
+  font-size: 16px;
+  color: #A9C4FF;
+  font-weight: 600;
 }
 
 .pp-wallet-withdraw-form__actions .ew-btn {

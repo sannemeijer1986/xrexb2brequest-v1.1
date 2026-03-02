@@ -1440,7 +1440,7 @@ $wallet-accent: $ew-text-link;
   padding: 24px 24px 32px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 48px;
   flex: 1 1 auto;
   min-height: 0;
 }
@@ -1455,7 +1455,7 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-withdraw-form__field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 }
 
 .pp-wallet-withdraw-form__label {
@@ -1469,9 +1469,9 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-withdraw-form__input-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
   min-height: 48px;
-  padding: 0 16px;
+  padding: 0 24px;
   background: $ew-bg-surface-primary;
   border: 1px solid $ew-border-mediumcon;
   border-radius: 12px;
@@ -1488,8 +1488,8 @@ $wallet-accent: $ew-text-link;
       line-height: 1.4;
       vertical-align: top;
       /* Center first line in min-height: one line ≈ 18px * 1.4 = 25.2px; (72 - 25.2) / 2 ≈ 23px */
-      padding-top: 23px;
-      padding-bottom: 23px;
+      padding-top: 24px;
+      padding-bottom: 24px;
       /* Hide scrollbar, keep scroll behaviour */
       scrollbar-width: none;
       -ms-overflow-style: none;
@@ -1499,6 +1499,13 @@ $wallet-accent: $ew-text-link;
       }
     }
   }
+}
+
+.pp-wallet-withdraw-form__row-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
 }
 
 .pp-wallet-withdraw-form__input {
@@ -1524,9 +1531,9 @@ $wallet-accent: $ew-text-link;
 
 .pp-wallet-withdraw-form__currency {
   font-family: $font-ew;
-  font-size: $ew-size-m;
-  font-weight: $ew-body-weight;
-  color: $ew-text-secondary;
+  font-size: $ew-size-l;
+  font-weight: $ew-subtitle-weight;
+  color: $ew-text-primary;
   flex-shrink: 0;
 }
 
@@ -1576,9 +1583,9 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-withdraw-form__hint {
   margin: 0;
   font-family: $font-ew;
-  font-size: $ew-size-m;
+  font-size: $ew-size-l;
   font-weight: $ew-body-weight;
-  color: $ew-text-highlight;
+  color: $ew-text-secondary;
   line-height: 1.4;
 
   &--row {
@@ -1586,6 +1593,13 @@ $wallet-accent: $ew-text-link;
     justify-content: space-between;
     align-items: center;
   }
+}
+
+.pp-wallet-withdraw-form__hint--helpertext {
+  color: $ew-text-highlight;
+  font-size: $ew-size-m;
+  color: $ew-text-highlight;
+  font-weight: $ew-subtitle-weight;
 }
 
 .pp-wallet-withdraw-form__actions .ew-btn {
