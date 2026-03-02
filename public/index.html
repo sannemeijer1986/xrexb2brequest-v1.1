@@ -484,7 +484,7 @@
     </div>
 
     <button type="button" class="pp-wallet-debug-hotspot" aria-label="Open wallet (debug only)"></button>
-    <button type="button" class="pp-wallet-close-confirm-debug-hotspot" aria-label="Open close-confirm modal (debug only)"></button>
+    <button type="button" class="pp-wallet-close-confirm-debug-hotspot" aria-label="Open wallet to Confirm withdrawal view (debug only)"></button>
 
     <footer class="site-footer">
         <div class="footer__inner">
@@ -856,15 +856,6 @@
                 if (walletCloseConfirmDismiss) walletCloseConfirmDismiss.addEventListener("click", closeWalletCloseConfirm);
             }
 
-            // Debug: bottom-right hotspot to open wallet + close-confirm modal (for styling)
-            var closeConfirmDebugHotspot = document.querySelector(".pp-wallet-close-confirm-debug-hotspot");
-            if (closeConfirmDebugHotspot) {
-                closeConfirmDebugHotspot.addEventListener("click", function () {
-                    openWalletDirect();
-                    openWalletCloseConfirm();
-                });
-            }
-
             // Beneficiary detail + Address detail views
             var walletModalBack = document.getElementById("walletModalBack");
             var walletModalDialog = walletModal && walletModal.querySelector(".pp-wallet-modal__dialog");
@@ -1085,6 +1076,52 @@
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-left"); }, 250);
             }
 
+            // Debug: open wallet and jump straight to Confirm withdrawal view (for styling)
+            function openWalletToConfirmView() {
+                openWalletDirect();
+                if (!walletModal || !walletViewWithdrawConfirm) return;
+                var confirmAmount = document.getElementById("walletConfirmAmount");
+                var confirmToAddr = document.getElementById("walletConfirmToAddress");
+                var confirmFrom = document.getElementById("walletConfirmFromAddress");
+                var confirmNetwork = document.getElementById("walletConfirmNetwork");
+                var assetIcon = document.getElementById("walletConfirmAssetIcon");
+                if (confirmAmount) confirmAmount.textContent = "32.41 USDT";
+                if (confirmToAddr) confirmToAddr.textContent = "0x742d35Cc6634C0532925a3b80532925a3b844Bc454e4438f44e";
+                if (confirmFrom) confirmFrom.textContent = "0x2134...1233f8";
+                if (confirmNetwork) confirmNetwork.textContent = "Ethereum (ERC-20)";
+                if (assetIcon && assetIcon.querySelector("img")) assetIcon.querySelector("img").src = "assets/icon-ew-currency-USDT.svg";
+                walletModal.classList.add("pp-wallet-modal--withdraw-form-view", "pp-wallet-modal--withdraw-form-view-direct", "pp-wallet-modal--withdraw-confirm-view");
+                if (walletHeaderIconWrap) walletHeaderIconWrap.classList.add("pp-wallet-modal__header-icon-wrap--hidden");
+                if (walletHeaderAvatarWrap) {
+                    walletHeaderAvatarWrap.classList.add("pp-wallet-modal__header-avatar-wrap--hidden");
+                    walletHeaderAvatarWrap.setAttribute("aria-hidden", "true");
+                }
+                if (walletHeaderAddressDetailWrap) {
+                    walletHeaderAddressDetailWrap.classList.add("pp-wallet-modal__header-address-detail-wrap--hidden");
+                    walletHeaderAddressDetailWrap.setAttribute("aria-hidden", "true");
+                }
+                if (walletHeaderWithdrawWrap) {
+                    walletHeaderWithdrawWrap.classList.remove("pp-wallet-modal__header-withdraw-wrap--hidden");
+                    walletHeaderWithdrawWrap.removeAttribute("aria-hidden");
+                }
+                if (walletModalHeaderLabel) walletModalHeaderLabel.textContent = "Withdraw";
+                if (walletModalTitle) walletModalTitle.textContent = "Confirm withdrawal";
+                if (walletViewList) walletViewList.setAttribute("aria-hidden", "true");
+                if (walletViewBeneficiary) walletViewBeneficiary.setAttribute("aria-hidden", "true");
+                if (walletViewAddressDetail) walletViewAddressDetail.setAttribute("aria-hidden", "true");
+                if (walletViewWithdrawSelect) walletViewWithdrawSelect.setAttribute("aria-hidden", "true");
+                if (walletViewWithdrawForm) walletViewWithdrawForm.setAttribute("aria-hidden", "true");
+                walletViewWithdrawConfirm.removeAttribute("aria-hidden");
+                if (walletModalBack) walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
+                walletModal.classList.add("pp-wallet-modal--header-from-right");
+                setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
+            }
+
+            var closeConfirmDebugHotspot = document.querySelector(".pp-wallet-close-confirm-debug-hotspot");
+            if (closeConfirmDebugHotspot) {
+                closeConfirmDebugHotspot.addEventListener("click", function () { openWalletToConfirmView(); });
+            }
+
             function showWithdrawSelectView() {
                 if (!walletModal || !walletViewWithdrawSelect || !walletViewAddressDetail) return;
                 walletModal.classList.remove("pp-wallet-modal--footer-fade-in");
@@ -1161,13 +1198,8 @@
                     if (currentWithdrawEntryPoint === "address-detail") {
                         showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, currentNetworkName || "Ethereum (ERC-20)");
                     } else {
-                        walletModal.classList.remove("pp-wallet-modal--withdraw-form-view");
-                        walletModal.classList.remove("pp-wallet-modal--withdraw-form-view-direct");
-                        walletModal.classList.remove("pp-wallet-modal--withdraw-confirm-view");
-                        walletViewWithdrawForm.setAttribute("aria-hidden", "true");
-                        if (walletViewWithdrawSelect) walletViewWithdrawSelect.removeAttribute("aria-hidden");
-                        walletModal.classList.add("pp-wallet-modal--header-from-left");
-                        setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-left"); }, 250);
+                        // Back from Withdraw form (entered via Select asset) → go back to Select asset view
+                        showWithdrawSelectView();
                     }
                     return;
                 }

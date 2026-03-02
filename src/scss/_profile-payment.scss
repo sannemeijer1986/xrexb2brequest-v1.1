@@ -1425,11 +1425,6 @@ $wallet-accent: $ew-text-link;
   color: inherit;
   text-align: left;
   width: 100%;
-  transition: opacity 0.15s ease;
-
-  &:hover {
-    opacity: 0.9;
-  }
 }
 
 .pp-wallet-modal__address-value {
@@ -1758,9 +1753,9 @@ $wallet-accent: $ew-text-link;
 
 .pp-wallet-withdraw-confirm__summary-label {
   font-family: $font-ew;
-  font-size: $ew-size-xs;
+  font-size: $ew-size-m;
   font-weight: $ew-subtitle-weight;
-  color: $ew-text-secondary;
+  color: $ew-text-highlight;
 }
 
 .pp-wallet-withdraw-confirm__summary-amount {
@@ -1997,6 +1992,12 @@ $wallet-accent: $ew-text-link;
     padding 0s linear 0.18s,
     flex-basis 0s linear 0.18s,
     border-top-width 0s linear 0.18s;
+}
+
+// Withdraw form + Confirm: hide header label (e.g. "Withdraw") so only title shows.
+.pp-wallet-modal--withdraw-form-view .pp-wallet-modal__header-label,
+.pp-wallet-modal--withdraw-confirm-view .pp-wallet-modal__header-label {
+  display: none;
 }
 
 
