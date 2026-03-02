@@ -1113,7 +1113,7 @@ $wallet-accent: $ew-text-link;
     background: linear-gradient(
       90deg,
       rgba(115, 132, 190, 0) 0%,
-      rgba(115, 132, 190, 0.03) 50%,
+      rgba(115, 132, 190, 0.05) 50%,
       rgba(115, 132, 190, 0) 100%
     );
   }
@@ -1724,9 +1724,9 @@ $wallet-accent: $ew-text-link;
   &__item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 24px 24px 24px 20px;
-    min-width: 180px;
+    gap: 16px;
+    padding: 26px 26px 26px 20px;
+    min-width: 240px;
     font-family: $font-ew;
     font-size: $ew-size-l;
     font-weight: $ew-subtitle-weight;
@@ -1751,7 +1751,7 @@ $wallet-accent: $ew-text-link;
     }
 
     &:hover {
-      background: rgba($ew-neutral-100, 0.08);
+      background: $ew-btn-secondary-bg;
     }
   }
 
@@ -1765,6 +1765,8 @@ $wallet-accent: $ew-text-link;
 
     img {
       display: block;
+      width: 28px;
+      height: 28px;
     }
   }
 

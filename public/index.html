@@ -287,7 +287,7 @@
                                     <span class="pp-wallet-modal__action-btn-icon"><img src="assets/icon-ew-activity.svg" alt="" width="32" height="32" /></span>
                                     <span class="pp-wallet-modal__action-btn-label">On-chain activity</span>
                                 </a>
-                                <button type="button" class="pp-wallet-modal__action-btn">
+                                <button type="button" class="pp-wallet-modal__action-btn" id="walletModalMoreBtn" aria-haspopup="menu" aria-expanded="false">
                                     <span class="pp-wallet-modal__action-btn-icon"><img src="assets/icon-ew-more.svg" alt="" width="32" height="32" /></span>
                                     <span class="pp-wallet-modal__action-btn-label">More</span>
                                 </button>
@@ -338,13 +338,8 @@
             <img class="pp-wallet-snackbar__icon" src="assets/icon-ew-check.svg" alt="" width="32" height="32" />
             <span class="pp-wallet-snackbar__text">Copied to clipboard</span>
         </div>
-        <div class="pp-ew-dropdown" id="ppEwDropdown" role="menu" aria-hidden="true" aria-label="Asset actions">
-            <ul class="pp-ew-dropdown__list">
-                <li class="pp-ew-dropdown__item" role="menuitem" data-action="withdraw">
-                    <span class="pp-ew-dropdown__icon"><img src="assets/icon-ew-withdraw.svg" alt="" width="28" height="28" /></span>
-                    <span class="pp-ew-dropdown__label">Withdraw <span id="ppEwDropdownAssetName">USDT</span></span>
-                </li>
-            </ul>
+        <div class="pp-ew-dropdown" id="ppEwDropdown" role="menu" aria-hidden="true" aria-label="Menu">
+            <ul class="pp-ew-dropdown__list" id="ppEwDropdownList"></ul>
         </div>
         <div class="pp-wallet-close-confirm" id="walletCloseConfirm" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletCloseConfirmTitle">
             <div class="pp-wallet-close-confirm__backdrop"></div>
@@ -910,6 +905,17 @@
                         showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, networkName);
                         return;
                     }
+                    // More button on address-detail view: show dropdown with Export private key / Disable auto-debit
+                    var moreBtn = e.target && e.target.closest && e.target.closest("#walletModalMoreBtn");
+                    if (moreBtn) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        openEwDropdown([
+                            { iconSrc: "assets/icon-ew-exportkeys.svg", label: "Export private key", action: "export-private-key" },
+                            { iconSrc: "assets/icon-ew-stop.svg", label: "Disable auto-debit", action: "disable-auto-debit" }
+                        ], e);
+                        return;
+                    }
                     // Asset row (USDT / ETH) on address-detail view: show dropdown near the row
                     var addressDetailView = document.getElementById("walletViewAddressDetail");
                     var assetItem = e.target && e.target.closest && e.target.closest(".pp-wallet-modal__item");
@@ -918,34 +924,34 @@
                         e.stopPropagation();
                         var nameEl = assetItem.querySelector(".pp-wallet-modal__item-name");
                         var assetName = (nameEl && nameEl.textContent) ? nameEl.textContent.trim() : "";
-                        if (assetName) openEwDropdown(assetItem, assetName, e);
+                        if (assetName) openEwDropdown([{ iconSrc: "assets/icon-ew-withdraw.svg", label: "Withdraw " + assetName, action: "withdraw" }], e);
                     }
                 });
             }
 
-            // Reusable EW dropdown: show near cursor (Material-style). Optional third arg: click event for clientX/clientY.
-            function openEwDropdown(anchorElement, assetName, clickEvent) {
+            function buildEwDropdownListHtml(items) {
+                return items.map(function (it) {
+                    return "<li class=\"pp-ew-dropdown__item\" role=\"menuitem\" data-action=\"" + (it.action || "") + "\">" +
+                        "<span class=\"pp-ew-dropdown__icon\"><img src=\"" + (it.iconSrc || "") + "\" alt=\"\" width=\"20\" height=\"20\" /></span>" +
+                        "<span class=\"pp-ew-dropdown__label\">" + (it.label || "") + "</span></li>";
+                }).join("");
+            }
+
+            // Reusable EW dropdown: items = [{ iconSrc, label, action }], position from clickEvent (Material-style)
+            function openEwDropdown(items, clickEvent) {
                 var dropdown = document.getElementById("ppEwDropdown");
-                var labelEl = dropdown && dropdown.querySelector("#ppEwDropdownAssetName");
-                if (!dropdown || !labelEl) return;
+                var listEl = dropdown && dropdown.querySelector("#ppEwDropdownList");
+                if (!dropdown || !listEl || !items || !items.length) return;
                 var wasOpen = dropdown.classList.contains("is-open");
-                var padding = 8;
-                var x = padding;
-                var y = padding;
-                if (clickEvent && typeof clickEvent.clientX === "number" && typeof clickEvent.clientY === "number") {
-                    x = clickEvent.clientX + 8;
-                    y = clickEvent.clientY + 8;
-                } else if (anchorElement) {
-                    var rect = anchorElement.getBoundingClientRect();
-                    x = rect.left;
-                    y = rect.bottom + 8;
-                }
+                var x = (clickEvent && typeof clickEvent.clientX === "number") ? clickEvent.clientX + 8 : 8;
+                var y = (clickEvent && typeof clickEvent.clientY === "number") ? clickEvent.clientY + 8 : 8;
+                listEl.innerHTML = buildEwDropdownListHtml(items);
                 if (wasOpen) {
                     var parent = dropdown.parentNode;
                     var clone = dropdown.cloneNode(true);
                     clone.id = "ppEwDropdown";
-                    var cloneLabel = clone.querySelector("#ppEwDropdownAssetName");
-                    if (cloneLabel) cloneLabel.textContent = assetName;
+                    var cloneList = clone.querySelector("#ppEwDropdownList");
+                    if (cloneList) cloneList.innerHTML = buildEwDropdownListHtml(items);
                     clone.style.left = x + "px";
                     clone.style.top = y + "px";
                     clone.classList.remove("is-open");
@@ -953,7 +959,6 @@
                     parent.replaceChild(clone, dropdown);
                     dropdown = clone;
                 } else {
-                    labelEl.textContent = assetName;
                     dropdown.style.left = x + "px";
                     dropdown.style.top = y + "px";
                 }
@@ -986,8 +991,13 @@
                 var dropdown = document.getElementById("ppEwDropdown");
                 if (!dropdown || !dropdown.classList.contains("is-open")) return;
                 if (dropdown.contains(e.target)) {
-                    var item = e.target.closest && e.target.closest(".pp-ew-dropdown__item[data-action=\"withdraw\"]");
-                    if (item) { closeEwDropdown(); }
+                    var item = e.target.closest && e.target.closest(".pp-ew-dropdown__item");
+                    if (item) {
+                        closeEwDropdown();
+                        var action = item.getAttribute("data-action");
+                        if (action === "export-private-key") { /* TODO */ }
+                        if (action === "disable-auto-debit") { /* TODO */ }
+                    }
                     return;
                 }
                 closeEwDropdown();
