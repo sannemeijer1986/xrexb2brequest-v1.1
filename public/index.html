@@ -384,7 +384,7 @@
                                     <span id="walletWithdrawAvailable">32.41 USDT</span>
                                 </p>
                             </div>
-                            <div class="pp-wallet-withdraw-form__actions">
+                            <div class="pp-wallet-withdraw-form__actions pp-wallet-bnc pp-wallet-bnc--end">
                                 <button type="button" class="ew-btn ew-btn--lg ew-btn--primary ew-btn--disabled" id="walletWithdrawReviewBtn" disabled>Review withdrawal</button>
                             </div>
                         </div>
@@ -428,7 +428,7 @@
                                 <img src="assets/icon-ew-warning-orange.svg" alt="" width="24" height="24" class="pp-wallet-withdraw-confirm__alert-icon" />
                                 <p class="pp-wallet-withdraw-confirm__alert-text">Make sure you’re withdrawing to a valid Ethereum (ERC-20) address that the recipient can access to prevent loss of funds.</p>
                             </div>
-                            <div class="pp-wallet-withdraw-confirm__actions">
+                            <div class="pp-wallet-withdraw-confirm__actions pp-wallet-bnc pp-wallet-bnc--split">
                                 <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletConfirmCancelBtn">Back</button>
                                 <button type="button" class="ew-btn ew-btn--lg ew-btn--primary" id="walletConfirmWithdrawBtn">Confirm & withdraw</button>
                             </div>
@@ -474,10 +474,12 @@
                                 </div>
                                 <div class="pp-wallet-withdraw-completed__detail-row">
                                     <span class="pp-wallet-withdraw-completed__detail-label">Transaction ID</span>
-                                    <span class="pp-wallet-withdraw-completed__detail-value pp-wallet-withdraw-completed__detail-value--link" id="walletCompletedTxId">0x1a2b...c3d4</span>
+                                    <a href="https://etherscan.io/tx/0x7e3b...8d0e1f" target="_blank" rel="noreferrer" class="pp-wallet-withdraw-completed__detail-value pp-wallet-withdraw-completed__detail-value--link" id="walletCompletedTxId">0x7e3b...8d0e1f</a>
                                 </div>
                             </div>
-                            <button type="button" class="ew-btn ew-btn--lg ew-btn--primary" id="walletWithdrawCompletedDoneBtn">Done</button>
+                            <div class="pp-wallet-withdraw-completed__actions pp-wallet-bnc pp-wallet-bnc--end">
+                                <button type="button" class="ew-btn ew-btn--lg ew-btn--primary" id="walletWithdrawCompletedDoneBtn">Done</button>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -261,10 +261,6 @@ body.profile-payment-page .site-footer {
   cursor: pointer;
 }
 
-.wallet-entry:hover {
-  // background: #EBF2FF;
-}
-
 .wallet-entry.is-menu-hover {
   background: #ffffff;
 }
@@ -1036,7 +1032,7 @@ $wallet-accent: $ew-text-link;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  padding: 16px;
+  padding: 16px 16px 0 16px;
 }
 
 .pp-wallet-withdraw-completed__icon {
@@ -1187,13 +1183,6 @@ $wallet-accent: $ew-text-link;
     text-decoration: none;
     cursor: pointer;
   }
-}
-
-.pp-wallet-withdraw-completed .ew-btn {
-  margin-top: auto;
-  flex-shrink: 0;
-  align-self: flex-end;
-  min-width: 160px;
 }
 
 .pp-wallet-modal__view {
@@ -1871,21 +1860,12 @@ $wallet-accent: $ew-text-link;
 
 // Withdraw form step (address + amount)
 .pp-wallet-withdraw-form {
-  padding: 24px 24px 32px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
   gap: 48px;
   flex: 1 1 auto;
   min-height: 0;
-}
-
-.pp-wallet-withdraw-form__actions {
-  margin-top: auto;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  flex-shrink: 0;
-  display: flex;
-  justify-content: flex-end;
 }
 
 .pp-wallet-withdraw-form__field {
@@ -2219,14 +2199,24 @@ $wallet-accent: $ew-text-link;
   line-height: 1.4;
 }
 
-.pp-wallet-withdraw-confirm__actions {
+.pp-wallet-bnc {
   margin-top: auto;
   padding-top: 24px;
-  padding-bottom: 24px;
   flex-shrink: 0;
   display: flex;
-  gap: 20px;
-  justify-content: flex-end;
+
+  .ew-btn {
+    min-width: 160px;
+  }
+
+  &--end {
+    justify-content: flex-end;
+  }
+
+  &--split {
+    justify-content: flex-end;
+    gap: 20px;
+  }
 }
 
 .pp-wallet-modal__assets-empty {
