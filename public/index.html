@@ -180,6 +180,30 @@
         </div>
     </div>
 
+    <div class="pp-wallet-passcode-modal" id="walletPasscodeModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletPasscodeTitle">
+        <div class="pp-wallet-passcode-modal__dialog">
+            <div class="pp-wallet-passcode-modal__header">
+                <h2 id="walletPasscodeTitle">Verify wallet passcode</h2>
+                <button type="button" id="walletPasscodeClose" aria-label="Close"><img src="assets/icon_pp_close.svg" width="24" height="24" alt="" /></button>
+            </div>
+            <div class="pp-wallet-passcode-modal__divider"></div>
+            <div class="pp-wallet-passcode-modal__body">
+                <p class="pp-wallet-passcode-modal__lead">Please enter your wallet passcode to continue</p>
+                <div class="pp-wallet-passcode-modal__field">
+                    <label class="pp-wallet-passcode-modal__label" for="walletPasscodeInput">Wallet passcode</label>
+                    <div class="pp-wallet-passcode-modal__input-row">
+                        <input id="walletPasscodeInput" type="password" placeholder="Enter your wallet passcode" autocomplete="off" />
+                        <span class="pp-wallet-passcode-modal__eye" aria-hidden="true"><img src="assets/icon-ew-eye-closed-blue.svg" width="32" height="32" alt="" /></span>
+                    </div>
+                </div>
+            </div>
+            <div class="pp-wallet-passcode-modal__footer">
+                <button type="button" class="ew-btn ew-btn--md ew-btn--secondary pp-wallet-passcode-modal__btn" id="walletPasscodeCancel">Cancel</button>
+                <button type="button" class="ew-btn ew-btn--md ew-btn--primary ew-btn--disabled pp-wallet-passcode-modal__btn" id="walletPasscodeVerify" disabled>Verify passcode</button>
+            </div>
+        </div>
+    </div>
+
     <div class="pp-wallet-modal" id="walletModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletModalTitle">
         <div class="pp-wallet-modal__dialog">
             <div class="pp-wallet-modal__header">
@@ -667,6 +691,11 @@
             const verifyInput = document.getElementById("verifyCodeInput");
             const loadingEl = document.getElementById("verifyEmailLoading");
             const walletLoadingModal = document.getElementById("walletLoadingModal");
+            const walletPasscodeModal = document.getElementById("walletPasscodeModal");
+            const walletPasscodeClose = document.getElementById("walletPasscodeClose");
+            const walletPasscodeCancel = document.getElementById("walletPasscodeCancel");
+            const walletPasscodeVerify = document.getElementById("walletPasscodeVerify");
+            const walletPasscodeInput = document.getElementById("walletPasscodeInput");
             const walletModal = document.getElementById("walletModal");
             const walletModalClose = document.getElementById("walletModalClose");
             const walletLoadingMessage = document.getElementById("walletLoadingMessage");
@@ -832,6 +861,7 @@
                 modal.setAttribute("aria-hidden", "true");
                 if (loadingEl) loadingEl.setAttribute("aria-hidden", "true");
                 if (walletLoadingModal) walletLoadingModal.setAttribute("aria-hidden", "true");
+                if (walletPasscodeModal) walletPasscodeModal.setAttribute("aria-hidden", "true");
                 if (walletModal) walletModal.setAttribute("aria-hidden", "true");
                 verifyFlowRunning = false;
                 if (verifyInput) verifyInput.readOnly = false;
@@ -947,9 +977,77 @@
                     setTimeout(function () {
                         walletLoadingModal.setAttribute("aria-hidden", "true");
                         if (walletModal) walletModal.setAttribute("aria-hidden", "false");
+                        openWalletPasscodeModal();
                         verifyFlowRunning = false;
                     }, 900);
                 }, 500);
+            }
+
+            function updateWalletPasscodeVerifyState() {
+                if (!walletPasscodeInput || !walletPasscodeVerify) return;
+                var enabled = (walletPasscodeInput.value || "").trim().length > 0;
+                walletPasscodeVerify.disabled = !enabled;
+                walletPasscodeVerify.classList.toggle("ew-btn--disabled", !enabled);
+            }
+
+            function openWalletPasscodeModal() {
+                if (!walletPasscodeModal) return;
+                if (walletPasscodeInput) {
+                    walletPasscodeInput.value = "";
+                }
+                updateWalletPasscodeVerifyState();
+                walletPasscodeModal.setAttribute("aria-hidden", "false");
+            }
+
+            function closeWalletPasscodeModal() {
+                if (!walletPasscodeModal) return;
+                walletPasscodeModal.setAttribute("aria-hidden", "true");
+            }
+
+            if (walletPasscodeInput) {
+                walletPasscodeInput.addEventListener("focus", function () {
+                    if (!(walletPasscodeInput.value || "").trim()) {
+                        walletPasscodeInput.value = "123456";
+                    }
+                    updateWalletPasscodeVerifyState();
+                });
+                walletPasscodeInput.addEventListener("click", function () {
+                    if (!(walletPasscodeInput.value || "").trim()) {
+                        walletPasscodeInput.value = "123456";
+                    }
+                    updateWalletPasscodeVerifyState();
+                });
+                walletPasscodeInput.addEventListener("input", updateWalletPasscodeVerifyState);
+            }
+
+            if (walletPasscodeVerify) {
+                walletPasscodeVerify.addEventListener("click", function () {
+                    if (walletPasscodeVerify.disabled) return;
+                    closeWalletPasscodeModal();
+                });
+            }
+
+            if (walletPasscodeCancel) {
+                walletPasscodeCancel.addEventListener("click", function () {
+                    closeWalletPasscodeModal();
+                    closeWalletModal();
+                });
+            }
+
+            if (walletPasscodeClose) {
+                walletPasscodeClose.addEventListener("click", function () {
+                    closeWalletPasscodeModal();
+                    closeWalletModal();
+                });
+            }
+
+            if (walletPasscodeModal) {
+                walletPasscodeModal.addEventListener("click", function (e) {
+                    if (e.target === walletPasscodeModal) {
+                        closeWalletPasscodeModal();
+                        closeWalletModal();
+                    }
+                });
             }
 
             if (verifyInput) {
@@ -968,6 +1066,7 @@
             function closeWalletModal() {
                 closeWalletCloseConfirm();
                 hideWithdrawProcessingModal();
+                closeWalletPasscodeModal();
                 showListView();
                 if (walletModal) walletModal.setAttribute("aria-hidden", "true");
                 unlockBackgroundScroll();

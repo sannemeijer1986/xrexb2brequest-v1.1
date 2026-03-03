@@ -742,6 +742,168 @@ body.profile-payment-page .site-footer {
   color: $text-primary;
 }
 
+// Wallet passcode verify modal (shown after OTP success)
+.pp-wallet-passcode-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 85;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(10, 18, 46, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  &[aria-hidden="false"] {
+    display: flex;
+  }
+}
+
+.pp-wallet-passcode-modal__dialog {
+  width: 520px;
+  max-width: calc(100vw - 32px);
+  background: $ew-bg-base-secondary;
+  border-radius: 16px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.pp-wallet-passcode-modal__header {
+  height: 84px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  h2 {
+    margin: 0;
+    font-family: $font-ew;
+    font-size: $ew-size-xl;
+    font-weight: $ew-title-weight;
+    color: $ew-text-primary;
+    line-height: 1;
+  }
+
+  button {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    img {
+      filter: brightness(0) invert(1);
+      opacity: 0.95;
+    }
+  }
+}
+
+.pp-wallet-passcode-modal__divider {
+  height: 1px;
+  background: $ew-border-mediumcon;
+}
+
+.pp-wallet-passcode-modal__body {
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.pp-wallet-passcode-modal__lead {
+  margin: 0;
+  font-family: $font-ew;
+  font-size: $ew-size-l;
+  font-weight: $ew-body-weight;
+  color: $ew-text-primary;
+  line-height: 1.2;
+}
+
+.pp-wallet-passcode-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pp-wallet-passcode-modal__label {
+  margin: 0;
+  font-family: $font-ew;
+  font-size: $ew-size-l;
+  font-weight: $ew-title-weight;
+  color: $ew-text-primary;
+  line-height: 1;
+  padding-bottom: 4px;
+}
+
+.pp-wallet-passcode-modal__input-row {
+  height: 72px;
+  border-radius: 16px;
+  background: $ew-input-bg;
+  border: 2px solid $ew-input-border-active;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pp-wallet-passcode-modal__input-row input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-family: $font-ew;
+  font-size: $ew-size-l;
+  font-weight: $ew-body-weight;
+  color: $ew-text-primary;
+  line-height: 1;
+
+  &::placeholder {
+    color: $ew-text-placeholder;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.pp-wallet-passcode-modal__eye {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 32px;
+    height: 32px;
+    display: block;
+  }
+}
+
+.pp-wallet-passcode-modal__footer {
+  min-height: 84px;
+  padding: 22px 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  background: $ew-bg-surface-primary;
+}
+
+.pp-wallet-passcode-modal__btn {
+  min-width: 120px;
+}
+
 // Wallet account modal (dark theme, after loader)
 // Tied to EW Figma tokens from _variables.scss
 $wallet-bg: $ew-bg-base-primary;
