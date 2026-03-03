@@ -947,42 +947,31 @@ $wallet-accent: $ew-text-link;
   overflow: hidden;
 }
 
-// Withdraw overlay: processing spinner, then completed screen (after Confirm & withdraw)
-.pp-wallet-withdraw-overlay {
-  position: absolute;
+// Processing modal: full-viewport tinted layer (same pattern as wallet modal)
+.pp-wallet-withdraw-processing-modal {
+  position: fixed;
   inset: 0;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
+  z-index: 90;
+  display: none;
   align-items: center;
   justify-content: center;
-  background: $ew-bg-base-primary;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.25s ease, visibility 0.25s ease;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
   &[aria-hidden="false"] {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    display: flex;
   }
 }
 
-.pp-wallet-withdraw-overlay__processing,
-.pp-wallet-withdraw-overlay__completed {
+.pp-wallet-withdraw-processing-modal__dialog {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  text-align: center;
-
-  &[aria-hidden="true"] {
-    display: none;
-  }
 }
 
-.pp-wallet-withdraw-overlay__label {
+.pp-wallet-withdraw-processing-modal__label {
   margin: 0;
   font-family: $font-ew;
   font-size: $ew-size-xl;
@@ -1034,9 +1023,179 @@ $wallet-accent: $ew-text-link;
   }
 }
 
-.pp-wallet-withdraw-overlay__completed {
+// Withdrawal submitted card (after loader)
+.pp-wallet-withdraw-completed {
+  background: transparent;
   padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1 1 auto;
   min-height: 0;
+}
+
+.pp-wallet-withdraw-completed__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.pp-wallet-withdraw-completed__icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: $ew-assisting-positive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 48px;
+    height: 48px;
+    display: block;
+    filter: brightness(0) invert(1);
+  }
+}
+
+.pp-wallet-withdraw-completed__title {
+  margin: 0;
+  font-family: $font-ew;
+  font-size: $ew-size-xl;
+  font-weight: $ew-title-weight;
+  color: $ew-text-primary;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.pp-wallet-withdraw-completed__summary {
+  background: $ew-bg-surface-primary;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pp-wallet-withdraw-completed__summary-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.pp-wallet-withdraw-completed__asset-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+
+  img {
+    width: 40px;
+    height: 40px;
+    display: block;
+  }
+}
+
+.pp-wallet-withdraw-completed__address-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: $ew-bg-surface-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+
+  img {
+    width: 28px;
+    height: 28px;
+    display: block;
+  }
+}
+
+.pp-wallet-withdraw-completed__summary-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.pp-wallet-withdraw-completed__summary-label {
+  font-family: $font-ew;
+  font-size: $ew-size-m;
+  font-weight: $ew-subtitle-weight;
+  color: $ew-text-highlight;
+}
+
+.pp-wallet-withdraw-completed__summary-amount {
+  font-family: $font-ew;
+  font-size: $ew-size-l;
+  font-weight: $ew-title-weight;
+  color: $ew-text-primary;
+}
+
+.pp-wallet-withdraw-completed__summary-address {
+  font-family: $font-ew;
+  font-size: $ew-size-m;
+  font-weight: $ew-body-weight;
+  color: $ew-text-primary;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+.pp-wallet-withdraw-completed__divider {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px 4px;
+
+  img {
+    width: 32px;
+    height: 32px;
+    display: block;
+  }
+}
+
+.pp-wallet-withdraw-completed__details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pp-wallet-withdraw-completed__detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.pp-wallet-withdraw-completed__detail-label {
+  font-family: $font-ew;
+  font-size: $ew-size-m;
+  font-weight: $ew-body-weight;
+  color: $ew-text-secondary;
+}
+
+.pp-wallet-withdraw-completed__detail-value {
+  font-family: $font-ew;
+  font-size: $ew-size-m;
+  font-weight: $ew-subtitle-weight;
+  color: $ew-text-primary;
+  flex-shrink: 0;
+
+  &--link {
+    color: $ew-text-link;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+.pp-wallet-withdraw-completed .ew-btn {
+  margin-top: auto;
+  flex-shrink: 0;
+  align-self: flex-end;
+  min-width: 160px;
 }
 
 .pp-wallet-modal__view {
@@ -1075,6 +1234,10 @@ $wallet-accent: $ew-text-link;
   &--withdraw-confirm {
     transform: translateX(500%);
   }
+
+  &--withdraw-completed {
+    transform: translateX(600%);
+  }
 }
 
 .pp-wallet-modal--beneficiary-view {
@@ -1100,6 +1263,10 @@ $wallet-accent: $ew-text-link;
 
   .pp-wallet-modal__view--withdraw-confirm {
     transform: translateX(400%);
+  }
+
+  .pp-wallet-modal__view--withdraw-completed {
+    transform: translateX(500%);
   }
 }
 
@@ -1127,6 +1294,10 @@ $wallet-accent: $ew-text-link;
   .pp-wallet-modal__view--withdraw-confirm {
     transform: translateX(300%);
   }
+
+  .pp-wallet-modal__view--withdraw-completed {
+    transform: translateX(400%);
+  }
 }
 
 .pp-wallet-modal--withdraw-select-view:not(.pp-wallet-modal--withdraw-form-view):not(.pp-wallet-modal--withdraw-confirm-view) {
@@ -1153,6 +1324,10 @@ $wallet-accent: $ew-text-link;
   .pp-wallet-modal__view--withdraw-confirm {
     transform: translateX(200%);
   }
+
+  .pp-wallet-modal__view--withdraw-completed {
+    transform: translateX(300%);
+  }
 }
 
 .pp-wallet-modal--withdraw-form-view:not(.pp-wallet-modal--withdraw-confirm-view) {
@@ -1178,6 +1353,10 @@ $wallet-accent: $ew-text-link;
 
   .pp-wallet-modal__view--withdraw-confirm {
     transform: translateX(100%);
+  }
+
+  .pp-wallet-modal__view--withdraw-completed {
+    transform: translateX(200%);
   }
 }
 
@@ -1206,6 +1385,10 @@ $wallet-accent: $ew-text-link;
   .pp-wallet-modal__view--withdraw-confirm {
     transform: translateX(100%);
   }
+
+  .pp-wallet-modal__view--withdraw-completed {
+    transform: translateX(200%);
+  }
 }
 
 .pp-wallet-modal--withdraw-confirm-view {
@@ -1231,6 +1414,10 @@ $wallet-accent: $ew-text-link;
 
   .pp-wallet-modal__view--withdraw-confirm {
     transform: translateX(0);
+  }
+
+  .pp-wallet-modal__view--withdraw-completed {
+    transform: translateX(100%);
   }
 }
 
@@ -1258,6 +1445,87 @@ $wallet-accent: $ew-text-link;
 
   .pp-wallet-modal__view--withdraw-confirm {
     transform: translateX(0);
+  }
+
+  .pp-wallet-modal__view--withdraw-completed {
+    transform: translateX(100%);
+  }
+}
+
+.pp-wallet-modal--withdraw-completed-view {
+  .pp-wallet-modal__header {
+    display: none;
+  }
+
+  .pp-wallet-modal__view--list {
+    transform: translateX(-600%);
+  }
+
+  .pp-wallet-modal__view--beneficiary {
+    transform: translateX(-500%);
+  }
+
+  .pp-wallet-modal__view--address-detail {
+    transform: translateX(-400%);
+  }
+
+  .pp-wallet-modal__view--withdraw-select {
+    transform: translateX(-300%);
+  }
+
+  .pp-wallet-modal__view--withdraw-form {
+    transform: translateX(-200%);
+  }
+
+  .pp-wallet-modal__view--withdraw-confirm {
+    transform: translateX(-100%);
+  }
+
+  .pp-wallet-modal__view--withdraw-completed {
+    transform: translateX(0);
+  }
+}
+
+// Direct transition: Withdrawal submitted → Address detail (no in-between pages visible)
+.pp-wallet-modal--withdraw-completed-view.pp-wallet-modal--completed-to-address-detail {
+  .pp-wallet-modal__view--list,
+  .pp-wallet-modal__view--beneficiary,
+  .pp-wallet-modal__view--withdraw-select,
+  .pp-wallet-modal__view--withdraw-form,
+  .pp-wallet-modal__view--withdraw-confirm {
+    visibility: hidden;
+    transform: translateX(-9999px);
+  }
+
+  .pp-wallet-modal__view--address-detail {
+    visibility: visible;
+    transform: translateX(-100%);
+  }
+
+  .pp-wallet-modal__view--withdraw-completed {
+    visibility: visible;
+    transform: translateX(0);
+  }
+}
+
+.pp-wallet-modal--address-detail-view.pp-wallet-modal--completed-to-address-detail {
+  .pp-wallet-modal__view--list,
+  .pp-wallet-modal__view--beneficiary,
+  .pp-wallet-modal__view--withdraw-select,
+  .pp-wallet-modal__view--withdraw-form,
+  .pp-wallet-modal__view--withdraw-confirm {
+    visibility: hidden;
+    transform: translateX(-9999px);
+  }
+
+  .pp-wallet-modal__view--address-detail {
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  .pp-wallet-modal__view--withdraw-completed {
+    visibility: visible;
+    transform: translateX(100%);
   }
 }
 
@@ -2090,7 +2358,8 @@ $wallet-accent: $ew-text-link;
 // No visibility:hidden so the fade-in can run when the class is removed (element stays in paint tree).
 .pp-wallet-modal--withdraw-select-view .pp-wallet-modal__footer,
 .pp-wallet-modal--withdraw-form-view .pp-wallet-modal__footer,
-.pp-wallet-modal--withdraw-confirm-view .pp-wallet-modal__footer {
+.pp-wallet-modal--withdraw-confirm-view .pp-wallet-modal__footer,
+.pp-wallet-modal--withdraw-completed-view .pp-wallet-modal__footer {
   opacity: 0;
   pointer-events: none;
   height: 0;
@@ -2110,7 +2379,8 @@ $wallet-accent: $ew-text-link;
 
 // Withdraw form + Confirm: hide header label (e.g. "Withdraw") so only title shows.
 .pp-wallet-modal--withdraw-form-view .pp-wallet-modal__header-label,
-.pp-wallet-modal--withdraw-confirm-view .pp-wallet-modal__header-label {
+.pp-wallet-modal--withdraw-confirm-view .pp-wallet-modal__header-label,
+.pp-wallet-modal--withdraw-completed-view .pp-wallet-modal__header-label {
   display: none;
 }
 
