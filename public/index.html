@@ -508,7 +508,7 @@
                                 <ul class="pp-wallet-export-key__warnings">
                                     <li class="pp-wallet-export-key__warning-item">
                                         <span class="pp-wallet-export-key__warning-icon-wrap">
-                                            <img src="assets/icon-ew-eye-closed.svg" alt="" width="24" height="24" class="pp-wallet-export-key__warning-icon" />
+                                            <img src="assets/icon-ew-eye-closed-yellow.svg" alt="" width="24" height="24" class="pp-wallet-export-key__warning-icon" />
                                         </span>
                                         <span class="pp-wallet-export-key__warning-content">
                                             <span class="pp-wallet-export-key__warning-main">After export, this address will no longer be available in the embedded wallet or XREX Pay</span>
@@ -517,7 +517,7 @@
                                     </li>
                                     <li class="pp-wallet-export-key__warning-item">
                                         <span class="pp-wallet-export-key__warning-icon-wrap">
-                                            <img src="assets/icon-ew-stop.svg" alt="" width="24" height="24" class="pp-wallet-export-key__warning-icon" />
+                                            <img src="assets/icon-ew-stop-yellow.svg" alt="" width="24" height="24" class="pp-wallet-export-key__warning-icon" />
                                         </span>
                                         <span class="pp-wallet-export-key__warning-content">
                                             <span class="pp-wallet-export-key__warning-main">After export, this address can’t be used for auto-debit payments in XREX Pay</span>
@@ -525,7 +525,7 @@
                                     </li>
                                     <li class="pp-wallet-export-key__warning-item">
                                         <span class="pp-wallet-export-key__warning-icon-wrap">
-                                            <img src="assets/icon-ew-key.svg" alt="" width="24" height="24" class="pp-wallet-export-key__warning-icon" />
+                                            <img src="assets/icon-ew-key-yellow.svg" alt="" width="24" height="24" class="pp-wallet-export-key__warning-icon" />
                                         </span>
                                         <span class="pp-wallet-export-key__warning-content">
                                             <span class="pp-wallet-export-key__warning-main">This is a self-custody wallet. Anyone with this key can move your assets: keep your key private</span>
@@ -539,7 +539,7 @@
                                 <span class="pp-wallet-export-key__consent-text">I understand the consequences of exporting this key described above and wish to continue.</span>
                             </label>
                             <div class="pp-wallet-export-key__actions pp-wallet-bnc pp-wallet-bnc--split">
-                                <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletExportKeyCancelBtn">Cancel</button>
+                                <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletExportKeyCancelBtn">Back</button>
                                 <button type="button" class="ew-btn ew-btn--lg ew-btn--primary ew-btn--disabled" id="walletExportKeyRevealBtn" disabled>Reveal key</button>
                             </div>
                         </div>
@@ -806,6 +806,11 @@
                 }
                 if (typeof setActiveTab === "function") setActiveTab("assets");
                 lockBackgroundScroll();
+                if (typeof queueWalletViewOverflowUpdate === "function") {
+                    requestAnimationFrame(function () {
+                        queueWalletViewOverflowUpdate();
+                    });
+                }
             }
 
             function closeRequestOtpModal() {

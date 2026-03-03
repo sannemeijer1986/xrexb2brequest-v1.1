@@ -2407,9 +2407,11 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-export-key {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
   padding: 38px 40px 40px;
-  gap: 32px;
+  gap: 16px;
 }
 
 .pp-wallet-export-key__info {
@@ -2437,7 +2439,7 @@ $wallet-accent: $ew-text-link;
 
 .pp-wallet-export-key__info-value {
   font-family: $font-ew;
-  font-size: $ew-size-l;
+  font-size: $ew-size-xl;
   font-weight: $ew-headline-weight;
   color: $ew-text-primary;
   line-height: 1;
@@ -2546,13 +2548,12 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-export-key__consent-box {
   width: 24px;
   height: 24px;
-  border-radius: 6px;
-  border: 2px solid $ew-accentblue-300;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  background: url("../assets/ew-checkbox-off.svg") center/contain no-repeat;
 }
 
 .pp-wallet-export-key__consent-input {
@@ -2565,15 +2566,7 @@ $wallet-accent: $ew-text-link;
 }
 
 .pp-wallet-export-key__consent-input:checked + .pp-wallet-export-key__consent-box {
-  border-color: $ew-primaryblue-300;
-  background: rgba($ew-primaryblue-400, 0.15);
-}
-
-.pp-wallet-export-key__consent-input:checked + .pp-wallet-export-key__consent-box::after {
-  content: "";
-  width: 14px;
-  height: 14px;
-  background: url("../assets/icon-ew-check.svg") center/contain no-repeat;
+  background-image: url("../assets/ew-checkbox-on.svg");
 }
 
 .pp-wallet-export-key__consent-text {
