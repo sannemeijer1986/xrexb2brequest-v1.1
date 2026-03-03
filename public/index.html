@@ -705,8 +705,7 @@
             let verifyFlowRunning = false;
             var ppSessionCountdownTimer = null;
             var PP_SESSION_KEY = "ppWalletSessionExpiresAt";
-            var PP_SESSION_DURATION_MS = 5 * 60 * 1000;
-            var walletPasscodeNextAction = null;
+            var PP_SESSION_DURATION_MS = 15 * 60 * 1000;
             var walletPasscodeNextAction = null;
 
             function getSessionExpiresAt() {
@@ -978,7 +977,6 @@
                     modal.setAttribute("aria-hidden", "true");
                     if (loadingEl) loadingEl.setAttribute("aria-hidden", "true");
                     walletLoadingModal.setAttribute("aria-hidden", "false");
-                    setSession();
                     setTimeout(function () {
                         walletLoadingModal.setAttribute("aria-hidden", "true");
                         if (walletModal) walletModal.setAttribute("aria-hidden", "false");
@@ -1002,13 +1000,33 @@
                     walletPasscodeInput.value = "";
                 }
                 updateWalletPasscodeVerifyState();
+                walletPasscodeModal.classList.remove("pp-wallet-passcode-modal--closing");
                 walletPasscodeModal.setAttribute("aria-hidden", "false");
             }
 
             function closeWalletPasscodeModal() {
                 if (!walletPasscodeModal) return;
-                walletPasscodeModal.setAttribute("aria-hidden", "true");
-                walletPasscodeNextAction = null;
+                if (walletPasscodeModal.getAttribute("aria-hidden") === "true") {
+                    walletPasscodeModal.classList.remove("pp-wallet-passcode-modal--closing");
+                    walletPasscodeNextAction = null;
+                    return;
+                }
+                var dialog = walletPasscodeModal.querySelector(".pp-wallet-passcode-modal__dialog");
+                if (!dialog) {
+                    walletPasscodeModal.setAttribute("aria-hidden", "true");
+                    walletPasscodeModal.classList.remove("pp-wallet-passcode-modal--closing");
+                    walletPasscodeNextAction = null;
+                    return;
+                }
+                walletPasscodeModal.classList.add("pp-wallet-passcode-modal--closing");
+                var onAnimEnd = function (e) {
+                    if (e.target !== dialog) return;
+                    dialog.removeEventListener("animationend", onAnimEnd);
+                    walletPasscodeModal.classList.remove("pp-wallet-passcode-modal--closing");
+                    walletPasscodeModal.setAttribute("aria-hidden", "true");
+                    walletPasscodeNextAction = null;
+                };
+                dialog.addEventListener("animationend", onAnimEnd);
             }
 
             if (walletPasscodeInput) {
@@ -1033,7 +1051,11 @@
                     var next = walletPasscodeNextAction;
                     closeWalletPasscodeModal();
                     if (typeof next === "function") {
+                        // Withdraw flow: run the queued action.
                         next();
+                    } else {
+                        // Login flow: OTP + wallet passcode = full login.
+                        setSession();
                     }
                 });
             }

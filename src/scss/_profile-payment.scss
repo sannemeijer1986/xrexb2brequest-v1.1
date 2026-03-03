@@ -770,20 +770,37 @@ body.profile-payment-page .site-footer {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transform-origin: center;
 }
 
 .pp-wallet-passcode-modal[aria-hidden="false"] .pp-wallet-passcode-modal__dialog {
   animation: pp-modal-in 0.22s ease-out;
 }
 
+// Closing animation mirrors pp-modal-in for consistency
+.pp-wallet-passcode-modal.pp-wallet-passcode-modal--closing .pp-wallet-passcode-modal__dialog {
+  animation: pp-modal-out 0.18s ease-in forwards;
+}
+
 @keyframes pp-modal-in {
   from {
     opacity: 0;
-    transform: translateY(8px) scale(0.98);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
+  }
+}
+
+@keyframes pp-modal-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(8px);
   }
 }
 
