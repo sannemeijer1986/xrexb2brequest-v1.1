@@ -1023,9 +1023,9 @@ $wallet-accent: $ew-text-link;
     border-radius: 6px;
     background: linear-gradient(
       90deg,
-      $ew-bg-surface-secondary 0,
-      lighten($ew-bg-surface-secondary, 8%) 50%,
-      $ew-bg-surface-secondary 100%
+      rgba($ew-bg-surface-secondary, 0.45) 0,
+      rgba(lighten($ew-bg-surface-secondary, 8%), 0.45) 50%,
+      rgba($ew-bg-surface-secondary, 0.45) 100%
     );
     background-size: 200px 100%;
     animation: pp-wallet-skeleton 1.2s ease-in-out infinite;
@@ -1061,9 +1061,9 @@ $wallet-accent: $ew-text-link;
     border-radius: 12px;
     background: linear-gradient(
       90deg,
-      $ew-bg-surface-secondary 0,
-      lighten($ew-bg-surface-secondary, 8%) 50%,
-      $ew-bg-surface-secondary 100%
+      rgba($ew-bg-surface-secondary, 0.45) 0,
+      rgba(lighten($ew-bg-surface-secondary, 8%), 0.45) 50%,
+      rgba($ew-bg-surface-secondary, 0.45) 100%
     );
     background-size: 200px 100%;
     animation: pp-wallet-skeleton 1.2s ease-in-out infinite;
