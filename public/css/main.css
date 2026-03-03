@@ -93,21 +93,21 @@ main.page {
   margin-top: 64px;
 }
 
-.root-scrollbar, .pp-wallet-modal__view, html {
+.root-scrollbar, .pp-wallet-modal__view, .pp-wallet-modal__settings, html {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
 }
-.root-scrollbar::-webkit-scrollbar, .pp-wallet-modal__view::-webkit-scrollbar, html::-webkit-scrollbar {
+.root-scrollbar::-webkit-scrollbar, .pp-wallet-modal__view::-webkit-scrollbar, .pp-wallet-modal__settings::-webkit-scrollbar, html::-webkit-scrollbar {
   width: 6px;
 }
-.root-scrollbar::-webkit-scrollbar-track, .pp-wallet-modal__view::-webkit-scrollbar-track, html::-webkit-scrollbar-track {
+.root-scrollbar::-webkit-scrollbar-track, .pp-wallet-modal__view::-webkit-scrollbar-track, .pp-wallet-modal__settings::-webkit-scrollbar-track, html::-webkit-scrollbar-track {
   background: transparent;
 }
-.root-scrollbar::-webkit-scrollbar-thumb, .pp-wallet-modal__view::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
+.root-scrollbar::-webkit-scrollbar-thumb, .pp-wallet-modal__view::-webkit-scrollbar-thumb, .pp-wallet-modal__settings::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.18);
   border-radius: 999px;
 }
-.root-scrollbar::-webkit-scrollbar-thumb:hover, .pp-wallet-modal__view::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
+.root-scrollbar::-webkit-scrollbar-thumb:hover, .pp-wallet-modal__view::-webkit-scrollbar-thumb:hover, .pp-wallet-modal__settings::-webkit-scrollbar-thumb:hover, html::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.28);
 }
 
@@ -2025,6 +2025,118 @@ body.profile-payment-page .site-footer {
   overflow: hidden;
 }
 
+.pp-wallet-modal__settings {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: #13182A;
+}
+
+.pp-wallet-modal--settings-visible .pp-wallet-modal__views {
+  display: none;
+}
+
+.pp-wallet-modal--settings-visible .pp-wallet-modal__settings {
+  display: flex;
+}
+
+.pp-wallet-modal--settings-visible .pp-wallet-modal__header {
+  background-color: #191F34;
+}
+
+.pp-wallet-modal--settings-visible .pp-wallet-modal__header-icon-wrap,
+.pp-wallet-modal--settings-visible .pp-wallet-modal__header-avatar-wrap,
+.pp-wallet-modal--settings-visible .pp-wallet-modal__header-address-detail-wrap,
+.pp-wallet-modal--settings-visible .pp-wallet-modal__header-withdraw-wrap {
+  display: none !important;
+}
+
+.pp-wallet-modal__settings[hidden] {
+  display: none !important;
+}
+
+.pp-wallet-modal__settings {
+  background-color: #191F34;
+}
+
+.pp-wallet-settings {
+  padding: 24px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1 1 auto;
+  min-height: 0;
+  background-color: #191F34;
+}
+
+.pp-wallet-settings__list {
+  width: 100%;
+}
+
+.pp-wallet-modal__item--settings .pp-wallet-modal__settings-item-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #293155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pp-wallet-modal__item--settings .pp-wallet-modal__settings-item-icon img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+.pp-wallet-modal__item--settings .pp-wallet-modal__item-content {
+  min-width: 0;
+}
+.pp-wallet-modal__item--settings .pp-wallet-modal__item-name {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.pp-wallet-settings__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pp-wallet-settings__meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.pp-wallet-settings__meta-label {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #7384BE;
+}
+
+.pp-wallet-settings__meta-value {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.pp-wallet-settings__signout-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.pp-wallet-settings__signout-row .ew-btn {
+  flex-shrink: 0;
+}
+
 .pp-wallet-withdraw-processing-modal {
   position: fixed;
   inset: 0;
@@ -3253,6 +3365,15 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-modal__tab:hover {
   text-decoration: none !important;
+}
+
+.pp-wallet-modal__tab--active {
+  pointer-events: none;
+  cursor: default;
+}
+
+.pp-wallet-modal__tab--active:hover {
+  text-decoration: none;
 }
 
 .pp-wallet-modal__disclaimer {

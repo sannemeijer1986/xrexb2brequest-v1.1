@@ -943,6 +943,125 @@ $wallet-accent: $ew-text-link;
   overflow: hidden;
 }
 
+// Settings panel (toggled with Assets via footer tabs)
+.pp-wallet-modal__settings {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  overflow-y: auto;
+  @extend .root-scrollbar;
+  background-color: $ew-bg-base-primary;
+}
+
+.pp-wallet-modal--settings-visible .pp-wallet-modal__views {
+  display: none;
+}
+
+.pp-wallet-modal--settings-visible .pp-wallet-modal__settings {
+  display: flex;
+}
+
+.pp-wallet-modal--settings-visible .pp-wallet-modal__header {
+  background-color: $ew-accentblue-800;
+}
+
+.pp-wallet-modal--settings-visible .pp-wallet-modal__header-icon-wrap,
+.pp-wallet-modal--settings-visible .pp-wallet-modal__header-avatar-wrap,
+.pp-wallet-modal--settings-visible .pp-wallet-modal__header-address-detail-wrap,
+.pp-wallet-modal--settings-visible .pp-wallet-modal__header-withdraw-wrap {
+  display: none !important;
+}
+
+.pp-wallet-modal__settings[hidden] {
+  display: none !important;
+}
+
+.pp-wallet-modal__settings {
+  background-color: $ew-accentblue-800;
+}
+
+.pp-wallet-settings {
+  padding: 24px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex: 1 1 auto;
+  min-height: 0;
+  background-color: $ew-accentblue-800;
+}
+
+.pp-wallet-settings__list {
+  width: 100%;
+}
+
+.pp-wallet-modal__item--settings {
+  .pp-wallet-modal__settings-item-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: $ew-bg-surface-secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+  }
+
+  .pp-wallet-modal__item-content {
+    min-width: 0;
+  }
+
+  .pp-wallet-modal__item-name {
+    font-family: $font-ew;
+    font-size: $ew-size-l;
+    font-weight: $ew-subtitle-weight;
+    color: $ew-text-primary;
+  }
+}
+
+.pp-wallet-settings__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pp-wallet-settings__meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.pp-wallet-settings__meta-label {
+  font-family: $font-ew;
+  font-size: $ew-size-l;
+  font-weight: $ew-body-weight;
+  color: $ew-text-secondary;
+}
+
+.pp-wallet-settings__meta-value {
+  font-family: $font-ew;
+  font-size: $ew-size-l;
+  font-weight: $ew-subtitle-weight;
+  color: $ew-text-primary;
+}
+
+.pp-wallet-settings__signout-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.pp-wallet-settings__signout-row .ew-btn {
+  flex-shrink: 0;
+}
+
 // Processing modal: full-viewport tinted layer (same pattern as wallet modal)
 .pp-wallet-withdraw-processing-modal {
   position: fixed;
@@ -2333,8 +2452,17 @@ $wallet-accent: $ew-text-link;
 
 }
 
-.pp-wallet-modal__tab:hover {  
+.pp-wallet-modal__tab:hover {
   text-decoration: none !important;
+}
+
+.pp-wallet-modal__tab--active {
+  pointer-events: none;
+  cursor: default;
+}
+
+.pp-wallet-modal__tab--active:hover {
+  text-decoration: none;
 }
 
 .pp-wallet-modal__disclaimer {
