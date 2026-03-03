@@ -499,19 +499,43 @@
                                     <span class="pp-wallet-export-key__info-value" id="walletExportKeyNetwork">Ethereum (ERC-20)</span>
                                 </div>
                             </div>
+                            <div class="pp-wallet-export-key__divider" aria-hidden="true"></div>
                             <div class="pp-wallet-export-key__important">
                                 <div class="pp-wallet-export-key__important-head">
                                     <img src="assets/icon-ew-warning-orange.svg" alt="" width="24" height="24" class="pp-wallet-export-key__important-icon" />
                                     <span class="pp-wallet-export-key__important-title">Important</span>
                                 </div>
                                 <ul class="pp-wallet-export-key__warnings">
-                                    <li class="pp-wallet-export-key__warning">After export, this address will no longer be available in the embedded wallet or XREX Pay. You can still use it in other Web3 wallets by importing the key.</li>
-                                    <li class="pp-wallet-export-key__warning">After export, this address can't be used for auto-debit payments in XREX Pay.</li>
-                                    <li class="pp-wallet-export-key__warning">This is a self-custody wallet. Anyone with this key can move your assets: keep your key private.</li>
+                                    <li class="pp-wallet-export-key__warning-item">
+                                        <span class="pp-wallet-export-key__warning-icon-wrap">
+                                            <img src="assets/icon-ew-eye-closed.svg" alt="" width="24" height="24" class="pp-wallet-export-key__warning-icon" />
+                                        </span>
+                                        <span class="pp-wallet-export-key__warning-content">
+                                            <span class="pp-wallet-export-key__warning-main">After export, this address will no longer be available in the embedded wallet or XREX Pay</span>
+                                            <span class="pp-wallet-export-key__warning-sub">You can still use it in other Web3 wallets by importing the key</span>
+                                        </span>
+                                    </li>
+                                    <li class="pp-wallet-export-key__warning-item">
+                                        <span class="pp-wallet-export-key__warning-icon-wrap">
+                                            <img src="assets/icon-ew-stop.svg" alt="" width="24" height="24" class="pp-wallet-export-key__warning-icon" />
+                                        </span>
+                                        <span class="pp-wallet-export-key__warning-content">
+                                            <span class="pp-wallet-export-key__warning-main">After export, this address can’t be used for auto-debit payments in XREX Pay</span>
+                                        </span>
+                                    </li>
+                                    <li class="pp-wallet-export-key__warning-item">
+                                        <span class="pp-wallet-export-key__warning-icon-wrap">
+                                            <img src="assets/icon-ew-key.svg" alt="" width="24" height="24" class="pp-wallet-export-key__warning-icon" />
+                                        </span>
+                                        <span class="pp-wallet-export-key__warning-content">
+                                            <span class="pp-wallet-export-key__warning-main">This is a self-custody wallet. Anyone with this key can move your assets: keep your key private</span>
+                                        </span>
+                                    </li>
                                 </ul>
                             </div>
                             <label class="pp-wallet-export-key__consent">
                                 <input type="checkbox" id="walletExportKeyConsent" class="pp-wallet-export-key__consent-input" />
+                                <span class="pp-wallet-export-key__consent-box" aria-hidden="true"></span>
                                 <span class="pp-wallet-export-key__consent-text">I understand the consequences of exporting this key described above and wish to continue.</span>
                             </label>
                             <div class="pp-wallet-export-key__actions pp-wallet-bnc pp-wallet-bnc--split">
@@ -615,7 +639,7 @@
     </div>
 
     <button type="button" class="pp-wallet-debug-hotspot" aria-label="Open wallet (debug only)"></button>
-    <button type="button" class="pp-wallet-close-confirm-debug-hotspot" aria-label="Open wallet → Loader (3s) → Withdrawal submitted (debug only)"></button>
+    <button type="button" class="pp-wallet-close-confirm-debug-hotspot" aria-label="Open wallet → Export private key (debug only)"></button>
 
     <footer class="site-footer">
         <div class="footer__inner">
@@ -1034,6 +1058,7 @@
             var walletHeaderAddressDetailWrap = walletModal && walletModal.querySelector(".pp-wallet-modal__header-address-detail-wrap");
             var walletHeaderWithdrawWrap = walletModal && walletModal.querySelector(".pp-wallet-modal__header-withdraw-wrap");
             var walletHeaderExportKeyWrap = walletModal && walletModal.querySelector(".pp-wallet-modal__header-export-key-wrap");
+            var walletModalHeader = walletModal && walletModal.querySelector(".pp-wallet-modal__header");
             var WALLET_DEFAULT_LABEL = "abc1234@gmail.com";
             var WALLET_DEFAULT_TITLE = "Wallet account";
             var currentBeneficiaryName = "";
@@ -1496,9 +1521,19 @@
                 queueWalletViewOverflowUpdate();
             }
 
+            // Temp: shortcut to jump directly to Export private key for easier styling
+            function openWalletToExportKeyView() {
+                openWalletDirect();
+                currentBeneficiaryName = currentBeneficiaryName || "Acme Corp";
+                currentBeneficiaryInitials = currentBeneficiaryInitials || "AC";
+                currentNetworkName = currentNetworkName || "Ethereum (ERC-20)";
+                requestAnimationFrame(function () {
+                    showExportPrivateKeyView();
+                });
+            }
             var closeConfirmDebugHotspot = document.querySelector(".pp-wallet-close-confirm-debug-hotspot");
             if (closeConfirmDebugHotspot) {
-                closeConfirmDebugHotspot.addEventListener("click", function () { openWalletToProcessingThenCompletedView(); });
+                closeConfirmDebugHotspot.addEventListener("click", function () { openWalletToExportKeyView(); });
             }
 
             function showWithdrawSelectView() {
@@ -1651,7 +1686,9 @@
                 lastAssetsHeaderTitle = walletModalTitle ? (walletModalTitle.textContent || "") : "";
                 lastAssetsBackHidden = walletModalBack ? walletModalBack.classList.contains("pp-wallet-modal__back--hidden") : true;
                 lastAssetsAddressDetailWrapHidden = walletHeaderAddressDetailWrap ? walletHeaderAddressDetailWrap.classList.contains("pp-wallet-modal__header-address-detail-wrap--hidden") : true;
+                walletModal.classList.add("pp-wallet-modal--header-no-transition");
                 walletModal.classList.add("pp-wallet-modal--settings-visible");
+                if (walletModalHeader) walletModalHeader.classList.add("pp-wallet-modal__header--settings-tab");
                 walletViewSettings.removeAttribute("hidden");
                 walletViewSettings.setAttribute("aria-hidden", "false");
                 if (walletModalTitle) walletModalTitle.textContent = "Settings";
@@ -1659,11 +1696,14 @@
                 if (walletModalBack) walletModalBack.classList.add("pp-wallet-modal__back--hidden");
                 if (walletHeaderAddressDetailWrap) { walletHeaderAddressDetailWrap.classList.add("pp-wallet-modal__header-address-detail-wrap--hidden"); walletHeaderAddressDetailWrap.setAttribute("aria-hidden", "true"); }
                 setActiveTab("settings");
+                requestAnimationFrame(function () { walletModal.classList.remove("pp-wallet-modal--header-no-transition"); });
             }
 
             function showAssetsView() {
                 if (!walletModal || !walletViewSettings) return;
+                walletModal.classList.add("pp-wallet-modal--header-no-transition");
                 walletModal.classList.remove("pp-wallet-modal--settings-visible");
+                if (walletModalHeader) walletModalHeader.classList.remove("pp-wallet-modal__header--settings-tab");
                 walletViewSettings.setAttribute("hidden", "");
                 walletViewSettings.setAttribute("aria-hidden", "true");
                 if (walletModalHeaderLabel) walletModalHeaderLabel.textContent = lastAssetsHeaderLabel || WALLET_DEFAULT_LABEL;
@@ -1677,6 +1717,7 @@
                     else { walletHeaderAddressDetailWrap.classList.remove("pp-wallet-modal__header-address-detail-wrap--hidden"); walletHeaderAddressDetailWrap.removeAttribute("aria-hidden"); }
                 }
                 setActiveTab("assets");
+                requestAnimationFrame(function () { walletModal.classList.remove("pp-wallet-modal--header-no-transition"); });
             }
 
             if (walletModalBack) walletModalBack.addEventListener("click", onWalletBackClick);
