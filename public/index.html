@@ -207,7 +207,7 @@
                     </span>
                     <span class="pp-wallet-modal__header-export-key-wrap pp-wallet-modal__header-export-key-wrap--hidden" aria-hidden="true">
                         <span class="pp-wallet-modal__circle-icon">
-                            <img src="assets/icon-ew-exportkeys.svg" width="24" height="24" alt="" />
+                            <img src="assets/icon-ew-exportkeys-blue.svg" width="24" height="24" alt="" />
                         </span>
                     </span>
                     <div class="pp-wallet-modal__header-text">
@@ -985,7 +985,17 @@
                     if (walletModal && walletModal.classList.contains("pp-wallet-modal--settings-visible")) {
                         showAssetsView();
                     } else if (walletModal && walletModal.classList.contains("pp-wallet-modal--export-key-view")) {
-                        showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, currentNetworkName || "Ethereum (ERC-20)");
+                        walletModal.classList.add("pp-wallet-modal--from-export-key");
+                        var onTransitionEndFromExport = function (e) {
+                            if (e.target && e.target.classList && e.target.classList.contains("pp-wallet-modal__view") && e.propertyName === "transform") {
+                                walletModal.removeEventListener("transitionend", onTransitionEndFromExport);
+                                walletModal.classList.remove("pp-wallet-modal--from-export-key");
+                            }
+                        };
+                        walletModal.addEventListener("transitionend", onTransitionEndFromExport);
+                        requestAnimationFrame(function () {
+                            showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, currentNetworkName || "Ethereum (ERC-20)");
+                        });
                     } else {
                         showListView();
                     }
@@ -1573,7 +1583,17 @@
 
             function onWalletBackClick() {
                 if (walletModal && walletModal.classList.contains("pp-wallet-modal--export-key-view")) {
-                    showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, currentNetworkName || "Ethereum (ERC-20)");
+                    walletModal.classList.add("pp-wallet-modal--from-export-key");
+                    var onTransitionEnd = function (e) {
+                        if (e.target && e.target.classList && e.target.classList.contains("pp-wallet-modal__view") && e.propertyName === "transform") {
+                            walletModal.removeEventListener("transitionend", onTransitionEnd);
+                            walletModal.classList.remove("pp-wallet-modal--from-export-key");
+                        }
+                    };
+                    walletModal.addEventListener("transitionend", onTransitionEnd);
+                    requestAnimationFrame(function () {
+                        showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, currentNetworkName || "Ethereum (ERC-20)");
+                    });
                     return;
                 }
                 if (walletModal && walletModal.classList.contains("pp-wallet-modal--withdraw-completed-view")) {

@@ -1384,7 +1384,7 @@ $wallet-accent: $ew-text-link;
   }
 }
 
-.pp-wallet-modal--address-detail-view:not(.pp-wallet-modal--withdraw-select-view):not(.pp-wallet-modal--withdraw-form-view):not(.pp-wallet-modal--withdraw-confirm-view) {
+.pp-wallet-modal--address-detail-view:not(.pp-wallet-modal--withdraw-select-view):not(.pp-wallet-modal--withdraw-form-view):not(.pp-wallet-modal--withdraw-confirm-view):not(.pp-wallet-modal--export-key-view) {
   .pp-wallet-modal__view--list {
     transform: translateX(-200%);
   }
@@ -1628,37 +1628,39 @@ $wallet-accent: $ew-text-link;
   }
 }
 
+// Export key flow: hide withdraw-flow views so animation is direct (Address detail ↔ Export key only)
 .pp-wallet-modal--export-key-view {
-  .pp-wallet-modal__view--list {
-    transform: translateX(-700%);
-  }
-
-  .pp-wallet-modal__view--beneficiary {
-    transform: translateX(-600%);
+  .pp-wallet-modal__view--list,
+  .pp-wallet-modal__view--beneficiary,
+  .pp-wallet-modal__view--withdraw-select,
+  .pp-wallet-modal__view--withdraw-form,
+  .pp-wallet-modal__view--withdraw-confirm,
+  .pp-wallet-modal__view--withdraw-completed {
+    visibility: hidden;
+    transform: translateX(-9999px);
   }
 
   .pp-wallet-modal__view--address-detail {
+    visibility: visible;
     transform: translateX(-500%);
   }
 
-  .pp-wallet-modal__view--withdraw-select {
-    transform: translateX(-400%);
-  }
-
-  .pp-wallet-modal__view--withdraw-form {
-    transform: translateX(-300%);
-  }
-
-  .pp-wallet-modal__view--withdraw-confirm {
-    transform: translateX(-200%);
-  }
-
-  .pp-wallet-modal__view--withdraw-completed {
-    transform: translateX(-100%);
-  }
-
   .pp-wallet-modal__view--export-key {
+    visibility: visible;
     transform: translateX(0);
+  }
+}
+
+// Back from Export key → Address detail: hide withdraw-flow views so animation is direct
+.pp-wallet-modal--address-detail-view.pp-wallet-modal--from-export-key {
+  .pp-wallet-modal__view--list,
+  .pp-wallet-modal__view--beneficiary,
+  .pp-wallet-modal__view--withdraw-select,
+  .pp-wallet-modal__view--withdraw-form,
+  .pp-wallet-modal__view--withdraw-confirm,
+  .pp-wallet-modal__view--withdraw-completed {
+    visibility: hidden;
+    transform: translateX(-9999px);
   }
 }
 
