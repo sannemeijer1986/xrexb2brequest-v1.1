@@ -2032,7 +2032,7 @@ body.profile-payment-page .site-footer {
   display: none;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -2044,7 +2044,7 @@ body.profile-payment-page .site-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
 .pp-wallet-withdraw-processing-modal__label {
@@ -2074,8 +2074,8 @@ body.profile-payment-page .site-footer {
   z-index: 1;
 }
 .pp-wallet-processing-spinner__inner img {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   display: block;
 }
 
@@ -2085,7 +2085,6 @@ body.profile-payment-page .site-footer {
   border-radius: 50%;
   border: 4px solid #191F34;
   border-top-color: #FFFFFF;
-  border-right-color: #FFFFFF;
   animation: pp-wallet-spinner-rotate 0.5s linear infinite;
 }
 
@@ -2109,29 +2108,29 @@ body.profile-payment-page .site-footer {
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  padding: 16px;
 }
 
 .pp-wallet-withdraw-completed__icon {
-  width: 72px;
-  height: 72px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
-  background: #8ADCA5;
+  background: #4BA36E;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 .pp-wallet-withdraw-completed__icon img {
-  width: 48px;
-  height: 48px;
+  width: 72px;
+  height: 72px;
   display: block;
-  filter: brightness(0) invert(1);
 }
 
 .pp-wallet-withdraw-completed__title {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
   color: #FFFFFF;
   line-height: 1.2;
@@ -2204,8 +2203,9 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-withdraw-completed__summary-address {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 18px;
+  max-width: 80%;
+  font-weight: 700;
   color: #FFFFFF;
   word-break: break-all;
   line-height: 1.4;
