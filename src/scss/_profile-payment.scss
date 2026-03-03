@@ -988,7 +988,71 @@ $wallet-accent: $ew-text-link;
   &--deeper .pp-wallet-modal__body {
     background-color: $ew-bg-base-secondary;
   }
-  
+}
+
+// Skeleton loading state for wallet homepage (used during initial passcode verify)
+@keyframes pp-wallet-skeleton {
+  0% {
+    background-position: -120px 0;
+  }
+  100% {
+    background-position: 120px 0;
+  }
+}
+
+.pp-wallet-modal--skeleton {
+  .pp-wallet-modal__balance-amount,
+  .pp-wallet-modal__item-name,
+  .pp-wallet-modal__item-balance {
+    color: transparent;
+    border-radius: 6px;
+    background: linear-gradient(
+      90deg,
+      $ew-bg-surface-secondary 0,
+      lighten($ew-bg-surface-secondary, 8%) 50%,
+      $ew-bg-surface-secondary 100%
+    );
+    background-size: 200px 100%;
+    animation: pp-wallet-skeleton 1.2s ease-in-out infinite;
+  }
+
+  .pp-wallet-modal__balance-amount {
+    min-height: 32px;
+    display: inline-block;
+    width: 30%;
+  }
+
+  // Hide count while loading
+  .pp-wallet-modal__section-count {
+    visibility: hidden;
+  }
+
+  // Skeleton for the entire "My auto-debit wallets" list wrapper
+  #walletViewList .pp-wallet-modal__section {
+    position: relative;
+  }
+
+  #walletViewList .pp-wallet-modal__list {
+    opacity: 0;
+  }
+
+  #walletViewList .pp-wallet-modal__section::before {
+    content: "";
+    position: absolute;
+    left: 32px;
+    right: 32px;
+    top: 72px;
+    height: 132px;
+    border-radius: 12px;
+    background: linear-gradient(
+      90deg,
+      $ew-bg-surface-secondary 0,
+      lighten($ew-bg-surface-secondary, 8%) 50%,
+      $ew-bg-surface-secondary 100%
+    );
+    background-size: 200px 100%;
+    animation: pp-wallet-skeleton 1.2s ease-in-out infinite;
+  }
 }
 
 .pp-wallet-modal__header {

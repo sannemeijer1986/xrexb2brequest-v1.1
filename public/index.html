@@ -251,7 +251,10 @@
                             <p class="pp-wallet-modal__balance-amount">$131.01</p>
                         </div>
                         <section class="pp-wallet-modal__section">
-                            <h3 class="pp-wallet-modal__section-title">My auto-debit wallets (2)</h3>
+                            <h3 class="pp-wallet-modal__section-title">
+                                My auto-debit wallets
+                                <span class="pp-wallet-modal__section-count">(2)</span>
+                            </h3>
                             <ul class="pp-wallet-modal__list">
                                 <li class="pp-wallet-modal__item pp-wallet-modal__item--active" data-beneficiary-initials="MC" data-beneficiary-name="Micro Corp" data-beneficiary-balance="$131.01 ≈" data-beneficiary-balance-empty="false">
                                     <span class="pp-wallet-modal__avatar">MC</span>
@@ -662,6 +665,20 @@
                 </div>
             </div>
         </div>
+        <div class="pp-wallet-close-confirm" id="walletSignOutConfirm" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletSignOutConfirmTitle">
+            <div class="pp-wallet-close-confirm__backdrop"></div>
+            <div class="pp-wallet-close-confirm__card">
+                <div class="pp-wallet-close-confirm__header">
+                    <h3 class="pp-wallet-close-confirm__title" id="walletSignOutConfirmTitle">Sign out of this wallet?</h3>
+                    <button type="button" class="pp-wallet-close-confirm__close" id="walletSignOutConfirmDismiss" aria-label="Close"><img src="assets/icon_pp_close.svg" width="24" height="24" alt="" /></button>
+                </div>
+                <p class="pp-wallet-close-confirm__body">You’ll need to log in again with your email and wallet passcode to use this wallet.</p>
+                <div class="pp-wallet-close-confirm__actions">
+                    <button type="button" class="ew-btn ew-btn--md ew-btn--secondary" id="walletSignOutConfirmCancel">Cancel</button>
+                    <button type="button" class="ew-btn ew-btn--md ew-btn--primary" id="walletSignOutConfirmConfirm">Sign out</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <button type="button" class="pp-wallet-debug-hotspot" aria-label="Open wallet (debug only)"></button>
@@ -749,7 +766,11 @@
                     killLink.href = "#";
                     killLink.className = "pp-session-timer__kill";
                     killLink.textContent = "Kill session";
-                    killLink.addEventListener("click", function (e) { e.preventDefault(); clearSession(); });
+                    killLink.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        clearSession();
+                        if (typeof closeWalletModal === "function") closeWalletModal();
+                    });
                     el.appendChild(killLink);
                     document.body.appendChild(el);
                 }
@@ -780,6 +801,26 @@
                 if (ppSessionCountdownTimer) { clearInterval(ppSessionCountdownTimer); ppSessionCountdownTimer = null; }
                 var el = document.getElementById("ppSessionTimerTool");
                 if (el) el.style.display = "none";
+            }
+
+            function enableWalletSkeleton() {
+                if (walletModal) walletModal.classList.add("pp-wallet-modal--skeleton");
+            }
+
+            function disableWalletSkeleton() {
+                if (walletModal) walletModal.classList.remove("pp-wallet-modal--skeleton");
+                if (walletModal && walletModal._skeletonTimer) {
+                    clearTimeout(walletModal._skeletonTimer);
+                    walletModal._skeletonTimer = null;
+                }
+            }
+
+            function disableWalletSkeletonWithDelay(ms) {
+                if (!walletModal) return;
+                if (walletModal._skeletonTimer) clearTimeout(walletModal._skeletonTimer);
+                walletModal._skeletonTimer = setTimeout(function () {
+                    disableWalletSkeleton();
+                }, typeof ms === "number" ? ms : 1500);
             }
             if (!walletEntry || !moreBtn || !moreMenu || !modal) return;
 
@@ -813,7 +854,10 @@
                     walletLoadingModal.setAttribute("aria-hidden", "false");
                     setTimeout(function () {
                         walletLoadingModal.setAttribute("aria-hidden", "true");
+                        if (typeof setActiveTab === "function") setActiveTab("assets");
                         if (walletModal) walletModal.setAttribute("aria-hidden", "false");
+                        enableWalletSkeleton();
+                        disableWalletSkeletonWithDelay(1500);
                     }, 900);
                     return;
                 }
@@ -979,7 +1023,9 @@
                     walletLoadingModal.setAttribute("aria-hidden", "false");
                     setTimeout(function () {
                         walletLoadingModal.setAttribute("aria-hidden", "true");
+                        if (typeof setActiveTab === "function") setActiveTab("assets");
                         if (walletModal) walletModal.setAttribute("aria-hidden", "false");
+                        enableWalletSkeleton();
                         openWalletPasscodeModal();
                         verifyFlowRunning = false;
                     }, 900);
@@ -1056,6 +1102,7 @@
                     } else {
                         // Login flow: OTP + wallet passcode = full login.
                         setSession();
+                        disableWalletSkeletonWithDelay(1500);
                     }
                 });
             }
@@ -1119,6 +1166,7 @@
                 closeWalletPasscodeModal();
                 showListView();
                 if (walletModal) walletModal.setAttribute("aria-hidden", "true");
+                disableWalletSkeleton();
                 unlockBackgroundScroll();
             }
 
@@ -1987,7 +2035,7 @@
                 if (walletSettingsSignOut) {
                     walletSettingsSignOut.addEventListener("click", function (e) {
                         e.preventDefault();
-                        showWalletSnackbar("Not in prototype", "assets/icon-ew-warning.svg");
+                        if (typeof openWalletSignOutConfirm === "function") openWalletSignOutConfirm();
                     });
                 }
                 (function wireExportKeyView() {
@@ -2300,6 +2348,7 @@
                 }
             }
             var walletDisableAutodebitConfirm = document.getElementById("walletDisableAutodebitConfirm");
+            var walletSignOutConfirm = document.getElementById("walletSignOutConfirm");
             function openDisableAutodebitConfirm() {
                 if (walletDisableAutodebitConfirm) walletDisableAutodebitConfirm.setAttribute("aria-hidden", "false");
             }
@@ -2313,6 +2362,31 @@
                 if (understoodBtn) understoodBtn.addEventListener("click", closeDisableAutodebitConfirm);
                 if (dismissBtn) dismissBtn.addEventListener("click", closeDisableAutodebitConfirm);
                 if (autodebitBackdrop) autodebitBackdrop.addEventListener("click", closeDisableAutodebitConfirm);
+            }
+
+            function openWalletSignOutConfirm() {
+                if (walletSignOutConfirm) walletSignOutConfirm.setAttribute("aria-hidden", "false");
+            }
+
+            function closeWalletSignOutConfirm() {
+                if (walletSignOutConfirm) walletSignOutConfirm.setAttribute("aria-hidden", "true");
+            }
+
+            if (walletSignOutConfirm) {
+                var signOutCancel = document.getElementById("walletSignOutConfirmCancel");
+                var signOutConfirm = document.getElementById("walletSignOutConfirmConfirm");
+                var signOutDismiss = document.getElementById("walletSignOutConfirmDismiss");
+                var signOutBackdrop = walletSignOutConfirm.querySelector(".pp-wallet-close-confirm__backdrop");
+                if (signOutCancel) signOutCancel.addEventListener("click", closeWalletSignOutConfirm);
+                if (signOutDismiss) signOutDismiss.addEventListener("click", closeWalletSignOutConfirm);
+                if (signOutBackdrop) signOutBackdrop.addEventListener("click", closeWalletSignOutConfirm);
+                if (signOutConfirm) {
+                    signOutConfirm.addEventListener("click", function () {
+                        closeWalletSignOutConfirm();
+                        clearSession();
+                        closeWalletModal();
+                    });
+                }
             }
             document.addEventListener("click", function (e) {
                 var dropdown = document.getElementById("ppEwDropdown");
