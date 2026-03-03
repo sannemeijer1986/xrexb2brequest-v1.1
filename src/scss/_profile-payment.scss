@@ -2219,6 +2219,10 @@ $wallet-accent: $ew-text-link;
   }
 }
 
+.pp-wallet-modal__view--overflowing .pp-wallet-bnc {
+  padding-bottom: 32px;
+}
+
 .pp-wallet-modal__assets-empty {
   margin: 0;
   padding: 60px 16px;

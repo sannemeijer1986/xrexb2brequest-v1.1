@@ -947,6 +947,25 @@
 
             var walletBeneficiaryDetailBalance = document.getElementById("walletBeneficiaryDetailBalance");
 
+            function queueWalletViewOverflowUpdate() {
+                if (!walletModal) return;
+                if (walletModal._overflowRaf) cancelAnimationFrame(walletModal._overflowRaf);
+                walletModal._overflowRaf = requestAnimationFrame(function () {
+                    var views = walletModal.querySelectorAll(".pp-wallet-modal__view");
+                    views.forEach(function (viewEl) {
+                        var isActive = viewEl.getAttribute("aria-hidden") !== "true";
+                        if (!isActive) {
+                            viewEl.classList.remove("pp-wallet-modal__view--overflowing");
+                            return;
+                        }
+                        var hasOverflow = viewEl.scrollHeight > (viewEl.clientHeight + 1);
+                        viewEl.classList.toggle("pp-wallet-modal__view--overflowing", hasOverflow);
+                    });
+                });
+            }
+
+            window.addEventListener("resize", queueWalletViewOverflowUpdate);
+
             function showBeneficiaryView(name, initials, balance, balanceEmpty) {
                 if (!walletModal || !walletViewBeneficiary || !walletViewList) return;
                 currentBeneficiaryName = name || "";
@@ -1001,6 +1020,7 @@
                 if (wasWithdrawFlow) triggerWalletFooterFadeIn();
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
+                queueWalletViewOverflowUpdate();
             }
 
             var walletAddressDetailBalance = document.getElementById("walletAddressDetailBalance");
@@ -1078,6 +1098,7 @@
                 if (wasWithdrawFlow) triggerWalletFooterFadeIn();
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
+                queueWalletViewOverflowUpdate();
             }
 
             function showWithdrawFormView(assetName, entryPoint) {
@@ -1121,6 +1142,7 @@
                 walletViewWithdrawForm.removeAttribute("aria-hidden");
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
+                queueWalletViewOverflowUpdate();
             }
 
             function showWithdrawConfirmView() {
@@ -1158,6 +1180,7 @@
                     if (walletModalBack) walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
                     walletModal.classList.add("pp-wallet-modal--header-from-right");
                     setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
+                    queueWalletViewOverflowUpdate();
                 }
             }
 
@@ -1189,6 +1212,7 @@
                 if (walletModalBack) walletModalBack.classList.add("pp-wallet-modal__back--hidden");
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
+                queueWalletViewOverflowUpdate();
             }
 
             function hideWithdrawConfirmView() {
@@ -1201,6 +1225,7 @@
                 if (walletModalTitle) walletModalTitle.textContent = "Withdraw " + (currentWithdrawAsset || "USDT");
                 walletModal.classList.add("pp-wallet-modal--header-from-left");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-left"); }, 250);
+                queueWalletViewOverflowUpdate();
             }
 
             // Debug: open wallet → show loader (3s) → Withdrawal submitted page (same as real flow, for styling)
@@ -1292,6 +1317,7 @@
                 if (walletModalBack) walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
+                queueWalletViewOverflowUpdate();
             }
 
             var closeConfirmDebugHotspot = document.querySelector(".pp-wallet-close-confirm-debug-hotspot");
@@ -1330,6 +1356,7 @@
                 walletViewWithdrawSelect.removeAttribute("aria-hidden");
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
+                queueWalletViewOverflowUpdate();
             }
 
             function showListView() {
@@ -1368,6 +1395,7 @@
                 if (wasWithdrawFlow) triggerWalletFooterFadeIn();
                 walletModal.classList.add("pp-wallet-modal--header-from-left");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-left"); }, 250);
+                queueWalletViewOverflowUpdate();
             }
 
             function onWalletBackClick() {
@@ -1597,6 +1625,7 @@
                             updateWithdrawAddressClearVisibility();
                             updateWithdrawReviewButton();
                             resizeWithdrawAddressTextarea();
+                            queueWalletViewOverflowUpdate();
                         }, 0);
                     });
                 }
@@ -1614,6 +1643,7 @@
                         resizeWithdrawAddressTextarea();
                         updateWithdrawAddressClearVisibility();
                         updateWithdrawReviewButton();
+                        queueWalletViewOverflowUpdate();
                     });
                 }
                 var clearBtn = document.getElementById("walletWithdrawAddressClear");
@@ -1624,6 +1654,7 @@
                         resizeWithdrawAddressTextarea();
                         updateWithdrawAddressClearVisibility();
                         updateWithdrawReviewButton();
+                        queueWalletViewOverflowUpdate();
                     });
                 }
                 if (amountInput) amountInput.addEventListener("input", updateWithdrawReviewButton);
