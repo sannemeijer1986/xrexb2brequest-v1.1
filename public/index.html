@@ -854,7 +854,11 @@
                     walletLoadingModal.setAttribute("aria-hidden", "false");
                     setTimeout(function () {
                         walletLoadingModal.setAttribute("aria-hidden", "true");
-                        if (typeof setActiveTab === "function") setActiveTab("assets");
+                        if (typeof showAssetsView === "function") {
+                            showAssetsView();
+                        } else if (typeof setActiveTab === "function") {
+                            setActiveTab("assets");
+                        }
                         if (walletModal) walletModal.setAttribute("aria-hidden", "false");
                         enableWalletSkeleton();
                         disableWalletSkeletonWithDelay(1500);
@@ -1023,7 +1027,11 @@
                     walletLoadingModal.setAttribute("aria-hidden", "false");
                     setTimeout(function () {
                         walletLoadingModal.setAttribute("aria-hidden", "true");
-                        if (typeof setActiveTab === "function") setActiveTab("assets");
+                        if (typeof showAssetsView === "function") {
+                            showAssetsView();
+                        } else if (typeof setActiveTab === "function") {
+                            setActiveTab("assets");
+                        }
                         if (walletModal) walletModal.setAttribute("aria-hidden", "false");
                         enableWalletSkeleton();
                         openWalletPasscodeModal();
