@@ -253,7 +253,7 @@ body.profile-payment-page .site-footer {
   align-items: center;
   position: relative;
   gap: 16px;
-  padding: 14px 24px;
+  padding: 14px 14px 14px 24px;
   min-height: 98px;
   background: #ffffff;
   border: 1px solid $border-color;
@@ -302,8 +302,9 @@ body.profile-payment-page .site-footer {
 }
 
 .wallet-entry__menu {
-  width: 40px;
-  height: 40px;
+  position: relative;
+  width: 56px;
+  height: 56px;
   padding: 0;
   border: none;
   background: transparent;
@@ -312,10 +313,22 @@ body.profile-payment-page .site-footer {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border-radius: 999px;
+  border-radius: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 8px; // inner 40×40 circular hover affordance
+    border-radius: 999px;
+    background: transparent;
+    z-index: 0;
+    // transition: background 0.12s ease-in-out;
+  }
 
   &:hover {
-    background: #F5F9FF;
+    &::before {
+      background: #F5F9FF;
+    }
   }
 }
 
@@ -323,6 +336,8 @@ body.profile-payment-page .site-footer {
   width: 24px;
   height: 24px;
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
 .wallet-entry__dropdown {
