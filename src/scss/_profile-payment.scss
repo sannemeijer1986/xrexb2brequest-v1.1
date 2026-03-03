@@ -1026,7 +1026,7 @@ $wallet-accent: $ew-text-link;
   padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
   flex: 1 1 auto;
   min-height: 0;
 }
@@ -1170,14 +1170,14 @@ $wallet-accent: $ew-text-link;
 
 .pp-wallet-withdraw-completed__detail-label {
   font-family: $font-ew;
-  font-size: $ew-size-m;
+  font-size: $ew-size-l;
   font-weight: $ew-body-weight;
   color: $ew-text-secondary;
 }
 
 .pp-wallet-withdraw-completed__detail-value {
   font-family: $font-ew;
-  font-size: $ew-size-m;
+  font-size: $ew-size-l;
   font-weight: $ew-subtitle-weight;
   color: $ew-text-primary;
   flex-shrink: 0;
@@ -2071,7 +2071,7 @@ $wallet-accent: $ew-text-link;
   padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
   min-height: 0;
   flex: 1 1 auto;
 }

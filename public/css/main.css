@@ -2098,7 +2098,7 @@ body.profile-payment-page .site-footer {
   padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
   flex: 1 1 auto;
   min-height: 0;
 }
@@ -2238,14 +2238,14 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-withdraw-completed__detail-label {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   color: #7384BE;
 }
 
 .pp-wallet-withdraw-completed__detail-value {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   color: #FFFFFF;
   flex-shrink: 0;
@@ -3004,7 +3004,7 @@ body.profile-payment-page .site-footer {
   padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
   min-height: 0;
   flex: 1 1 auto;
 }
