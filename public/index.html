@@ -5,7 +5,7 @@
     <script src="auth/auth-gate.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>XREX Pay - Profile & Payment methods</title>
+    <title>XREX PayLynk - Profile & Payment methods</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -203,6 +203,11 @@
                     <span class="pp-wallet-modal__header-withdraw-wrap pp-wallet-modal__header-withdraw-wrap--hidden" aria-hidden="true">
                         <span class="pp-wallet-modal__circle-icon">
                             <img src="assets/icon-ew-withdraw-navbar.svg" width="24" height="24" alt="" />
+                        </span>
+                    </span>
+                    <span class="pp-wallet-modal__header-export-key-wrap pp-wallet-modal__header-export-key-wrap--hidden" aria-hidden="true">
+                        <span class="pp-wallet-modal__circle-icon">
+                            <img src="assets/icon-ew-exportkeys.svg" width="24" height="24" alt="" />
                         </span>
                     </span>
                     <div class="pp-wallet-modal__header-text">
@@ -479,6 +484,39 @@
                             </div>
                             <div class="pp-wallet-withdraw-completed__actions pp-wallet-bnc pp-wallet-bnc--end">
                                 <button type="button" class="ew-btn ew-btn--lg ew-btn--primary" id="walletWithdrawCompletedDoneBtn">Done</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pp-wallet-modal__view pp-wallet-modal__view--export-key" id="walletViewExportKey" aria-hidden="true">
+                        <div class="pp-wallet-export-key">
+                            <div class="pp-wallet-export-key__info">
+                                <div class="pp-wallet-export-key__info-row">
+                                    <span class="pp-wallet-export-key__info-label">Export key of address</span>
+                                    <span class="pp-wallet-export-key__info-value" id="walletExportKeyAddress">0x2134...1233f8</span>
+                                </div>
+                                <div class="pp-wallet-export-key__info-row">
+                                    <span class="pp-wallet-export-key__info-label">Network</span>
+                                    <span class="pp-wallet-export-key__info-value" id="walletExportKeyNetwork">Ethereum (ERC-20)</span>
+                                </div>
+                            </div>
+                            <div class="pp-wallet-export-key__important">
+                                <div class="pp-wallet-export-key__important-head">
+                                    <img src="assets/icon-ew-warning-orange.svg" alt="" width="24" height="24" class="pp-wallet-export-key__important-icon" />
+                                    <span class="pp-wallet-export-key__important-title">Important</span>
+                                </div>
+                                <ul class="pp-wallet-export-key__warnings">
+                                    <li class="pp-wallet-export-key__warning">After export, this address will no longer be available in the embedded wallet or XREX Pay. You can still use it in other Web3 wallets by importing the key.</li>
+                                    <li class="pp-wallet-export-key__warning">After export, this address can't be used for auto-debit payments in XREX Pay.</li>
+                                    <li class="pp-wallet-export-key__warning">This is a self-custody wallet. Anyone with this key can move your assets: keep your key private.</li>
+                                </ul>
+                            </div>
+                            <label class="pp-wallet-export-key__consent">
+                                <input type="checkbox" id="walletExportKeyConsent" class="pp-wallet-export-key__consent-input" />
+                                <span class="pp-wallet-export-key__consent-text">I understand the consequences of exporting this key described above and wish to continue.</span>
+                            </label>
+                            <div class="pp-wallet-export-key__actions pp-wallet-bnc pp-wallet-bnc--split">
+                                <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletExportKeyCancelBtn">Cancel</button>
+                                <button type="button" class="ew-btn ew-btn--lg ew-btn--primary ew-btn--disabled" id="walletExportKeyRevealBtn" disabled>Reveal key</button>
                             </div>
                         </div>
                     </div>
@@ -908,7 +946,7 @@
 
             function isWalletOnHighestLevel() {
                 if (!walletModal) return true;
-                if (walletModal.classList.contains("pp-wallet-modal--withdraw-select-view") || walletModal.classList.contains("pp-wallet-modal--withdraw-form-view") || walletModal.classList.contains("pp-wallet-modal--withdraw-confirm-view") || walletModal.classList.contains("pp-wallet-modal--withdraw-completed-view")) return false;
+                if (walletModal.classList.contains("pp-wallet-modal--withdraw-select-view") || walletModal.classList.contains("pp-wallet-modal--withdraw-form-view") || walletModal.classList.contains("pp-wallet-modal--withdraw-confirm-view") || walletModal.classList.contains("pp-wallet-modal--withdraw-completed-view") || walletModal.classList.contains("pp-wallet-modal--export-key-view")) return false;
                 return !walletModal.classList.contains("pp-wallet-modal--beneficiary-view");
             }
 
@@ -946,6 +984,8 @@
                     closeWalletCloseConfirm();
                     if (walletModal && walletModal.classList.contains("pp-wallet-modal--settings-visible")) {
                         showAssetsView();
+                    } else if (walletModal && walletModal.classList.contains("pp-wallet-modal--export-key-view")) {
+                        showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, currentNetworkName || "Ethereum (ERC-20)");
                     } else {
                         showListView();
                     }
@@ -974,6 +1014,7 @@
             var walletViewWithdrawForm = document.getElementById("walletViewWithdrawForm");
             var walletViewWithdrawConfirm = document.getElementById("walletViewWithdrawConfirm");
             var walletViewWithdrawCompleted = document.getElementById("walletViewWithdrawCompleted");
+            var walletViewExportKey = document.getElementById("walletViewExportKey");
             var walletWithdrawProcessingModal = document.getElementById("walletWithdrawProcessingModal");
             var walletModalHeaderAvatar = document.getElementById("walletModalHeaderAvatar");
             var walletModalHeaderLabel = document.getElementById("walletModalHeaderLabel");
@@ -982,6 +1023,7 @@
             var walletHeaderAvatarWrap = walletModal && walletModal.querySelector(".pp-wallet-modal__header-avatar-wrap");
             var walletHeaderAddressDetailWrap = walletModal && walletModal.querySelector(".pp-wallet-modal__header-address-detail-wrap");
             var walletHeaderWithdrawWrap = walletModal && walletModal.querySelector(".pp-wallet-modal__header-withdraw-wrap");
+            var walletHeaderExportKeyWrap = walletModal && walletModal.querySelector(".pp-wallet-modal__header-export-key-wrap");
             var WALLET_DEFAULT_LABEL = "abc1234@gmail.com";
             var WALLET_DEFAULT_TITLE = "Wallet account";
             var currentBeneficiaryName = "";
@@ -1022,6 +1064,7 @@
                 walletModal.classList.remove("pp-wallet-modal--withdraw-form-view-direct");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-confirm-view");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-completed-view");
+                walletModal.classList.remove("pp-wallet-modal--export-key-view");
                 walletModal.classList.add("pp-wallet-modal--beneficiary-view");
                 if (walletModalDialog) walletModalDialog.classList.add("pp-wallet-modal__dialog--deeper");
                 walletModalBack && walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
@@ -1029,6 +1072,10 @@
                 if (walletHeaderWithdrawWrap) {
                     walletHeaderWithdrawWrap.classList.add("pp-wallet-modal__header-withdraw-wrap--hidden");
                     walletHeaderWithdrawWrap.setAttribute("aria-hidden", "true");
+                }
+                if (walletHeaderExportKeyWrap) {
+                    walletHeaderExportKeyWrap.classList.add("pp-wallet-modal__header-export-key-wrap--hidden");
+                    walletHeaderExportKeyWrap.setAttribute("aria-hidden", "true");
                 }
                 if (walletHeaderAddressDetailWrap) {
                     walletHeaderAddressDetailWrap.classList.add("pp-wallet-modal__header-address-detail-wrap--hidden");
@@ -1062,6 +1109,7 @@
                 if (walletViewWithdrawForm) walletViewWithdrawForm.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawConfirm) walletViewWithdrawConfirm.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawCompleted) walletViewWithdrawCompleted.setAttribute("aria-hidden", "true");
+                if (walletViewExportKey) walletViewExportKey.setAttribute("aria-hidden", "true");
                 if (wasWithdrawFlow) triggerWalletFooterFadeIn();
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
@@ -1092,6 +1140,7 @@
                 walletModal.classList.remove("pp-wallet-modal--withdraw-form-view-direct");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-confirm-view");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-completed-view");
+                walletModal.classList.remove("pp-wallet-modal--export-key-view");
                 if (walletModalDialog) walletModalDialog.classList.add("pp-wallet-modal__dialog--deeper");
                 walletModalBack && walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
                 if (walletHeaderIconWrap) walletHeaderIconWrap.classList.add("pp-wallet-modal__header-icon-wrap--hidden");
@@ -1106,6 +1155,10 @@
                 if (walletHeaderAddressDetailWrap) {
                     walletHeaderAddressDetailWrap.classList.remove("pp-wallet-modal__header-address-detail-wrap--hidden");
                     walletHeaderAddressDetailWrap.removeAttribute("aria-hidden");
+                }
+                if (walletHeaderExportKeyWrap) {
+                    walletHeaderExportKeyWrap.classList.add("pp-wallet-modal__header-export-key-wrap--hidden");
+                    walletHeaderExportKeyWrap.setAttribute("aria-hidden", "true");
                 }
                 if (walletModalHeaderLabel) walletModalHeaderLabel.textContent = beneficiaryName || "";
                 if (walletModalTitle) walletModalTitle.textContent = networkName || "";
@@ -1140,7 +1193,63 @@
                 if (walletViewWithdrawForm) walletViewWithdrawForm.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawConfirm) walletViewWithdrawConfirm.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawCompleted) walletViewWithdrawCompleted.setAttribute("aria-hidden", "true");
+                if (walletViewExportKey) walletViewExportKey.setAttribute("aria-hidden", "true");
                 if (wasWithdrawFlow) triggerWalletFooterFadeIn();
+                walletModal.classList.add("pp-wallet-modal--header-from-right");
+                setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
+                queueWalletViewOverflowUpdate();
+            }
+
+            function showExportPrivateKeyView() {
+                if (!walletModal || !walletViewExportKey || !walletViewAddressDetail) return;
+                walletModal.classList.remove("pp-wallet-modal--withdraw-select-view");
+                walletModal.classList.remove("pp-wallet-modal--withdraw-form-view");
+                walletModal.classList.remove("pp-wallet-modal--withdraw-form-view-direct");
+                walletModal.classList.remove("pp-wallet-modal--withdraw-confirm-view");
+                walletModal.classList.remove("pp-wallet-modal--withdraw-completed-view");
+                walletModal.classList.add("pp-wallet-modal--export-key-view");
+                if (walletHeaderIconWrap) walletHeaderIconWrap.classList.add("pp-wallet-modal__header-icon-wrap--hidden");
+                if (walletHeaderAvatarWrap) {
+                    walletHeaderAvatarWrap.classList.add("pp-wallet-modal__header-avatar-wrap--hidden");
+                    walletHeaderAvatarWrap.setAttribute("aria-hidden", "true");
+                }
+                if (walletHeaderAddressDetailWrap) {
+                    walletHeaderAddressDetailWrap.classList.add("pp-wallet-modal__header-address-detail-wrap--hidden");
+                    walletHeaderAddressDetailWrap.setAttribute("aria-hidden", "true");
+                }
+                if (walletHeaderWithdrawWrap) {
+                    walletHeaderWithdrawWrap.classList.add("pp-wallet-modal__header-withdraw-wrap--hidden");
+                    walletHeaderWithdrawWrap.setAttribute("aria-hidden", "true");
+                }
+                if (walletHeaderExportKeyWrap) {
+                    walletHeaderExportKeyWrap.classList.remove("pp-wallet-modal__header-export-key-wrap--hidden");
+                    walletHeaderExportKeyWrap.removeAttribute("aria-hidden");
+                }
+                if (walletModalHeaderLabel) walletModalHeaderLabel.textContent = "";
+                if (walletModalTitle) walletModalTitle.textContent = "Export private key";
+                var addressValueEl = document.getElementById("walletAddressDetailValue");
+                var exportAddressEl = document.getElementById("walletExportKeyAddress");
+                if (exportAddressEl && addressValueEl) exportAddressEl.textContent = addressValueEl.textContent || "0x2134...1233f8";
+                var exportNetworkEl = document.getElementById("walletExportKeyNetwork");
+                if (exportNetworkEl) exportNetworkEl.textContent = currentNetworkName || "Ethereum (ERC-20)";
+                var consentCheckbox = document.getElementById("walletExportKeyConsent");
+                var revealBtn = document.getElementById("walletExportKeyRevealBtn");
+                if (consentCheckbox) {
+                    consentCheckbox.checked = false;
+                }
+                if (revealBtn) {
+                    revealBtn.disabled = true;
+                    revealBtn.classList.add("ew-btn--disabled");
+                }
+                if (walletViewList) walletViewList.setAttribute("aria-hidden", "true");
+                if (walletViewBeneficiary) walletViewBeneficiary.setAttribute("aria-hidden", "true");
+                if (walletViewAddressDetail) walletViewAddressDetail.setAttribute("aria-hidden", "true");
+                if (walletViewWithdrawSelect) walletViewWithdrawSelect.setAttribute("aria-hidden", "true");
+                if (walletViewWithdrawForm) walletViewWithdrawForm.setAttribute("aria-hidden", "true");
+                if (walletViewWithdrawConfirm) walletViewWithdrawConfirm.setAttribute("aria-hidden", "true");
+                if (walletViewWithdrawCompleted) walletViewWithdrawCompleted.setAttribute("aria-hidden", "true");
+                walletViewExportKey.removeAttribute("aria-hidden");
+                if (walletModalBack) walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
                 queueWalletViewOverflowUpdate();
@@ -1192,6 +1301,7 @@
                 if (walletViewWithdrawSelect) walletViewWithdrawSelect.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawConfirm) walletViewWithdrawConfirm.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawCompleted) walletViewWithdrawCompleted.setAttribute("aria-hidden", "true");
+                if (walletViewExportKey) walletViewExportKey.setAttribute("aria-hidden", "true");
                 walletViewWithdrawForm.removeAttribute("aria-hidden");
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
@@ -1229,6 +1339,7 @@
                     if (walletModalTitle) walletModalTitle.textContent = "Confirm withdrawal";
                     walletViewWithdrawForm.setAttribute("aria-hidden", "true");
                     if (walletViewWithdrawCompleted) walletViewWithdrawCompleted.setAttribute("aria-hidden", "true");
+                    if (walletViewExportKey) walletViewExportKey.setAttribute("aria-hidden", "true");
                     walletViewWithdrawConfirm.removeAttribute("aria-hidden");
                     if (walletModalBack) walletModalBack.classList.remove("pp-wallet-modal__back--hidden");
                     walletModal.classList.add("pp-wallet-modal--header-from-right");
@@ -1261,6 +1372,7 @@
                 if (walletViewWithdrawSelect) walletViewWithdrawSelect.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawConfirm) walletViewWithdrawConfirm.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawForm) walletViewWithdrawForm.setAttribute("aria-hidden", "true");
+                if (walletViewExportKey) walletViewExportKey.setAttribute("aria-hidden", "true");
                 walletViewWithdrawCompleted.removeAttribute("aria-hidden");
                 if (walletModalBack) walletModalBack.classList.add("pp-wallet-modal__back--hidden");
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
@@ -1274,6 +1386,7 @@
                 walletModal.classList.remove("pp-wallet-modal--withdraw-confirm-view");
                 walletViewWithdrawConfirm.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawCompleted) walletViewWithdrawCompleted.setAttribute("aria-hidden", "true");
+                if (walletViewExportKey) walletViewExportKey.setAttribute("aria-hidden", "true");
                 walletViewWithdrawForm.removeAttribute("aria-hidden");
                 if (walletModalTitle) walletModalTitle.textContent = "Withdraw " + (currentWithdrawAsset || "USDT");
                 walletModal.classList.add("pp-wallet-modal--header-from-left");
@@ -1406,6 +1519,7 @@
                 if (walletViewWithdrawForm) walletViewWithdrawForm.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawConfirm) walletViewWithdrawConfirm.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawCompleted) walletViewWithdrawCompleted.setAttribute("aria-hidden", "true");
+                if (walletViewExportKey) walletViewExportKey.setAttribute("aria-hidden", "true");
                 walletViewWithdrawSelect.removeAttribute("aria-hidden");
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
@@ -1422,6 +1536,7 @@
                 walletModal.classList.remove("pp-wallet-modal--withdraw-form-view-direct");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-confirm-view");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-completed-view");
+                walletModal.classList.remove("pp-wallet-modal--export-key-view");
                 walletModalBack && walletModalBack.classList.add("pp-wallet-modal__back--hidden");
                 if (walletHeaderIconWrap) walletHeaderIconWrap.classList.remove("pp-wallet-modal__header-icon-wrap--hidden");
                 if (walletHeaderAvatarWrap) {
@@ -1436,6 +1551,10 @@
                     walletHeaderWithdrawWrap.classList.add("pp-wallet-modal__header-withdraw-wrap--hidden");
                     walletHeaderWithdrawWrap.setAttribute("aria-hidden", "true");
                 }
+                if (walletHeaderExportKeyWrap) {
+                    walletHeaderExportKeyWrap.classList.add("pp-wallet-modal__header-export-key-wrap--hidden");
+                    walletHeaderExportKeyWrap.setAttribute("aria-hidden", "true");
+                }
                 if (walletModalHeaderLabel) walletModalHeaderLabel.textContent = WALLET_DEFAULT_LABEL;
                 if (walletModalTitle) walletModalTitle.textContent = WALLET_DEFAULT_TITLE;
                 walletViewList.removeAttribute("aria-hidden");
@@ -1445,6 +1564,7 @@
                 if (walletViewWithdrawForm) walletViewWithdrawForm.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawConfirm) walletViewWithdrawConfirm.setAttribute("aria-hidden", "true");
                 if (walletViewWithdrawCompleted) walletViewWithdrawCompleted.setAttribute("aria-hidden", "true");
+                if (walletViewExportKey) walletViewExportKey.setAttribute("aria-hidden", "true");
                 if (wasWithdrawFlow) triggerWalletFooterFadeIn();
                 walletModal.classList.add("pp-wallet-modal--header-from-left");
                 setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-left"); }, 250);
@@ -1452,6 +1572,10 @@
             }
 
             function onWalletBackClick() {
+                if (walletModal && walletModal.classList.contains("pp-wallet-modal--export-key-view")) {
+                    showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, currentNetworkName || "Ethereum (ERC-20)");
+                    return;
+                }
                 if (walletModal && walletModal.classList.contains("pp-wallet-modal--withdraw-completed-view")) {
                     showWithdrawConfirmView();
                     return;
@@ -1498,7 +1622,7 @@
                 walletTabAssets.setAttribute("aria-current", isAssets ? "page" : "false");
                 walletTabSettings.setAttribute("aria-current", !isAssets ? "page" : "false");
                 if (walletTabAssetsIcon) walletTabAssetsIcon.src = isAssets ? "assets/icon-ew-tab-assets-filled.svg" : "assets/icon-ew-tab-assets-outline.svg";
-                if (walletTabSettingsIcon) walletTabSettingsIcon.src = isAssets ? "assets/icon-ew-tab-settings-outline.svg" : "assets/icon-ew-tab-assets-filled.svg";
+                if (walletTabSettingsIcon) walletTabSettingsIcon.src = isAssets ? "assets/icon-ew-tab-settings-outline.svg" : "assets/icon-ew-tab-settings-filled.svg";
             }
 
             function showSettingsView() {
@@ -1584,20 +1708,41 @@
                 var walletSnackbarIcon = document.getElementById("walletSnackbarIcon");
                 function showWalletSnackbar(message, iconSrc) {
                     if (!walletSnackbar) return;
-                    if (walletSnackbarIcon && iconSrc) walletSnackbarIcon.src = iconSrc;
-                    if (walletSnackbarText && message) walletSnackbarText.textContent = message;
-                    walletSnackbar.setAttribute("aria-hidden", "false");
-                    walletSnackbar.classList.add("pp-wallet-snackbar--visible");
                     clearTimeout(walletSnackbar._hideTimer);
                     clearTimeout(walletSnackbar._resetTimer);
-                    walletSnackbar._hideTimer = setTimeout(function () {
+                    var wasVisible = walletSnackbar.classList.contains("pp-wallet-snackbar--visible");
+                    if (walletSnackbarIcon && iconSrc) walletSnackbarIcon.src = iconSrc;
+                    if (walletSnackbarText && message) walletSnackbarText.textContent = message;
+                    if (wasVisible) {
                         walletSnackbar.classList.remove("pp-wallet-snackbar--visible");
                         walletSnackbar.setAttribute("aria-hidden", "true");
-                        walletSnackbar._resetTimer = setTimeout(function () {
-                            if (walletSnackbarIcon) walletSnackbarIcon.src = "assets/icon-ew-check.svg";
-                            if (walletSnackbarText) walletSnackbarText.textContent = "Copied to clipboard";
-                        }, 300);
-                    }, 2800);
+                        void walletSnackbar.offsetHeight;
+                        requestAnimationFrame(function () {
+                            requestAnimationFrame(function () {
+                                walletSnackbar.setAttribute("aria-hidden", "false");
+                                walletSnackbar.classList.add("pp-wallet-snackbar--visible");
+                                walletSnackbar._hideTimer = setTimeout(function () {
+                                    walletSnackbar.classList.remove("pp-wallet-snackbar--visible");
+                                    walletSnackbar.setAttribute("aria-hidden", "true");
+                                    walletSnackbar._resetTimer = setTimeout(function () {
+                                        if (walletSnackbarIcon) walletSnackbarIcon.src = "assets/icon-ew-check.svg";
+                                        if (walletSnackbarText) walletSnackbarText.textContent = "Copied to clipboard";
+                                    }, 300);
+                                }, 2800);
+                            });
+                        });
+                    } else {
+                        walletSnackbar.setAttribute("aria-hidden", "false");
+                        walletSnackbar.classList.add("pp-wallet-snackbar--visible");
+                        walletSnackbar._hideTimer = setTimeout(function () {
+                            walletSnackbar.classList.remove("pp-wallet-snackbar--visible");
+                            walletSnackbar.setAttribute("aria-hidden", "true");
+                            walletSnackbar._resetTimer = setTimeout(function () {
+                                if (walletSnackbarIcon) walletSnackbarIcon.src = "assets/icon-ew-check.svg";
+                                if (walletSnackbarText) walletSnackbarText.textContent = "Copied to clipboard";
+                            }, 300);
+                        }, 2800);
+                    }
                 }
                 if (walletModalWithdrawBtn && walletSnackbar) {
                     walletModalWithdrawBtn.addEventListener("click", function (e) {
@@ -1630,6 +1775,33 @@
                         showWalletSnackbar("Not in prototype", "assets/icon-ew-warning.svg");
                     });
                 }
+                (function wireExportKeyView() {
+                    var consentCheckbox = document.getElementById("walletExportKeyConsent");
+                    var revealBtn = document.getElementById("walletExportKeyRevealBtn");
+                    var cancelBtn = document.getElementById("walletExportKeyCancelBtn");
+                    function updateRevealButton() {
+                        if (!revealBtn || !consentCheckbox) return;
+                        var checked = consentCheckbox.checked === true;
+                        revealBtn.disabled = !checked;
+                        revealBtn.classList.toggle("ew-btn--disabled", !checked);
+                    }
+                    if (consentCheckbox && revealBtn) {
+                        consentCheckbox.addEventListener("change", updateRevealButton);
+                    }
+                    if (cancelBtn) {
+                        cancelBtn.addEventListener("click", function (e) {
+                            e.preventDefault();
+                            showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, currentNetworkName || "Ethereum (ERC-20)");
+                        });
+                    }
+                    if (revealBtn) {
+                        revealBtn.addEventListener("click", function (e) {
+                            e.preventDefault();
+                            if (revealBtn.disabled) return;
+                            showWalletSnackbar("Not in prototype", "assets/icon-ew-warning.svg");
+                        });
+                    }
+                })();
                 walletModal.addEventListener("click", function (e) {
                     var beneficiaryItem = e.target && e.target.closest && e.target.closest(".pp-wallet-modal__item[data-beneficiary-name]");
                     if (beneficiaryItem) {
@@ -1748,20 +1920,8 @@
                                 resizeWithdrawAddressTextarea();
                             });
                         });
-                        var snackbar = document.getElementById("walletSnackbar");
-                        var snackbarText = document.getElementById("walletSnackbarText");
-                        var snackbarIcon = document.getElementById("walletSnackbarIcon");
-                        if (snackbar) {
-                            if (snackbarIcon) snackbarIcon.src = "assets/icon-ew-check.svg";
-                            if (snackbarText) snackbarText.textContent = "Pasted from clipboard";
-                            snackbar.setAttribute("aria-hidden", "false");
-                            snackbar.classList.add("pp-wallet-snackbar--visible");
-                            clearTimeout(snackbar._hideTimer);
-                            clearTimeout(snackbar._resetTimer);
-                            snackbar._hideTimer = setTimeout(function () {
-                                snackbar.classList.remove("pp-wallet-snackbar--visible");
-                                snackbar.setAttribute("aria-hidden", "true");
-                            }, 2800);
+                        if (typeof showWalletSnackbar === "function") {
+                            showWalletSnackbar("Pasted from clipboard", "assets/icon-ew-check.svg");
                         }
                     });
                 }
@@ -1945,7 +2105,9 @@
                     if (item) {
                         closeEwDropdown();
                         var action = item.getAttribute("data-action");
-                        if (action === "export-private-key") { /* TODO */ }
+                        if (action === "export-private-key") {
+                            showExportPrivateKeyView();
+                        }
                         if (action === "disable-auto-debit") openDisableAutodebitConfirm();
                         if (action === "withdraw") {
                             var labelEl = item.querySelector(".pp-ew-dropdown__label");

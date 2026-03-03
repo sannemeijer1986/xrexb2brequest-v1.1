@@ -2401,6 +2401,9 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal__view--withdraw-completed {
   transform: translateX(600%);
 }
+.pp-wallet-modal__view--export-key {
+  transform: translateX(700%);
+}
 
 .pp-wallet-modal--beneficiary-view .pp-wallet-modal__view--list {
   transform: translateX(-100%);
@@ -2422,6 +2425,9 @@ body.profile-payment-page .site-footer {
 }
 .pp-wallet-modal--beneficiary-view .pp-wallet-modal__view--withdraw-completed {
   transform: translateX(500%);
+}
+.pp-wallet-modal--beneficiary-view .pp-wallet-modal__view--export-key {
+  transform: translateX(600%);
 }
 
 .pp-wallet-modal--address-detail-view:not(.pp-wallet-modal--withdraw-select-view):not(.pp-wallet-modal--withdraw-form-view):not(.pp-wallet-modal--withdraw-confirm-view) .pp-wallet-modal__view--list {
@@ -2445,6 +2451,9 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal--address-detail-view:not(.pp-wallet-modal--withdraw-select-view):not(.pp-wallet-modal--withdraw-form-view):not(.pp-wallet-modal--withdraw-confirm-view) .pp-wallet-modal__view--withdraw-completed {
   transform: translateX(400%);
 }
+.pp-wallet-modal--address-detail-view:not(.pp-wallet-modal--withdraw-select-view):not(.pp-wallet-modal--withdraw-form-view):not(.pp-wallet-modal--withdraw-confirm-view) .pp-wallet-modal__view--export-key {
+  transform: translateX(500%);
+}
 
 .pp-wallet-modal--withdraw-select-view:not(.pp-wallet-modal--withdraw-form-view):not(.pp-wallet-modal--withdraw-confirm-view) .pp-wallet-modal__view--list {
   transform: translateX(-300%);
@@ -2466,6 +2475,9 @@ body.profile-payment-page .site-footer {
 }
 .pp-wallet-modal--withdraw-select-view:not(.pp-wallet-modal--withdraw-form-view):not(.pp-wallet-modal--withdraw-confirm-view) .pp-wallet-modal__view--withdraw-completed {
   transform: translateX(300%);
+}
+.pp-wallet-modal--withdraw-select-view:not(.pp-wallet-modal--withdraw-form-view):not(.pp-wallet-modal--withdraw-confirm-view) .pp-wallet-modal__view--export-key {
+  transform: translateX(400%);
 }
 
 .pp-wallet-modal--withdraw-form-view:not(.pp-wallet-modal--withdraw-confirm-view) .pp-wallet-modal__view--list {
@@ -2489,6 +2501,9 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal--withdraw-form-view:not(.pp-wallet-modal--withdraw-confirm-view) .pp-wallet-modal__view--withdraw-completed {
   transform: translateX(200%);
 }
+.pp-wallet-modal--withdraw-form-view:not(.pp-wallet-modal--withdraw-confirm-view) .pp-wallet-modal__view--export-key {
+  transform: translateX(300%);
+}
 
 .pp-wallet-modal--withdraw-form-view.pp-wallet-modal--withdraw-form-view-direct:not(.pp-wallet-modal--withdraw-confirm-view) .pp-wallet-modal__view--list {
   transform: translateX(-300%);
@@ -2510,6 +2525,9 @@ body.profile-payment-page .site-footer {
 }
 .pp-wallet-modal--withdraw-form-view.pp-wallet-modal--withdraw-form-view-direct:not(.pp-wallet-modal--withdraw-confirm-view) .pp-wallet-modal__view--withdraw-completed {
   transform: translateX(200%);
+}
+.pp-wallet-modal--withdraw-form-view.pp-wallet-modal--withdraw-form-view-direct:not(.pp-wallet-modal--withdraw-confirm-view) .pp-wallet-modal__view--export-key {
+  transform: translateX(300%);
 }
 
 .pp-wallet-modal--withdraw-confirm-view .pp-wallet-modal__view--list {
@@ -2533,6 +2551,9 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal--withdraw-confirm-view .pp-wallet-modal__view--withdraw-completed {
   transform: translateX(100%);
 }
+.pp-wallet-modal--withdraw-confirm-view .pp-wallet-modal__view--export-key {
+  transform: translateX(200%);
+}
 
 .pp-wallet-modal--withdraw-confirm-view.pp-wallet-modal--withdraw-form-view-direct .pp-wallet-modal__view--list {
   transform: translateX(-400%);
@@ -2554,6 +2575,9 @@ body.profile-payment-page .site-footer {
 }
 .pp-wallet-modal--withdraw-confirm-view.pp-wallet-modal--withdraw-form-view-direct .pp-wallet-modal__view--withdraw-completed {
   transform: translateX(100%);
+}
+.pp-wallet-modal--withdraw-confirm-view.pp-wallet-modal--withdraw-form-view-direct .pp-wallet-modal__view--export-key {
+  transform: translateX(200%);
 }
 
 .pp-wallet-modal--withdraw-completed-view .pp-wallet-modal__header {
@@ -2578,6 +2602,34 @@ body.profile-payment-page .site-footer {
   transform: translateX(-100%);
 }
 .pp-wallet-modal--withdraw-completed-view .pp-wallet-modal__view--withdraw-completed {
+  transform: translateX(0);
+}
+.pp-wallet-modal--withdraw-completed-view .pp-wallet-modal__view--export-key {
+  transform: translateX(100%);
+}
+
+.pp-wallet-modal--export-key-view .pp-wallet-modal__view--list {
+  transform: translateX(-700%);
+}
+.pp-wallet-modal--export-key-view .pp-wallet-modal__view--beneficiary {
+  transform: translateX(-600%);
+}
+.pp-wallet-modal--export-key-view .pp-wallet-modal__view--address-detail {
+  transform: translateX(-500%);
+}
+.pp-wallet-modal--export-key-view .pp-wallet-modal__view--withdraw-select {
+  transform: translateX(-400%);
+}
+.pp-wallet-modal--export-key-view .pp-wallet-modal__view--withdraw-form {
+  transform: translateX(-300%);
+}
+.pp-wallet-modal--export-key-view .pp-wallet-modal__view--withdraw-confirm {
+  transform: translateX(-200%);
+}
+.pp-wallet-modal--export-key-view .pp-wallet-modal__view--withdraw-completed {
+  transform: translateX(-100%);
+}
+.pp-wallet-modal--export-key-view .pp-wallet-modal__view--export-key {
   transform: translateX(0);
 }
 
@@ -2728,6 +2780,10 @@ body.profile-payment-page .site-footer {
 }
 
 .pp-wallet-modal__header-withdraw-wrap--hidden {
+  display: none !important;
+}
+
+.pp-wallet-modal__header-export-key-wrap--hidden {
   display: none !important;
 }
 
@@ -3245,6 +3301,115 @@ body.profile-payment-page .site-footer {
   line-height: 1.4;
 }
 
+.pp-wallet-export-key {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 24px 32px 32px;
+}
+
+.pp-wallet-export-key__info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin-bottom: 24px;
+}
+
+.pp-wallet-export-key__info-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pp-wallet-export-key__info-label {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #7384BE;
+}
+
+.pp-wallet-export-key__info-value {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+
+.pp-wallet-export-key__important {
+  background: #293155;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.pp-wallet-export-key__important-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.pp-wallet-export-key__important-icon {
+  flex-shrink: 0;
+}
+
+.pp-wallet-export-key__important-title {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.pp-wallet-export-key__warnings {
+  margin: 0;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.pp-wallet-export-key__warning {
+  position: relative;
+  margin-bottom: 8px;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #7384BE;
+  line-height: 1.4;
+}
+.pp-wallet-export-key__warning:last-child {
+  margin-bottom: 0;
+}
+.pp-wallet-export-key__warning::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 0.5em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #7384BE;
+}
+
+.pp-wallet-export-key__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.pp-wallet-export-key__consent-input {
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.pp-wallet-export-key__consent-text {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 1.4;
+}
+
 .pp-wallet-bnc {
   margin-top: auto;
   padding-top: 24px;
@@ -3388,7 +3553,8 @@ body.profile-payment-page .site-footer {
 .pp-wallet-modal--withdraw-select-view .pp-wallet-modal__footer,
 .pp-wallet-modal--withdraw-form-view .pp-wallet-modal__footer,
 .pp-wallet-modal--withdraw-confirm-view .pp-wallet-modal__footer,
-.pp-wallet-modal--withdraw-completed-view .pp-wallet-modal__footer {
+.pp-wallet-modal--withdraw-completed-view .pp-wallet-modal__footer,
+.pp-wallet-modal--export-key-view .pp-wallet-modal__footer {
   opacity: 0;
   pointer-events: none;
   height: 0;
@@ -3402,7 +3568,8 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-modal--withdraw-form-view .pp-wallet-modal__header-label,
 .pp-wallet-modal--withdraw-confirm-view .pp-wallet-modal__header-label,
-.pp-wallet-modal--withdraw-completed-view .pp-wallet-modal__header-label {
+.pp-wallet-modal--withdraw-completed-view .pp-wallet-modal__header-label,
+.pp-wallet-modal--export-key-view .pp-wallet-modal__header-label {
   display: none;
 }
 
