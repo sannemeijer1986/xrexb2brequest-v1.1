@@ -102,7 +102,7 @@
                                     <img src="assets/icon_pp_more.svg" alt="" width="24" height="24" />
                                 </button>
                                 <div class="wallet-entry__dropdown" id="walletMoreMenu" role="menu" aria-hidden="true">
-                                    <a href="#" id="walletViewSelfCustody" role="menuitem">View your self-custody wallet</a>
+                                    <a href="#" id="walletViewSelfCustody" role="menuitem">Log in to your wallet</a>
                                     <a href="#" role="menuitem">How it works</a>
                                 </div>
                             </div>
@@ -1006,9 +1006,6 @@
                     openWalletDirect();
                 });
             }
-
-            // TEMP: auto-open wallet on page load (same as debug hotspot)
-            openWalletDirect();
 
             modal.addEventListener("click", function (e) {
                 if (e.target === modal) closeModal();
