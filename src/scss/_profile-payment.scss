@@ -999,11 +999,9 @@ $wallet-accent: $ew-text-link;
   z-index: 1;
 
   img {
-    width: 32px;
-    height: 32px;
+    width: 60px;
+    height: 60px;
     display: block;
-    filter: brightness(0) invert(1);
-    opacity: 0.95;
   }
 }
 
@@ -1011,10 +1009,10 @@ $wallet-accent: $ew-text-link;
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 4px solid $ew-border-mediumcon;
-  border-top-color: $ew-primaryblue-400;
-  border-right-color: $ew-primaryblue-400;
-  animation: pp-wallet-spinner-rotate 0.9s linear infinite;
+  border: 4px solid $ew-bg-base-secondary;
+  border-top-color: $ew-neutral-100;
+  border-right-color: $ew-neutral-100;
+  animation: pp-wallet-spinner-rotate 0.5s linear infinite;
 }
 
 @keyframes pp-wallet-spinner-rotate {

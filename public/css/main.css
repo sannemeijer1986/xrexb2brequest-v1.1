@@ -2074,21 +2074,19 @@ body.profile-payment-page .site-footer {
   z-index: 1;
 }
 .pp-wallet-processing-spinner__inner img {
-  width: 32px;
-  height: 32px;
+  width: 60px;
+  height: 60px;
   display: block;
-  filter: brightness(0) invert(1);
-  opacity: 0.95;
 }
 
 .pp-wallet-processing-spinner__arc {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 4px solid #222947;
-  border-top-color: #4779FF;
-  border-right-color: #4779FF;
-  animation: pp-wallet-spinner-rotate 0.9s linear infinite;
+  border: 4px solid #191F34;
+  border-top-color: #FFFFFF;
+  border-right-color: #FFFFFF;
+  animation: pp-wallet-spinner-rotate 0.5s linear infinite;
 }
 
 @keyframes pp-wallet-spinner-rotate {
