@@ -193,7 +193,9 @@
                     <label class="pp-wallet-passcode-modal__label" for="walletPasscodeInput">Wallet passcode</label>
                     <div class="pp-wallet-passcode-modal__input-row">
                         <input id="walletPasscodeInput" type="password" placeholder="Enter your wallet passcode" autocomplete="off" />
-                        <span class="pp-wallet-passcode-modal__eye" aria-hidden="true"><img src="assets/icon-ew-eye-closed-blue.svg" width="32" height="32" alt="" /></span>
+                        <button type="button" class="pp-wallet-passcode-modal__eye" id="walletPasscodeToggle" aria-label="Show passcode">
+                            <img src="assets/icon-ew-eye-closed-blue.svg" width="32" height="32" alt="" />
+                        </button>
                     </div>
                 </div>
             </div>
@@ -696,6 +698,7 @@
             const walletPasscodeCancel = document.getElementById("walletPasscodeCancel");
             const walletPasscodeVerify = document.getElementById("walletPasscodeVerify");
             const walletPasscodeInput = document.getElementById("walletPasscodeInput");
+            const walletPasscodeToggle = document.getElementById("walletPasscodeToggle");
             const walletModal = document.getElementById("walletModal");
             const walletModalClose = document.getElementById("walletModalClose");
             const walletLoadingMessage = document.getElementById("walletLoadingMessage");
@@ -703,6 +706,8 @@
             var ppSessionCountdownTimer = null;
             var PP_SESSION_KEY = "ppWalletSessionExpiresAt";
             var PP_SESSION_DURATION_MS = 5 * 60 * 1000;
+            var walletPasscodeNextAction = null;
+            var walletPasscodeNextAction = null;
 
             function getSessionExpiresAt() {
                 try {
@@ -990,8 +995,9 @@
                 walletPasscodeVerify.classList.toggle("ew-btn--disabled", !enabled);
             }
 
-            function openWalletPasscodeModal() {
+            function openWalletPasscodeModal(nextAction) {
                 if (!walletPasscodeModal) return;
+                walletPasscodeNextAction = typeof nextAction === "function" ? nextAction : null;
                 if (walletPasscodeInput) {
                     walletPasscodeInput.value = "";
                 }
@@ -1002,6 +1008,7 @@
             function closeWalletPasscodeModal() {
                 if (!walletPasscodeModal) return;
                 walletPasscodeModal.setAttribute("aria-hidden", "true");
+                walletPasscodeNextAction = null;
             }
 
             if (walletPasscodeInput) {
@@ -1023,29 +1030,50 @@
             if (walletPasscodeVerify) {
                 walletPasscodeVerify.addEventListener("click", function () {
                     if (walletPasscodeVerify.disabled) return;
+                    var next = walletPasscodeNextAction;
                     closeWalletPasscodeModal();
+                    if (typeof next === "function") {
+                        next();
+                    }
+                });
+            }
+
+            function handleWalletPasscodeDismiss() {
+                var hasNext = typeof walletPasscodeNextAction === "function";
+                closeWalletPasscodeModal();
+                if (!hasNext) {
+                    closeWalletModal();
+                }
+            }
+
+            if (walletPasscodeToggle && walletPasscodeInput) {
+                walletPasscodeToggle.addEventListener("click", function () {
+                    var isHidden = walletPasscodeInput.type === "password";
+                    walletPasscodeInput.type = isHidden ? "text" : "password";
+                    var img = walletPasscodeToggle.querySelector("img");
+                    if (img) {
+                        img.src = isHidden ? "assets/icon-ew-eye-open-blue.svg" : "assets/icon-ew-eye-closed-blue.svg";
+                    }
+                    walletPasscodeToggle.setAttribute("aria-label", isHidden ? "Hide passcode" : "Show passcode");
                 });
             }
 
             if (walletPasscodeCancel) {
                 walletPasscodeCancel.addEventListener("click", function () {
-                    closeWalletPasscodeModal();
-                    closeWalletModal();
+                    handleWalletPasscodeDismiss();
                 });
             }
 
             if (walletPasscodeClose) {
                 walletPasscodeClose.addEventListener("click", function () {
-                    closeWalletPasscodeModal();
-                    closeWalletModal();
+                    handleWalletPasscodeDismiss();
                 });
             }
 
             if (walletPasscodeModal) {
                 walletPasscodeModal.addEventListener("click", function (e) {
                     if (e.target === walletPasscodeModal) {
-                        closeWalletPasscodeModal();
-                        closeWalletModal();
+                        handleWalletPasscodeDismiss();
                     }
                 });
             }
@@ -2138,33 +2166,35 @@
                 var confirmBtn = document.getElementById("walletConfirmWithdrawBtn");
                 if (cancelBtn) cancelBtn.addEventListener("click", hideWithdrawConfirmView);
                 if (confirmBtn) confirmBtn.addEventListener("click", function () {
-                    showWithdrawProcessingModal();
-                    setTimeout(function () {
-                        var amountEl = document.getElementById("walletConfirmAmount");
-                        var toAddrEl = document.getElementById("walletConfirmToAddress");
-                        var fromEl = document.getElementById("walletConfirmFromAddress");
-                        var networkEl = document.getElementById("walletConfirmNetwork");
-                        var gasEl = document.getElementById("walletConfirmGasFee");
-                        var assetIconEl = document.getElementById("walletConfirmAssetIcon");
-                        var completedAmount = document.getElementById("walletCompletedAmount");
-                        var completedToAddr = document.getElementById("walletCompletedToAddress");
-                        var completedFrom = document.getElementById("walletCompletedFromAddress");
-                        var completedNetwork = document.getElementById("walletCompletedNetwork");
-                        var completedGas = document.getElementById("walletCompletedGasFee");
-                        var completedAssetIcon = document.getElementById("walletCompletedAssetIcon");
-                        if (completedAmount && amountEl) completedAmount.textContent = amountEl.textContent || "32.41 USDT";
-                        if (completedToAddr && toAddrEl) completedToAddr.textContent = toAddrEl.textContent || "";
-                        if (completedFrom && fromEl) completedFrom.textContent = fromEl.textContent || "0x2134...1233f8";
-                        if (completedNetwork && networkEl) completedNetwork.textContent = networkEl.textContent || "Ethereum (ERC-20)";
-                        if (completedGas && gasEl) completedGas.textContent = gasEl.textContent || "0.02 ETH";
-                        if (completedAssetIcon && assetIconEl) {
-                            var img = completedAssetIcon.querySelector("img");
-                            var srcImg = assetIconEl && assetIconEl.querySelector("img");
-                            if (img && srcImg && srcImg.src) img.src = srcImg.src;
-                        }
-                        hideWithdrawProcessingModal();
-                        showWithdrawCompletedView();
-                    }, 3000);
+                    openWalletPasscodeModal(function () {
+                        showWithdrawProcessingModal();
+                        setTimeout(function () {
+                            var amountEl = document.getElementById("walletConfirmAmount");
+                            var toAddrEl = document.getElementById("walletConfirmToAddress");
+                            var fromEl = document.getElementById("walletConfirmFromAddress");
+                            var networkEl = document.getElementById("walletConfirmNetwork");
+                            var gasEl = document.getElementById("walletConfirmGasFee");
+                            var assetIconEl = document.getElementById("walletConfirmAssetIcon");
+                            var completedAmount = document.getElementById("walletCompletedAmount");
+                            var completedToAddr = document.getElementById("walletCompletedToAddress");
+                            var completedFrom = document.getElementById("walletCompletedFromAddress");
+                            var completedNetwork = document.getElementById("walletCompletedNetwork");
+                            var completedGas = document.getElementById("walletCompletedGasFee");
+                            var completedAssetIcon = document.getElementById("walletCompletedAssetIcon");
+                            if (completedAmount && amountEl) completedAmount.textContent = amountEl.textContent || "32.41 USDT";
+                            if (completedToAddr && toAddrEl) completedToAddr.textContent = toAddrEl.textContent || "";
+                            if (completedFrom && fromEl) completedFrom.textContent = fromEl.textContent || "0x2134...1233f8";
+                            if (completedNetwork && networkEl) completedNetwork.textContent = networkEl.textContent || "Ethereum (ERC-20)";
+                            if (completedGas && gasEl) completedGas.textContent = gasEl.textContent || "0.02 ETH";
+                            if (completedAssetIcon && assetIconEl) {
+                                var img = completedAssetIcon.querySelector("img");
+                                var srcImg = assetIconEl && assetIconEl.querySelector("img");
+                                if (img && srcImg && srcImg.src) img.src = srcImg.src;
+                            }
+                            hideWithdrawProcessingModal();
+                            showWithdrawCompletedView();
+                        }, 3000);
+                    });
                 });
                 var doneBtn = document.getElementById("walletWithdrawCompletedDoneBtn");
                 if (doneBtn) {

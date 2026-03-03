@@ -751,7 +751,8 @@ body.profile-payment-page .site-footer {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: rgba(10, 18, 46, 0.65);
+  // Match the black backdrop used by the main wallet modal
+  background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 
@@ -769,6 +770,21 @@ body.profile-payment-page .site-footer {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+.pp-wallet-passcode-modal[aria-hidden="false"] .pp-wallet-passcode-modal__dialog {
+  animation: pp-modal-in 0.22s ease-out;
+}
+
+@keyframes pp-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .pp-wallet-passcode-modal__header {
@@ -878,10 +894,14 @@ body.profile-payment-page .site-footer {
 .pp-wallet-passcode-modal__eye {
   width: 32px;
   height: 32px;
+  border: none;
+  background: none;
+  padding: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  cursor: pointer;
 
   img {
     width: 32px;
