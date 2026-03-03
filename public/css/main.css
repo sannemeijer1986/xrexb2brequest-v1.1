@@ -2182,7 +2182,7 @@ body.profile-payment-page .site-footer {
 .pp-wallet-withdraw-completed__summary-content {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0px;
   min-width: 0;
   flex: 1 1 auto;
 }
