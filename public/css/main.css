@@ -1400,9 +1400,6 @@ body.profile-payment-page .site-footer {
   background: transparent;
   z-index: 0;
 }
-.wallet-entry__menu:hover::before {
-  background: #F5F9FF;
-}
 
 .wallet-entry__menu img {
   width: 24px;
