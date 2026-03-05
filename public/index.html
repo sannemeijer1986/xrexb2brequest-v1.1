@@ -936,11 +936,16 @@
                 else openMenu();
             }
 
-            walletEntry.addEventListener("click", openModal);
+            walletEntry.addEventListener("click", function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                toggleMenu();
+            });
             walletEntry.addEventListener("keydown", function (e) {
                 if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
-                    openModal();
+                    e.stopPropagation();
+                    toggleMenu();
                 }
             });
 
