@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "watch:css",
+      "type": "shell",
+      "command": "npm run watch:css",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "showReuseMessage": false
+      },
+      "problemMatcher": [],
+      "isBackground": true,
+      "runOptions": { "instanceLimit": 1 }
+    }
+  ]
+}

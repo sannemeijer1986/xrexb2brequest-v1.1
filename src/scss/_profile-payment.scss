@@ -531,6 +531,7 @@ body.profile-payment-page .site-footer {
 .pp-modal__footer {
   padding: 16px 32px 32px;
   display: flex;
+  gap: 16px;
   justify-content: flex-end;
 }
 
@@ -573,6 +574,11 @@ body.profile-payment-page .site-footer {
 
 .pp-modal--get-code .pp-modal__get-code-row .pp-modal__brand {
   margin: 0;
+  width: 100%;
+  text-align: right;
+  align-items: flex-end;
+  justify-content: flex-end;
+  justify-items: flex-end;
 }
 
 .pp-modal--get-code .pp-modal__get-code-divider {

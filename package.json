@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "mkdir -p public/css && sass src/scss/main.scss public/css/main.css --style=compressed --no-source-map",
-    "watch:css": "sass --watch src/scss:public/css --style=expanded --source-map --poll",
+    "watch:css": "mkdir -p public/css && sass --watch src/scss/main.scss:public/css/main.css --style=expanded --source-map --poll",
     "watch:css-edit": "chokidar 'src/css/overrides.css' -c 'cp src/css/overrides.css src/scss/_overrides.scss'",
     "dev:with-css-edit": "npm-run-all -p watch:css-edit watch:css",
     "start": "npm run watch:css",
