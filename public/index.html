@@ -176,7 +176,7 @@
                 </div>
                 <div class="pp-loading-modal__logo_wrapper"><div class="pp-loading-modal__logo"><img src="assets/loading_rigth.svg" alt="dynamic by Fireblocks" /></div></div>
             </div>
-            <p class="pp-loading-modal__message" id="walletLoadingMessage">Logging in to your wallet...</p>
+            <p class="pp-loading-modal__message" id="walletLoadingMessage">Loading your wallet...</p>
         </div>
     </div>
 
@@ -679,7 +679,7 @@
                     <h3 class="pp-wallet-close-confirm__title" id="walletGasAssetConfirmTitle">Gas asset: not for withdrawal</h3>
                     <button type="button" class="pp-wallet-close-confirm__close" id="walletGasAssetConfirmDismiss" aria-label="Close"><img src="assets/icon_pp_close.svg" width="24" height="24" alt="" /></button>
                 </div>
-                <p class="pp-wallet-close-confirm__body">Some ETH is provided by XREX to cover network transaction fees known as gas fees: <span class="pp-wallet-close-confirm__body-strong-warning">It isn’t intended for withdrawal.</span></p>
+                <p class="pp-wallet-close-confirm__body">Some ETH is provided by XREX PayLynk  to cover network transaction fees known as gas fees: <span class="pp-wallet-close-confirm__body-strong-warning">It isn’t intended for withdrawal.</span></p>
                 <div class="pp-wallet-close-confirm__actions">
                     <button type="button" class="ew-btn ew-btn--md ew-btn--secondary" id="walletGasAssetCancel">Cancel</button>
                     <button type="button" class="ew-btn ew-btn--md ew-btn--secondary" id="walletGasAssetContinue">Continue anyway</button>
@@ -870,7 +870,7 @@
 
             function openModal() {
                 if (isSessionActive()) {
-                    if (walletLoadingMessage) walletLoadingMessage.textContent = "Opening your wallet...";
+                    if (walletLoadingMessage) walletLoadingMessage.textContent = "Loading your wallet...";
                     lockBackgroundScroll();
                     walletLoadingModal.setAttribute("aria-hidden", "false");
                     setTimeout(function () {
@@ -1047,7 +1047,7 @@
                 verifyInput.value = "123456";
                 verifyInput.readOnly = true;
 
-                if (walletLoadingMessage) walletLoadingMessage.textContent = "Logging in to your wallet...";
+                if (walletLoadingMessage) walletLoadingMessage.textContent = "Loading your wallet...";
                 setTimeout(function () {
                     modal.setAttribute("aria-hidden", "true");
                     if (loadingEl) loadingEl.setAttribute("aria-hidden", "true");
