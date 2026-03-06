@@ -3327,6 +3327,11 @@ $wallet-accent: $ew-text-link;
   line-height: 1.4;
 }
 
+.pp-wallet-close-confirm__body-strong-warning {
+  font-weight: $ew-title-weight;
+  color: $ew-text-warning;
+}
+
 .pp-wallet-close-confirm__actions {
   display: flex;
   flex-direction: row;
