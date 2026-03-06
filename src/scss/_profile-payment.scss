@@ -2687,6 +2687,32 @@ $wallet-accent: $ew-text-link;
   line-height: 1.4;
 }
 
+// Withdrawal completed: neutral (blue) alert — EW-alert-bg/content/border-neutral
+.pp-wallet-withdraw-completed__alert {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 16px;
+  background: $ew-alert-bg-neutral;
+  border: 1px solid $ew-alert-border-neutral;
+  border-radius: 16px;
+}
+
+.pp-wallet-withdraw-completed__alert-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.pp-wallet-withdraw-completed__alert-text {
+  margin: 0;
+  font-family: $font-ew;
+  font-size: $ew-size-m;
+  font-weight: $ew-body-weight;
+  color: $ew-alert-content-neutral;
+  line-height: 1.4;
+}
+
 // Export private key flow
 .pp-wallet-export-key {
   display: flex;
