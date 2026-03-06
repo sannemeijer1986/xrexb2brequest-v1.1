@@ -150,8 +150,10 @@ $ew-alert-bg-warning: $ew-assisting-amber-900;       // EW-alert-bg-warning
 $ew-alert-content-warning: $ew-assisting-amber-500;  // EW-alert-content-warning
 $ew-alert-border-warning: $ew-assisting-amber-800;   // EW-alert-border-warning
 
-
-
+// Tag / label – Gas for fees pill (re-uses EW alert warning tones but separate semantic tokens)
+$ew-tag-gas-bg: $ew-alert-bg-warning;                // EW-tag-gas-bg
+$ew-tag-gas-content: $ew-alert-content-warning;      // EW-tag-gas-content
+$ew-tag-gas-border: $ew-alert-border-warning;        // EW-tag-gas-border
 
 // Input (EW-input-* – from Figma Input tokens, Dark theme)
 $ew-input-bg: $ew-accentblue-700;            // EW-input-bg

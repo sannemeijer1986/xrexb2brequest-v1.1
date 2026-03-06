@@ -348,7 +348,10 @@
                                                 <span class="pp-wallet-modal__item-name">ETH</span>
                                                 <span class="pp-wallet-modal__item-label">Ethereum</span>
                                             </div>
-                                            <span class="pp-wallet-modal__item-balance">0.05 ETH</span>
+                                            <div class="pp-wallet-modal__item-right">
+                                                <span class="pp-wallet-asset-tag"><img src="assets/icon-ew-gas-yellow.svg" alt="" width="16" height="16" class="pp-wallet-asset-tag__icon" />Gas for fees</span>
+                                                <span class="pp-wallet-modal__item-balance">0.05 ETH</span>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
@@ -378,6 +381,7 @@
                                         <span class="pp-wallet-modal__item-label">Ethereum</span>
                                     </div>
                                     <div class="pp-wallet-modal__item-right">
+                                        <span class="pp-wallet-asset-tag"><img src="assets/icon-ew-gas-yellow.svg" alt="" width="16" height="16" class="pp-wallet-asset-tag__icon" />Gas for fees</span>
                                         <span class="pp-wallet-modal__item-balance">0.05 ETH</span>
                                         <img src="assets/icon-ew-arrow-forward.svg" alt="" width="20" height="20" class="pp-wallet-modal__chevron" />
                                     </div>
@@ -665,6 +669,20 @@
                 <p class="pp-wallet-close-confirm__body">Auto-debit can only be permanently disabled by exporting the private key for this wallet address.</p>
                 <div class="pp-wallet-close-confirm__actions">
                     <button type="button" class="ew-btn ew-btn--md ew-btn--primary" id="walletDisableAutodebitConfirmUnderstood">Understood</button>
+                </div>
+            </div>
+        </div>
+        <div class="pp-wallet-close-confirm" id="walletGasAssetConfirm" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletGasAssetConfirmTitle">
+            <div class="pp-wallet-close-confirm__backdrop"></div>
+            <div class="pp-wallet-close-confirm__card">
+                <div class="pp-wallet-close-confirm__header">
+                    <h3 class="pp-wallet-close-confirm__title" id="walletGasAssetConfirmTitle">Gas asset: not for withdrawal</h3>
+                    <button type="button" class="pp-wallet-close-confirm__close" id="walletGasAssetConfirmDismiss" aria-label="Close"><img src="assets/icon_pp_close.svg" width="24" height="24" alt="" /></button>
+                </div>
+                <p class="pp-wallet-close-confirm__body">Some ETH is provided by XREX to cover network transaction fees known as gas fees: It isn’t intended for withdrawal.</p>
+                <div class="pp-wallet-close-confirm__actions">
+                    <button type="button" class="ew-btn ew-btn--md ew-btn--secondary" id="walletGasAssetCancel">Cancel</button>
+                    <button type="button" class="ew-btn ew-btn--md ew-btn--primary" id="walletGasAssetContinue">Continue anyway</button>
                 </div>
             </div>
         </div>
@@ -2128,7 +2146,13 @@
                         e.preventDefault();
                         var nameEl = assetSelectItem.querySelector(".pp-wallet-modal__item-name");
                         var assetName = (nameEl && nameEl.textContent) ? nameEl.textContent.trim() : "";
-                        if (assetName) showWithdrawFormView(assetName, "select-asset");
+                        if (assetName === "ETH" && typeof openWalletGasAssetConfirm === "function") {
+                            openWalletGasAssetConfirm(function () {
+                                showWithdrawFormView(assetName, "select-asset");
+                            });
+                        } else if (assetName) {
+                            showWithdrawFormView(assetName, "select-asset");
+                        }
                     }
                 });
             }
@@ -2365,6 +2389,7 @@
                 }
             }
             var walletDisableAutodebitConfirm = document.getElementById("walletDisableAutodebitConfirm");
+            var walletGasAssetConfirm = document.getElementById("walletGasAssetConfirm");
             var walletSignOutConfirm = document.getElementById("walletSignOutConfirm");
             function openDisableAutodebitConfirm() {
                 if (walletDisableAutodebitConfirm) walletDisableAutodebitConfirm.setAttribute("aria-hidden", "false");
@@ -2379,6 +2404,35 @@
                 if (understoodBtn) understoodBtn.addEventListener("click", closeDisableAutodebitConfirm);
                 if (dismissBtn) dismissBtn.addEventListener("click", closeDisableAutodebitConfirm);
                 if (autodebitBackdrop) autodebitBackdrop.addEventListener("click", closeDisableAutodebitConfirm);
+            }
+
+            var walletGasAssetContinue = document.getElementById("walletGasAssetContinue");
+            var walletGasAssetCancel = document.getElementById("walletGasAssetCancel");
+            var walletGasAssetDismiss = document.getElementById("walletGasAssetConfirmDismiss");
+            var walletGasAssetNextAction = null;
+            function openWalletGasAssetConfirm(nextAction) {
+                walletGasAssetNextAction = typeof nextAction === "function" ? nextAction : null;
+                if (walletGasAssetConfirm) walletGasAssetConfirm.setAttribute("aria-hidden", "false");
+            }
+            function closeWalletGasAssetConfirm() {
+                if (walletGasAssetConfirm) walletGasAssetConfirm.setAttribute("aria-hidden", "true");
+            }
+            function handleWalletGasAssetCancel() {
+                walletGasAssetNextAction = null;
+                closeWalletGasAssetConfirm();
+            }
+            function handleWalletGasAssetContinue() {
+                var cb = walletGasAssetNextAction;
+                walletGasAssetNextAction = null;
+                closeWalletGasAssetConfirm();
+                if (typeof cb === "function") cb();
+            }
+            if (walletGasAssetConfirm) {
+                var walletGasAssetBackdrop = walletGasAssetConfirm.querySelector(".pp-wallet-close-confirm__backdrop");
+                if (walletGasAssetContinue) walletGasAssetContinue.addEventListener("click", handleWalletGasAssetContinue);
+                if (walletGasAssetCancel) walletGasAssetCancel.addEventListener("click", handleWalletGasAssetCancel);
+                if (walletGasAssetDismiss) walletGasAssetDismiss.addEventListener("click", handleWalletGasAssetCancel);
+                if (walletGasAssetBackdrop) walletGasAssetBackdrop.addEventListener("click", handleWalletGasAssetCancel);
             }
 
             function openWalletSignOutConfirm() {
@@ -2421,7 +2475,13 @@
                             var labelEl = item.querySelector(".pp-ew-dropdown__label");
                             var labelText = (labelEl && labelEl.textContent) ? labelEl.textContent.trim() : "";
                             var assetName = labelText.replace(/^Withdraw\s+/i, "").trim();
-                            if (assetName) showWithdrawFormView(assetName, "address-detail");
+                            if (assetName === "ETH" && typeof openWalletGasAssetConfirm === "function") {
+                                openWalletGasAssetConfirm(function () {
+                                    showWithdrawFormView(assetName, "address-detail");
+                                });
+                            } else if (assetName) {
+                                showWithdrawFormView(assetName, "address-detail");
+                            }
                         }
                     }
                     return;

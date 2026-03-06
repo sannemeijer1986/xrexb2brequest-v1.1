@@ -2978,6 +2978,29 @@ $wallet-accent: $ew-text-link;
   }
 }
 
+.pp-wallet-asset-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid $ew-tag-gas-border;
+  background: $ew-tag-gas-bg;
+  font-family: $font-ew;
+  font-size: $ew-size-xs;
+  font-weight: $ew-subtitle-weight;
+  color: $ew-tag-gas-content;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.pp-wallet-asset-tag__icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
 .pp-wallet-modal__footer {
   background: $ew-bg-base-secondary;
   padding: 16px 16px 16px;
