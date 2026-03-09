@@ -1942,6 +1942,67 @@ $wallet-accent: $ew-text-link;
   }
 }
 
+// Save key view: off-screen when not in save-key-view
+.pp-wallet-modal:not(.pp-wallet-modal--save-key-view) .pp-wallet-modal__view--save-key {
+  visibility: hidden;
+  transform: translateX(9999px);
+}
+
+// Save key flow: Export key → Save your private key (hide close + back in header)
+.pp-wallet-modal--save-key-view {
+  .pp-wallet-modal__view--list,
+  .pp-wallet-modal__view--beneficiary,
+  .pp-wallet-modal__view--withdraw-select,
+  .pp-wallet-modal__view--withdraw-form,
+  .pp-wallet-modal__view--withdraw-confirm,
+  .pp-wallet-modal__view--withdraw-completed {
+    visibility: hidden;
+    transform: translateX(-9999px);
+  }
+
+  .pp-wallet-modal__view--address-detail {
+    visibility: visible;
+    transform: translateX(-500%);
+  }
+
+  .pp-wallet-modal__view--export-key {
+    visibility: visible;
+    transform: translateX(-100%);
+  }
+
+  .pp-wallet-modal__view--save-key {
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  .pp-wallet-modal__close,
+  .pp-wallet-modal__back {
+    display: none;
+  }
+
+  .pp-wallet-modal__header-label {
+    display: none;
+  }
+
+  .pp-wallet-modal__footer {
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    min-height: 0;
+    padding: 0;
+    flex: 0 0 0;
+    border-top-width: 0;
+    overflow: hidden;
+    transition:
+      opacity 0.18s ease,
+      height 0s linear 0.18s,
+      min-height 0s linear 0.18s,
+      padding 0s linear 0.18s,
+      flex-basis 0s linear 0.18s,
+      border-top-width 0s linear 0.18s;
+  }
+}
+
 // Back from Export key → Address detail: hide withdraw-flow views so animation is direct
 .pp-wallet-modal--address-detail-view.pp-wallet-modal--from-export-key {
   .pp-wallet-modal__view--list,
@@ -2917,6 +2978,41 @@ $wallet-accent: $ew-text-link;
 
 .pp-wallet-export-key__actions {
   padding-top: 8px;
+}
+
+// Save your private key view (after Reveal key)
+.pp-wallet-save-key {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  padding: 38px 40px 40px;
+  gap: 24px;
+}
+
+.pp-wallet-save-key__title {
+  margin: 0;
+  font-family: $font-ew;
+  font-size: $ew-size-xxl;
+  font-weight: $ew-title-weight;
+  color: $ew-text-primary;
+  line-height: 1.2;
+}
+
+.pp-wallet-save-key__lead {
+  margin: 0;
+  font-family: $font-ew;
+  font-size: $ew-size-l;
+  font-weight: $ew-body-weight;
+  color: $ew-text-secondary;
+  line-height: 1.4;
+}
+
+.pp-wallet-save-key__actions {
+  margin-top: auto;
+  padding-top: 24px;
+  flex-shrink: 0;
 }
 
 .pp-wallet-bnc {
