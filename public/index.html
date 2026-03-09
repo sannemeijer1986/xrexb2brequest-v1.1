@@ -102,7 +102,7 @@
                                     <img src="assets/icon_pp_more.svg" alt="" width="24" height="24" />
                                 </button>
                                 <div class="wallet-entry__dropdown" id="walletMoreMenu" role="menu" aria-hidden="true">
-                                    <a href="#" id="walletViewSelfCustody" role="menuitem">Log in to your wallet</a>
+                                    <a href="#" id="walletViewSelfCustody" role="menuitem">Open your wallet</a>
                                     <a href="https://support.xrex.sg/en/articles/13543998-how-does-paying-in-usdt-work-on-paylynk" target="_blank" role="menuitem">How it works</a>
                                 </div>
                             </div>
@@ -176,7 +176,7 @@
                 </div>
                 <div class="pp-loading-modal__logo_wrapper"><div class="pp-loading-modal__logo"><img src="assets/loading_rigth.svg" alt="dynamic by Fireblocks" /></div></div>
             </div>
-            <p class="pp-loading-modal__message" id="walletLoadingMessage">Loading your wallet...</p>
+            <p class="pp-loading-modal__message" id="walletLoadingMessage">Opening your wallet...</p>
         </div>
     </div>
 
@@ -906,7 +906,7 @@
 
             function openModal() {
                 if (isSessionActive()) {
-                    if (walletLoadingMessage) walletLoadingMessage.textContent = "Loading your wallet...";
+                    if (walletLoadingMessage) walletLoadingMessage.textContent = "Opening your wallet...";
                     lockBackgroundScroll();
                     walletLoadingModal.setAttribute("aria-hidden", "false");
                     setTimeout(function () {
@@ -1083,7 +1083,7 @@
                 verifyInput.value = "123456";
                 verifyInput.readOnly = true;
 
-                if (walletLoadingMessage) walletLoadingMessage.textContent = "Loading your wallet...";
+                if (walletLoadingMessage) walletLoadingMessage.textContent = "Opening your wallet...";
                 setTimeout(function () {
                     modal.setAttribute("aria-hidden", "true");
                     if (loadingEl) loadingEl.setAttribute("aria-hidden", "true");
