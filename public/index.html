@@ -1903,6 +1903,7 @@
                 walletModal.classList.remove("pp-wallet-modal--withdraw-confirm-view");
                 walletModal.classList.remove("pp-wallet-modal--withdraw-completed-view");
                 walletModal.classList.remove("pp-wallet-modal--export-key-view");
+                walletModal.classList.remove("pp-wallet-modal--save-key-view");
                 walletModalBack && walletModalBack.classList.add("pp-wallet-modal__back--hidden");
                 if (walletHeaderIconWrap) walletHeaderIconWrap.classList.remove("pp-wallet-modal__header-icon-wrap--hidden");
                 if (walletHeaderAvatarWrap) {
@@ -2245,7 +2246,7 @@
                         e.preventDefault();
                         if (walletSaveKeyDoneBtn.disabled) return;
                         if (walletModal) walletModal.classList.add("pp-wallet-modal--from-save-key");
-                        showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, currentNetworkName || "Ethereum (ERC-20)");
+                        showListView();
                         if (walletModal) {
                             var onTransitionEndFromSave = function (ev) {
                                 if (ev.target && ev.target.classList && ev.target.classList.contains("pp-wallet-modal__view") && ev.propertyName === "transform") {
