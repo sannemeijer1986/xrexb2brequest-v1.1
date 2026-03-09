@@ -579,16 +579,40 @@
                             </label>
                             <div class="pp-wallet-export-key__actions pp-wallet-bnc pp-wallet-bnc--split">
                                 <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletExportKeyCancelBtn">Back</button>
-                                <button type="button" class="ew-btn ew-btn--lg ew-btn--primary ew-btn--disabled" id="walletExportKeyRevealBtn" disabled>Reveal key</button>
+                                <button type="button" class="ew-btn ew-btn--lg ew-btn--primary ew-btn--disabled" id="walletExportKeyRevealBtn" disabled>Export key</button>
                             </div>
                         </div>
                     </div>
                     <div class="pp-wallet-modal__view pp-wallet-modal__view--save-key" id="walletViewSaveKey" aria-hidden="true">
                         <div class="pp-wallet-save-key">
-                            <h2 class="pp-wallet-save-key__title">Save your private key</h2>
-                            <p class="pp-wallet-save-key__lead">Your private key is ready. Store it somewhere safe — you’ll need it to access this wallet from other apps.</p>
+                            <div class="pp-wallet-private-key-field">
+                                <span class="pp-wallet-private-key-field__label">Private key</span>
+                                <div class="pp-wallet-private-key-field__box">
+                                    <span class="pp-wallet-private-key-field__value" id="walletSaveKeyPrivateKeyValue">0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce036f9f8f6d8c1a5b7c9d2</span>
+                                    <button type="button" class="ew-btn ew-btn--md ew-btn--secondary pp-wallet-private-key-field__copy" id="walletSaveKeyPrivateKeyCopy" aria-label="Copy private key">Copy</button>
+                                </div>
+                            </div>
+                            <div class="pp-wallet-save-key__details">
+                                <div class="pp-wallet-save-key__detail-row">
+                                    <span class="pp-wallet-save-key__detail-label">Address</span>
+                                    <button type="button" class="pp-wallet-save-key__detail-copy" id="walletSaveKeyAddressCopy" aria-label="Copy address" data-copy-value="">
+                                        <span class="pp-wallet-save-key__detail-value" id="walletSaveKeyAddress">0x2134...1233f8</span>
+                                        <span class="pp-wallet-save-key__detail-copy-icon" aria-hidden="true"><img src="assets/icon-ew-copy.svg" alt="" width="20" height="20" /></span>
+                                    </button>
+                                </div>
+                                <div class="pp-wallet-save-key__detail-row">
+                                    <span class="pp-wallet-save-key__detail-label">Network</span>
+                                    <span class="pp-wallet-save-key__detail-value" id="walletSaveKeyNetwork">Ethereum (ERC-20)</span>
+                                </div>
+                            </div>
+                            <div class="pp-wallet-save-key__divider" aria-hidden="true"></div>
+                            <label class="pp-wallet-save-key__consent">
+                                <input type="checkbox" id="walletSaveKeyConsent" class="pp-wallet-save-key__consent-input" />
+                                <span class="pp-wallet-save-key__consent-box" aria-hidden="true"></span>
+                                <span class="pp-wallet-save-key__consent-text">I have saved this private key</span>
+                            </label>
                             <div class="pp-wallet-save-key__actions pp-wallet-bnc pp-wallet-bnc--end">
-                                <button type="button" class="ew-btn ew-btn--lg ew-btn--primary" id="walletSaveKeyDoneBtn">I've saved my key</button>
+                                <button type="button" class="ew-btn ew-btn--lg ew-btn--primary ew-btn--disabled" id="walletSaveKeyDoneBtn" disabled>I'm done</button>
                             </div>
                         </div>
                     </div>
@@ -1315,6 +1339,7 @@
             var currentBeneficiaryName = "";
             var currentBeneficiaryInitials = "";
             var currentNetworkName = "";
+            var currentExportPrivateKey = "";
             var currentWithdrawAsset = "USDT";
             var currentWithdrawEntryPoint = "select-asset";
 
@@ -1655,6 +1680,23 @@
                 walletModal.classList.add("pp-wallet-modal--save-key-view");
                 if (walletModalHeaderLabel) walletModalHeaderLabel.textContent = "";
                 if (walletModalTitle) walletModalTitle.textContent = "Save your private key";
+                var pkEl = document.getElementById("walletSaveKeyPrivateKeyValue");
+                if (pkEl) pkEl.textContent = currentExportPrivateKey || "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce036f9f8f6d8c1a5b7c9d2";
+                var saveKeyAddressEl = document.getElementById("walletSaveKeyAddress");
+                var addressValueEl = document.getElementById("walletAddressDetailValue");
+                if (saveKeyAddressEl && addressValueEl) saveKeyAddressEl.textContent = addressValueEl.textContent || "0x2134...1233f8";
+                var saveKeyAddressCopyBtn = document.getElementById("walletSaveKeyAddressCopy");
+                var addressRow = walletModal && walletModal.querySelector(".pp-wallet-modal__address-value-row");
+                if (saveKeyAddressCopyBtn && addressRow) saveKeyAddressCopyBtn.setAttribute("data-copy-value", addressRow.getAttribute("data-copy-value") || "");
+                var saveKeyNetworkEl = document.getElementById("walletSaveKeyNetwork");
+                if (saveKeyNetworkEl) saveKeyNetworkEl.textContent = currentNetworkName || "Ethereum (ERC-20)";
+                var saveKeyConsent = document.getElementById("walletSaveKeyConsent");
+                var saveKeyDoneBtn = document.getElementById("walletSaveKeyDoneBtn");
+                if (saveKeyConsent) saveKeyConsent.checked = false;
+                if (saveKeyDoneBtn) {
+                    saveKeyDoneBtn.disabled = true;
+                    saveKeyDoneBtn.classList.add("ew-btn--disabled");
+                }
                 if (walletViewExportKey) walletViewExportKey.setAttribute("aria-hidden", "true");
                 walletViewSaveKey.removeAttribute("aria-hidden");
                 walletModal.classList.add("pp-wallet-modal--header-from-right");
@@ -2150,6 +2192,7 @@
                         revealBtn.addEventListener("click", function (e) {
                             e.preventDefault();
                             if (revealBtn.disabled) return;
+                            currentExportPrivateKey = "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce036f9f8f6d8c1a5b7c9d2";
                             if (walletProcessingModalLabel) walletProcessingModalLabel.textContent = "Preparing export";
                             showWithdrawProcessingModal();
                             setTimeout(function () {
@@ -2160,10 +2203,47 @@
                         });
                     }
                 })();
+                (function wireSaveKeyView() {
+                    var saveKeyConsent = document.getElementById("walletSaveKeyConsent");
+                    var saveKeyDoneBtn = document.getElementById("walletSaveKeyDoneBtn");
+                    function updateSaveKeyDoneButton() {
+                        if (!saveKeyDoneBtn || !saveKeyConsent) return;
+                        var checked = saveKeyConsent.checked === true;
+                        saveKeyDoneBtn.disabled = !checked;
+                        saveKeyDoneBtn.classList.toggle("ew-btn--disabled", !checked);
+                    }
+                    if (saveKeyConsent && saveKeyDoneBtn) {
+                        saveKeyConsent.addEventListener("change", updateSaveKeyDoneButton);
+                    }
+                    var saveKeyPkCopy = document.getElementById("walletSaveKeyPrivateKeyCopy");
+                    if (saveKeyPkCopy && walletSnackbar) {
+                        saveKeyPkCopy.addEventListener("click", function () {
+                            var valueEl = document.getElementById("walletSaveKeyPrivateKeyValue");
+                            var value = (valueEl && valueEl.textContent) ? valueEl.textContent.trim() : "";
+                            if (value && navigator.clipboard && navigator.clipboard.writeText) {
+                                navigator.clipboard.writeText(value).then(function () {
+                                    showWalletSnackbar("Copied to clipboard", "assets/icon-ew-check.svg");
+                                });
+                            }
+                        });
+                    }
+                    var saveKeyAddressCopy = document.getElementById("walletSaveKeyAddressCopy");
+                    if (saveKeyAddressCopy && walletSnackbar) {
+                        saveKeyAddressCopy.addEventListener("click", function () {
+                            var value = saveKeyAddressCopy.getAttribute("data-copy-value") || (document.getElementById("walletSaveKeyAddress") && document.getElementById("walletSaveKeyAddress").textContent) || "";
+                            if (value && navigator.clipboard && navigator.clipboard.writeText) {
+                                navigator.clipboard.writeText(value).then(function () {
+                                    showWalletSnackbar("Copied to clipboard", "assets/icon-ew-check.svg");
+                                });
+                            }
+                        });
+                    }
+                })();
                 var walletSaveKeyDoneBtn = document.getElementById("walletSaveKeyDoneBtn");
                 if (walletSaveKeyDoneBtn) {
                     walletSaveKeyDoneBtn.addEventListener("click", function (e) {
                         e.preventDefault();
+                        if (walletSaveKeyDoneBtn.disabled) return;
                         if (walletModal) walletModal.classList.add("pp-wallet-modal--from-save-key");
                         showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, currentNetworkName || "Ethereum (ERC-20)");
                         if (walletModal) {
