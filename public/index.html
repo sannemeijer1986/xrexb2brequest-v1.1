@@ -528,7 +528,10 @@
                             <div class="pp-wallet-export-key__info">
                                 <div class="pp-wallet-export-key__info-row">
                                     <span class="pp-wallet-export-key__info-label">Export key of address</span>
-                                    <span class="pp-wallet-export-key__info-value" id="walletExportKeyAddress">0x2134...1233f8</span>
+                                    <button type="button" class="pp-wallet-export-key__copy-row" id="walletExportKeyAddressCopy" aria-label="Copy address" data-copy-value="">
+                                        <span class="pp-wallet-export-key__info-value" id="walletExportKeyAddress">0x2134...1233f8</span>
+                                        <span class="pp-wallet-export-key__copy-icon" aria-hidden="true"><img src="assets/icon-ew-copy.svg" alt="" width="20" height="20" /></span>
+                                    </button>
                                 </div>
                                 <div class="pp-wallet-export-key__info-row">
                                     <span class="pp-wallet-export-key__info-label">Network</span>
@@ -547,8 +550,8 @@
                                             <img src="assets/icon-ew-eye-closed-yellow.svg" alt="" width="24" height="24" class="pp-wallet-export-key__warning-icon" />
                                         </span>
                                         <span class="pp-wallet-export-key__warning-content">
-                                            <span class="pp-wallet-export-key__warning-main">After export, this address will no longer be available in the embedded wallet or XREX Pay</span>
-                                            <span class="pp-wallet-export-key__warning-sub">You can still use it in other Web3 wallets by importing the key</span>
+                                            <span class="pp-wallet-export-key__warning-main">After export, this address will no longer be available in this embedded wallet or in XREX Pay</span>
+                                            <span class="pp-wallet-export-key__warning-sub">You can still use this address in other Web3 wallets by importing the private key</span>
                                         </span>
                                     </li>
                                     <li class="pp-wallet-export-key__warning-item">
@@ -1502,6 +1505,9 @@
                 var addressValueEl = document.getElementById("walletAddressDetailValue");
                 var exportAddressEl = document.getElementById("walletExportKeyAddress");
                 if (exportAddressEl && addressValueEl) exportAddressEl.textContent = addressValueEl.textContent || "0x2134...1233f8";
+                var exportCopyBtn = document.getElementById("walletExportKeyAddressCopy");
+                var addressRow = walletModal && walletModal.querySelector(".pp-wallet-modal__address-value-row");
+                if (exportCopyBtn && addressRow) exportCopyBtn.setAttribute("data-copy-value", addressRow.getAttribute("data-copy-value") || "");
                 var exportNetworkEl = document.getElementById("walletExportKeyNetwork");
                 if (exportNetworkEl) exportNetworkEl.textContent = currentNetworkName || "Ethereum (ERC-20)";
                 var consentCheckbox = document.getElementById("walletExportKeyConsent");
@@ -2041,6 +2047,17 @@
                             }, 300);
                         }, 2800);
                     }
+                }
+                var walletExportKeyAddressCopy = document.getElementById("walletExportKeyAddressCopy");
+                if (walletExportKeyAddressCopy && walletSnackbar) {
+                    walletExportKeyAddressCopy.addEventListener("click", function () {
+                        var value = walletExportKeyAddressCopy.getAttribute("data-copy-value") || (document.getElementById("walletExportKeyAddress") && document.getElementById("walletExportKeyAddress").textContent) || "";
+                        if (value && navigator.clipboard && navigator.clipboard.writeText) {
+                            navigator.clipboard.writeText(value).then(function () {
+                                showWalletSnackbar("Copied to clipboard", "assets/icon-ew-check.svg");
+                            });
+                        }
+                    });
                 }
                 if (walletModalWithdrawBtn && walletSnackbar) {
                     walletModalWithdrawBtn.addEventListener("click", function (e) {
