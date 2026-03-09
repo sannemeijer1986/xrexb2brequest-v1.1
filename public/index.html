@@ -1653,10 +1653,12 @@
                 if (!walletModal || !walletViewSaveKey) return;
                 walletModal.classList.remove("pp-wallet-modal--export-key-view");
                 walletModal.classList.add("pp-wallet-modal--save-key-view");
+                if (walletModalHeaderLabel) walletModalHeaderLabel.textContent = "";
                 if (walletModalTitle) walletModalTitle.textContent = "Save your private key";
                 if (walletViewExportKey) walletViewExportKey.setAttribute("aria-hidden", "true");
-                if (walletViewSaveKey) walletViewSaveKey.setAttribute("aria-hidden", "true");
                 walletViewSaveKey.removeAttribute("aria-hidden");
+                walletModal.classList.add("pp-wallet-modal--header-from-right");
+                setTimeout(function () { walletModal.classList.remove("pp-wallet-modal--header-from-right"); }, 250);
                 if (typeof queueWalletViewOverflowUpdate === "function") queueWalletViewOverflowUpdate();
             }
 
@@ -2162,7 +2164,17 @@
                 if (walletSaveKeyDoneBtn) {
                     walletSaveKeyDoneBtn.addEventListener("click", function (e) {
                         e.preventDefault();
+                        if (walletModal) walletModal.classList.add("pp-wallet-modal--from-save-key");
                         showAddressDetailView(currentBeneficiaryName, currentBeneficiaryInitials, currentNetworkName || "Ethereum (ERC-20)");
+                        if (walletModal) {
+                            var onTransitionEndFromSave = function (ev) {
+                                if (ev.target && ev.target.classList && ev.target.classList.contains("pp-wallet-modal__view") && ev.propertyName === "transform") {
+                                    walletModal.removeEventListener("transitionend", onTransitionEndFromSave);
+                                    walletModal.classList.remove("pp-wallet-modal--from-save-key");
+                                }
+                            };
+                            walletModal.addEventListener("transitionend", onTransitionEndFromSave);
+                        }
                     });
                 }
                 walletModal.addEventListener("click", function (e) {

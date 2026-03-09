@@ -1639,6 +1639,10 @@ $wallet-accent: $ew-text-link;
   &--export-key {
     transform: translateX(700%);
   }
+
+  &--save-key {
+    transform: translateX(800%);
+  }
 }
 
 .pp-wallet-modal--beneficiary-view {
@@ -1673,9 +1677,13 @@ $wallet-accent: $ew-text-link;
   .pp-wallet-modal__view--export-key {
     transform: translateX(600%);
   }
+
+  .pp-wallet-modal__view--save-key {
+    transform: translateX(700%);
+  }
 }
 
-.pp-wallet-modal--address-detail-view:not(.pp-wallet-modal--withdraw-select-view):not(.pp-wallet-modal--withdraw-form-view):not(.pp-wallet-modal--withdraw-confirm-view):not(.pp-wallet-modal--export-key-view) {
+.pp-wallet-modal--address-detail-view:not(.pp-wallet-modal--withdraw-select-view):not(.pp-wallet-modal--withdraw-form-view):not(.pp-wallet-modal--withdraw-confirm-view):not(.pp-wallet-modal--export-key-view):not(.pp-wallet-modal--save-key-view) {
   .pp-wallet-modal__view--list {
     transform: translateX(-200%);
   }
@@ -1706,6 +1714,10 @@ $wallet-accent: $ew-text-link;
 
   .pp-wallet-modal__view--export-key {
     transform: translateX(500%);
+  }
+
+  .pp-wallet-modal__view--save-key {
+    transform: translateX(600%);
   }
 }
 
@@ -1741,6 +1753,10 @@ $wallet-accent: $ew-text-link;
   .pp-wallet-modal__view--export-key {
     transform: translateX(400%);
   }
+
+  .pp-wallet-modal__view--save-key {
+    transform: translateX(500%);
+  }
 }
 
 .pp-wallet-modal--withdraw-form-view:not(.pp-wallet-modal--withdraw-confirm-view) {
@@ -1774,6 +1790,10 @@ $wallet-accent: $ew-text-link;
 
   .pp-wallet-modal__view--export-key {
     transform: translateX(300%);
+  }
+
+  .pp-wallet-modal__view--save-key {
+    transform: translateX(400%);
   }
 }
 
@@ -1810,6 +1830,10 @@ $wallet-accent: $ew-text-link;
   .pp-wallet-modal__view--export-key {
     transform: translateX(300%);
   }
+
+  .pp-wallet-modal__view--save-key {
+    transform: translateX(400%);
+  }
 }
 
 .pp-wallet-modal--withdraw-confirm-view {
@@ -1843,6 +1867,10 @@ $wallet-accent: $ew-text-link;
 
   .pp-wallet-modal__view--export-key {
     transform: translateX(200%);
+  }
+
+  .pp-wallet-modal__view--save-key {
+    transform: translateX(300%);
   }
 }
 
@@ -1878,6 +1906,10 @@ $wallet-accent: $ew-text-link;
 
   .pp-wallet-modal__view--export-key {
     transform: translateX(200%);
+  }
+
+  .pp-wallet-modal__view--save-key {
+    transform: translateX(300%);
   }
 }
 
@@ -1917,9 +1949,13 @@ $wallet-accent: $ew-text-link;
   .pp-wallet-modal__view--export-key {
     transform: translateX(100%);
   }
+
+  .pp-wallet-modal__view--save-key {
+    transform: translateX(200%);
+  }
 }
 
-// Export key flow: hide withdraw-flow views so animation is direct (Address detail ↔ Export key only)
+// Export key flow: animate only Address detail <-> Export key, keep Save key staged at +100%
 .pp-wallet-modal--export-key-view {
   .pp-wallet-modal__view--list,
   .pp-wallet-modal__view--beneficiary,
@@ -1931,38 +1967,33 @@ $wallet-accent: $ew-text-link;
     transform: translateX(-9999px);
   }
 
-  .pp-wallet-modal__view--address-detail {
-    visibility: visible;
-    transform: translateX(-500%);
-  }
-
   .pp-wallet-modal__view--export-key {
     visibility: visible;
     transform: translateX(0);
   }
+
+  .pp-wallet-modal__view--address-detail {
+    visibility: visible;
+    transform: translateX(-100%);
+  }
+
+  .pp-wallet-modal__view--save-key {
+    visibility: visible;
+    transform: translateX(100%);
+  }
 }
 
-// Save key view: off-screen when not in save-key-view
-.pp-wallet-modal:not(.pp-wallet-modal--save-key-view) .pp-wallet-modal__view--save-key {
-  visibility: hidden;
-  transform: translateX(9999px);
-}
-
-// Save key flow: Export key → Save your private key (hide close + back in header)
+// Save key flow: animate only Export key <-> Save key
 .pp-wallet-modal--save-key-view {
   .pp-wallet-modal__view--list,
   .pp-wallet-modal__view--beneficiary,
+  .pp-wallet-modal__view--address-detail,
   .pp-wallet-modal__view--withdraw-select,
   .pp-wallet-modal__view--withdraw-form,
   .pp-wallet-modal__view--withdraw-confirm,
   .pp-wallet-modal__view--withdraw-completed {
     visibility: hidden;
     transform: translateX(-9999px);
-  }
-
-  .pp-wallet-modal__view--address-detail {
-    visibility: visible;
-    transform: translateX(-500%);
   }
 
   .pp-wallet-modal__view--export-key {
@@ -2003,16 +2034,51 @@ $wallet-accent: $ew-text-link;
   }
 }
 
-// Back from Export key → Address detail: hide withdraw-flow views so animation is direct
+// Back from Export key → Address detail: only address-detail + export-key in lane
 .pp-wallet-modal--address-detail-view.pp-wallet-modal--from-export-key {
   .pp-wallet-modal__view--list,
   .pp-wallet-modal__view--beneficiary,
   .pp-wallet-modal__view--withdraw-select,
   .pp-wallet-modal__view--withdraw-form,
   .pp-wallet-modal__view--withdraw-confirm,
-  .pp-wallet-modal__view--withdraw-completed {
+  .pp-wallet-modal__view--withdraw-completed,
+  .pp-wallet-modal__view--save-key {
     visibility: hidden;
     transform: translateX(-9999px);
+  }
+
+  .pp-wallet-modal__view--address-detail {
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  .pp-wallet-modal__view--export-key {
+    visibility: visible;
+    transform: translateX(100%);
+  }
+}
+
+// Back from Save key → Address detail: only save-key + address-detail in lane
+.pp-wallet-modal--address-detail-view.pp-wallet-modal--from-save-key {
+  .pp-wallet-modal__view--list,
+  .pp-wallet-modal__view--beneficiary,
+  .pp-wallet-modal__view--withdraw-select,
+  .pp-wallet-modal__view--withdraw-form,
+  .pp-wallet-modal__view--withdraw-confirm,
+  .pp-wallet-modal__view--withdraw-completed,
+  .pp-wallet-modal__view--export-key {
+    visibility: hidden;
+    transform: translateX(-9999px);
+  }
+
+  .pp-wallet-modal__view--save-key {
+    visibility: visible;
+    transform: translateX(-100%);
+  }
+
+  .pp-wallet-modal__view--address-detail {
+    visibility: visible;
+    transform: translateX(0);
   }
 }
 
