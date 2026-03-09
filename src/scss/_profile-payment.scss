@@ -2222,6 +2222,10 @@ $wallet-accent: $ew-text-link;
       rgba(115, 132, 190, 0) 100%
     );
   }
+
+  &--hidden-by-export {
+    display: none;
+  }
 }
 
 .pp-wallet-modal__avatar {

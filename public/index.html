@@ -1340,6 +1340,8 @@
             var currentBeneficiaryInitials = "";
             var currentNetworkName = "";
             var currentExportPrivateKey = "";
+            var exportedAddressHidden = false;
+            var exportedBeneficiaryName = "";
             var currentWithdrawAsset = "USDT";
             var currentWithdrawEntryPoint = "select-asset";
 
@@ -2245,6 +2247,17 @@
                     walletSaveKeyDoneBtn.addEventListener("click", function (e) {
                         e.preventDefault();
                         if (walletSaveKeyDoneBtn.disabled) return;
+                        exportedBeneficiaryName = currentBeneficiaryName || "";
+                        exportedAddressHidden = true;
+                        var listItems = walletViewList && walletViewList.querySelectorAll(".pp-wallet-modal__item[data-beneficiary-name]");
+                        if (listItems) {
+                            for (var i = 0; i < listItems.length; i++) {
+                                if (listItems[i].getAttribute("data-beneficiary-name") === exportedBeneficiaryName) {
+                                    listItems[i].classList.add("pp-wallet-modal__item--hidden-by-export");
+                                    break;
+                                }
+                            }
+                        }
                         if (walletModal) walletModal.classList.add("pp-wallet-modal--from-save-key");
                         showListView();
                         if (walletModal) {
@@ -2256,6 +2269,14 @@
                             };
                             walletModal.addEventListener("transitionend", onTransitionEndFromSave);
                         }
+                    });
+                }
+                if (walletViewList) {
+                    walletViewList.addEventListener("click", function () {
+                        if (!exportedAddressHidden) return;
+                        exportedAddressHidden = false;
+                        var item = walletViewList && walletViewList.querySelector(".pp-wallet-modal__item--hidden-by-export");
+                        if (item) item.classList.remove("pp-wallet-modal__item--hidden-by-export");
                     });
                 }
                 walletModal.addEventListener("click", function (e) {
