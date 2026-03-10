@@ -2851,8 +2851,123 @@ $wallet-accent: $ew-text-link;
   flex: 1 1 auto;
   min-height: 0;
   height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.pp-wallet-export-key__page {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
   padding: 38px 40px 40px;
   gap: 16px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  opacity: 0;
+  transform: translateX(100%);
+  pointer-events: none;
+  transition:
+    transform 0.28s ease,
+    opacity 0.28s ease;
+}
+
+.pp-wallet-export-key__page.is-active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.pp-wallet-export-key__page.is-enter-right {
+  opacity: 1;
+  transform: translateX(100%);
+  z-index: 3;
+}
+
+.pp-wallet-export-key__page.is-enter-left {
+  opacity: 1;
+  transform: translateX(-100%);
+  z-index: 3;
+}
+
+.pp-wallet-export-key__page.is-exit-left {
+  opacity: 1;
+  transform: translateX(-100%);
+  z-index: 1;
+}
+
+.pp-wallet-export-key__page.is-exit-right {
+  opacity: 1;
+  transform: translateX(100%);
+  z-index: 1;
+}
+
+.pp-wallet-export-key__page[hidden] {
+  display: none;
+}
+
+.pp-wallet-export-key__page--intro,
+.pp-wallet-export-key__page--risk {
+  text-align: center;
+}
+
+.pp-wallet-export-key__hero {
+  display: flex;
+  justify-content: center;
+  padding-top: 24px;
+}
+
+.pp-wallet-export-key__hero-icon-wrap {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: $ew-bg-surface-secondary;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pp-wallet-export-key__hero-icon {
+  display: block;
+}
+
+.pp-wallet-export-key__page-title {
+  margin: 24px 0 0;
+  font-family: $font-ew;
+  font-size: $ew-size-xxl;
+  font-weight: $ew-title-weight;
+  color: $ew-text-primary;
+  line-height: 1.2;
+}
+
+.pp-wallet-export-key__page-body {
+  margin: 12px 0 0;
+  font-family: $font-ew;
+  font-size: $ew-size-xxl;
+  font-weight: $ew-body-weight;
+  color: $ew-text-primary;
+  line-height: 1.4;
+}
+
+.pp-wallet-export-key__page-emphasis {
+  margin: 18px 0 0;
+  font-family: $font-ew;
+  font-size: $ew-size-xxl;
+  font-weight: $ew-title-weight;
+  color: $ew-text-warning;
+  line-height: 1.3;
+}
+
+.pp-wallet-export-key__page--intro .pp-wallet-export-key__actions,
+.pp-wallet-export-key__page--risk .pp-wallet-export-key__actions {
+  margin-top: auto;
+  padding-top: 24px;
 }
 
 .pp-wallet-export-key__info {
