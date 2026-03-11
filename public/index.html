@@ -773,7 +773,10 @@
             <span class="pp-wallet-snackbar__text" id="walletSnackbarText">Copied to clipboard</span>
         </div>
         <div class="pp-wallet-prototype-toast" id="walletPrototypeToast" aria-live="polite" aria-hidden="true">
-            <span class="pp-wallet-prototype-toast__text" id="walletPrototypeToastText">Beneficiary list has been reset</span>
+            <div class="pp-wallet-prototype-toast__text">
+                <div class="pp-wallet-prototype-toast__eyebrow">Prototype state change</div>
+                <div class="pp-wallet-prototype-toast__message" id="walletPrototypeToastText">Beneficiary list has been reset to default</div>
+            </div>
         </div>
         <div class="pp-ew-dropdown" id="ppEwDropdown" role="menu" aria-hidden="true" aria-label="Menu">
             <ul class="pp-ew-dropdown__list" id="ppEwDropdownList"></ul>
@@ -2468,14 +2471,16 @@
                 var walletPrototypeToastText = document.getElementById("walletPrototypeToastText");
                 function showWalletPrototypeToast(message) {
                     if (!walletPrototypeToast) return;
-                    clearTimeout(walletPrototypeToast._hideTimer);
                     if (walletPrototypeToastText && message) walletPrototypeToastText.textContent = message;
                     walletPrototypeToast.setAttribute("aria-hidden", "false");
                     walletPrototypeToast.classList.add("pp-wallet-prototype-toast--visible");
-                    walletPrototypeToast._hideTimer = setTimeout(function () {
+                }
+                if (walletPrototypeToast) {
+                    walletPrototypeToast.addEventListener("click", function () {
+                        if (!walletPrototypeToast.classList.contains("pp-wallet-prototype-toast--visible")) return;
                         walletPrototypeToast.classList.remove("pp-wallet-prototype-toast--visible");
                         walletPrototypeToast.setAttribute("aria-hidden", "true");
-                    }, 2800);
+                    });
                 }
                 var walletExportKeyAddressCopy = document.getElementById("walletExportKeyAddressCopy");
                 if (walletExportKeyAddressCopy && walletSnackbar) {
