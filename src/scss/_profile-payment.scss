@@ -3145,6 +3145,55 @@ $wallet-accent: $ew-text-link;
   text-decoration: none;
 }
 
+// Confirm page: address + network block (Figma two-column)
+.pp-wallet-export-key__confirm-top {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
+
+.pp-wallet-export-key__confirm-address,
+.pp-wallet-export-key__confirm-network {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pp-wallet-export-key__confirm-meta {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.pp-wallet-export-key__info-meta {
+  font-family: $font-ew;
+  font-size: $ew-size-xs;
+  font-weight: $ew-body-weight;
+  color: $ew-text-placeholder;
+  line-height: 1;
+}
+
+.pp-wallet-export-key__confirm-value-row {
+  padding: 2px 0 3px;
+}
+
+.pp-wallet-export-key__info-value--xl {
+  font-size: $ew-size-xl;
+  font-weight: $ew-headline-weight;
+}
+
+.pp-wallet-export-key__divider--light {
+  background: $ew-border-highcon;
+}
+
+.pp-wallet-export-key__page--confirm .pp-wallet-export-key__copy-icon img {
+  width: 24px;
+  height: 24px;
+}
+
 .pp-wallet-export-key__info {
   display: flex;
   gap: 6px;
@@ -3250,12 +3299,26 @@ $wallet-accent: $ew-text-link;
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 20px 20px;
+  padding: 20px;
   border-bottom: 1px solid $ew-border-highcon;
 
   &:last-child {
     border-bottom: 0;
   }
+}
+
+.pp-wallet-export-key__warning-illus {
+  flex-shrink: 0;
+  width: 70px;
+  height: 60px;
+  overflow: hidden;
+}
+
+.pp-wallet-export-key__warning-illus-img {
+  display: block;
+  width: 70px;
+  height: 60px;
+  object-fit: contain;
 }
 
 .pp-wallet-export-key__warning-icon-wrap {
@@ -3276,24 +3339,25 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-export-key__warning-content {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   min-width: 0;
+  justify-content: center;
 }
 
 .pp-wallet-export-key__warning-main {
   font-family: $font-ew;
-  font-size: $ew-size-m;
-  font-weight: $ew-body-weight;
+  font-size: $ew-size-l;
+  font-weight: $ew-title-weight;
   color: $ew-text-primary;
-  line-height: 1.4;
+  line-height: 1.2;
 }
 
 .pp-wallet-export-key__warning-sub {
   font-family: $font-ew;
   font-size: $ew-size-s;
-  font-weight: $ew-subtitle-weight;
-  color: $ew-text-secondary;
-  line-height: 1.2;
+  font-weight: $ew-body-weight;
+  color: $ew-text-primary;
+  line-height: 1.4;
 }
 
 .pp-wallet-export-key__consent {

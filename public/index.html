@@ -595,7 +595,7 @@
                                     </span>
                                 </div>
                                 <h2 class="pp-wallet-export-key__page-title">Exporting your private key is irreversible</h2>
-                                <p class="pp-wallet-export-key__page-body">Once exported, the consequences listed earlier cannot be undone. Your private key becomes your responsibility. Anyone with this key can move your assets. Keep it private: if lost, it cannot be recovered.</p>
+                                <p class="pp-wallet-export-key__page-body">Once exported, the consequences mentioned earlier cannot be undone. Your private key becomes your responsibility. Anyone with this key can move your assets. Keep it private: if lost, it cannot be recovered.</p>
                                 <div class="pp-wallet-export-key__actions pp-wallet-bnc pp-wallet-bnc--split">
                                     <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletExportRisk3BackBtn">Back</button>
                                     <button type="button" class="ew-btn ew-btn--lg ew-btn--primary" id="walletExportRisk3ContinueBtn">Continue</button>
@@ -603,49 +603,56 @@
                             </section>
 
                             <section class="pp-wallet-export-key__page pp-wallet-export-key__page--confirm" id="walletExportKeyPageConfirm" hidden>
-                                <div class="pp-wallet-export-key__info">
-                                    <div class="pp-wallet-export-key__info-row">
-                                        <span class="pp-wallet-export-key__info-label">Address</span>
-                                        <button type="button" class="pp-wallet-export-key__copy-row" id="walletExportKeyAddressCopy" aria-label="Copy address" data-copy-value="">
-                                            <span class="pp-wallet-export-key__info-value" id="walletExportKeyAddress">0x2134...1233f8</span>
-                                            <span class="pp-wallet-export-key__copy-icon" aria-hidden="true"><img src="assets/icon-ew-copy.svg" alt="" width="20" height="20" /></span>
-                                        </button>
+                                <div class="pp-wallet-export-key__confirm-top">
+                                    <div class="pp-wallet-export-key__confirm-address">
+                                        <div class="pp-wallet-export-key__confirm-meta">
+                                            <span class="pp-wallet-export-key__info-label">Address</span>
+                                            <span class="pp-wallet-export-key__info-meta" id="walletExportKeyBeneficiary">AGP Technology</span>
+                                        </div>
+                                        <div class="pp-wallet-export-key__confirm-value-row">
+                                            <button type="button" class="pp-wallet-export-key__copy-row" id="walletExportKeyAddressCopy" aria-label="Copy address" data-copy-value="">
+                                                <span class="pp-wallet-export-key__info-value pp-wallet-export-key__info-value--xl" id="walletExportKeyAddress">0x2134...1233f8</span>
+                                                <span class="pp-wallet-export-key__copy-icon" aria-hidden="true"><img src="assets/icon-ew-copy.svg" alt="" width="24" height="24" /></span>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="pp-wallet-export-key__info-row">
+                                    <div class="pp-wallet-export-key__confirm-network">
                                         <span class="pp-wallet-export-key__info-label">Network</span>
-                                        <span class="pp-wallet-export-key__info-value" id="walletExportKeyNetwork">Ethereum (ERC-20)</span>
+                                        <span class="pp-wallet-export-key__info-value pp-wallet-export-key__info-value--xl" id="walletExportKeyNetwork">Ethereum (ERC-20)</span>
                                     </div>
                                 </div>
-                                <div class="pp-wallet-export-key__divider" aria-hidden="true"></div>
+                                <div class="pp-wallet-export-key__divider pp-wallet-export-key__divider--light" aria-hidden="true"></div>
                                 <div class="pp-wallet-export-key__important">
                                     <div class="pp-wallet-export-key__important-head">
                                         <img src="assets/icon-ew-warning-orange.svg" alt="" width="24" height="24" class="pp-wallet-export-key__important-icon" />
-                                        <span class="pp-wallet-export-key__important-title">Important</span>
+                                        <span class="pp-wallet-export-key__important-title">Consequences &amp; Risks of exporting</span>
                                     </div>
                                     <ul class="pp-wallet-export-key__warnings">
                                         <li class="pp-wallet-export-key__warning-item">
-                                            <span class="pp-wallet-export-key__warning-icon-wrap">
-                                                <img src="assets/icon-ew-eye-closed-yellow.svg" alt="" width="24" height="24" class="pp-wallet-export-key__warning-icon" />
+                                            <span class="pp-wallet-export-key__warning-illus">
+                                                <img src="assets/Illu1.svg" alt="" width="70" height="60" class="pp-wallet-export-key__warning-illus-img" />
                                             </span>
                                             <span class="pp-wallet-export-key__warning-content">
-                                                <span class="pp-wallet-export-key__warning-main">After export, this address will no longer be available in this embedded wallet or in XREX Pay</span>
-                                                <span class="pp-wallet-export-key__warning-sub">You can still use this address in other Web3 wallets by importing the private key</span>
+                                                <span class="pp-wallet-export-key__warning-main">Address will be removed</span>
+                                                <span class="pp-wallet-export-key__warning-sub">The above mentioned address will no longer appear in this embedded wallet and XREX Pay.</span>
                                             </span>
                                         </li>
                                         <li class="pp-wallet-export-key__warning-item">
-                                            <span class="pp-wallet-export-key__warning-icon-wrap">
-                                                <img src="assets/icon-ew-stop-yellow.svg" alt="" width="24" height="24" class="pp-wallet-export-key__warning-icon" />
+                                            <span class="pp-wallet-export-key__warning-illus">
+                                                <img src="assets/Illu2.svg" alt="" width="70" height="60" class="pp-wallet-export-key__warning-illus-img" />
                                             </span>
                                             <span class="pp-wallet-export-key__warning-content">
-                                                <span class="pp-wallet-export-key__warning-main">After export, this address can’t be used for auto-debit payments in XREX Pay</span>
+                                                <span class="pp-wallet-export-key__warning-main">Auto-debit payments stop</span>
+                                                <span class="pp-wallet-export-key__warning-sub">Funds will no longer be automatically debited from this address.
                                             </span>
                                         </li>
                                         <li class="pp-wallet-export-key__warning-item">
-                                            <span class="pp-wallet-export-key__warning-icon-wrap">
-                                                <img src="assets/icon-ew-key-yellow.svg" alt="" width="24" height="24" class="pp-wallet-export-key__warning-icon" />
+                                            <span class="pp-wallet-export-key__warning-illus">
+                                                <img src="assets/Illu3.svg" alt="" width="70" height="60" class="pp-wallet-export-key__warning-illus-img" />
                                             </span>
                                             <span class="pp-wallet-export-key__warning-content">
-                                                <span class="pp-wallet-export-key__warning-main">This is a self-custody wallet. Anyone with this key can move your assets: keep your key private</span>
+                                                <span class="pp-wallet-export-key__warning-main">Exporting your private key is irreversible</span>
+                                                <span class="pp-wallet-export-key__warning-sub">The consequences listed above cannot be undone. Your private key becomes your responsibility.</span>
                                             </span>
                                         </li>
                                     </ul>
@@ -653,10 +660,10 @@
                                 <label class="pp-wallet-export-key__consent">
                                     <input type="checkbox" id="walletExportKeyConsent" class="pp-wallet-export-key__consent-input" />
                                     <span class="pp-wallet-export-key__consent-box" aria-hidden="true"></span>
-                                    <span class="pp-wallet-export-key__consent-text">I understand the consequences of exporting this key described above and wish to continue.</span>
+                                    <span class="pp-wallet-export-key__consent-text">I understand the Consequences &amp; Risks and wish to continue</span>
                                 </label>
                                 <div class="pp-wallet-export-key__actions pp-wallet-bnc pp-wallet-bnc--split">
-                                    <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletExportKeyCancelBtn">Back</button>
+                                    <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletExportKeyCancelBtn">Cancel</button>
                                     <button type="button" class="ew-btn ew-btn--lg ew-btn--primary ew-btn--disabled" id="walletExportKeyRevealBtn" disabled>Export key</button>
                                 </div>
                             </section>
@@ -1642,6 +1649,8 @@
                 if (exportCopyBtn && addressRow) exportCopyBtn.setAttribute("data-copy-value", addressRow.getAttribute("data-copy-value") || "");
                 var exportNetworkEl = document.getElementById("walletExportKeyNetwork");
                 if (exportNetworkEl) exportNetworkEl.textContent = currentNetworkName || "Ethereum (ERC-20)";
+                var exportBeneficiaryEl = document.getElementById("walletExportKeyBeneficiary");
+                if (exportBeneficiaryEl) exportBeneficiaryEl.textContent = currentBeneficiaryName || "AGP Technology";
                 if (introNetworkEl) introNetworkEl.textContent = currentNetworkName || "Ethereum (ERC-20)";
                 var consentCheckbox = document.getElementById("walletExportKeyConsent");
                 var revealBtn = document.getElementById("walletExportKeyRevealBtn");
