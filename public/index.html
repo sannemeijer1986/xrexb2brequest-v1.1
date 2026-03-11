@@ -2221,7 +2221,8 @@
                 walletModal.classList.remove("pp-wallet-modal--wallet-account-view");
                 walletModal.classList.remove("pp-wallet-modal--save-key-done");
                 var overlay = document.createElement("div");
-                overlay.className = "pp-wallet-modal__transition-overlay";
+                // Reverse slide, same as back direction on withdraw flow
+                overlay.className = "pp-wallet-modal__transition-overlay pp-wallet-modal__transition-overlay--reverse";
                 var fromClone = walletViewSaveKey.cloneNode(true);
                 var toClone = walletViewList.cloneNode(true);
                 stripCloneIds(fromClone);

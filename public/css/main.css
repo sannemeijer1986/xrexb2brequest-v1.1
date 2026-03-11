@@ -2661,6 +2661,10 @@ body.profile-payment-page .site-footer {
   transition: none !important;
 }
 
+.pp-wallet-modal--skip-view-animation .pp-wallet-modal__transition-panel {
+  transition: transform 0.25s ease !important;
+}
+
 .pp-wallet-modal__transition-overlay {
   position: absolute;
   inset: 0;
@@ -2688,6 +2692,18 @@ body.profile-payment-page .site-footer {
 }
 
 .pp-wallet-modal__transition-overlay--active .pp-wallet-modal__transition-panel--to {
+  transform: translateX(0) !important;
+}
+
+.pp-wallet-modal__transition-overlay--reverse .pp-wallet-modal__transition-panel--to {
+  transform: translateX(-100%) !important;
+}
+
+.pp-wallet-modal__transition-overlay--reverse.pp-wallet-modal__transition-overlay--active .pp-wallet-modal__transition-panel--from {
+  transform: translateX(100%) !important;
+}
+
+.pp-wallet-modal__transition-overlay--reverse.pp-wallet-modal__transition-overlay--active .pp-wallet-modal__transition-panel--to {
   transform: translateX(0) !important;
 }
 
