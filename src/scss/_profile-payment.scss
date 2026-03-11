@@ -3024,7 +3024,7 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-export-key__page-body {
   margin: 12px 0 0;
   font-family: $font-ew;
-  font-size: $ew-size-xxl;
+  font-size: $ew-size-l;
   font-weight: $ew-body-weight;
   color: $ew-text-primary;
   line-height: 1.4;
@@ -3043,6 +3043,15 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-export-key__page--risk .pp-wallet-export-key__actions {
   margin-top: auto;
   padding-top: 24px;
+}
+
+.pp-wallet-export-key__page--intro .pp-wallet-export-key__actions .pp-wallet-bnc {
+  padding-top: 0 !important;
+}
+
+.pp-wallet-export-key__page--risk .pp-wallet-export-key__actions {
+  justify-items: center;
+  align-items: center;
 }
 
 .pp-wallet-export-key__intro-copy {
@@ -3068,15 +3077,11 @@ $wallet-accent: $ew-text-link;
   flex-direction: column;
   gap: 16px;
   width: 100%;
+  margin-bottom: 24px;
 }
 
 .pp-wallet-export-key__intro-details-title {
   margin: 0;
-  font-family: $font-ew;
-  font-size: $ew-size-l;
-  font-weight: $ew-title-weight;
-  color: $ew-text-primary;
-  line-height: 1;
 }
 
 .pp-wallet-export-key__intro-details-card {
@@ -3090,53 +3095,21 @@ $wallet-accent: $ew-text-link;
 }
 
 .pp-wallet-export-key__intro-details-row {
-  display: flex;
   align-items: flex-start;
-  gap: 40px;
 }
 
 .pp-wallet-export-key__intro-details-label {
   flex: 1 1 auto;
   min-width: 0;
-  font-family: $font-ew;
-  font-size: $ew-size-xl;
-  font-weight: $ew-body-weight;
-  color: $ew-text-secondary;
-  line-height: 1;
 }
 
 .pp-wallet-export-key__intro-details-value {
   flex: 0 0 auto;
   white-space: nowrap;
-  font-family: $font-ew;
-  font-size: $ew-size-xl;
-  font-weight: $ew-subtitle-weight;
-  color: $ew-text-primary;
-  line-height: 1;
 }
 
 .pp-wallet-export-key__intro-warning {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
   width: 100%;
-  padding: 16px;
-  border: 1px solid $ew-alert-border-warning;
-  border-radius: 16px;
-  background: $ew-alert-bg-warning;
-}
-
-.pp-wallet-export-key__intro-warning-icon {
-  flex-shrink: 0;
-}
-
-.pp-wallet-export-key__intro-warning-text {
-  margin: 0;
-  font-family: $font-ew;
-  font-size: $ew-size-m;
-  font-weight: $ew-body-weight;
-  color: $ew-alert-content-warning;
-  line-height: 1.4;
 }
 
 .pp-wallet-export-key__actions--intro {
@@ -3146,8 +3119,13 @@ $wallet-accent: $ew-text-link;
   width: 100%;
 }
 
+.pp-wallet-export-key__actions--intro .pp-wallet-export-key__skip {
+  flex: 1;
+  justify-content: flex-end;
+}
+
 .pp-wallet-export-key__actions--intro .pp-wallet-bnc {
-  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .pp-wallet-export-key__skip {
@@ -3160,10 +3138,11 @@ $wallet-accent: $ew-text-link;
   font-weight: $ew-subtitle-weight;
   color: $ew-text-link;
   cursor: pointer;
+  text-align: right;
 }
 
 .pp-wallet-export-key__skip:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .pp-wallet-export-key__info {
