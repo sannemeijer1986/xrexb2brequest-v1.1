@@ -1645,6 +1645,10 @@ $wallet-accent: $ew-text-link;
   }
 }
 
+.pp-wallet-modal--skip-view-animation .pp-wallet-modal__view {
+  transition: none !important;
+}
+
 .pp-wallet-modal--beneficiary-view {
   .pp-wallet-modal__view--list {
     transform: translateX(-100%);
@@ -2058,10 +2062,44 @@ $wallet-accent: $ew-text-link;
   }
 }
 
-// Back from Save key → Address detail: only save-key + address-detail in lane
-.pp-wallet-modal--address-detail-view.pp-wallet-modal--from-save-key {
-  .pp-wallet-modal__view--list,
+// Save key done → Wallet account(list): source state
+.pp-wallet-modal--save-key-view.pp-wallet-modal--save-to-list {
+  .pp-wallet-modal__view--list {
+    visibility: visible;
+    transform: translateX(100%);
+  }
+
+  .pp-wallet-modal__view--save-key {
+    visibility: visible;
+    transform: translateX(0);
+  }
+
   .pp-wallet-modal__view--beneficiary,
+  .pp-wallet-modal__view--address-detail,
+  .pp-wallet-modal__view--withdraw-select,
+  .pp-wallet-modal__view--withdraw-form,
+  .pp-wallet-modal__view--withdraw-confirm,
+  .pp-wallet-modal__view--withdraw-completed,
+  .pp-wallet-modal__view--export-key {
+    visibility: hidden;
+    transform: translateX(-9999px);
+  }
+}
+
+// Save key done → Wallet account(list): destination state
+.pp-wallet-modal--wallet-account-view.pp-wallet-modal--save-to-list {
+  .pp-wallet-modal__view--list {
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  .pp-wallet-modal__view--save-key {
+    visibility: visible;
+    transform: translateX(-100%);
+  }
+
+  .pp-wallet-modal__view--beneficiary,
+  .pp-wallet-modal__view--address-detail,
   .pp-wallet-modal__view--withdraw-select,
   .pp-wallet-modal__view--withdraw-form,
   .pp-wallet-modal__view--withdraw-confirm,
@@ -2071,15 +2109,23 @@ $wallet-accent: $ew-text-link;
     transform: translateX(-9999px);
   }
 
-  .pp-wallet-modal__view--save-key {
-    visibility: visible;
-    transform: translateX(-100%);
+  .pp-wallet-modal__footer {
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    min-height: 0;
+    padding: 0;
+    flex: 0 0 0;
+    border-top-width: 0;
+    overflow: hidden;
   }
+}
 
-  .pp-wallet-modal__view--address-detail {
-    visibility: visible;
-    transform: translateX(0);
-  }
+// Before returning to the normal list state, freeze the save-key view off-screen
+.pp-wallet-modal--save-key-done .pp-wallet-modal__view--save-key {
+  transition: none;
+  visibility: hidden;
+  transform: translateX(-9999px);
 }
 
 // Direct transition: Withdrawal submitted → Address detail (no in-between pages visible)
