@@ -3163,8 +3163,6 @@ $wallet-accent: $ew-text-link;
 
 .pp-wallet-export-key__confirm-meta {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
   gap: 6px;
 }
 
@@ -3173,6 +3171,7 @@ $wallet-accent: $ew-text-link;
   font-size: $ew-size-xs;
   font-weight: $ew-body-weight;
   color: $ew-text-placeholder;
+  margin-top: 1px;
   line-height: 1;
 }
 

@@ -581,7 +581,7 @@
                                     </span>
                                 </div>
                                 <h2 class="pp-wallet-export-key__page-title">Auto-debit payments stop</h2>
-                                <p class="pp-wallet-export-key__page-body">After exporting the private key, auto-debit payments for this address will stop. To keep paying the beneficiary for this address via XREX Pay using stable coins, you’ll need to set up auto-debit again.</p>
+                                <p class="pp-wallet-export-key__page-body">Once exported, auto-debit payments for this address will stop. To keep paying the beneficiary for this address via XREX Pay using stable coins, you’ll need to set up auto-debit again.</p>
                                 <div class="pp-wallet-export-key__actions pp-wallet-bnc pp-wallet-bnc--split">
                                     <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletExportRisk2BackBtn">Back</button>
                                     <button type="button" class="ew-btn ew-btn--lg ew-btn--primary" id="walletExportRisk2ContinueBtn">ontinue</button>
@@ -595,7 +595,7 @@
                                     </span>
                                 </div>
                                 <h2 class="pp-wallet-export-key__page-title">Exporting your private key is irreversible</h2>
-                                <p class="pp-wallet-export-key__page-body">Once exported, the consequences mentioned earlier cannot be undone. Your private key becomes your responsibility. Anyone with this key can move your assets. Keep it private: if lost, it cannot be recovered.</p>
+                                <p class="pp-wallet-export-key__page-body">Once exported, the consequences mentioned earlier cannot be undone. Your private key becomes your responsibility. Anyone with this key can move assets from the associated address. Keep it private: if lost, it cannot be recovered.</p>
                                 <div class="pp-wallet-export-key__actions pp-wallet-bnc pp-wallet-bnc--split">
                                     <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletExportRisk3BackBtn">Back</button>
                                     <button type="button" class="ew-btn ew-btn--lg ew-btn--primary" id="walletExportRisk3ContinueBtn">Continue</button>
@@ -663,7 +663,7 @@
                                     <span class="pp-wallet-export-key__consent-text">I understand the Consequences &amp; Risks and wish to continue</span>
                                 </label>
                                 <div class="pp-wallet-export-key__actions pp-wallet-bnc pp-wallet-bnc--split">
-                                    <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletExportKeyCancelBtn">Cancel</button>
+                                    <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletExportKeyCancelBtn">Back</button>
                                     <button type="button" class="ew-btn ew-btn--lg ew-btn--primary ew-btn--disabled" id="walletExportKeyRevealBtn" disabled>Export key</button>
                                 </div>
                             </section>
@@ -1734,6 +1734,12 @@
                         }
                     });
                     currentExportFlowStep = target;
+                    if (target === "confirm") {
+                        var consentEl = document.getElementById("walletExportKeyConsent");
+                        var revealEl = document.getElementById("walletExportKeyRevealBtn");
+                        if (consentEl) consentEl.checked = false;
+                        if (revealEl) { revealEl.disabled = true; revealEl.classList.add("ew-btn--disabled"); }
+                    }
                     if (typeof queueWalletViewOverflowUpdate === "function") queueWalletViewOverflowUpdate();
                     return;
                 }
@@ -1757,6 +1763,12 @@
                     targetPage.classList.remove("is-enter-right", "is-enter-left");
                     targetPage.classList.add("is-active");
                     exportFlowTransitionTimer = null;
+                    if (target === "confirm") {
+                        var consentEl = document.getElementById("walletExportKeyConsent");
+                        var revealEl = document.getElementById("walletExportKeyRevealBtn");
+                        if (consentEl) consentEl.checked = false;
+                        if (revealEl) { revealEl.disabled = true; revealEl.classList.add("ew-btn--disabled"); }
+                    }
                     if (typeof queueWalletViewOverflowUpdate === "function") queueWalletViewOverflowUpdate();
                 }, 300);
 
@@ -2563,21 +2575,24 @@
                     if (cancelBtn) {
                         cancelBtn.addEventListener("click", function (e) {
                             e.preventDefault();
-                            setExportKeyFlowStep("risk3");
+                            setExportKeyFlowStep(exportKeyFlowSkippedExplanation ? "intro" : "risk3");
                         });
                     }
                     if (revealBtn) {
                         revealBtn.addEventListener("click", function (e) {
                             e.preventDefault();
                             if (revealBtn.disabled) return;
-                            currentExportPrivateKey = "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce036f9f8f6d8c1a5b7c9d2";
-                            if (walletProcessingModalLabel) walletProcessingModalLabel.textContent = "Preparing export";
-                            showWithdrawProcessingModal();
-                            setTimeout(function () {
-                                hideWithdrawProcessingModal();
-                                showSaveKeyView();
-                                if (typeof showWalletSnackbar === "function") showWalletSnackbar("Private key ready to save", "assets/icon-ew-check.svg");
-                            }, 1500);
+                            if (typeof openWalletPasscodeModal !== "function") return;
+                            openWalletPasscodeModal(function () {
+                                currentExportPrivateKey = "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce036f9f8f6d8c1a5b7c9d2";
+                                if (walletProcessingModalLabel) walletProcessingModalLabel.textContent = "Preparing export";
+                                showWithdrawProcessingModal();
+                                setTimeout(function () {
+                                    hideWithdrawProcessingModal();
+                                    showSaveKeyView();
+                                    if (typeof showWalletSnackbar === "function") showWalletSnackbar("Private key ready to save", "assets/icon-ew-check.svg");
+                                }, 1500);
+                            });
                         });
                     }
                 })();
