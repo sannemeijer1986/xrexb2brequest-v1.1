@@ -4299,6 +4299,10 @@ body.profile-payment-page .site-footer {
   gap: 16px;
 }
 
+.pp-wallet-save-key__details > .pp-wallet-save-key__detail-row:has(.pp-wallet-save-key__detail-link) {
+  margin-bottom: 16px;
+}
+
 .pp-wallet-save-key__detail-label {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   font-size: 18px;
@@ -4312,6 +4316,21 @@ body.profile-payment-page .site-footer {
   font-weight: 600;
   color: #FFFFFF;
   flex-shrink: 0;
+}
+
+.pp-wallet-save-key__detail-link {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #4779FF;
+  text-decoration: none;
+  text-underline-offset: 3px;
+  text-align: right;
+  flex: 0 1 auto;
+}
+
+.pp-wallet-save-key__detail-link:hover {
+  text-decoration: none;
 }
 
 .pp-wallet-save-key__detail-copy {
@@ -4344,7 +4363,9 @@ body.profile-payment-page .site-footer {
 .pp-wallet-save-key__divider {
   width: 100%;
   height: 1px;
+  flex-shrink: 0;
   background: #293155;
+  opacity: 0.8;
 }
 
 .pp-wallet-save-key__consent {
@@ -4389,8 +4410,12 @@ body.profile-payment-page .site-footer {
 
 .pp-wallet-save-key__actions {
   margin-top: auto;
-  padding-top: 24px;
+  padding-top: 0;
   flex-shrink: 0;
+}
+
+.pp-wallet-save-key__actions.pp-wallet-bnc {
+  padding-top: 0;
 }
 
 .pp-wallet-bnc {
