@@ -1649,6 +1649,36 @@ $wallet-accent: $ew-text-link;
   transition: none !important;
 }
 
+.pp-wallet-modal__transition-overlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pp-wallet-modal__transition-panel {
+  position: absolute !important;
+  inset: 0;
+  visibility: visible !important;
+  transform: translateX(0) !important;
+  transition: transform 0.25s ease !important;
+  pointer-events: none;
+  background-color: $ew-bg-base-primary;
+}
+
+.pp-wallet-modal__transition-panel--to {
+  transform: translateX(100%) !important;
+}
+
+.pp-wallet-modal__transition-overlay--active .pp-wallet-modal__transition-panel--from {
+  transform: translateX(-100%) !important;
+}
+
+.pp-wallet-modal__transition-overlay--active .pp-wallet-modal__transition-panel--to {
+  transform: translateX(0) !important;
+}
+
 .pp-wallet-modal--beneficiary-view {
   .pp-wallet-modal__view--list {
     transform: translateX(-100%);
@@ -2958,7 +2988,6 @@ $wallet-accent: $ew-text-link;
   display: none;
 }
 
-.pp-wallet-export-key__page--intro,
 .pp-wallet-export-key__page--risk {
   text-align: center;
 }
@@ -3014,6 +3043,127 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-export-key__page--risk .pp-wallet-export-key__actions {
   margin-top: auto;
   padding-top: 24px;
+}
+
+.pp-wallet-export-key__intro-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 0 20px 16px;
+}
+
+.pp-wallet-export-key__page--intro .pp-wallet-export-key__page-title {
+  margin: 0;
+}
+
+.pp-wallet-export-key__page--intro .pp-wallet-export-key__page-body {
+  margin: 0;
+}
+
+.pp-wallet-export-key__intro-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.pp-wallet-export-key__intro-details-title {
+  margin: 0;
+  font-family: $font-ew;
+  font-size: $ew-size-l;
+  font-weight: $ew-title-weight;
+  color: $ew-text-primary;
+  line-height: 1;
+}
+
+.pp-wallet-export-key__intro-details-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 16px;
+  background: $ew-bg-surface-primary;
+}
+
+.pp-wallet-export-key__intro-details-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.pp-wallet-export-key__intro-details-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: $font-ew;
+  font-size: $ew-size-xl;
+  font-weight: $ew-body-weight;
+  color: $ew-text-secondary;
+  line-height: 1;
+}
+
+.pp-wallet-export-key__intro-details-value {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-family: $font-ew;
+  font-size: $ew-size-xl;
+  font-weight: $ew-subtitle-weight;
+  color: $ew-text-primary;
+  line-height: 1;
+}
+
+.pp-wallet-export-key__intro-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid $ew-alert-border-warning;
+  border-radius: 16px;
+  background: $ew-alert-bg-warning;
+}
+
+.pp-wallet-export-key__intro-warning-icon {
+  flex-shrink: 0;
+}
+
+.pp-wallet-export-key__intro-warning-text {
+  margin: 0;
+  font-family: $font-ew;
+  font-size: $ew-size-m;
+  font-weight: $ew-body-weight;
+  color: $ew-alert-content-warning;
+  line-height: 1.4;
+}
+
+.pp-wallet-export-key__actions--intro {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.pp-wallet-export-key__actions--intro .pp-wallet-bnc {
+  margin-left: auto;
+}
+
+.pp-wallet-export-key__skip {
+  border: none;
+  background: transparent;
+  padding: 0 8px;
+  margin: 0;
+  font-family: $font-ew;
+  font-size: $ew-size-s;
+  font-weight: $ew-subtitle-weight;
+  color: $ew-text-link;
+  cursor: pointer;
+}
+
+.pp-wallet-export-key__skip:hover {
+  text-decoration: underline;
 }
 
 .pp-wallet-export-key__info {

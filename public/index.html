@@ -526,25 +526,37 @@
                     <div class="pp-wallet-modal__view pp-wallet-modal__view--export-key" id="walletViewExportKey" aria-hidden="true">
                         <div class="pp-wallet-export-key">
                             <section class="pp-wallet-export-key__page pp-wallet-export-key__page--intro" id="walletExportKeyPageIntro">
-                                <div class="pp-wallet-export-key__hero">
-                                    <span class="pp-wallet-export-key__hero-icon-wrap">
-                                        <img src="assets/Illu-intro.svg" alt="" width="160" height="160" class="pp-wallet-export-key__hero-icon" />
-                                    </span>
+                                <div class="pp-wallet-export-key__intro-copy">
+                                    <h2 class="pp-wallet-export-key__page-title">What is a private key</h2>
+                                    <p class="pp-wallet-export-key__page-body">A private key is a secret code that gives full access to a wallet address and its funds across various Web3 services.</p>
                                 </div>
-                                <h2 class="pp-wallet-export-key__page-title">Before exporting this private key</h2>
-                                <p class="pp-wallet-export-key__page-body">
-                                    You’re about to export the private key for
-                                    <strong id="walletExportIntroNetwork">Ethereum (ERC-20)</strong>
-                                    address
-                                    <strong id="walletExportIntroAddress">0x2134...1233f8</strong>
-                                    associated with beneficiary
-                                    <strong id="walletExportIntroBeneficiary">AGP Technology</strong>.
-                                </p>
-                                <p class="pp-wallet-export-key__page-body">This key lets you access this address and sign in/send funds across various Web3 services.</p>
-                                <p class="pp-wallet-export-key__page-emphasis">Exporting this key has important Consequences &amp; Risks.</p>
-                                <div class="pp-wallet-export-key__actions pp-wallet-bnc pp-wallet-bnc--split">
-                                    <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletExportIntroCancelBtn">Cancel</button>
-                                    <button type="button" class="ew-btn ew-btn--lg ew-btn--primary" id="walletExportIntroContinueBtn">View Consequences &amp; Risks</button>
+                                <div class="pp-wallet-export-key__intro-details">
+                                    <h3 class="pp-wallet-export-key__intro-details-title">Private key to export</h3>
+                                    <div class="pp-wallet-export-key__intro-details-card">
+                                        <div class="pp-wallet-export-key__intro-details-row">
+                                            <span class="pp-wallet-export-key__intro-details-label">Address</span>
+                                            <span class="pp-wallet-export-key__intro-details-value" id="walletExportIntroAddress">0x2134...1233f8</span>
+                                        </div>
+                                        <div class="pp-wallet-export-key__intro-details-row">
+                                            <span class="pp-wallet-export-key__intro-details-label">Network</span>
+                                            <span class="pp-wallet-export-key__intro-details-value" id="walletExportIntroNetwork">Ethereum (ERC-20)</span>
+                                        </div>
+                                        <div class="pp-wallet-export-key__intro-details-row">
+                                            <span class="pp-wallet-export-key__intro-details-label">Beneficiary</span>
+                                            <span class="pp-wallet-export-key__intro-details-value" id="walletExportIntroBeneficiary">AGP Technology</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pp-wallet-export-key__intro-warning">
+                                    <img src="assets/icon-ew-warning-orange.svg" alt="" width="24" height="24" class="pp-wallet-export-key__intro-warning-icon" />
+                                    <p class="pp-wallet-export-key__intro-warning-text">Exporting your private key is irreversible and has important Consequences &amp; Risks. See the next screens for a detailed explanation.</p>
+                                </div>
+                                <div class="pp-wallet-export-key__actions pp-wallet-export-key__actions--intro">
+                                    <button type="button" class="pp-wallet-export-key__skip" id="walletExportIntroSkipBtn">Skip explanation</button>
+                                    <div class="pp-wallet-bnc pp-wallet-bnc--split">
+                                        <button type="button" class="ew-btn ew-btn--lg ew-btn--secondary" id="walletExportIntroCancelBtn">Cancel</button>
+                                        <button type="button" class="ew-btn ew-btn--lg ew-btn--primary" id="walletExportIntroContinueBtn">Continue</button>
+                                    </div>
                                 </div>
                             </section>
 
@@ -1381,6 +1393,7 @@
             // Beneficiary detail + Address detail views
             var walletModalBack = document.getElementById("walletModalBack");
             var walletModalDialog = walletModal && walletModal.querySelector(".pp-wallet-modal__dialog");
+            var walletViews = walletModal && walletModal.querySelector(".pp-wallet-modal__views");
             var walletViewList = document.getElementById("walletViewList");
             var walletViewBeneficiary = document.getElementById("walletViewBeneficiary");
             var walletViewAddressDetail = document.getElementById("walletViewAddressDetail");
@@ -2149,6 +2162,68 @@
                 queueWalletViewOverflowUpdate();
             }
 
+            function clearWalletTransitionOverlay() {
+                if (!walletViews) return;
+                var existingOverlay = walletViews.querySelector(".pp-wallet-modal__transition-overlay");
+                if (existingOverlay && existingOverlay.parentNode) existingOverlay.parentNode.removeChild(existingOverlay);
+            }
+
+            function stripCloneIds(root) {
+                if (!root || !root.querySelectorAll) return;
+                if (root.removeAttribute) root.removeAttribute("id");
+                var idNodes = root.querySelectorAll("[id]");
+                for (var i = 0; i < idNodes.length; i++) {
+                    idNodes[i].removeAttribute("id");
+                }
+            }
+
+            function animateSaveKeyToListTransition() {
+                if (!walletModal || !walletViews || !walletViewSaveKey || !walletViewList) {
+                    showListViewFromSaveKey();
+                    return;
+                }
+                clearWalletTransitionOverlay();
+                walletModal.classList.remove("pp-wallet-modal--save-to-list");
+                walletModal.classList.remove("pp-wallet-modal--wallet-account-view");
+                walletModal.classList.remove("pp-wallet-modal--save-key-done");
+                var overlay = document.createElement("div");
+                overlay.className = "pp-wallet-modal__transition-overlay";
+                var fromClone = walletViewSaveKey.cloneNode(true);
+                var toClone = walletViewList.cloneNode(true);
+                stripCloneIds(fromClone);
+                stripCloneIds(toClone);
+                fromClone.classList.add("pp-wallet-modal__transition-panel", "pp-wallet-modal__transition-panel--from");
+                toClone.classList.add("pp-wallet-modal__transition-panel", "pp-wallet-modal__transition-panel--to");
+                fromClone.setAttribute("aria-hidden", "true");
+                toClone.setAttribute("aria-hidden", "true");
+                fromClone.removeAttribute("hidden");
+                toClone.removeAttribute("hidden");
+                if (typeof walletViewSaveKey.scrollTop === "number") fromClone.scrollTop = walletViewSaveKey.scrollTop;
+                if (typeof walletViewList.scrollTop === "number") toClone.scrollTop = walletViewList.scrollTop;
+                overlay.appendChild(fromClone);
+                overlay.appendChild(toClone);
+                walletViews.appendChild(overlay);
+                walletModal.classList.add("pp-wallet-modal--skip-view-animation");
+                showListViewFromSaveKey();
+                var finished = false;
+                function cleanupTransition() {
+                    if (finished) return;
+                    finished = true;
+                    overlay.removeEventListener("transitionend", onOverlayTransitionEnd);
+                    if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+                    walletModal.classList.remove("pp-wallet-modal--skip-view-animation");
+                }
+                function onOverlayTransitionEnd(e) {
+                    if (e.target !== toClone || e.propertyName !== "transform") return;
+                    cleanupTransition();
+                }
+                overlay.addEventListener("transitionend", onOverlayTransitionEnd);
+                requestAnimationFrame(function () {
+                    overlay.classList.add("pp-wallet-modal__transition-overlay--active");
+                });
+                setTimeout(cleanupTransition, 400);
+            }
+
             function onWalletBackClick() {
                 if (walletModal && walletModal.classList.contains("pp-wallet-modal--export-key-view")) {
                     if (currentExportFlowStep === "confirm") {
@@ -2397,6 +2472,7 @@
                     });
                 }
                 (function wireExportKeyView() {
+                    var introSkipBtn = document.getElementById("walletExportIntroSkipBtn");
                     var introCancelBtn = document.getElementById("walletExportIntroCancelBtn");
                     var introContinueBtn = document.getElementById("walletExportIntroContinueBtn");
                     var risk1BackBtn = document.getElementById("walletExportRisk1BackBtn");
@@ -2427,6 +2503,12 @@
                         introContinueBtn.addEventListener("click", function (e) {
                             e.preventDefault();
                             setExportKeyFlowStep("risk1");
+                        });
+                    }
+                    if (introSkipBtn) {
+                        introSkipBtn.addEventListener("click", function (e) {
+                            e.preventDefault();
+                            setExportKeyFlowStep("confirm");
                         });
                     }
                     if (risk1BackBtn) {
@@ -2542,14 +2624,8 @@
                             walletModal.classList.remove("pp-wallet-modal--save-to-list");
                             walletModal.classList.remove("pp-wallet-modal--wallet-account-view");
                             walletModal.classList.remove("pp-wallet-modal--save-key-done");
-                            walletModal.classList.add("pp-wallet-modal--skip-view-animation");
                         }
-                        showListViewFromSaveKey();
-                        requestAnimationFrame(function () {
-                            requestAnimationFrame(function () {
-                                if (walletModal) walletModal.classList.remove("pp-wallet-modal--skip-view-animation");
-                            });
-                        });
+                        animateSaveKeyToListTransition();
                     });
                 }
                 if (walletViewList) {
