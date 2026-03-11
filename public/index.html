@@ -808,6 +808,37 @@
                 </div>
             </div>
         </div>
+        <div class="pp-wallet-close-confirm" id="walletAboutDialog" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletAboutDialogTitle">
+            <div class="pp-wallet-close-confirm__backdrop"></div>
+            <div class="pp-wallet-close-confirm__card">
+                <div class="pp-wallet-close-confirm__header">
+                    <h3 class="pp-wallet-close-confirm__title" id="walletAboutDialogTitle">About this wallet</h3>
+                    <button type="button" class="pp-wallet-close-confirm__close" id="walletAboutDialogDismiss" aria-label="Close"><img src="assets/icon_pp_close.svg" width="24" height="24" alt="" /></button>
+                </div>
+                <p class="pp-wallet-close-confirm__body">
+                    <span class="pp-wallet-close-confirm__body-strong-warning">Text to be provided</span><br />
+                    Wallet tech by Dynamic.xyz: you’re viewing a custom interface.
+                </p>
+                <div class="pp-wallet-close-confirm__actions">
+                    <button type="button" class="ew-btn ew-btn--md ew-btn--primary" id="walletAboutDialogDone">Done</button>
+                </div>
+            </div>
+        </div>
+        <div class="pp-wallet-close-confirm" id="walletExportInfoDialog" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletExportInfoDialogTitle">
+            <div class="pp-wallet-close-confirm__backdrop"></div>
+            <div class="pp-wallet-close-confirm__card">
+                <div class="pp-wallet-close-confirm__header">
+                    <h3 class="pp-wallet-close-confirm__title" id="walletExportInfoDialogTitle">Export private keys</h3>
+                    <button type="button" class="pp-wallet-close-confirm__close" id="walletExportInfoDialogDismiss" aria-label="Close"><img src="assets/icon_pp_close.svg" width="24" height="24" alt="" /></button>
+                </div>
+                <p class="pp-wallet-close-confirm__body">
+                    To export your wallet’s private keys, go to the desired address, open the “More” menu, and select “Export private key.”
+                </p>
+                <div class="pp-wallet-close-confirm__actions">
+                    <button type="button" class="ew-btn ew-btn--md ew-btn--primary" id="walletExportInfoDialogUnderstood">Understood</button>
+                </div>
+            </div>
+        </div>
         <div class="pp-wallet-close-confirm" id="walletGasAssetConfirm" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="walletGasAssetConfirmTitle">
             <div class="pp-wallet-close-confirm__backdrop"></div>
             <div class="pp-wallet-close-confirm__card">
@@ -1410,6 +1441,39 @@
                 var walletCloseConfirmDismiss = document.getElementById("walletCloseConfirmDismiss");
                 if (walletCloseConfirmDismiss) walletCloseConfirmDismiss.addEventListener("click", closeWalletCloseConfirm);
             }
+
+            // About / Export info dialogs (Settings)
+            var walletAboutDialog = document.getElementById("walletAboutDialog");
+            var walletAboutDialogDone = document.getElementById("walletAboutDialogDone");
+            var walletAboutDialogDismiss = document.getElementById("walletAboutDialogDismiss");
+            function openWalletAboutDialog() {
+                if (walletAboutDialog) walletAboutDialog.setAttribute("aria-hidden", "false");
+            }
+            function closeWalletAboutDialog() {
+                if (walletAboutDialog) walletAboutDialog.setAttribute("aria-hidden", "true");
+            }
+            if (walletAboutDialog) {
+                var aboutBackdrop = walletAboutDialog.querySelector(".pp-wallet-close-confirm__backdrop");
+                if (aboutBackdrop) aboutBackdrop.addEventListener("click", closeWalletAboutDialog);
+            }
+            if (walletAboutDialogDone) walletAboutDialogDone.addEventListener("click", closeWalletAboutDialog);
+            if (walletAboutDialogDismiss) walletAboutDialogDismiss.addEventListener("click", closeWalletAboutDialog);
+
+            var walletExportInfoDialog = document.getElementById("walletExportInfoDialog");
+            var walletExportInfoDialogUnderstood = document.getElementById("walletExportInfoDialogUnderstood");
+            var walletExportInfoDialogDismiss = document.getElementById("walletExportInfoDialogDismiss");
+            function openWalletExportInfoDialog() {
+                if (walletExportInfoDialog) walletExportInfoDialog.setAttribute("aria-hidden", "false");
+            }
+            function closeWalletExportInfoDialog() {
+                if (walletExportInfoDialog) walletExportInfoDialog.setAttribute("aria-hidden", "true");
+            }
+            if (walletExportInfoDialog) {
+                var exportInfoBackdrop = walletExportInfoDialog.querySelector(".pp-wallet-close-confirm__backdrop");
+                if (exportInfoBackdrop) exportInfoBackdrop.addEventListener("click", closeWalletExportInfoDialog);
+            }
+            if (walletExportInfoDialogUnderstood) walletExportInfoDialogUnderstood.addEventListener("click", closeWalletExportInfoDialog);
+            if (walletExportInfoDialogDismiss) walletExportInfoDialogDismiss.addEventListener("click", closeWalletExportInfoDialog);
 
             // Beneficiary detail + Address detail views
             var walletModalBack = document.getElementById("walletModalBack");
@@ -2509,13 +2573,13 @@
                 if (walletSettingsAboutItem) {
                     walletSettingsAboutItem.addEventListener("click", function (e) {
                         e.preventDefault();
-                        showWalletSnackbar("Not in prototype", "assets/icon-ew-warning.svg");
+                        if (typeof openWalletAboutDialog === "function") openWalletAboutDialog();
                     });
                 }
                 if (walletSettingsExportItem) {
                     walletSettingsExportItem.addEventListener("click", function (e) {
                         e.preventDefault();
-                        showWalletSnackbar("Not in prototype", "assets/icon-ew-warning.svg");
+                        if (typeof openWalletExportInfoDialog === "function") openWalletExportInfoDialog();
                     });
                 }
                 if (walletSettingsSignOut) {
