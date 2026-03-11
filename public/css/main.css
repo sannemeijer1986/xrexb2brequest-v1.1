@@ -4241,12 +4241,15 @@ body.profile-payment-page .site-footer {
 .pp-wallet-private-key-field__box {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 24px;
   min-height: 72px;
   padding: 24px;
   background: #222947;
   border-radius: 16px;
   border: 1px solid #222947;
+}
+.pp-wallet-private-key-field__box .ew-btn {
+  min-width: 90px;
 }
 
 .pp-wallet-private-key-field__value {

@@ -3422,12 +3422,16 @@ $wallet-accent: $ew-text-link;
 .pp-wallet-private-key-field__box {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 24px;
   min-height: 72px;
   padding: 24px;
   background: $ew-bg-surface-primary;
   border-radius: 16px;
   border: 1px solid $ew-border-mediumcon;
+
+  .ew-btn {
+    min-width: 90px;
+  }
 }
 
 .pp-wallet-private-key-field__value {
